@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   Copyright (c) 2014 Jonas Kalderstam
 
@@ -15,15 +16,15 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.nononsenseapps.filepicker">
+<resources>
 
-    <application
-        android:allowBackup="true"
-        android:label="@string/app_name"
-        android:icon="@drawable/ic_launcher"
-        >
+    <style name="FilePicker.Theme.Base"
+           parent="android:Theme.Holo.Light.Dialog">
+        <item name="isDialog">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowSoftInputMode">stateAlwaysHidden</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 
-    </application>
-
-</manifest>
+</resources>
