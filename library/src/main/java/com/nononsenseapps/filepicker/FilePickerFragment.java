@@ -19,6 +19,7 @@ package com.nononsenseapps.filepicker;
 
 import android.content.AsyncTaskLoader;
 import android.content.Loader;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.FileObserver;
 import android.widget.Toast;
@@ -29,9 +30,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public class FilePickerFragment extends AbstractFilePickerFragment<File> {
-
-    // Change this if you want to view files
-    private final boolean showFiles = true;
 
     /**
      * Return true if the path is a directory and not a file.
@@ -52,7 +50,11 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     @Override
     protected File getParent(final File from) {
         if (from.getParentFile() != null) {
-            return from.getParentFile();
+            if (from.isFile()) {
+                return getParent(from.getParentFile());
+            } else {
+                return from.getParentFile();
+            }
         } else {
             return from;
         }
@@ -95,6 +97,16 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     }
 
     /**
+     * Convert the path to a URI for the return intent
+     * @param file
+     * @return
+     */
+    @Override
+    protected Uri toUri(final File file) {
+        return Uri.fromFile(file);
+    }
+
+    /**
      * @return a comparator that can sort the items alphabetically
      */
     @Override
@@ -128,7 +140,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
             public List<File> loadInBackground() {
                 ArrayList<File> files = new ArrayList<File>();
                 for (java.io.File f : currentPath.listFiles()) {
-                    if (showFiles || f.isDirectory()) {
+                    if (!onlyDirs || f.isDirectory()) {
                         files.add(f);
                     }
                 }

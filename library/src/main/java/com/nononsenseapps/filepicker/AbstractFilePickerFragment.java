@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.app.ListFragment;
 import android.app.LoaderManager;
 import android.content.Loader;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -44,8 +46,13 @@ public abstract class AbstractFilePickerFragment<T> extends
         NewFolderFragment.OnNewFolderListener {
 
     public static final String KEY_START_PATH = "KEY_START_PATH";
+    public static final String KEY_ONLY_DIRS = "KEY_ONLY_DIRS";
+    public static final String KEY_ALLOW_MULTIPLE = "KEY_ALLOW_MULTIPLE";
     private static final String KEY_CURRENT_PATH = "KEY_START_PATH";
     protected T currentPath = null;
+    protected List<T> currentPaths = null;
+    protected boolean onlyDirs = false;
+    protected boolean allowMultiple = false;
     protected Comparator<T> comparator = null;
     private OnFilePickedListener listener;
     private BindableArrayAdapter<T> adapter;
@@ -63,12 +70,14 @@ public abstract class AbstractFilePickerFragment<T> extends
      *
      * @param startPath
      */
-    public void setStartPath(final String startPath) {
+    public void setArgs(final String startPath, final boolean onlyDirs, final boolean allowMultiple) {
+        Bundle b = new Bundle();
         if (startPath != null) {
-            Bundle b = new Bundle();
             b.putString(KEY_START_PATH, startPath);
-            setArguments(b);
         }
+        b.putBoolean(KEY_ONLY_DIRS, onlyDirs);
+        b.putBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
+        setArguments(b);
     }
 
     @Override
@@ -80,13 +89,23 @@ public abstract class AbstractFilePickerFragment<T> extends
         // Only if we have no state
         if (currentPath == null) {
             if (savedInstanceState != null) {
+                onlyDirs = savedInstanceState.getBoolean(KEY_ONLY_DIRS, onlyDirs);
+                allowMultiple = savedInstanceState.getBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
                 currentPath = getPath(savedInstanceState.getString
                         (KEY_CURRENT_PATH));
-            } else if (getArguments() != null && getArguments().containsKey
-                    (KEY_START_PATH)) {
-                currentPath = getPath(getArguments().getString(KEY_START_PATH));
+            } else if (getArguments() != null) {
+                onlyDirs = getArguments().getBoolean(KEY_ONLY_DIRS, onlyDirs);
+                allowMultiple = getArguments().getBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
+                if (getArguments().containsKey
+                        (KEY_START_PATH)) {
+                    currentPath = getPath(getArguments().getString(KEY_START_PATH));
+                }
             } else {
                 currentPath = getRoot();
+            }
+
+            if (currentPaths == null) {
+                currentPaths = new ArrayList<T>();
             }
         }
 
@@ -117,14 +136,25 @@ public abstract class AbstractFilePickerFragment<T> extends
             }
         });
 
-        view.findViewById(R.id.button_ok).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                if (listener != null) {
-                    listener.onFilePicked(currentPath);
+        if (allowMultiple) {
+            view.findViewById(R.id.button_ok).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    if (listener != null) {
+                        listener.onFilesPicked(toUri(currentPaths));
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            view.findViewById(R.id.button_ok).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    if (listener != null) {
+                        listener.onFilePicked(toUri(currentPath));
+                    }
+                }
+            });
+        }
 
         view.findViewById(R.id.button_go_parent).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +182,14 @@ public abstract class AbstractFilePickerFragment<T> extends
         return view;
     }
 
+    private List<Uri> toUri(List<T> files) {
+        ArrayList<Uri> uris = new ArrayList<Uri>();
+        for (T file: files) {
+            uris.add(toUri(file));
+        }
+        return uris;
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -173,6 +211,8 @@ public abstract class AbstractFilePickerFragment<T> extends
     public void onSaveInstanceState(Bundle b) {
         super.onSaveInstanceState(b);
         b.putString(KEY_CURRENT_PATH, currentPath.toString());
+        b.putBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
+        b.putBoolean(KEY_ONLY_DIRS, onlyDirs);
     }
 
     /**
@@ -186,11 +226,19 @@ public abstract class AbstractFilePickerFragment<T> extends
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        currentPath = (T) getListAdapter().getItem(position);
-        if (isDir(currentPath)) {
-            refresh();
+        if (allowMultiple) {
+            // TODO mark multiple
+            T data = (T) getListAdapter().getItem(position);
+            if (!currentPaths.remove(data)) {
+                currentPaths.add(data);
+            }
         } else {
-            // TODO mark file
+            currentPath = (T) getListAdapter().getItem(position);
+            if (isDir(currentPath)) {
+                refresh();
+            } else {
+                // TODO mark file
+            }
         }
     }
 
@@ -228,6 +276,12 @@ public abstract class AbstractFilePickerFragment<T> extends
      */
     protected abstract T getRoot();
 
+    /**
+     * Convert the path to a URI for the return intent
+     * @param path
+     * @return
+     */
+    protected abstract Uri toUri(final T path);
     /**
      * @return a comparator that can sort the items alphabetically
      */
@@ -350,8 +404,9 @@ public abstract class AbstractFilePickerFragment<T> extends
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFilePickedListener<T> {
-        public void onFilePicked(T file);
+    public interface OnFilePickedListener {
+        public void onFilePicked(Uri file);
+        public void onFilesPicked(List<Uri> files);
 
         public void onCancelled();
     }

@@ -20,17 +20,44 @@ package com.nononsenseapps.filepicker;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.ClipData;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.util.List;
+
+/**
+ * An abstract base activity that handles all the fluff you don't care about.
+ *
+ * Usage: To start a child activity you could either use an intent starting the
+ * activity directly, or you could use an implicit intent with GET_CONTENT, if it
+ * is also defined in your manifest. It is defined to be handled here in case you
+ * want the user to be able to use other file pickers on the system.
+ *
+ * That means using an intent with action GET_CONTENT
+ * If you want to be able to select multiple items, include EXTRA_ALLOW_MULTIPLE (default false).
+ *
+ * Two non-standard extra arguments are supported as well: EXTRA_ONLY_DIRS (defaults to false)
+ * allows only directories to be selected.
+ * And EXTRA_START_PATH (default null), which should specify the starting path.
+ *
+ * The result of the user's action is returned in onActivityResult intent, access it using getUri.
+ * In case of multiple choices, these can be accessed with getClipData containing Uri objects.
+ *
+ * @param <T>
+ */
 public abstract class AbstractFilePickerActivity<T> extends Activity implements
-        AbstractFilePickerFragment.OnFilePickedListener<T> {
-    public static final String RESULT_PATH = "result_path";
+        AbstractFilePickerFragment.OnFilePickedListener {
+    public static final String EXTRA_START_PATH = "start_path";
+    public static final String EXTRA_ONLY_DIRS = "only_dirs";
     private static final String TAG = "filepicker_fragment";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +69,20 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         setContentView(R.layout.activity_filepicker);
 
         String startPath = null;
+        boolean onlyDirs = false;
+        boolean allowMultiple = false;
         Intent intent = getIntent();
         if (intent != null) {
-            startPath = intent.getStringExtra(RESULT_PATH);
+            startPath = intent.getStringExtra(EXTRA_START_PATH);
+            onlyDirs = intent.getBooleanExtra(EXTRA_ONLY_DIRS, onlyDirs);
+            allowMultiple = intent.getBooleanExtra(Intent.EXTRA_ALLOW_MULTIPLE, allowMultiple);
         }
 
         FragmentManager fm = getFragmentManager();
         AbstractFilePickerFragment<T> fragment = (AbstractFilePickerFragment<T>) fm.findFragmentByTag(TAG);
 
         if (fragment == null) {
-            fragment = getFragment(startPath);
+            fragment = getFragment(startPath, onlyDirs, allowMultiple);
             fm.beginTransaction().replace(R.id.fragment,
                     fragment, TAG).commit();
         }
@@ -87,7 +118,11 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
     protected abstract String getWindowTitle();
 
     protected abstract AbstractFilePickerFragment<T> getFragment(final String
-                                                                         startPath);
+                                                                         startPath,
+                                                                 final boolean onlyDirs,
+                                                                 final boolean allowMultiple);
+
+
 
     @Override
     public void onSaveInstanceState(Bundle b) {
@@ -95,9 +130,22 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
     }
 
     @Override
-    public void onFilePicked(final T file) {
+    public void onFilePicked(final Uri file) {
         Intent i = new Intent();
-        i.putExtra(RESULT_PATH, file.toString());
+        i.setData(file);
+        setResult(Activity.RESULT_OK, i);
+        finish();
+    }
+
+    @Override
+    public void onFilesPicked(final List<Uri> files) {
+        Intent i = new Intent();
+        i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        ClipData clip = new ClipData("Paths", new String[] {}, null);
+        for (Uri file: files) {
+            clip.addItem(new ClipData.Item(file));
+        }
+        i.setClipData(clip);
         setResult(Activity.RESULT_OK, i);
         finish();
     }
