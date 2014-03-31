@@ -247,7 +247,6 @@ public abstract class AbstractFilePickerFragment<T> extends
         currentPath = (T) getListAdapter().getItem(position);
         if (isDir(currentPath)) {
             refresh();
-            return;
         }
         else if (l.getChoiceMode() != ListView.CHOICE_MODE_NONE) {
             toggleItemCheck((CheckedTextView) v.findViewById(android.R.id.text1),
