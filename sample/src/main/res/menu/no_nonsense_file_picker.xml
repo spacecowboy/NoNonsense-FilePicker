@@ -15,8 +15,12 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<resources>
-
-    <style name="SampleTheme" parent="android:Theme.Holo.Light.DarkActionBar" />
-
-</resources>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.nononsenseapps.filepicker.sample.NoNonsenseFilePicker" >
+    
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>

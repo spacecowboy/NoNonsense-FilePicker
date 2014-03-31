@@ -153,7 +153,7 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         Intent i = new Intent();
         i.putExtra(EXTRA_ALLOW_MULTIPLE, true);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             ClipData clip = null;
             for (Uri file : files) {
                 if (clip == null) {

@@ -14,10 +14,13 @@
 
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
+-->
 <resources>
 
-    <string name="app_name">NoNonsense File Picker</string>
+    <string name="app_name">@string/title_activity_no_nonsense_file_picker</string>
+    <string name="title_activity_no_nonsense_file_picker">
+        NoNonsenseFilePicker Sample</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
