@@ -29,7 +29,7 @@
         android:layout_height="48dp"
         android:fontFamily="light"
         android:padding="4dp"
-        android:hint="Folder name"
+        android:hint="@string/folder_name"
         android:singleLine="true"
         android:maxLines="1"
         android:gravity="center_vertical"
@@ -40,7 +40,6 @@
 
     <LinearLayout
         android:id="@+id/button_container"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">

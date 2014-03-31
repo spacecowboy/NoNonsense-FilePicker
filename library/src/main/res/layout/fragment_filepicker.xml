@@ -40,6 +40,7 @@
             android:background="@drawable/selectable_action"
             android:clickable="true"
             android:scaleType="fitCenter"
+            android:contentDescription="@string/go_back"
             android:id="@+id/button_go_parent"/>
 
         <ImageButton
@@ -50,6 +51,7 @@
             android:id="@+id/button_create_dir"
             android:src="@drawable/ic_collections_add_collection"
             android:clickable="true"
+            android:contentDescription="@string/new_folder"
             android:scaleType="fitCenter"/>
     </LinearLayout>
 

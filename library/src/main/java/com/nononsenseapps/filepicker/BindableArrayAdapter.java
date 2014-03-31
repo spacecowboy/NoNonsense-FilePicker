@@ -28,7 +28,7 @@ import java.util.List;
 public class BindableArrayAdapter<T> extends ArrayAdapter<T> {
 
     private final LayoutInflater mInflater;
-    private int mResource;
+    private final int mResource;
     private ViewBinder<T> viewBinder = null;
 
     /**

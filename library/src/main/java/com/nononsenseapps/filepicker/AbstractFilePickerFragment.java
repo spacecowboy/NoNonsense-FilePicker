@@ -229,14 +229,6 @@ public abstract class AbstractFilePickerFragment<T> extends
     protected abstract T getRoot();
 
     /**
-     * Try to create a designated directory.
-     *
-     * @param path Path to directory to create
-     * @return true on success. false if failed.
-     */
-    protected abstract boolean createDir(final T path);
-
-    /**
      * @return a comparator that can sort the items alphabetically
      */
     protected abstract Comparator<T> getComparator();

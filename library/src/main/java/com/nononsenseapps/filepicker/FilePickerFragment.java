@@ -31,7 +31,7 @@ import java.util.List;
 public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
     // Change this if you want to view files
-    private boolean showFiles = true;
+    private final boolean showFiles = true;
 
     /**
      * Return true if the path is a directory and not a file.
@@ -92,23 +92,6 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     @Override
     protected File getRoot() {
         return Environment.getExternalStorageDirectory();
-    }
-
-    /**
-     * Try to create a designated directory.
-     *
-     * @param path Path to directory to create
-     * @return true on success. false if failed.
-     */
-    @Override
-    protected boolean createDir(final File path) {
-        if (path.isDirectory()) {
-            return true;
-        } else if (path.exists()) {
-            return false;
-        } else {
-            return path.mkdirs();
-        }
     }
 
     /**

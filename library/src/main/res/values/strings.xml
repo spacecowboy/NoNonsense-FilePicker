@@ -19,6 +19,8 @@
     <string name="app_name">NoNonsense File Picker</string>
     <string name="new_folder">New folder</string>
     <string name="create_folder_error">Failed to create folder</string>
+    <string name="folder_name">Folder name</string>
+    <string name="go_back">Go back</string>
     <plurals
         name="select_dir">
         <item quantity="one">Select directory</item>

@@ -88,7 +88,7 @@ public class NewFolderFragment extends DialogFragment {
             editText.setText(folderName);
             validateFolderName();
         }
-        ;
+
         editText.addTextChangedListener
                 (new TextWatcher() {
                     @Override
