@@ -20,15 +20,34 @@ package com.nononsenseapps.filepicker;
 import java.io.File;
 
 public class FilePickerActivity extends AbstractFilePickerActivity<File> {
-    @Override
-    protected String getWindowTitle() {
-        return getResources().getQuantityString(R.plurals.select_dir, 1);
+
+    public FilePickerActivity() {
+        super();
     }
 
     @Override
-    protected AbstractFilePickerFragment getFragment(final String startPath) {
+    protected String getWindowTitle() {
+        final int res;
+        if (onlyDirs) {
+            res = R.plurals.select_dir;
+        } else {
+            res = R.plurals.select_dir_or_file;
+        }
+
+        final int count;
+        if (allowMultiple) {
+            count = 99;
+        } else {
+            count = 1;
+        }
+
+        return getResources().getQuantityString(res, count);
+    }
+
+    @Override
+    protected AbstractFilePickerFragment<File> getFragment(final String startPath, final boolean onlyDirs, final boolean allowMultiple) {
         AbstractFilePickerFragment fragment = new FilePickerFragment();
-        fragment.setStartPath(startPath);
+        fragment.setArgs(startPath, onlyDirs, allowMultiple);
         return fragment;
     }
 }

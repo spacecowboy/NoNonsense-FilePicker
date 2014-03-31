@@ -18,17 +18,20 @@
 package com.nononsenseapps.filepicker;
 
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,16 +51,26 @@ import java.util.List;
  *
  * The result of the user's action is returned in onActivityResult intent, access it using getUri.
  * In case of multiple choices, these can be accessed with getClipData containing Uri objects.
+ * If running earlier than JellyBean you can access them with
+ * getStringArrayListExtra(EXTRA_PATHS)
  *
  * @param <T>
  */
 public abstract class AbstractFilePickerActivity<T> extends Activity implements
         AbstractFilePickerFragment.OnFilePickedListener {
-    public static final String EXTRA_START_PATH = "start_path";
-    public static final String EXTRA_ONLY_DIRS = "only_dirs";
+    public static final String EXTRA_START_PATH = "nononsense.intent" +
+            ".extrastart_path";
+    public static final String EXTRA_ONLY_DIRS = "nononsense.intent.only_dirs";
+    // For compatibility
+    public static final String EXTRA_ALLOW_MULTIPLE = "android.intent.extra" +
+            ".ALLOW_MULTIPLE";
+    public static final String EXTRA_PATHS = "nononsense.intent.paths";
     private static final String TAG = "filepicker_fragment";
 
 
+    private String startPath = null;
+    protected boolean onlyDirs = false;
+    protected boolean allowMultiple = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +81,11 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
 
         setContentView(R.layout.activity_filepicker);
 
-        String startPath = null;
-        boolean onlyDirs = false;
-        boolean allowMultiple = false;
         Intent intent = getIntent();
         if (intent != null) {
             startPath = intent.getStringExtra(EXTRA_START_PATH);
             onlyDirs = intent.getBooleanExtra(EXTRA_ONLY_DIRS, onlyDirs);
-            allowMultiple = intent.getBooleanExtra(Intent.EXTRA_ALLOW_MULTIPLE, allowMultiple);
+            allowMultiple = intent.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, allowMultiple);
         }
 
         FragmentManager fm = getFragmentManager();
@@ -137,15 +147,30 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         finish();
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onFilesPicked(final List<Uri> files) {
         Intent i = new Intent();
-        i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        ClipData clip = new ClipData("Paths", new String[] {}, null);
-        for (Uri file: files) {
-            clip.addItem(new ClipData.Item(file));
+        i.putExtra(EXTRA_ALLOW_MULTIPLE, true);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            ClipData clip = null;
+            for (Uri file : files) {
+                if (clip == null) {
+                    clip = new ClipData("Paths", new String[]{}, new ClipData.Item(file));
+                } else {
+                    clip.addItem(new ClipData.Item(file));
+                }
+            }
+            i.setClipData(clip);
+        } else {
+            ArrayList<String> paths = new ArrayList<String>();
+            for (Uri file : files) {
+                paths.add(file.toString());
+            }
+            i.putStringArrayListExtra(EXTRA_PATHS, paths);
         }
-        i.setClipData(clip);
+
         setResult(Activity.RESULT_OK, i);
         finish();
     }

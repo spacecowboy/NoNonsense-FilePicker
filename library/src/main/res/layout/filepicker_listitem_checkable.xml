@@ -33,11 +33,13 @@
         android:layout_height="match_parent"
         />
 
-    <TextView
+    <CheckedTextView
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
         style="?android:textAppearanceLarge"
+        android:checked="false"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
         android:fontFamily="light"
         android:padding="8dp"
         android:gravity="center_vertical"

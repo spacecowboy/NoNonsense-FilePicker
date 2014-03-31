@@ -147,12 +147,13 @@ public class BindableArrayAdapter<T> extends ArrayAdapter<T> {
                 view = convertView;
             }
 
-            viewBinder.setViewValue(view, getItem(position));
+            viewBinder.setViewValue(view, position, getItem(position));
             return view;
         }
     }
 
     public interface ViewBinder<T> {
-        public void setViewValue(final View view, final T data);
+        public void setViewValue(final View view, final int position, final T
+                data);
     }
 }
