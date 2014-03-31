@@ -28,7 +28,8 @@
         <item name="android:actionBarItemBackground">@drawable/ab_solid_filepickertheme</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowShowWallpaper">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--<item name="android:windowBackground">@android:color
+        /transparent</item>-->
         <!--<item name="android:actionBarWidgetTheme">@android:style/Theme.Holo</item>-->
         <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
     </style>
