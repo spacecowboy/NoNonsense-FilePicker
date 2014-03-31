@@ -120,6 +120,10 @@ public abstract class AbstractFilePickerFragment<T> extends
         setHasOptionsMenu(true);
     }
 
+    private boolean isCheckable() {
+        return allowMultiple || !onlyDirs;
+    }
+
     /**
      * Refreshes the list. Call this when current path changes.
      */
@@ -134,13 +138,14 @@ public abstract class AbstractFilePickerFragment<T> extends
         View view = inflater.inflate(R.layout.fragment_filepicker, null);
 
         ListView lv = (ListView) view.findViewById(android.R.id.list);
+        /*
         if (allowMultiple) {
             lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         } else if (onlyDirs) {
             lv.setChoiceMode(ListView.CHOICE_MODE_NONE);
         } else {
             lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        }
+        }*/
 
         lv.setOnItemLongClickListener(this);
 
@@ -248,7 +253,7 @@ public abstract class AbstractFilePickerFragment<T> extends
         if (isDir(currentPath)) {
             refresh();
         }
-        else if (l.getChoiceMode() != ListView.CHOICE_MODE_NONE) {
+        else if (isCheckable()) {
             toggleItemCheck((CheckedTextView) v.findViewById(android.R.id.text1),
                     position);
         }
@@ -256,19 +261,18 @@ public abstract class AbstractFilePickerFragment<T> extends
 
     private void toggleItemCheck(final CheckedTextView view,
                                  final int position) {
-        final ListView lv = getListView();
-        if (lv.getChoiceMode() == ListView.CHOICE_MODE_NONE) {
+        if (!isCheckable()) {
             return;
         }
 
         final boolean oldVal = checkedItems.get(position);
 
-        if (lv.getChoiceMode() == ListView.CHOICE_MODE_SINGLE) {
+        if (!allowMultiple) {
             checkedItems.clear();
         }
         checkedItems.put(position, !oldVal);
         // Redraw the items
-        lv.invalidateViews();
+        getListView().invalidateViews();
     }
 
     /**
@@ -301,7 +305,11 @@ public abstract class AbstractFilePickerFragment<T> extends
      */
     @Override
     public boolean onItemLongClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-        if (getListView().getChoiceMode() == ListView.CHOICE_MODE_NONE) {
+        if (!isCheckable()) {
+            return false;
+        }
+        // Special case for single choice to handle directories
+        if (!allowMultiple) {
             return false;
         }
         toggleItemCheck((CheckedTextView) view.findViewById(android.R.id.text1),
@@ -366,9 +374,6 @@ public abstract class AbstractFilePickerFragment<T> extends
 
         return new BindableArrayAdapter.ViewBinder<T>() {
 
-            boolean shouldCheck = getListView().getChoiceMode() != ListView
-                    .CHOICE_MODE_NONE;
-
             @Override
             public void setViewValue(final View view,
                                      final int position, final T data) {
@@ -377,7 +382,7 @@ public abstract class AbstractFilePickerFragment<T> extends
                     viewHolder.icon = view.findViewById(R.id.item_icon);
                     viewHolder.text = (TextView) view.findViewById(android.R
                             .id.text1);
-                    if (shouldCheck) {
+                    if (isCheckable()) {
                         viewHolder.checkbox = (CheckedTextView) view.findViewById
                                 (android.R.id.text1);
                     }
@@ -459,9 +464,9 @@ public abstract class AbstractFilePickerFragment<T> extends
                                final List<T> data) {
         if (adapter == null) {
             adapter = new BindableArrayAdapter<T>(getActivity(),
-                    getListView().getChoiceMode() == ListView.CHOICE_MODE_NONE ?
-                            R.layout.filepicker_listitem_dir :
-                            R.layout.filepicker_listitem_checkable);
+                    isCheckable() ?
+                            R.layout.filepicker_listitem_checkable :
+                            R.layout.filepicker_listitem_dir);
             adapter.setViewBinder(getViewBinder());
         } else {
             adapter.clear();
