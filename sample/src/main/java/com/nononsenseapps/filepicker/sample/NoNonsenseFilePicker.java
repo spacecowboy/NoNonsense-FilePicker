@@ -76,9 +76,11 @@ public class NoNonsenseFilePicker extends Activity {
                     ClipData clip = data.getClipData();
                     StringBuilder sb = new StringBuilder();
 
-                    for (int i = 0; i < clip.getItemCount(); i++) {
-                        sb.append(clip.getItemAt(i).getUri().toString());
-                        sb.append("\n");
+                    if (clip != null) {
+                        for (int i = 0; i < clip.getItemCount(); i++) {
+                            sb.append(clip.getItemAt(i).getUri().toString());
+                            sb.append("\n");
+                        }
                     }
 
                     textView.setText(sb.toString());
