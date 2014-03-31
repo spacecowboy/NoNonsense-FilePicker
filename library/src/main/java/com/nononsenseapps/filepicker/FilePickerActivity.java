@@ -21,6 +21,11 @@ import java.io.File;
 
 public class FilePickerActivity extends AbstractFilePickerActivity<File> {
     @Override
+    protected String getWindowTitle() {
+        return getResources().getQuantityString(R.plurals.select_dir, 1);
+    }
+
+    @Override
     protected AbstractFilePickerFragment getFragment(final String startPath) {
         AbstractFilePickerFragment fragment = new FilePickerFragment();
         fragment.setStartPath(startPath);

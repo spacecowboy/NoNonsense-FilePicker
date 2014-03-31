@@ -17,4 +17,16 @@
 
 <resources>
     <string name="app_name">NoNonsense File Picker</string>
+    <string name="new_folder">New folder</string>
+    <string name="create_folder_error">Failed to create folder</string>
+    <plurals
+        name="select_dir">
+        <item quantity="one">Select directory</item>
+        <item quantity="other">Select directories</item>
+    </plurals>
+    <plurals
+        name="select_file">
+        <item quantity="one">Select file</item>
+        <item quantity="other">Select files</item>
+    </plurals>
 </resources>

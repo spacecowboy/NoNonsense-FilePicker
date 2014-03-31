@@ -27,7 +27,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Comparator;
 import java.util.List;
@@ -41,7 +40,8 @@ import java.util.List;
  */
 public abstract class AbstractFilePickerFragment<T> extends
         ListFragment implements
-        LoaderManager.LoaderCallbacks<List<T>> {
+        LoaderManager.LoaderCallbacks<List<T>>,
+        NewFolderFragment.OnNewFolderListener {
 
     public static final String KEY_START_PATH = "KEY_START_PATH";
     private static final String KEY_CURRENT_PATH = "KEY_START_PATH";
@@ -90,9 +90,17 @@ public abstract class AbstractFilePickerFragment<T> extends
             }
         }
 
-        getLoaderManager().restartLoader(0, null, this);
+        refresh();
 
         setHasOptionsMenu(true);
+    }
+
+    /**
+     * Refreshes the list. Call this when current path changes.
+     */
+    protected void refresh() {
+        getLoaderManager().restartLoader(0, null,
+                AbstractFilePickerFragment.this);
     }
 
     @Override
@@ -123,17 +131,15 @@ public abstract class AbstractFilePickerFragment<T> extends
             public void onClick(final View v) {
                 // Go to parent
                 currentPath = getParent(currentPath);
-                getLoaderManager().restartLoader(0, null,
-                        AbstractFilePickerFragment.this);
+                refresh();
             }
         });
 
         view.findViewById(R.id.button_create_dir).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                // TODO
-                Toast.makeText(getActivity(), "Create dir",
-                        Toast.LENGTH_SHORT).show();
+                NewFolderFragment.showDialog(getFragmentManager(),
+                        AbstractFilePickerFragment.this);
             }
         });
         
@@ -182,7 +188,7 @@ public abstract class AbstractFilePickerFragment<T> extends
 
         currentPath = (T) getListAdapter().getItem(position);
         if (isDir(currentPath)) {
-            getLoaderManager().restartLoader(0, null, this);
+            refresh();
         } else {
             // TODO mark file
         }

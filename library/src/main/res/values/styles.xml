@@ -35,7 +35,7 @@
 
     <style name="FilePicker.ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_filepickertheme</item>
-        <item name="android:displayOptions">disableHome|showCustom</item>
+        <item name="android:displayOptions">disableHome|showTitle</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowShowWallpaper">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

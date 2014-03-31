@@ -21,6 +21,7 @@ import android.content.AsyncTaskLoader;
 import android.content.Loader;
 import android.os.Environment;
 import android.os.FileObserver;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -190,5 +191,24 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 }
             }
         };
+    }
+
+    /**
+     * Name is validated to be non-null, non-empty and not containing any
+     * slashes.
+     *
+     * @param name The name of the folder the user wishes to create.
+     */
+    @Override
+    public void onNewFolder(final String name) {
+        File folder = new File(currentPath, name);
+
+        if (folder.mkdir()) {
+            currentPath = folder;
+            refresh();
+        } else {
+            Toast.makeText(getActivity(), R.string.create_folder_error,
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

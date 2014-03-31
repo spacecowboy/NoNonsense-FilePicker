@@ -36,6 +36,7 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setupFauxDialog();
+        setupActionBar();
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_filepicker);
@@ -78,6 +79,12 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         params.dimAmount = 0.5f;
         getWindow().setAttributes(params);
     }
+
+    private void setupActionBar() {
+        getActionBar().setTitle(getWindowTitle());
+    }
+
+    protected abstract String getWindowTitle();
 
     protected abstract AbstractFilePickerFragment<T> getFragment(final String
                                                                          startPath);
