@@ -20,7 +20,6 @@
     <string name="app_name">@string/title_activity_no_nonsense_file_picker</string>
     <string name="title_activity_no_nonsense_file_picker">
         NoNonsenseFilePicker Sample</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
 </resources>

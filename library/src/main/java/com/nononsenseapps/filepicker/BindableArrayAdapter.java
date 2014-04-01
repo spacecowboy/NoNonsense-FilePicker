@@ -115,6 +115,22 @@ public class BindableArrayAdapter<T> extends ArrayAdapter<T> {
         mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (viewBinder != null) {
+            if (viewBinder.isDir(position, getItem(position))) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        // Files and dirs, so 2
+        return 2;
+    }
+
     /**
      * Set the view binder to use to bind data to the list item views.
      * @param binder
@@ -122,8 +138,6 @@ public class BindableArrayAdapter<T> extends ArrayAdapter<T> {
     public void setViewBinder(ViewBinder binder) {
         this.viewBinder = binder;
     }
-    
-
 
     /**
      * Handle more complex views than standard implementation.
@@ -141,7 +155,11 @@ public class BindableArrayAdapter<T> extends ArrayAdapter<T> {
         else {
             View view;
 
-            if (convertView == null) {
+            if (convertView == null && viewBinder != null) {
+                view = viewBinder.inflateView(position, mResource, mInflater,
+                        parent);
+            }
+            else if (convertView == null) {
                 view = mInflater.inflate(mResource, parent, false);
             } else {
                 view = convertView;
@@ -153,6 +171,36 @@ public class BindableArrayAdapter<T> extends ArrayAdapter<T> {
     }
 
     public interface ViewBinder<T> {
+        /**
+         * Called if convertView is null. If this returns null,
+         * the specified resource is used. Use this to return multiple views
+         * depending on type.
+         * @param position
+         * @param resource
+         * @param inflater
+         * @param parent
+         * @return
+         */
+        public View inflateView(final int position,
+                                final int resource,
+                                final LayoutInflater inflater,
+                                final ViewGroup parent);
+
+        /**
+         * Used to determine the view's type. Returning false will use same
+         * type for all rows.
+         * @param position
+         * @param data
+         * @return
+         */
+        public boolean isDir(final int position, final T data);
+
+        /**
+         * Fill the content in the row
+         * @param view
+         * @param position
+         * @param data
+         */
         public void setViewValue(final View view, final int position, final T
                 data);
     }

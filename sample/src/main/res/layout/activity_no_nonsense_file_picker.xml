@@ -39,30 +39,79 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="Only directories"
-            android:id="@+id/checkOnlyDir"
-            android:gravity="center_vertical"
-            style="?android:textAppearanceMedium"
-            android:fontFamily="light"
-            android:layout_gravity="center_horizontal"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select file"
+                android:id="@+id/radioFile"
+                style="?android:textAppearanceMedium"
+                android:fontFamily="light"
+                android:checked="true"
+                android:gravity="center_vertical"
+                android:layout_gravity="left"/>
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select directory"
+                android:id="@+id/radioDir"
+                style="?android:textAppearanceMedium"
+                android:fontFamily="light"
+                android:gravity="center_vertical"
+                android:layout_gravity="left"/>
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select any"
+                android:id="@+id/radioFilesAndDirs"
+                style="?android:textAppearanceMedium"
+                android:fontFamily="light"
+                android:gravity="center_vertical"
+                android:layout_gravity="left"/>
+        </RadioGroup>
 
         <CheckBox
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="Multiple items"
             android:gravity="center_vertical"
             android:id="@+id/checkAllowMultiple"
             style="?android:textAppearanceMedium"
             android:fontFamily="light"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="left"/>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Allow creation of directories\n(if selecting directories)"
+            android:id="@+id/checkAllowCreateDir"
+            android:gravity="center_vertical"
+            style="?android:textAppearanceMedium"
+            android:fontFamily="light"
+            android:layout_gravity="left"/>
+
+        </LinearLayout>
+
+
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:text="Pick files"
+            android:layout_marginTop="8dp"
             android:id="@+id/button"
             android:gravity="center_vertical"
             style="?android:textAppearanceMedium"

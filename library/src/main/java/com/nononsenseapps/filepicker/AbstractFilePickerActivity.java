@@ -59,17 +59,20 @@ import java.util.List;
 public abstract class AbstractFilePickerActivity<T> extends Activity implements
         AbstractFilePickerFragment.OnFilePickedListener {
     public static final String EXTRA_START_PATH = "nononsense.intent" +
-            ".extrastart_path";
-    public static final String EXTRA_ONLY_DIRS = "nononsense.intent.only_dirs";
+            ".START_PATH";
+    public static final String EXTRA_MODE = "nononsense.intent.MODE";
+    public static final String EXTRA_ALLOW_CREATE_DIR = "nononsense.intent" +
+            ".ALLOW_CREATE_DIR";
     // For compatibility
     public static final String EXTRA_ALLOW_MULTIPLE = "android.intent.extra" +
             ".ALLOW_MULTIPLE";
-    public static final String EXTRA_PATHS = "nononsense.intent.paths";
+    public static final String EXTRA_PATHS = "nononsense.intent.PATHS";
     private static final String TAG = "filepicker_fragment";
 
 
     private String startPath = null;
-    protected boolean onlyDirs = false;
+    protected int mode = AbstractFilePickerFragment.MODE_FILE;
+    protected boolean allowCreateDir = false;
     protected boolean allowMultiple = false;
 
     @Override
@@ -84,7 +87,9 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         Intent intent = getIntent();
         if (intent != null) {
             startPath = intent.getStringExtra(EXTRA_START_PATH);
-            onlyDirs = intent.getBooleanExtra(EXTRA_ONLY_DIRS, onlyDirs);
+            mode = intent.getIntExtra(EXTRA_MODE, mode);
+            allowCreateDir = intent.getBooleanExtra(EXTRA_ALLOW_CREATE_DIR,
+                    allowCreateDir);
             allowMultiple = intent.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, allowMultiple);
         }
 
@@ -92,7 +97,7 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         AbstractFilePickerFragment<T> fragment = (AbstractFilePickerFragment<T>) fm.findFragmentByTag(TAG);
 
         if (fragment == null) {
-            fragment = getFragment(startPath, onlyDirs, allowMultiple);
+            fragment = getFragment(startPath, mode, allowMultiple, allowCreateDir);
             fm.beginTransaction().replace(R.id.fragment,
                     fragment, TAG).commit();
         }
@@ -127,10 +132,11 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
 
     protected abstract String getWindowTitle();
 
-    protected abstract AbstractFilePickerFragment<T> getFragment(final String
-                                                                         startPath,
-                                                                 final boolean onlyDirs,
-                                                                 final boolean allowMultiple);
+    protected abstract AbstractFilePickerFragment<T>
+            getFragment(final String startPath,
+                        final int mode,
+                        final boolean allowMultiple,
+                        final boolean allowCreateDir);
 
 
 

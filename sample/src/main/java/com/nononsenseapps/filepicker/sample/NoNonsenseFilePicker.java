@@ -27,8 +27,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
 import java.util.ArrayList;
@@ -43,9 +45,12 @@ public class NoNonsenseFilePicker extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_nonsense_file_picker);
 
-        final CheckBox checkOnlyDir = (CheckBox) findViewById(R.id.checkOnlyDir);
+        final CheckBox checkAllowCreateDir = (CheckBox) findViewById(R.id
+                .checkAllowCreateDir);
         final CheckBox checkAllowMultiple = (CheckBox) findViewById(R.id
                 .checkAllowMultiple);
+        final RadioGroup radioGroup = (RadioGroup) findViewById(R.id
+                .radioGroup);
         textView = (TextView) findViewById(R.id.text);
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
@@ -57,8 +62,26 @@ public class NoNonsenseFilePicker extends Activity {
 
                 i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
                         checkAllowMultiple.isChecked());
-                i.putExtra(FilePickerActivity.EXTRA_ONLY_DIRS,
-                        checkOnlyDir.isChecked());
+                i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
+                        checkAllowCreateDir.isChecked());
+
+                // What mode is selected
+                final int mode;
+                switch (radioGroup.getCheckedRadioButtonId()) {
+                    case R.id.radioDir:
+                        mode = AbstractFilePickerFragment.MODE_DIR;
+                        break;
+                    case R.id.radioFilesAndDirs:
+                        mode = AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                        break;
+                    case R.id.radioFile:
+                    default:
+                        mode = AbstractFilePickerFragment.MODE_FILE;
+                        break;
+                }
+
+                i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
+
 
                 startActivityForResult(i, 0);
             }
@@ -119,10 +142,7 @@ public class NoNonsenseFilePicker extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
 }

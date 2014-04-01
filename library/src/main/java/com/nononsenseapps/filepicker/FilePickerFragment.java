@@ -140,7 +140,8 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
             public List<File> loadInBackground() {
                 ArrayList<File> files = new ArrayList<File>();
                 for (java.io.File f : currentPath.listFiles()) {
-                    if (!onlyDirs || f.isDirectory()) {
+                    if ((mode == MODE_FILE || mode == MODE_FILE_AND_DIR)
+                            || f.isDirectory()) {
                         files.add(f);
                     }
                 }
