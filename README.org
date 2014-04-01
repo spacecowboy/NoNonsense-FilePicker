@@ -1,0 +1,141 @@
+* NoNonsense-FilePicker
+
+#+begin_html
+<img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus10-picker.png"
+width="50%"
+</img>
+#+end_html
+
+#+begin_html
+<img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus5-picker.png"
+width="50%"
+</img>
+#+end_html
+
+- Extendable for other sources
+- Can select multiple items
+- Directories or files
+- Create directory in the picker
+
+
+** Yet another file picker library?
+
+I needed a file picker that had two primary properties:
+
+1. Easy to extend: I needed a file picker that would work for normal
+   files on the SD-card, and also for using the Dropbox Sync API.
+2. Able to create a directory in the picker.
+
+This project has both of those qualities. As a bonus, it also scales
+nicely to work on any phone or tablet. The core is placed in abstract
+classes so it is easy and clear how to extend the picker to create
+your own.
+
+The library includes an implementation that allows the user to pick
+files from the SD-card. But the picker could easily be extended to get
+it's file listings from another source, such as Dropbox, FTP, SSH and
+so on.
+
+By inheriting from an Activity, the picker is able to be rendered as
+full screen on small screens and as a dialog on large screens. It does
+this through the theme system, so it is very important for the
+activity to use the correct theme.
+
+** How to include in your project (from source)
+#+begin_src sh
+cd MyProjectRoot
+git clone https://github.com/spacecowboy/NoNonsense-FilePicker.git
+echo "include ':NoNonsense-FilePicker:library'" >> settings.gradle
+#+end_src
+
+Then in your /build.gradle/ add this line in the dependency section:
+
+#+begin_src groovy
+compile project(':NoNonsense-FilePicker:library')
+#+end_src
+
+Have a look at the sample app for detailed usage, short instructions
+for the included file picker:
+
+***  Include permission in your manifest
+#+begin_src xml
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+#+end_src
+
+*** Include the file picker picker activity
+You must *set the theme* on the activity. You can subclass it to
+customize but it is required. The intent filter is optional
+depending on your use case.
+
+#+begin_src xml
+<activity
+   android:name="com.nononsenseapps.filepicker.FilePickerActivity"
+   android:label="@string/app_name"
+   android:theme="@style/FilePicker.Theme">
+   <intent-filter>
+      <action android:name="android.intent.action.GET_CONTENT" />
+      <category android:name="android.intent.category.DEFAULT" />
+   </intent-filter>
+</activity>
+#+end_src
+
+*** Starting the picker in your app
+
+#+begin_src java
+// This always works
+Intent i = new Intent(NoNonsenseFilePicker.this, FilePickerActivity.class);
+// This works if you defined the intent filter
+// Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+
+// Set these depending on your use case. These are the defaults.
+i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
+i.putExtra(FilePickerActivity.EXTRA_ONLY_DIRS, false);
+
+startActivityForResult(i, FILE_CODE);
+#+end_src
+
+*** Handling the result
+If you have a minimum requirement of Jelly Bean (API 16) and above,
+you can skip the second method.
+
+#+begin_src java
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == FILE_CODE && resultCode == Activity.RESULT_OK) {
+        if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
+            // For JellyBean and above
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                ClipData clip = data.getClipData();
+
+                if (clip != null) {
+                    for (int i = 0; i < clip.getItemCount(); i++) {
+                        Uri uri = clip.getItemAt(i).getUri();
+                        // Do something with the URI
+                    }
+                }
+            // For Ice Cream Sandwich
+            } else {
+                ArrayList<String> paths = data.getStringArrayListExtra
+                            (FilePickerActivity.EXTRA_PATHS);
+
+                if (paths != null) {
+                    for (String path: paths) {
+                        Uri uri = Uri.parse(path);
+                        // Do something with the URI
+                    }
+                }
+            }
+
+        } else {
+            Uri uri = data.getData();
+            // Do something with the URI
+        }
+    }
+}
+#+end_src
+
+** Not using Gradle yet?
+Time to start! To convert your current Eclipse project, have a look at
+my brief explanation:
+[[http://cowboyprogrammer.org/2014/03/27/gradle_tips.html]]
