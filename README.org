@@ -1,15 +1,17 @@
 * NoNonsense-FilePicker
 
 #+begin_html
-<img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus10-picker.png"
+<img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus5-picker.png"
+width="25%"
 </img>
 #+end_html
 
 #+begin_html
-<img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus5-picker.png"
-height="50%"
+<img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus10-picker.png"
+width="70%"
 </img>
 #+end_html
+
 
 - Extendable for other sources
 - Can select multiple items
