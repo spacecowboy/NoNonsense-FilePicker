@@ -2,13 +2,12 @@
 
 #+begin_html
 <img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus10-picker.png"
-width="50%"
 </img>
 #+end_html
 
 #+begin_html
 <img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus5-picker.png"
-width="50%"
+height="50%"
 </img>
 #+end_html
 
