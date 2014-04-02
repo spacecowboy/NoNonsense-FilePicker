@@ -69,6 +69,11 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
     public static final String EXTRA_PATHS = "nononsense.intent.PATHS";
     private static final String TAG = "filepicker_fragment";
 
+    public static final int MODE_FILE = AbstractFilePickerFragment.MODE_FILE;
+    public static final int MODE_FILE_AND_DIR = AbstractFilePickerFragment
+            .MODE_FILE_AND_DIR;
+    public static final int MODE_DIR = AbstractFilePickerFragment.MODE_DIR;
+
 
     private String startPath = null;
     protected int mode = AbstractFilePickerFragment.MODE_FILE;
