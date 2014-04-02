@@ -26,32 +26,6 @@ public class FilePickerActivity extends AbstractFilePickerActivity<File> {
     }
 
     @Override
-    protected String getWindowTitle() {
-        final int res;
-        switch (mode) {
-            case AbstractFilePickerFragment.MODE_DIR:
-                res = R.plurals.select_dir;
-                break;
-            case AbstractFilePickerFragment.MODE_FILE_AND_DIR:
-                res = R.plurals.select_dir_or_file;
-                break;
-            case AbstractFilePickerFragment.MODE_FILE:
-            default:
-                res = R.plurals.select_file;
-                break;
-        }
-
-        final int count;
-        if (allowMultiple) {
-            count = 99;
-        } else {
-            count = 1;
-        }
-
-        return getResources().getQuantityString(res, count);
-    }
-
-    @Override
     protected AbstractFilePickerFragment<File> getFragment(final String startPath, final int mode, final boolean allowMultiple, final boolean allowCreateDir) {
         AbstractFilePickerFragment fragment = new FilePickerFragment();
         fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir);

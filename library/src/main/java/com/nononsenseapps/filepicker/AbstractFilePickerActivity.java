@@ -135,7 +135,34 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         getActionBar().setTitle(getWindowTitle());
     }
 
-    protected abstract String getWindowTitle();
+    /**
+     *
+     * @return the title to apply to the window
+     */
+    protected String getWindowTitle() {
+        final int res;
+        switch (mode) {
+            case AbstractFilePickerFragment.MODE_DIR:
+                res = R.plurals.select_dir;
+                break;
+            case AbstractFilePickerFragment.MODE_FILE_AND_DIR:
+                res = R.plurals.select_dir_or_file;
+                break;
+            case AbstractFilePickerFragment.MODE_FILE:
+            default:
+                res = R.plurals.select_file;
+                break;
+        }
+
+        final int count;
+        if (allowMultiple) {
+            count = 99;
+        } else {
+            count = 1;
+        }
+
+        return getResources().getQuantityString(res, count);
+    }
 
     protected abstract AbstractFilePickerFragment<T>
             getFragment(final String startPath,
