@@ -42,25 +42,35 @@ full screen on small screens and as a dialog on large screens. It does
 this through the theme system, so it is very important for the
 activity to use the correct theme.
 
-** How to include in your project (from MavenCentral)
+** How to include in your project (with Gradle)
 
-Coming in a day or so.
-
-** How to include in your project (from source)
-#+begin_src sh
-cd MyProjectRoot
-git clone https://github.com/spacecowboy/NoNonsense-FilePicker.git
-echo "include ':NoNonsense-FilePicker:library'" >> settings.gradle
-#+end_src
-
-Then in your /build.gradle/ add this line in the dependency section:
-
+Just add the dependency to your /build.gradle/:
 #+begin_src groovy
-compile project(':NoNonsense-FilePicker:library')
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile 'com.nononsenseapps:filepicker:+'
+}
 #+end_src
 
-Have a look at the sample app for detailed usage, short instructions
-for the included file picker:
+That will make sure you are using the latest version at all times.
+
+** How to include with Maven:
+Something like this should work:
+
+#+begin_src xml
+<dependency>
+  <groupId>com.nononsenseapps</groupId>
+  <artifactId>filepicker</artifactId>
+  <version>1.1.1-SNAPSHOT</version>
+  <type>aar</type>
+</dependency>
+#+end_src
+
+** What next?
 
 ***  Include permission in your manifest
 #+begin_src xml
