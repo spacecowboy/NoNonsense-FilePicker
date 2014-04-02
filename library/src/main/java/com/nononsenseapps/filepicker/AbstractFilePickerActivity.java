@@ -103,6 +103,9 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
 
         if (fragment == null) {
             fragment = getFragment(startPath, mode, allowMultiple, allowCreateDir);
+        }
+
+        if (fragment != null) {
             fm.beginTransaction().replace(R.id.fragment,
                     fragment, TAG).commit();
         }
