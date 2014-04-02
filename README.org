@@ -72,6 +72,10 @@ Something like this should work:
 
 ** What next?
 
+That's up to you. The whole point is for the library to be extendable. But
+if you just want a picker and don't have any special requirements, read on
+for info on how to use the provided SD-card file picker.
+
 ***  Include permission in your manifest
 #+begin_src xml
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
