@@ -155,6 +155,11 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
             protected void onStartLoading() {
                 super.onStartLoading();
 
+                // handle if directory does not exist. Fall back to root.
+                if (currentPath == null || !currentPath.isDirectory()) {
+                    currentPath = getRoot();
+                }
+
                 // Start watching for changes
                 fileObserver = new FileObserver(currentPath.getPath(),
                         FileObserver.CREATE |
