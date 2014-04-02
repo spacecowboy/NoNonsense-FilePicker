@@ -42,6 +42,10 @@ full screen on small screens and as a dialog on large screens. It does
 this through the theme system, so it is very important for the
 activity to use the correct theme.
 
+** How to include in your project (from MavenCentral)
+
+Coming in a day or so.
+
 ** How to include in your project (from source)
 #+begin_src sh
 cd MyProjectRoot
@@ -90,7 +94,8 @@ Intent i = new Intent(NoNonsenseFilePicker.this, FilePickerActivity.class);
 
 // Set these depending on your use case. These are the defaults.
 i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
-i.putExtra(FilePickerActivity.EXTRA_ONLY_DIRS, false);
+i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, false);
+i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_FILE);
 
 startActivityForResult(i, FILE_CODE);
 #+end_src
