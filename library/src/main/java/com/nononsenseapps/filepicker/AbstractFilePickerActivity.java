@@ -67,7 +67,7 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
     public static final String EXTRA_ALLOW_MULTIPLE = "android.intent.extra" +
             ".ALLOW_MULTIPLE";
     public static final String EXTRA_PATHS = "nononsense.intent.PATHS";
-    private static final String TAG = "filepicker_fragment";
+    protected static final String TAG = "filepicker_fragment";
 
     public static final int MODE_FILE = AbstractFilePickerFragment.MODE_FILE;
     public static final int MODE_FILE_AND_DIR = AbstractFilePickerFragment
@@ -75,7 +75,7 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
     public static final int MODE_DIR = AbstractFilePickerFragment.MODE_DIR;
 
 
-    private String startPath = null;
+    protected String startPath = null;
     protected int mode = AbstractFilePickerFragment.MODE_FILE;
     protected boolean allowCreateDir = false;
     protected boolean allowMultiple = false;
@@ -111,7 +111,7 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         setResult(Activity.RESULT_CANCELED);
     }
 
-    private void setupFauxDialog() {
+    protected void setupFauxDialog() {
         // Check if this should be a dialog
         TypedValue tv = new TypedValue();
         if (!getTheme().resolveAttribute(R.attr.isDialog, tv, true) || tv.data == 0) {
@@ -131,7 +131,7 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         getWindow().setAttributes(params);
     }
 
-    private void setupActionBar() {
+    protected void setupActionBar() {
         getActionBar().setTitle(getWindowTitle());
     }
 

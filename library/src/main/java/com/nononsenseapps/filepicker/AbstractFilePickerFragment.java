@@ -67,7 +67,7 @@ public abstract class AbstractFilePickerFragment<T> extends
     // Allow multiple items to be selected.
     public static final String KEY_ALLOW_MULTIPLE = "KEY_ALLOW_MULTIPLE";
     // Used for saving state.
-    private static final String KEY_CURRENT_PATH = "KEY_CURRENT PATH";
+    protected static final String KEY_CURRENT_PATH = "KEY_CURRENT PATH";
     protected final DefaultHashMap<Integer, Boolean> checkedItems;
     protected T currentPath = null;
     protected boolean allowCreateDir = false;
@@ -146,7 +146,7 @@ public abstract class AbstractFilePickerFragment<T> extends
         setHasOptionsMenu(true);
     }
 
-    private boolean isCheckable(final T data) {
+    protected boolean isCheckable(final T data) {
         final boolean checkable;
         if (isDir(data)) {
             checkable = ((mode == MODE_DIR && allowMultiple) ||
@@ -248,7 +248,7 @@ public abstract class AbstractFilePickerFragment<T> extends
         return view;
     }
 
-    private List<Uri> toUri(List<T> files) {
+    protected List<Uri> toUri(List<T> files) {
         ArrayList<Uri> uris = new ArrayList<Uri>();
         for (T file : files) {
             uris.add(toUri(file));
@@ -302,7 +302,7 @@ public abstract class AbstractFilePickerFragment<T> extends
         }
     }
 
-    private void toggleItemCheck(final CheckedTextView view,
+    protected void toggleItemCheck(final CheckedTextView view,
                                  final int position, final T data) {
         if (!isCheckable(data)) {
             return;
