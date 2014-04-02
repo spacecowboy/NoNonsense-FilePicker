@@ -6,3 +6,4 @@ build
 *.iml
 .idea
 *.zip
+local.properties
