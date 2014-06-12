@@ -31,6 +31,8 @@ import java.util.List;
 
 public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
+    public FilePickerFragment() {}
+
     /**
      * Return true if the path is a directory and not a file.
      *
