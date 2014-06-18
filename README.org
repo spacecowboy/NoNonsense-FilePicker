@@ -166,4 +166,4 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 ** Not using Gradle yet?
 Time to start! To convert your current Eclipse project, have a look at
 my brief explanation:
-[[http://cowboyprogrammer.org/2014/03/27/gradle_tips.html]]
+[[http://cowboyprogrammer.org/convert-to-android-studio-and-gradle-today/]]
