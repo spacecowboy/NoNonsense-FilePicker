@@ -42,7 +42,7 @@ your own.
 
 The library includes an implementation that allows the user to pick
 files from the SD-card. But the picker could easily be extended to get
-it's file listings from another source, such as Dropbox, FTP, SSH and
+its file listings from another source, such as Dropbox, FTP, SSH and
 so on.
 
 By inheriting from an Activity, the picker is able to be rendered as
@@ -89,7 +89,7 @@ for info on how to use the provided SD-card file picker.
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 #+end_src
 
-*** Include the file picker picker activity
+*** Include the file picker activity
 You must *set the theme* on the activity. You can subclass it to
 customize but it is required. The intent filter is optional
 depending on your use case.
