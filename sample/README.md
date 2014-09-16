@@ -1,10 +1,14 @@
+# SD-card picker
 
 The sample app demonstrates the SD-card file chooser in action. No configuration is necessary for that.
+
+
+# Dropbox picker
 
 If you want to try the Dropbox part of the sample, you'll need to get your own
 API-keys at [https://www.dropbox.com/developers/apps](https://www.dropbox.com/developers/apps)
 and insert them into DropboxSyncHelper.java and AndroidManifest.xml. See Dropbox for more details
-on that.
+on that:
 
 <img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/dropbox_app_console.png"
 </img>
