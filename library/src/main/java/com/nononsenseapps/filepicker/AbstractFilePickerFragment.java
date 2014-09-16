@@ -45,9 +45,8 @@ import java.util.List;
  * OnFilePickedListener}
  * interface.
  */
-public abstract class AbstractFilePickerFragment<T> extends
-        ListFragment implements
-        LoaderManager.LoaderCallbacks<List<T>>,
+public abstract class AbstractFilePickerFragment<T> extends ListFragment
+        implements LoaderManager.LoaderCallbacks<List<T>>,
         NewItemFragment.OnNewFolderListener,
         AdapterView.OnItemLongClickListener {
 
@@ -62,8 +61,7 @@ public abstract class AbstractFilePickerFragment<T> extends
     // See MODE_XXX constants above for possible values
     public static final String KEY_MODE = "KEY_MODE";
     // If it should be possible to create directories. Only valid with MODE_DIR
-    public static final String KEY_ALLOW_DIR_CREATE =
-            "KEY_ALLOW_DIR_CREATE";
+    public static final String KEY_ALLOW_DIR_CREATE = "KEY_ALLOW_DIR_CREATE";
     // Allow multiple items to be selected.
     public static final String KEY_ALLOW_MULTIPLE = "KEY_ALLOW_MULTIPLE";
     // Used for saving state.
@@ -94,8 +92,7 @@ public abstract class AbstractFilePickerFragment<T> extends
      * @param allowDirCreate
      */
     public void setArgs(final String startPath, final int mode,
-                        final boolean allowMultiple,
-                        final boolean allowDirCreate) {
+            final boolean allowMultiple, final boolean allowDirCreate) {
         Bundle b = new Bundle();
         if (startPath != null) {
             b.putString(KEY_START_PATH, startPath);
@@ -107,129 +104,69 @@ public abstract class AbstractFilePickerFragment<T> extends
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // Retain this fragment across configuration changes.
-        setRetainInstance(true);
-
-        // Only if we have no state
-        if (currentPath == null) {
-            if (savedInstanceState != null) {
-                mode = savedInstanceState.getInt(KEY_MODE, mode);
-                allowCreateDir = savedInstanceState.getBoolean
-                        (KEY_ALLOW_DIR_CREATE, allowCreateDir);
-                allowMultiple = savedInstanceState.getBoolean
-                        (KEY_ALLOW_MULTIPLE, allowMultiple);
-                currentPath = getPath(savedInstanceState.getString
-                        (KEY_CURRENT_PATH));
-            } else if (getArguments() != null) {
-                mode = getArguments().getInt(KEY_MODE, mode);
-                allowCreateDir = getArguments().getBoolean
-                        (KEY_ALLOW_DIR_CREATE, allowCreateDir);
-                allowMultiple = getArguments().getBoolean(KEY_ALLOW_MULTIPLE,
-                        allowMultiple);
-                if (getArguments().containsKey
-                        (KEY_START_PATH)) {
-                    currentPath = getPath(getArguments().getString
-                            (KEY_START_PATH));
-                }
-            }
-
-            // If still null
-            if (currentPath == null) {
-                currentPath = getRoot();
-            }
-        }
-
-        refresh();
-
-        setHasOptionsMenu(true);
-    }
-
-    protected boolean isCheckable(final T data) {
-        final boolean checkable;
-        if (isDir(data)) {
-            checkable = ((mode == MODE_DIR && allowMultiple) ||
-                    (mode == MODE_FILE_AND_DIR && allowMultiple));
-        } else {
-            // File
-            checkable = (mode != MODE_DIR);
-        }
-        return checkable;
-    }
-
-    /**
-     * Refreshes the list. Call this when current path changes.
-     */
-    protected void refresh() {
-        getLoaderManager().restartLoader(0, null,
-                AbstractFilePickerFragment.this);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_filepicker, null);
 
         ListView lv = (ListView) view.findViewById(android.R.id.list);
 
         lv.setOnItemLongClickListener(this);
 
-        view.findViewById(R.id.button_cancel).setOnClickListener(new View
-                .OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                if (listener != null) {
-                    listener.onCancelled();
-                }
-            }
-        });
-
-        view.findViewById(R.id.button_ok).setOnClickListener
-                    (new View.OnClickListener() {
-                        @Override
-                        public void onClick(final View v) {
-                            if (listener == null) {
-                                return;
-                            }
-
-                            // Some invalid cases first
-                            if (allowMultiple && checkedItems.isEmpty()) {
-                                Toast.makeText(getActivity(),
-                                        R.string.select_something_first,
-                                        Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            if (mode == MODE_FILE && isDir(currentPath)) {
-                                Toast.makeText(getActivity(),
-                                        R.string.select_something_first,
-                                        Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-
-                            if (allowMultiple) {
-                                listener.onFilesPicked(toUri(getCheckedItems()));
-                            } else {
-                                listener.onFilePicked(toUri(currentPath));
-                            }
+        view.findViewById(R.id.button_cancel)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        if (listener != null) {
+                            listener.onCancelled();
                         }
-                    });
+                    }
+                });
 
-        view.findViewById(R.id.button_go_parent).setOnClickListener(new View
-                .OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                // Go to parent
-                currentPath = getParent(currentPath);
-                refresh();
-            }
-        });
+        view.findViewById(R.id.button_ok)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        if (listener == null) {
+                            return;
+                        }
+
+                        // Some invalid cases first
+                        if (allowMultiple && checkedItems.isEmpty()) {
+                            Toast.makeText(getActivity(),
+                                    R.string.select_something_first,
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (mode == MODE_FILE && isDir(currentPath)) {
+                            Toast.makeText(getActivity(),
+                                    R.string.select_something_first,
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (allowMultiple) {
+                            listener.onFilesPicked(toUri(getCheckedItems()));
+                        } else {
+                            listener.onFilePicked(toUri(currentPath));
+                        }
+                    }
+                });
+
+        view.findViewById(R.id.button_go_parent)
+                .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(final View v) {
+                                // Go to parent
+                                currentPath = getParent(currentPath);
+                                refresh();
+                            }
+                        });
 
         final View createDirView = view.findViewById(R.id.button_create_dir);
         // Only show the create dir button if configured to
         createDirView.setVisibility((allowCreateDir && (mode == MODE_DIR)) ?
-                View.VISIBLE : View
-                .INVISIBLE);
+                                    View.VISIBLE :
+                                    View.INVISIBLE);
         createDirView.setEnabled((allowCreateDir && (mode == MODE_DIR)));
         createDirView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,6 +185,13 @@ public abstract class AbstractFilePickerFragment<T> extends
         return view;
     }
 
+    /**
+     * Return true if the path is a directory and not a file.
+     *
+     * @param path
+     */
+    protected abstract boolean isDir(final T path);
+
     protected List<Uri> toUri(List<T> files) {
         ArrayList<Uri> uris = new ArrayList<Uri>();
         for (T file : files) {
@@ -256,38 +200,42 @@ public abstract class AbstractFilePickerFragment<T> extends
         return uris;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            listener = (OnFilePickedListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFilePickedListener");
+    /**
+     * @return the selected files. Can be empty.
+     */
+    protected List<T> getCheckedItems() {
+        final BindableArrayAdapter<T> adapter =
+                (BindableArrayAdapter<T>) getListAdapter();
+        final ArrayList<T> files = new ArrayList<T>();
+        for (int pos : checkedItems.keySet()) {
+            if (checkedItems.get(pos)) {
+                files.add(adapter.getItem(pos));
+            }
         }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle b) {
-        super.onSaveInstanceState(b);
-        b.putString(KEY_CURRENT_PATH, currentPath.toString());
-        b.putBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
-        b.putBoolean(KEY_ALLOW_DIR_CREATE, allowCreateDir);
-        b.putInt(KEY_MODE, mode);
+        return files;
     }
 
     /**
-     * Return true if the path is a directory and not a file.
+     * Convert the path to a URI for the return intent
      *
      * @param path
+     * @return
      */
-    protected abstract boolean isDir(final T path);
+    protected abstract Uri toUri(final T path);
+
+    /**
+     * Return the path to the parent directory. Should return the root if
+     * from is root.
+     *
+     * @param from
+     */
+    protected abstract T getParent(final T from);
+
+    /**
+     * @param path
+     * @return the full path to the file
+     */
+    protected abstract String getFullPath(final T path);
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
@@ -296,14 +244,26 @@ public abstract class AbstractFilePickerFragment<T> extends
         if (isDir(currentPath)) {
             refresh();
         } else if (isCheckable(currentPath)) {
-            toggleItemCheck((CheckedTextView) v.findViewById(android.R.id
-                            .text1),
+            toggleItemCheck(
+                    (CheckedTextView) v.findViewById(android.R.id.text1),
                     position, currentPath);
         }
     }
 
+    protected boolean isCheckable(final T data) {
+        final boolean checkable;
+        if (isDir(data)) {
+            checkable = ((mode == MODE_DIR && allowMultiple) ||
+                         (mode == MODE_FILE_AND_DIR && allowMultiple));
+        } else {
+            // File
+            checkable = (mode != MODE_DIR);
+        }
+        return checkable;
+    }
+
     protected void toggleItemCheck(final CheckedTextView view,
-                                 final int position, final T data) {
+            final int position, final T data) {
         if (!isCheckable(data)) {
             return;
         }
@@ -318,19 +278,89 @@ public abstract class AbstractFilePickerFragment<T> extends
         getListView().invalidateViews();
     }
 
-    /**
-     * @return the selected files. Can be empty.
-     */
-    protected List<T> getCheckedItems() {
-        final BindableArrayAdapter<T> adapter = (BindableArrayAdapter<T>)
-                getListAdapter();
-        final ArrayList<T> files = new ArrayList<T>();
-        for (int pos : checkedItems.keySet()) {
-            if (checkedItems.get(pos)) {
-                files.add(adapter.getItem(pos));
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            listener = (OnFilePickedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() +
+                                         " must implement OnFilePickedListener");
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // Retain this fragment across configuration changes.
+        setRetainInstance(true);
+
+        // Only if we have no state
+        if (currentPath == null) {
+            if (savedInstanceState != null) {
+                mode = savedInstanceState.getInt(KEY_MODE, mode);
+                allowCreateDir = savedInstanceState
+                        .getBoolean(KEY_ALLOW_DIR_CREATE, allowCreateDir);
+                allowMultiple = savedInstanceState
+                        .getBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
+                currentPath =
+                        getPath(savedInstanceState.getString(KEY_CURRENT_PATH));
+            } else if (getArguments() != null) {
+                mode = getArguments().getInt(KEY_MODE, mode);
+                allowCreateDir = getArguments()
+                        .getBoolean(KEY_ALLOW_DIR_CREATE, allowCreateDir);
+                allowMultiple = getArguments()
+                        .getBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
+                if (getArguments().containsKey(KEY_START_PATH)) {
+                    currentPath =
+                            getPath(getArguments().getString(KEY_START_PATH));
+                }
+            }
+
+            // If still null
+            if (currentPath == null) {
+                currentPath = getRoot();
             }
         }
-        return files;
+
+        refresh();
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle b) {
+        super.onSaveInstanceState(b);
+        b.putString(KEY_CURRENT_PATH, currentPath.toString());
+        b.putBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
+        b.putBoolean(KEY_ALLOW_DIR_CREATE, allowCreateDir);
+        b.putInt(KEY_MODE, mode);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
+    /**
+     * Convert the path to the type used.
+     *
+     * @param path
+     */
+    protected abstract T getPath(final String path);
+
+    /**
+     * Get the root path (lowest allowed).
+     */
+    protected abstract T getRoot();
+
+    /**
+     * Refreshes the list. Call this when current path changes.
+     */
+    protected void refresh() {
+        getLoaderManager()
+                .restartLoader(0, null, AbstractFilePickerFragment.this);
     }
 
     /**
@@ -347,9 +377,8 @@ public abstract class AbstractFilePickerFragment<T> extends
      * @return true if the callback consumed the long click, false otherwise
      */
     @Override
-    public boolean onItemLongClick(final AdapterView<?> parent,
-                                   final View view, final int position,
-                                   final long id) {
+    public boolean onItemLongClick(final AdapterView<?> parent, final View view,
+            final int position, final long id) {
         final T data = (T) getListAdapter().getItem(position);
         if (!isCheckable(data)) {
             return false;
@@ -365,49 +394,50 @@ public abstract class AbstractFilePickerFragment<T> extends
     }
 
     /**
-     * Return the path to the parent directory. Should return the root if
-     * from is root.
+     * Instantiate and return a new Loader for the given ID.
      *
-     * @param from
+     * @param id   The ID whose loader is to be created.
+     * @param args Any arguments supplied by the caller.
+     * @return Return a new Loader instance that is ready to start loading.
      */
-    protected abstract T getParent(final T from);
+    @Override
+    public Loader<List<T>> onCreateLoader(final int id, final Bundle args) {
+        return getLoader();
+    }
 
     /**
-     * Convert the path to the type used.
+     * Get a loader that lists the files in the current path,
+     * and monitors changes.
+     */
+    protected abstract Loader<List<T>> getLoader();
+
+    /**
+     * Called when a previously created loader has finished its load.
      *
-     * @param path
+     * @param loader The Loader that has finished.
+     * @param data   The data generated by the Loader.
      */
-    protected abstract T getPath(final String path);
-
-    /**
-     * @param path
-     * @return the full path to the file
-     */
-    protected abstract String getFullPath(final T path);
-
-    /**
-     * @param path
-     * @return the name of this file/folder
-     */
-    protected abstract String getName(final T path);
-
-    /**
-     * Get the root path (lowest allowed).
-     */
-    protected abstract T getRoot();
-
-    /**
-     * Convert the path to a URI for the return intent
-     *
-     * @param path
-     * @return
-     */
-    protected abstract Uri toUri(final T path);
-
-    /**
-     * @return a comparator that can sort the items alphabetically
-     */
-    protected abstract Comparator<T> getComparator();
+    @Override
+    public void onLoadFinished(final Loader<List<T>> loader,
+            final List<T> data) {
+        if (adapter == null) {
+            // View type not really used, overridden in ViewBinder
+            adapter = new BindableArrayAdapter<T>(getActivity(),
+                    R.layout.filepicker_listitem_checkable);
+            adapter.setViewBinder(getViewBinder());
+        } else {
+            adapter.clear();
+        }
+        if (comparator == null) {
+            comparator = getComparator();
+        }
+        checkedItems.clear();
+        adapter.addAll(data);
+        adapter.sort(comparator);
+        setListAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        currentDirView.setText(getFullPath(currentPath));
+    }
 
     /**
      * @return a ViewBinder to handle list items, or null.
@@ -434,23 +464,21 @@ public abstract class AbstractFilePickerFragment<T> extends
              */
             @Override
             public View inflateView(final int position, final int defResource,
-                                    final LayoutInflater inflater,
-                                    final ViewGroup parent) {
-                final boolean checkable = isCheckable((T) getListAdapter()
-                        .getItem(position));
+                    final LayoutInflater inflater, final ViewGroup parent) {
+                final boolean checkable =
+                        isCheckable((T) getListAdapter().getItem(position));
                 final View view = inflater.inflate(checkable ?
-                                R.layout.filepicker_listitem_checkable :
-                                R.layout.filepicker_listitem_dir,
-                        parent, false
-                );
+                                                   R.layout.filepicker_listitem_checkable :
+                                                   R.layout.filepicker_listitem_dir,
+                        parent, false);
 
                 ViewHolder viewHolder = new ViewHolder();
                 viewHolder.icon = view.findViewById(R.id.item_icon);
-                viewHolder.text = (TextView) view.findViewById(android.R
-                        .id.text1);
+                viewHolder.text =
+                        (TextView) view.findViewById(android.R.id.text1);
                 if (checkable) {
-                    viewHolder.checkbox = (CheckedTextView) view.findViewById
-                            (android.R.id.text1);
+                    viewHolder.checkbox = (CheckedTextView) view
+                            .findViewById(android.R.id.text1);
                 } else {
                     viewHolder.checkbox = null;
                 }
@@ -479,71 +507,35 @@ public abstract class AbstractFilePickerFragment<T> extends
              * @param data
              */
             @Override
-            public void setViewValue(final View view,
-                                     final int position, final T data) {
+            public void setViewValue(final View view, final int position,
+                    final T data) {
                 if (view.getTag() == null) {
                     return;
                 }
 
                 ((ViewHolder) view.getTag()).text.setText(getName(data));
 
-                ((ViewHolder) view.getTag()).icon.setVisibility(isDir
-                        (position, data) ?
-                        View.VISIBLE : View.GONE);
+                ((ViewHolder) view.getTag()).icon.setVisibility(
+                        isDir(position, data) ? View.VISIBLE : View.GONE);
 
                 if (((ViewHolder) view.getTag()).checkbox != null) {
-                    ((ViewHolder) view.getTag()).checkbox.setChecked
-                            (checkedItems.get(position));
+                    ((ViewHolder) view.getTag()).checkbox
+                            .setChecked(checkedItems.get(position));
                 }
             }
         };
     }
 
     /**
-     * Get a loader that lists the files in the current path,
-     * and monitors changes.
+     * @return a comparator that can sort the items alphabetically
      */
-    protected abstract Loader<List<T>> getLoader();
+    protected abstract Comparator<T> getComparator();
 
     /**
-     * Instantiate and return a new Loader for the given ID.
-     *
-     * @param id   The ID whose loader is to be created.
-     * @param args Any arguments supplied by the caller.
-     * @return Return a new Loader instance that is ready to start loading.
+     * @param path
+     * @return the name of this file/folder
      */
-    @Override
-    public Loader<List<T>> onCreateLoader(final int id, final Bundle args) {
-        return getLoader();
-    }
-
-    /**
-     * Called when a previously created loader has finished its load.
-     *
-     * @param loader The Loader that has finished.
-     * @param data   The data generated by the Loader.
-     */
-    @Override
-    public void onLoadFinished(final Loader<List<T>> loader,
-                               final List<T> data) {
-        if (adapter == null) {
-            // View type not really used, overridden in ViewBinder
-            adapter = new BindableArrayAdapter<T>(getActivity(),
-                    R.layout.filepicker_listitem_checkable);
-            adapter.setViewBinder(getViewBinder());
-        } else {
-            adapter.clear();
-        }
-        if (comparator == null) {
-            comparator = getComparator();
-        }
-        checkedItems.clear();
-        adapter.addAll(data);
-        adapter.sort(comparator);
-        setListAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        currentDirView.setText(getFullPath(currentPath));
-    }
+    protected abstract String getName(final T path);
 
     /**
      * Called when a previously created loader is being reset, and thus

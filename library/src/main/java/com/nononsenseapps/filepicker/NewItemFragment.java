@@ -18,6 +18,7 @@
 package com.nononsenseapps.filepicker;
 
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
@@ -50,10 +51,11 @@ public abstract class NewItemFragment extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         getDialog().setTitle(getDialogTitle());
 
-        final View view = inflater.inflate(R.layout.dialog_new_item, null);
+        @SuppressLint("InflateParams") final View view =
+                inflater.inflate(R.layout.dialog_new_item, null);
 
         okButton = view.findViewById(R.id.button_ok);
         okButton.setOnClickListener(new View.OnClickListener() {
@@ -66,13 +68,13 @@ public abstract class NewItemFragment extends DialogFragment {
             }
         });
 
-        view.findViewById(R.id.button_cancel).setOnClickListener(new View
-                .OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                dismiss();
-            }
-        });
+        view.findViewById(R.id.button_cancel)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        dismiss();
+                    }
+                });
 
         final EditText editText = (EditText) view.findViewById(R.id.edit_text);
         if (itemName == null) {
@@ -82,31 +84,36 @@ public abstract class NewItemFragment extends DialogFragment {
             validateItemName();
         }
 
-        editText.addTextChangedListener
-                (new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(final CharSequence s, final int start, final int count, final int after) {
-                    }
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(final CharSequence s, final int start,
+                    final int count, final int after) {
+            }
 
-                    @Override
-                    public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {
-                    }
+            @Override
+            public void onTextChanged(final CharSequence s, final int start,
+                    final int before, final int count) {
+            }
 
-                    @Override
-                    public void afterTextChanged(final Editable s) {
-                        itemName = s.toString();
-                        validateItemName();
-                    }
-                });
+            @Override
+            public void afterTextChanged(final Editable s) {
+                itemName = s.toString();
+                validateItemName();
+            }
+        });
 
         return view;
     }
+
+    protected abstract int getDialogTitle();
 
     private void validateItemName() {
         if (okButton != null) {
             okButton.setEnabled(validateName(itemName));
         }
     }
+
+    protected abstract boolean validateName(final String itemName);
 
     public interface OnNewFolderListener {
         /**
@@ -117,7 +124,4 @@ public abstract class NewItemFragment extends DialogFragment {
          */
         public void onNewFolder(final String name);
     }
-
-    protected abstract boolean validateName(final String itemName);
-    protected abstract int getDialogTitle();
 }

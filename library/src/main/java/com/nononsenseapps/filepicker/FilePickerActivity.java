@@ -17,8 +17,11 @@
 
 package com.nononsenseapps.filepicker;
 
+import android.annotation.SuppressLint;
+
 import java.io.File;
 
+@SuppressLint("Registered")
 public class FilePickerActivity extends AbstractFilePickerActivity<File> {
 
     public FilePickerActivity() {
@@ -26,7 +29,9 @@ public class FilePickerActivity extends AbstractFilePickerActivity<File> {
     }
 
     @Override
-    protected AbstractFilePickerFragment<File> getFragment(final String startPath, final int mode, final boolean allowMultiple, final boolean allowCreateDir) {
+    protected AbstractFilePickerFragment<File> getFragment(
+            final String startPath, final int mode, final boolean allowMultiple,
+            final boolean allowCreateDir) {
         AbstractFilePickerFragment fragment = new FilePickerFragment();
         fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir);
         return fragment;

@@ -36,45 +36,48 @@ import java.util.List;
 
 /**
  * An abstract base activity that handles all the fluff you don't care about.
- *
+ * <p/>
  * Usage: To start a child activity you could either use an intent starting the
- * activity directly, or you could use an implicit intent with GET_CONTENT, if it
- * is also defined in your manifest. It is defined to be handled here in case you
+ * activity directly, or you could use an implicit intent with GET_CONTENT, if
+ * it
+ * is also defined in your manifest. It is defined to be handled here in case
+ * you
  * want the user to be able to use other file pickers on the system.
- *
+ * <p/>
  * That means using an intent with action GET_CONTENT
- * If you want to be able to select multiple items, include EXTRA_ALLOW_MULTIPLE (default false).
- *
- * Two non-standard extra arguments are supported as well: EXTRA_ONLY_DIRS (defaults to false)
+ * If you want to be able to select multiple items, include EXTRA_ALLOW_MULTIPLE
+ * (default false).
+ * <p/>
+ * Two non-standard extra arguments are supported as well: EXTRA_ONLY_DIRS
+ * (defaults to false)
  * allows only directories to be selected.
  * And EXTRA_START_PATH (default null), which should specify the starting path.
- *
- * The result of the user's action is returned in onActivityResult intent, access it using getUri.
- * In case of multiple choices, these can be accessed with getClipData containing Uri objects.
+ * <p/>
+ * The result of the user's action is returned in onActivityResult intent,
+ * access it using getUri.
+ * In case of multiple choices, these can be accessed with getClipData
+ * containing Uri objects.
  * If running earlier than JellyBean you can access them with
  * getStringArrayListExtra(EXTRA_PATHS)
  *
  * @param <T>
  */
-public abstract class AbstractFilePickerActivity<T> extends Activity implements
-        AbstractFilePickerFragment.OnFilePickedListener {
-    public static final String EXTRA_START_PATH = "nononsense.intent" +
-            ".START_PATH";
+public abstract class AbstractFilePickerActivity<T> extends Activity
+        implements AbstractFilePickerFragment.OnFilePickedListener {
+    public static final String EXTRA_START_PATH =
+            "nononsense.intent" + ".START_PATH";
     public static final String EXTRA_MODE = "nononsense.intent.MODE";
-    public static final String EXTRA_ALLOW_CREATE_DIR = "nononsense.intent" +
-            ".ALLOW_CREATE_DIR";
+    public static final String EXTRA_ALLOW_CREATE_DIR =
+            "nononsense.intent" + ".ALLOW_CREATE_DIR";
     // For compatibility
-    public static final String EXTRA_ALLOW_MULTIPLE = "android.intent.extra" +
-            ".ALLOW_MULTIPLE";
+    public static final String EXTRA_ALLOW_MULTIPLE =
+            "android.intent.extra" + ".ALLOW_MULTIPLE";
     public static final String EXTRA_PATHS = "nononsense.intent.PATHS";
-    protected static final String TAG = "filepicker_fragment";
-
     public static final int MODE_FILE = AbstractFilePickerFragment.MODE_FILE;
-    public static final int MODE_FILE_AND_DIR = AbstractFilePickerFragment
-            .MODE_FILE_AND_DIR;
+    public static final int MODE_FILE_AND_DIR =
+            AbstractFilePickerFragment.MODE_FILE_AND_DIR;
     public static final int MODE_DIR = AbstractFilePickerFragment.MODE_DIR;
-
-
+    protected static final String TAG = "filepicker_fragment";
     protected String startPath = null;
     protected int mode = AbstractFilePickerFragment.MODE_FILE;
     protected boolean allowCreateDir = false;
@@ -95,19 +98,22 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
             mode = intent.getIntExtra(EXTRA_MODE, mode);
             allowCreateDir = intent.getBooleanExtra(EXTRA_ALLOW_CREATE_DIR,
                     allowCreateDir);
-            allowMultiple = intent.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, allowMultiple);
+            allowMultiple =
+                    intent.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, allowMultiple);
         }
 
         FragmentManager fm = getFragmentManager();
-        AbstractFilePickerFragment<T> fragment = (AbstractFilePickerFragment<T>) fm.findFragmentByTag(TAG);
+        AbstractFilePickerFragment<T> fragment =
+                (AbstractFilePickerFragment<T>) fm.findFragmentByTag(TAG);
 
         if (fragment == null) {
-            fragment = getFragment(startPath, mode, allowMultiple, allowCreateDir);
+            fragment =
+                    getFragment(startPath, mode, allowMultiple, allowCreateDir);
         }
 
         if (fragment != null) {
-            fm.beginTransaction().replace(R.id.fragment,
-                    fragment, TAG).commit();
+            fm.beginTransaction().replace(R.id.fragment, fragment, TAG)
+                    .commit();
         }
 
         // Default to cancelled
@@ -117,7 +123,8 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
     protected void setupFauxDialog() {
         // Check if this should be a dialog
         TypedValue tv = new TypedValue();
-        if (!getTheme().resolveAttribute(R.attr.isDialog, tv, true) || tv.data == 0) {
+        if (!getTheme().resolveAttribute(R.attr.isDialog, tv, true) ||
+            tv.data == 0) {
             return;
         }
 
@@ -125,9 +132,10 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         DisplayMetrics dm = getResources().getDisplayMetrics();
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
-        params.width = getResources().getDimensionPixelSize(R.dimen.configure_dialog_width);
-        params.height = Math.min(
-                getResources().getDimensionPixelSize(R.dimen.configure_dialog_max_height),
+        params.width = getResources()
+                .getDimensionPixelSize(R.dimen.configure_dialog_width);
+        params.height = Math.min(getResources()
+                .getDimensionPixelSize(R.dimen.configure_dialog_max_height),
                 dm.heightPixels * 3 / 4);
         params.alpha = 1.0f;
         params.dimAmount = 0.5f;
@@ -138,8 +146,11 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         getActionBar().setTitle(getWindowTitle());
     }
 
+    protected abstract AbstractFilePickerFragment<T> getFragment(
+            final String startPath, final int mode, final boolean allowMultiple,
+            final boolean allowCreateDir);
+
     /**
-     *
      * @return the title to apply to the window
      */
     protected String getWindowTitle() {
@@ -167,14 +178,6 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
         return getResources().getQuantityString(res, count);
     }
 
-    protected abstract AbstractFilePickerFragment<T>
-            getFragment(final String startPath,
-                        final int mode,
-                        final boolean allowMultiple,
-                        final boolean allowCreateDir);
-
-
-
     @Override
     public void onSaveInstanceState(Bundle b) {
         super.onSaveInstanceState(b);
@@ -198,7 +201,8 @@ public abstract class AbstractFilePickerActivity<T> extends Activity implements
             ClipData clip = null;
             for (Uri file : files) {
                 if (clip == null) {
-                    clip = new ClipData("Paths", new String[]{}, new ClipData.Item(file));
+                    clip = new ClipData("Paths", new String[]{},
+                            new ClipData.Item(file));
                 } else {
                     clip.addItem(new ClipData.Item(file));
                 }
