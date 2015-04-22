@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Jonas Kalderstam
+ * Copyright (c) 2015 Jonas Kalderstam
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,11 +18,13 @@
 package com.nononsenseapps.filepicker;
 
 
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
+import android.text.TextUtils;
 
 public class NewFolderFragment extends NewItemFragment {
 
     private static final String TAG = "new_folder_fragment";
+
     public static void showDialog(final FragmentManager fm, final OnNewFolderListener listener) {
         NewItemFragment d = new NewFolderFragment();
         d.setListener(listener);
@@ -31,12 +33,9 @@ public class NewFolderFragment extends NewItemFragment {
 
     @Override
     protected boolean validateName(final String itemName) {
-        return itemName != null && !itemName.isEmpty()
-                && !itemName.contains("/");
-    }
-
-    @Override
-    protected int getDialogTitle() {
-        return R.string.new_folder;
+        return !TextUtils.isEmpty(itemName)
+                && !itemName.contains("/")
+                && !itemName.equals(".")
+                && !itemName.equals("..");
     }
 }

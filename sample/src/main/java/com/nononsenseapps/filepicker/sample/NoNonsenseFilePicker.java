@@ -17,7 +17,6 @@
 
 package com.nononsenseapps.filepicker.sample;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
@@ -36,6 +35,7 @@ import com.dropbox.client2.android.AndroidAuthSession;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity;
+import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxSyncHelper;
 
 import java.util.ArrayList;
@@ -57,17 +57,26 @@ public class NoNonsenseFilePicker extends Activity {
                 (CheckBox) findViewById(R.id.checkAllowCreateDir);
         final CheckBox checkAllowMultiple =
                 (CheckBox) findViewById(R.id.checkAllowMultiple);
+        final CheckBox checkLightTheme =
+                (CheckBox) findViewById(R.id.checkLightTheme);
         final RadioGroup radioGroup =
                 (RadioGroup) findViewById(R.id.radioGroup);
         textView = (TextView) findViewById(R.id.text);
 
-        findViewById(R.id.button)
+        findViewById(R.id.button_sd)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-                        //Intent i = new Intent(NoNonsenseFilePicker.this,
-                        //        FilePickerActivity.class);
-                        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                        Intent i;
+
+                        if (checkLightTheme.isChecked()) {
+                            i = new Intent(NoNonsenseFilePicker.this,
+                                    FilePickerActivity2.class);
+                        } else {
+                            i = new Intent(NoNonsenseFilePicker.this,
+                                    FilePickerActivity.class);
+                        }
+                        i.setAction(Intent.ACTION_GET_CONTENT);
 
                         i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
                                 checkAllowMultiple.isChecked());
@@ -113,8 +122,14 @@ public class NoNonsenseFilePicker extends Activity {
                             mDBApi.getSession().startOAuth2Authentication(
                                     NoNonsenseFilePicker.this);
                         } else {  // User is authorized, open file picker
-                            Intent i = new Intent(NoNonsenseFilePicker.this,
-                                    DropboxFilePickerActivity.class);
+                            Intent i;
+                            if (checkLightTheme.isChecked()) {
+                                i = new Intent(NoNonsenseFilePicker.this,
+                                        DropboxFilePickerActivity2.class);
+                            } else {
+                                i = new Intent(NoNonsenseFilePicker.this,
+                                        DropboxFilePickerActivity.class);
+                            }
 
                             i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
                                     checkAllowMultiple.isChecked());
@@ -182,12 +197,11 @@ public class NoNonsenseFilePicker extends Activity {
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
-            Intent data) {
+                                    Intent data) {
         if ((CODE_SD == requestCode || CODE_DB == requestCode) &&
-            resultCode == Activity.RESULT_OK) {
+                resultCode == Activity.RESULT_OK) {
             if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
                     false)) {
 
@@ -216,7 +230,6 @@ public class NoNonsenseFilePicker extends Activity {
                     }
                     textView.setText(sb.toString());
                 }
-
             } else {
                 textView.setText(data.getData().toString());
             }

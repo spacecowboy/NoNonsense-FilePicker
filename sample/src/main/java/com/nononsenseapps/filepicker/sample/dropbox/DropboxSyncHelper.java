@@ -37,8 +37,8 @@ import com.dropbox.client2.session.AppKeyPair;
  */
 public class DropboxSyncHelper {
     // Change these two lines to your app's stuff
-    final static public String APP_KEY = "INSERT_APP_KEY";
-    final static public String APP_SECRET = "INSERT_APP_SECRET";
+    final static public String APP_KEY = "sm57t7s6lmgj745";
+    final static public String APP_SECRET = "eie6mq0lvcw9t7x";
 
     public static final String PREF_DROPBOX_TOKEN = "dropboxtoken";
 

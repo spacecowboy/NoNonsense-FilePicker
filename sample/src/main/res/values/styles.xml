@@ -1,5 +1,5 @@
 <!--
-  Copyright (c) 2014 Jonas Kalderstam
+  Copyright (c) 2015 Jonas Kalderstam
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,6 +17,40 @@
 
 <resources>
 
-    <style name="SampleTheme" parent="android:Theme.Holo.Light.DarkActionBar" />
+    <style name="SampleTheme" parent="Theme.AppCompat.DialogWhenLarge">
+        <item name="colorPrimary">@color/primary2</item>
+        <item name="colorPrimaryDark">@color/primary_dark2</item>
+        <item name="colorAccent">@color/accent2</item>
+
+        <item name="alertDialogTheme">@style/SampleAlertDialogTheme</item>
+
+        <!-- These are important. Handled by toolbar -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SampleThemeLight" parent="Theme.AppCompat.Light.DialogWhenLarge">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+
+        <item name="alertDialogTheme">@style/SampleAlertDialogThemeLight</item>
+
+        <!-- These are important. Handled by toolbar -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SampleAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorPrimary">@color/primary2</item>
+        <item name="colorPrimaryDark">@color/primary_dark2</item>
+        <item name="colorAccent">@color/accent2</item>
+    </style>
+
+    <style name="SampleAlertDialogThemeLight" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
 
 </resources>

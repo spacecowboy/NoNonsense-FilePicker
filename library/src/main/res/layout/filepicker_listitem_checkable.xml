@@ -28,25 +28,33 @@
 
     <ImageView
         android:id="@+id/item_icon"
-        android:src="@drawable/ic_collections_collection_light"
+        android:src="@drawable/ic_file_folder"
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription"
+        android:tint="?attr/colorAccent"
+        android:adjustViewBounds="true"/>
 
-    <CheckedTextView
+    <TextView
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
         style="?android:textAppearanceLarge"
-        android:checked="false"
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        android:fontFamily="light"
         android:padding="8dp"
         android:gravity="center_vertical"
-        android:textColor="?android:attr/textColorPrimary"
         android:id="@android:id/text1"
         android:maxLines="1"
         android:ellipsize="end"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:text="@string/name"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/checkbox"
+        android:paddingEnd="8dp"
+        android:paddingRight="8dp"
+        />
+
 </LinearLayout>

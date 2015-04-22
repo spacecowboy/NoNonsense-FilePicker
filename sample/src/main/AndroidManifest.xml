@@ -33,31 +33,44 @@
         <!-- Sample app -->
         <activity
             android:name="com.nononsenseapps.filepicker.sample.NoNonsenseFilePicker"
-            android:label="@string/title_activity_no_nonsense_file_picker"
-            android:theme ="@style/SampleTheme">
+            android:label="@string/title_activity_no_nonsense_file_picker">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- SD-card picker -->
+        <!-- SD-card pickers -->
         <activity
             android:name="com.nononsenseapps.filepicker.FilePickerActivity"
             android:label="@string/app_name"
-            android:theme="@style/FilePicker.Theme">
+            android:theme="@style/SampleTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <!-- Dropbox picker -->
+        <activity
+            android:name="com.nononsenseapps.filepicker.sample.FilePickerActivity2"
+            android:label="@string/app_name"
+            android:theme="@style/SampleThemeLight">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Dropbox pickers -->
         <activity
             android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity"
             android:label="@string/app_name"
-            android:theme="@style/FilePicker.Theme">
+            android:theme="@style/SampleTheme">
+        </activity>
+        <activity
+            android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2"
+            android:label="@string/app_name"
+            android:theme="@style/SampleThemeLight">
         </activity>
         <!-- Dropbox authenticator -->
         <activity
@@ -66,7 +79,7 @@
             android:configChanges="orientation|keyboard">
             <intent-filter>
                 <!-- Change this to be db- followed by your app key -->
-                <data android:scheme="db-YOUR_APP_KEY_HERE" />
+                <data android:scheme="db-sm57t7s6lmgj745" />
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.DEFAULT" />

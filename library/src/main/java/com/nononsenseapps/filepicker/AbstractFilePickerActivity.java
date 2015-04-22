@@ -20,16 +20,13 @@ package com.nononsenseapps.filepicker;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-import android.view.Window;
-import android.view.WindowManager;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +59,7 @@ import java.util.List;
  *
  * @param <T>
  */
-public abstract class AbstractFilePickerActivity<T> extends Activity
+public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
         implements AbstractFilePickerFragment.OnFilePickedListener {
     public static final String EXTRA_START_PATH =
             "nononsense.intent" + ".START_PATH";
@@ -85,9 +82,6 @@ public abstract class AbstractFilePickerActivity<T> extends Activity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        requestWindowFeature(Window.FEATURE_ACTION_BAR);
-        setupFauxDialog();
-        setupActionBar();
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_filepicker);
@@ -102,7 +96,7 @@ public abstract class AbstractFilePickerActivity<T> extends Activity
                     intent.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, allowMultiple);
         }
 
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         AbstractFilePickerFragment<T> fragment =
                 (AbstractFilePickerFragment<T>) fm.findFragmentByTag(TAG);
 
@@ -120,63 +114,9 @@ public abstract class AbstractFilePickerActivity<T> extends Activity
         setResult(Activity.RESULT_CANCELED);
     }
 
-    protected void setupFauxDialog() {
-        // Check if this should be a dialog
-        TypedValue tv = new TypedValue();
-        if (!getTheme().resolveAttribute(R.attr.isDialog, tv, true) ||
-            tv.data == 0) {
-            return;
-        }
-
-        // Should be a dialog; set up the window parameters.
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-
-        WindowManager.LayoutParams params = getWindow().getAttributes();
-        params.width = getResources()
-                .getDimensionPixelSize(R.dimen.configure_dialog_width);
-        params.height = Math.min(getResources()
-                .getDimensionPixelSize(R.dimen.configure_dialog_max_height),
-                dm.heightPixels * 3 / 4);
-        params.alpha = 1.0f;
-        params.dimAmount = 0.5f;
-        getWindow().setAttributes(params);
-    }
-
-    protected void setupActionBar() {
-        getActionBar().setTitle(getWindowTitle());
-    }
-
     protected abstract AbstractFilePickerFragment<T> getFragment(
             final String startPath, final int mode, final boolean allowMultiple,
             final boolean allowCreateDir);
-
-    /**
-     * @return the title to apply to the window
-     */
-    protected String getWindowTitle() {
-        final int res;
-        switch (mode) {
-            case AbstractFilePickerFragment.MODE_DIR:
-                res = R.plurals.select_dir;
-                break;
-            case AbstractFilePickerFragment.MODE_FILE_AND_DIR:
-                res = R.plurals.select_dir_or_file;
-                break;
-            case AbstractFilePickerFragment.MODE_FILE:
-            default:
-                res = R.plurals.select_file;
-                break;
-        }
-
-        final int count;
-        if (allowMultiple) {
-            count = 99;
-        } else {
-            count = 1;
-        }
-
-        return getResources().getQuantityString(res, count);
-    }
 
     @Override
     public void onSaveInstanceState(Bundle b) {

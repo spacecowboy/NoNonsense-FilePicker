@@ -20,24 +20,5 @@
     <string name="new_folder">New folder</string>
     <string name="create_folder_error">Failed to create folder</string>
     <string name="name">Name</string>
-    <string name="go_back">Go back</string>
     <string name="select_something_first">Please select something first</string>
-
-    <plurals
-        name="select_dir">
-        <item quantity="one">Select directory</item>
-        <item quantity="other">Select directories</item>
-    </plurals>
-
-    <plurals
-        name="select_file">
-        <item quantity="one">Select file</item>
-        <item quantity="other">Select files</item>
-    </plurals>
-
-    <plurals
-        name="select_dir_or_file">
-        <item quantity="one">Select directory or file</item>
-        <item quantity="other">Select directories or files</item>
-    </plurals>
 </resources>

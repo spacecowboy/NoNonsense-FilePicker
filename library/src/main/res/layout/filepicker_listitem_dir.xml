@@ -23,28 +23,29 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:minHeight="?android:listPreferredItemHeight"
     android:orientation="horizontal"
-    android:background="@drawable/selectable_background_filepickertheme">
-
+    android:background="@drawable/selectable_background_filepickertheme"
+    >
 
     <ImageView
         android:id="@+id/item_icon"
-        android:src="@drawable/ic_collections_collection_light"
+        android:src="@drawable/ic_file_folder"
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription"
+        android:tint="?attr/colorAccent"
+        android:adjustViewBounds="true"/>
 
     <TextView
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
         style="?android:textAppearanceLarge"
-        android:fontFamily="light"
         android:padding="8dp"
         android:gravity="center_vertical"
-        android:textColor="?android:attr/textColorPrimary"
         android:id="@android:id/text1"
         android:maxLines="1"
         android:ellipsize="end"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:text="@string/name"/>
 </LinearLayout>

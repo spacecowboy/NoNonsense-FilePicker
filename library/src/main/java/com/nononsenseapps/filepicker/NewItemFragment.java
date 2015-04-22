@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 Jonas Kalderstam
+ * Copyright (c) 2015 Jonas Kalderstam
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,21 +18,20 @@
 package com.nononsenseapps.filepicker;
 
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.DialogFragment;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 public abstract class NewItemFragment extends DialogFragment {
 
-    private String itemName = null;
-    private View okButton = null;
     private OnNewFolderListener listener = null;
 
     public NewItemFragment() {
@@ -50,67 +49,70 @@ public abstract class NewItemFragment extends DialogFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        getDialog().setTitle(getDialogTitle());
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(R.layout.dialog_folder_name)
+                .setTitle(R.string.new_folder)
+                .setNegativeButton(android.R.string.cancel,
+                        null)
+                .setPositiveButton(android.R.string.ok,
+                        null);
 
-        @SuppressLint("InflateParams") final View view =
-                inflater.inflate(R.layout.dialog_new_item, null);
+        final AlertDialog dialog = builder.create();
 
-        okButton = view.findViewById(R.id.button_ok);
-        okButton.setOnClickListener(new View.OnClickListener() {
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
-            public void onClick(final View v) {
-                if (listener != null) {
-                    listener.onNewFolder(itemName);
-                }
-                dismiss();
-            }
-        });
+            public void onShow(DialogInterface dialog1) {
+                final AlertDialog dialog = (AlertDialog) dialog1;
+                final EditText editText = (EditText) dialog.findViewById(R.id.edit_text);
 
-        view.findViewById(R.id.button_cancel)
-                .setOnClickListener(new View.OnClickListener() {
+                Button cancel = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+                cancel.setOnClickListener(new View.OnClickListener() {
+
                     @Override
-                    public void onClick(final View v) {
-                        dismiss();
+                    public void onClick(View view) {
+                        dialog.cancel();
                     }
                 });
 
-        final EditText editText = (EditText) view.findViewById(R.id.edit_text);
-        if (itemName == null) {
-            okButton.setEnabled(false);
-        } else {
-            editText.setText(itemName);
-            validateItemName();
-        }
+                final Button ok = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                // Start disabled
+                ok.setEnabled(false);
+                ok.setOnClickListener(new View.OnClickListener() {
 
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(final CharSequence s, final int start,
-                    final int count, final int after) {
-            }
+                    @Override
+                    public void onClick(View view) {
+                        String itemName = editText.getText().toString();
+                        if (validateName(itemName)) {
+                            if (listener != null) {
+                                listener.onNewFolder(itemName);
+                            }
+                            dialog.dismiss();
+                        }
+                    }
+                });
 
-            @Override
-            public void onTextChanged(final CharSequence s, final int start,
-                    final int before, final int count) {
-            }
+                editText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(final CharSequence s, final int start,
+                                                  final int count, final int after) {
+                    }
 
-            @Override
-            public void afterTextChanged(final Editable s) {
-                itemName = s.toString();
-                validateItemName();
+                    @Override
+                    public void onTextChanged(final CharSequence s, final int start,
+                                              final int before, final int count) {
+                    }
+
+                    @Override
+                    public void afterTextChanged(final Editable s) {
+                        ok.setEnabled(validateName(s.toString()));
+                    }
+                });
             }
         });
 
-        return view;
-    }
 
-    protected abstract int getDialogTitle();
-
-    private void validateItemName() {
-        if (okButton != null) {
-            okButton.setEnabled(validateName(itemName));
-        }
+        return dialog;
     }
 
     protected abstract boolean validateName(final String itemName);

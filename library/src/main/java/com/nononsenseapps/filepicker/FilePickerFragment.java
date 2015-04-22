@@ -17,21 +17,21 @@
 
 package com.nononsenseapps.filepicker;
 
-import android.content.AsyncTaskLoader;
-import android.content.Loader;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.FileObserver;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
+import android.support.v7.util.SortedList;
+import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.widget.Toast;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
-    public FilePickerFragment() {}
+    public FilePickerFragment() {
+    }
 
     /**
      * Return true if the path is a directory and not a file.
@@ -39,8 +39,17 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @param path
      */
     @Override
-    protected boolean isDir(final File path) {
+    public boolean isDir(final File path) {
         return path.isDirectory();
+    }
+
+    /**
+     * @param path
+     * @return filename of path
+     */
+    @Override
+    public String getName(File path) {
+        return path.getName();
     }
 
     /**
@@ -50,7 +59,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @param from
      */
     @Override
-    protected File getParent(final File from) {
+    public File getParent(final File from) {
         if (from.getParentFile() != null) {
             if (from.isFile()) {
                 return getParent(from.getParentFile());
@@ -68,7 +77,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @param path
      */
     @Override
-    protected File getPath(final String path) {
+    public File getPath(final String path) {
         return new File(path);
     }
 
@@ -77,55 +86,27 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @return the full path to the file
      */
     @Override
-    protected String getFullPath(final File path) {
+    public String getFullPath(final File path) {
         return path.getPath();
-    }
-
-    /**
-     * @param path
-     * @return the name of this file/folder
-     */
-    @Override
-    protected String getName(final File path) {
-        return path.getName();
     }
 
     /**
      * Get the root path (lowest allowed).
      */
     @Override
-    protected File getRoot() {
+    public File getRoot() {
         return Environment.getExternalStorageDirectory();
     }
 
     /**
      * Convert the path to a URI for the return intent
+     *
      * @param file
      * @return
      */
     @Override
-    protected Uri toUri(final File file) {
+    public Uri toUri(final File file) {
         return Uri.fromFile(file);
-    }
-
-    /**
-     * @return a comparator that can sort the items alphabetically
-     */
-    @Override
-    protected Comparator<File> getComparator() {
-        return new Comparator<File>() {
-            @Override
-            public int compare(final File lhs, final File rhs) {
-                if (lhs.isDirectory() && !rhs.isDirectory()) {
-                    return -1;
-                } else if (rhs.isDirectory() && !lhs.isDirectory()) {
-                    return 1;
-                } else {
-                    return lhs.getName().toLowerCase().compareTo(rhs.getName()
-                            .toLowerCase());
-                }
-            }
-        };
     }
 
     /**
@@ -133,16 +114,43 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * and monitors changes.
      */
     @Override
-    protected Loader<List<File>> getLoader() {
-        return new AsyncTaskLoader<List<File>>(getActivity()) {
+    public Loader<SortedList<File>> getLoader() {
+        return new AsyncTaskLoader<SortedList<File>>(getActivity()) {
 
             FileObserver fileObserver;
 
             @Override
-            public List<File> loadInBackground() {
-                ArrayList<File> files = new ArrayList<File>();
+            public SortedList<File> loadInBackground() {
                 File[] listFiles = currentPath.listFiles();
-                if(listFiles != null) {
+                final int initCap = listFiles == null ? 0 : listFiles.length;
+
+                SortedList<File> files = new SortedList<>(File.class, new SortedListAdapterCallback<File>(getDummyAdapter()) {
+                    @Override
+                    public int compare(File lhs, File rhs) {
+                        if (lhs.isDirectory() && !rhs.isDirectory()) {
+                            return -1;
+                        } else if (rhs.isDirectory() && !lhs.isDirectory()) {
+                            return 1;
+                        } else {
+                            return lhs.getName().toLowerCase().compareTo(rhs.getName()
+                                    .toLowerCase());
+                        }
+                    }
+
+                    @Override
+                    public boolean areContentsTheSame(File file, File file2) {
+                        return file.getAbsolutePath().equals(file2.getAbsolutePath()) && (file.isFile() == file2.isFile());
+                    }
+
+                    @Override
+                    public boolean areItemsTheSame(File file, File file2) {
+                        return areContentsTheSame(file, file2);
+                    }
+                }, initCap);
+
+
+                files.beginBatchedUpdates();
+                if (listFiles != null) {
                     for (java.io.File f : listFiles) {
                         if ((mode == MODE_FILE || mode == MODE_FILE_AND_DIR)
                                 || f.isDirectory()) {
@@ -150,6 +158,9 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                         }
                     }
                 }
+
+                files.endBatchedUpdates();
+
                 return files;
             }
 
@@ -217,4 +228,6 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                     Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }

@@ -18,103 +18,60 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".FilePickerActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FilePickerActivity">
 
-    <LinearLayout
-        android:id="@+id/action_container"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/picker_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:background="@color/dark_grey"
-        android:layout_height="?android:listPreferredItemHeight">
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_navigation_back"
-            android:background="@drawable/selectable_action"
-            android:clickable="true"
-            android:scaleType="fitCenter"
-            android:contentDescription="@string/go_back"
-            android:id="@+id/button_go_parent"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/selectable_action"
-            android:id="@+id/button_create_dir"
-            android:src="@drawable/ic_collections_add_collection"
-            android:clickable="true"
-            android:contentDescription="@string/new_folder"
-            android:scaleType="fitCenter"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/current_dir"
-        android:layout_below="@id/action_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/grey"
-        android:fontFamily="light"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:scrollHorizontally="false"
-        android:ellipsize="start"
-        style="?android:textAppearanceMedium"
-        android:padding="4dp"
-        android:gravity="center_vertical"
-        android:textColor="?android:attr/textColorPrimary"
-        />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/current_dir"
-        android:id="@android:id/list"
-        android:layout_above="@+id/button_container"
-        tools:listitem="@layout/filepicker_listitem_dir"/>
-
-    <LinearLayout android:id="@+id/button_container"
-                  android:layout_alignParentBottom="true"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/dividerHorizontal"/>
-
-        <LinearLayout
-            style="?android:attr/buttonBarStyle"
+        <TextView
+            android:id="@+id/current_dir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:ellipsize="start"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_container"
+        android:layout_below="@+id/picker_toolbar"
+        tools:listitem="@layout/filepicker_listitem_dir" />
+
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_cancel"
-                style="?android:attr/buttonBarButtonStyle"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_weight="1"
-                android:fontFamily="light"
-                android:text="@android:string/cancel"/>
+                android:text="@android:string/cancel" />
 
             <Button
                 android:id="@+id/button_ok"
-                style="?android:attr/buttonBarButtonStyle"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_weight="1"
-                android:fontFamily="light"
-                android:text="@android:string/ok"/>
-        </LinearLayout>
+                android:text="@android:string/ok" />
 
     </LinearLayout>
 </RelativeLayout>

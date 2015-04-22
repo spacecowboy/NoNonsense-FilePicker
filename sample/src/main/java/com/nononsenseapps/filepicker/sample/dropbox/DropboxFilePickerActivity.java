@@ -26,7 +26,7 @@ import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 
 
 public class DropboxFilePickerActivity
-        extends AbstractFilePickerActivity<DropboxAPI.Entry> {
+            extends AbstractFilePickerActivity<DropboxAPI.Entry> {
 
     // In the class declaration section:
     private DropboxAPI<AndroidAuthSession> mDBApi;
