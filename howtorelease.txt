@@ -2,6 +2,9 @@ First upload artifacts
 
     ./gradlew uploadArchives
 
+
+Sync runs every 2 hours, so wait a bit...
+
 Second close repository
 
     ./gradlew closeRepository
