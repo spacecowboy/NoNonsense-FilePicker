@@ -1,0 +1,11 @@
+First upload artifacts
+
+    ./gradlew uploadArchives
+
+Second close repository
+
+    ./gradlew closeRepository
+
+Third promote repository
+
+    ./gradlew promoteRepository

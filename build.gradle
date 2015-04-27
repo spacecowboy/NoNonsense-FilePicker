@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.13.0'
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.1"
     }
 }
 
@@ -13,4 +14,11 @@ allprojects {
     repositories {
         mavenCentral()
     }
+}
+
+apply plugin: 'io.codearte.nexus-staging'
+
+nexusStaging {
+    packageGroup = "com.nononsenseapps"
+    //stagingProfileId = "yourStagingProfileId" //when not defined will be got from server using "packageGroup"
 }
