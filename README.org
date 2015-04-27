@@ -37,13 +37,6 @@ width="50%"
 </img>
 #+end_html
 
-#+begin_html
-<video width="270" height="480" autoplay>
-  <source src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/NoNonsenseFilePickerDark.webm" type="video/webm">
-Your browser does not support the video tag.
-</video>
-#+end_html
-
 - Extendable for sources other than SD-card (Dropbox, Drive, etc)
 - Can select multiple items
 - Select directories or files, or both
