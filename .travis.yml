@@ -4,7 +4,7 @@ env:
     - ANDROID_SDKS=android-21,sysimg-21 ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
 android:
   components:
-    - build-tools-21.1.1
+    - build-tools-22.0.1
     - android-21
     - sysimg-21
     - extra-android-support
