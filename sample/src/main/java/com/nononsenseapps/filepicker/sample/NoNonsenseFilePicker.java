@@ -17,6 +17,7 @@
 
 package com.nononsenseapps.filepicker.sample;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
@@ -197,6 +198,7 @@ public class NoNonsenseFilePicker extends Activity {
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data) {

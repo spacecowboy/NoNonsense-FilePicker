@@ -26,6 +26,7 @@
     android:background="@drawable/selectable_background_filepickertheme"
     >
 
+    <!--suppress AndroidDomInspection -->
     <ImageView
         android:id="@+id/item_icon"
         android:src="@drawable/ic_file_folder"

@@ -123,7 +123,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_filepicker, null);
+        View view = inflater.inflate(R.layout.fragment_filepicker, container);
 
         mToolbar = (Toolbar) view.findViewById(R.id.picker_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);

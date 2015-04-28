@@ -17,6 +17,7 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <EditText
@@ -34,5 +35,5 @@
         android:imeOptions="actionDone"
         style="?android:textAppearanceMedium"
         android:inputType="textAutoComplete|textAutoCorrect"
-        />
+        tools:ignore="UnusedAttribute" />
 </FrameLayout>
