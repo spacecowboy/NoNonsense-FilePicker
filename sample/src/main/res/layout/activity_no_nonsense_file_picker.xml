@@ -125,6 +125,17 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
+                android:text="Pick SD-card with image preview"
+                android:layout_marginTop="16dp"
+                android:id="@+id/button_image"
+                android:gravity="center"
+                style="?android:attr/borderlessButtonStyle"
+                android:fontFamily="light"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
                 android:text="Pick Dropbox"
                 android:layout_marginTop="8dp"
                 android:id="@+id/button_dropbox"

@@ -107,6 +107,46 @@ public class NoNonsenseFilePicker extends Activity {
                     }
                 });
 
+        findViewById(R.id.button_image)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        Intent i;
+
+                        if (checkLightTheme.isChecked()) {
+                            i = new Intent(NoNonsenseFilePicker.this,
+                                    ImagePickerActivity2.class);
+                        } else {
+                            i = new Intent(NoNonsenseFilePicker.this,
+                                    ImagePickerActivity.class);
+                        }
+                        i.setAction(Intent.ACTION_GET_CONTENT);
+
+                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
+                                checkAllowMultiple.isChecked());
+//                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
+//                                checkAllowCreateDir.isChecked());
+
+                        // What mode is selected (makes no sense to restrict to folders here)
+                        final int mode;
+                        switch (radioGroup.getCheckedRadioButtonId()) {
+                            case R.id.radioFilesAndDirs:
+                                mode =
+                                        AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                                break;
+                            case R.id.radioFile:
+                            default:
+                                mode = AbstractFilePickerFragment.MODE_FILE;
+                                break;
+                        }
+
+                        i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
+
+
+                        startActivityForResult(i, CODE_SD);
+                    }
+                });
+
         findViewById(R.id.button_dropbox)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
