@@ -102,7 +102,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * Convert the path to a URI for the return intent
      *
      * @param file
-     * @return
+     * @return a Uri
      */
     @Override
     public Uri toUri(final File file) {

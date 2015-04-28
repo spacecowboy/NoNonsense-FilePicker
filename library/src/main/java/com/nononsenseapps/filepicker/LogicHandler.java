@@ -46,7 +46,7 @@ public interface LogicHandler<T> {
      * Convert the path to a URI for the return intent
      *
      * @param path
-     * @return
+     * @return a Uri
      */
     public Uri toUri(final T path);
 
@@ -81,12 +81,6 @@ public interface LogicHandler<T> {
      * and monitors changes.
      */
     public Loader<SortedList<T>> getLoader();
-
-    /**
-     * @return a comparator that can sort the items alphabetically
-     */
-    //public Comparator<T> getComparator();
-
 
     public final static int VIEWTYPE_HEADER = 0;
     public final static int VIEWTYPE_DIR = 1;
