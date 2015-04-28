@@ -37,11 +37,9 @@ publish {
   description = POM_DESCRIPTION
   website = POM_URL
   licences = ['LGPL-3.0']
-  uploadName = POM_NAME
+  uploadName = PROJECT_NAME
   bintrayUser = BINTRAY_USER
   bintrayKey = BINTRAY_KEY
-
-  //dryRun = true
 }
 
 // apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'

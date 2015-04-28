@@ -1,5 +1,5 @@
 ## New way
-./gradlew clean build bintrayUpload
+./gradlew clean build bintrayUpload -PdryRun=false
 
 ## Old way...
 First upload artifacts
