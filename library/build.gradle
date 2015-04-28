@@ -42,7 +42,3 @@ publish {
   bintrayKey = BINTRAY_KEY
 }
 
-// apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
-
-// apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
-//apply from: '../android-release-aar.gradle'
