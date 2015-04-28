@@ -32,7 +32,7 @@ public class FilePickerActivity extends AbstractFilePickerActivity<File> {
     protected AbstractFilePickerFragment<File> getFragment(
             final String startPath, final int mode, final boolean allowMultiple,
             final boolean allowCreateDir) {
-        AbstractFilePickerFragment fragment = new FilePickerFragment();
+        AbstractFilePickerFragment<File> fragment = new FilePickerFragment();
         fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir);
         return fragment;
     }

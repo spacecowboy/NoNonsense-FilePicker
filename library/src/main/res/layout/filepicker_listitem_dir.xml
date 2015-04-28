@@ -31,8 +31,9 @@
         android:id="@+id/item_icon"
         android:src="@drawable/ic_file_folder"
         android:visibility="visible"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="?android:listPreferredItemHeight"
+        android:layout_height="?android:listPreferredItemHeight"
+        android:scaleType="fitCenter"
         tools:ignore="ContentDescription"
         android:tint="?attr/colorAccent"
         android:adjustViewBounds="true"/>
