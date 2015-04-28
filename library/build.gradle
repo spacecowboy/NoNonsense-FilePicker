@@ -4,11 +4,6 @@ android {
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
     buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
 
-    lintOptions {
-        abortOnError false
-    }
-
-
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
@@ -31,6 +26,33 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.1.1'
 }
 
+/*
+bintray {
+  user = bintrayUser
+  key = bintrayKey
+  dryRun=true
+  configurations = ['archives']
+
+  pkg {
+    repo = "maven"
+    name = POM_NAME
+    desc = POM_DESCRIPTION
+    websiteUrl = POM_URL
+    vcsUrl = POM_SCM_URL
+    issueTrackerUrl = POM_URL_ISSUES
+    labels = ['android', 'library', 'filepicker']
+    licenses = ["LGPL-3.0"]
+    publish = true
+
+    version {
+      name = VERSION_NAME
+      vcsTag = 'v' + VERSION_NAME
+    }
+  }
+}
+*/
+
 // apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
-// Need to change alljava to java
-apply from: '../gradle-mvn-push.gradle'
+
+// apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
+apply from: '../android-release-aar.gradle'

@@ -2,23 +2,27 @@
 
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.1.0'
-        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.1"
+        //classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.1"
+        //classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
+        //classpath 'com.github.dcendents:android-maven-plugin:1.2'
     }
 }
 
 allprojects {
     repositories {
-        mavenCentral()
+        jcenter()
     }
 }
 
-apply plugin: 'io.codearte.nexus-staging'
+//apply plugin: 'com.jfrog.bintray'
 
-nexusStaging {
-    packageGroup = "com.nononsenseapps"
+//apply plugin: 'io.codearte.nexus-staging'
+
+//nexusStaging {
+//    packageGroup = "com.nononsenseapps"
     //stagingProfileId = "yourStagingProfileId" //when not defined will be got from server using "packageGroup"
-}
+//}
