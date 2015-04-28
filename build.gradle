@@ -6,6 +6,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.1.0'
+        classpath 'com.novoda:bintray-release:0.2.10'
+
         //classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.1"
         //classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
         //classpath 'com.github.dcendents:android-maven-plugin:1.2'

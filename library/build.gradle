@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+// must be applied after your artifact generating plugin (eg. java /
+// com.android.library)
+apply plugin: 'bintray-release'
 
 android {
     compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
@@ -26,33 +29,22 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.1.1'
 }
 
-/*
-bintray {
-  user = bintrayUser
-  key = bintrayKey
-  dryRun=true
-  configurations = ['archives']
 
-  pkg {
-    repo = "maven"
-    name = POM_NAME
-    desc = POM_DESCRIPTION
-    websiteUrl = POM_URL
-    vcsUrl = POM_SCM_URL
-    issueTrackerUrl = POM_URL_ISSUES
-    labels = ['android', 'library', 'filepicker']
-    licenses = ["LGPL-3.0"]
-    publish = true
+publish {
+  groupId = GROUP
+  artifactId = POM_ARTIFACT_ID
+  publishVersion = VERSION_NAME
+  description = POM_DESCRIPTION
+  website = POM_URL
+  licences = ['LGPL-3.0']
+  uploadName = POM_NAME
+  bintrayUser = BINTRAY_USER
+  bintrayKey = BINTRAY_KEY
 
-    version {
-      name = VERSION_NAME
-      vcsTag = 'v' + VERSION_NAME
-    }
-  }
+  //dryRun = true
 }
-*/
 
 // apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
 
 // apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
-apply from: '../android-release-aar.gradle'
+//apply from: '../android-release-aar.gradle'
