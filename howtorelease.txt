@@ -1,3 +1,7 @@
+## New way
+./gradlew clean build bintrayUpload
+
+## Old way...
 First upload artifacts
 
     ./gradlew uploadArchives
