@@ -5,7 +5,7 @@
 <a href="https://travis-ci.org/spacecowboy/NoNonsense-FilePicker">
 <img src="https://travis-ci.org/spacecowboy/NoNonsense-FilePicker.svg?branch=master">
 </a>
-<a href='https://bintray.com/spacecowboy/maven/NoNonsense-FilePicker/_latestVersion'><img src='https://api.bintray.com/packages/spacecowboy/maven/NoNonsense-FilePicker/images/download.svg'></a>
+<a href='https://bintray.com/spacecowboy/maven/com.nononsenseapps%3Afilepicker/_latestVersion'><img src='https://api.bintray.com/packages/spacecowboy/maven/com.nononsenseapps%3Afilepicker/images/download.svg'></a>
 </p>
 
 <p>
