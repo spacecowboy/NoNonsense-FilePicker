@@ -98,6 +98,10 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     public AbstractFilePickerFragment() {
         checkedItems = new HashSet<>();
         checkedVisibleViewHolders = new HashSet<>();
+
+        // Retain this fragment across configuration changes, to allow
+        // asynctasks and such to be used with ease.
+        setRetainInstance(true);
     }
 
     /**
@@ -236,9 +240,26 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Retain this fragment across configuration changes.
-        setRetainInstance(true);
 
+        setHasOptionsMenu(true);
+    }
+
+    /**
+     * Called when the fragment's activity has been created and this
+     * fragment's view hierarchy instantiated.  It can be used to do final
+     * initialization once these pieces are in place, such as retrieving
+     * views or restoring state.  It is also useful for fragments that use
+     * {@link #setRetainInstance(boolean)} to retain their instance,
+     * as this callback tells the fragment when it is fully associated with
+     * the new activity instance.  This is called after {@link #onCreateView}
+     * and before {@link #onViewStateRestored(Bundle)}.
+     *
+     * @param savedInstanceState If the fragment is being re-created from
+     * a previous saved state, this is the state.
+     */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         // Only if we have no state
         if (currentPath == null) {
             if (savedInstanceState != null) {
@@ -268,8 +289,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         }
 
         refresh();
-
-        setHasOptionsMenu(true);
     }
 
     @Override

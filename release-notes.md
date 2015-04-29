@@ -1,3 +1,6 @@
+# 2.0.4
+Handle device rotation, fixes #15.
+
 # 2.0.3
 Fix a crash because of fauly view initiation.
 Item layout's imageview now has fixed size.
