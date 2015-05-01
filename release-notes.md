@@ -1,3 +1,6 @@
+# 2.0.5
+Remove unnecessary and conflicting ic_launcher icon.
+
 # 2.0.4
 Handle device rotation, fixes #15.
 
