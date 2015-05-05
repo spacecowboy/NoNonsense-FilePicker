@@ -139,6 +139,9 @@ you like..
     i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
     i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, false);
     i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_FILE);
+    
+    // Configure initial directory like so
+    i.putExtra(FilePickerActivity.EXTRA_START_PATH, "/storage/emulated/0/");
 
     startActivityForResult(i, FILE_CODE);
 ```
