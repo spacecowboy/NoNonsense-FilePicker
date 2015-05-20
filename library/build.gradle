@@ -29,7 +29,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.1.1'
 }
 
-
 publish {
   groupId = GROUP
   artifactId = POM_ARTIFACT_ID
@@ -38,7 +37,6 @@ publish {
   website = POM_URL
   licences = ['LGPL-3.0']
   uploadName = PROJECT_NAME
-  bintrayUser = BINTRAY_USER
-  bintrayKey = BINTRAY_KEY
+  bintrayUser = project.hasProperty("BINTRAY_USER")? BINTRAY_USER: "Dummy"
+  bintrayKey = project.hasProperty("BINTRAY_KEY") ? BINTRAY_KEY: "Dummy"
 }
-
