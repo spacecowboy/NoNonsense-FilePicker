@@ -11,7 +11,14 @@ android:
     - extra-android-support
     - extra-google-m2repository
     - extra-android-m2repository
+cache:
+   directories:
+   - $HOME/.gradle/caches/
 
 before_install:
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
+  - chmod +x gradlew
+#  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+#  - emulator -avd test -no-skin -no-audio -no-window &
+
+script:
+  - ./gradlew build
