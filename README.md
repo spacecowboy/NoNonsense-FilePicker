@@ -193,27 +193,10 @@ you can skip the second method.
 
 ## Want to customize further?
 
+See some examples in the [Wiki](https://github.com/spacecowboy/NoNonsense-FilePicker/wiki)
+
 See the sample project for examples on dark and light themes, and an
-implementation using Dropbox. The minimum required work is as follows:
-
-### Extend AbstractFilePickerActivity
-
-And implement **getFragment**. It should return an instance of
-**AbstractFilePickerFragment**. Which naturally leads to:
-
-### Extend AbstractFilePickerFragment
-
-Which requires you to implement
-
--   onNewFolder
--   isDir
--   getParent
--   getPath
--   getFullPath
--   getName
--   getRoot
--   toUri
--   getLoader
+implementation using Dropbox.
 
 ## Not using Gradle yet?
 
