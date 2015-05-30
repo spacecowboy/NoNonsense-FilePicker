@@ -28,6 +28,10 @@ import android.widget.Toast;
 
 import java.io.File;
 
+/**
+ * An implementation of the picker which allows you to select a file from the internal/external
+ * storage (SD-card) on a device.
+ */
 public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
     public FilePickerFragment() {
@@ -127,14 +131,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 SortedList<File> files = new SortedList<>(File.class, new SortedListAdapterCallback<File>(getDummyAdapter()) {
                     @Override
                     public int compare(File lhs, File rhs) {
-                        if (lhs.isDirectory() && !rhs.isDirectory()) {
-                            return -1;
-                        } else if (rhs.isDirectory() && !lhs.isDirectory()) {
-                            return 1;
-                        } else {
-                            return lhs.getName().toLowerCase().compareTo(rhs.getName()
-                                    .toLowerCase());
-                        }
+                        return compareFiles(lhs, rhs);
                     }
 
                     @Override
@@ -240,4 +237,25 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
         return isDir(file) || (mode == MODE_FILE || mode == MODE_FILE_AND_DIR);
     }
 
+    /**
+     * Compare two files to determine their relative sort order. This follows the usual
+     * comparison interface. Override to determine your own custom sort order.
+     *
+     * Default behaviour is to place directories before files, but sort them alphabetically
+     * otherwise.
+     *
+     * @param lhs File on the "left-hand side"
+     * @param rhs File on the "right-hand side"
+     * @return -1 if if lhs should be placed before rhs, 0 if they are equal,
+     * and 1 if rhs should be placed before lhs
+     */
+    protected int compareFiles(File lhs, File rhs) {
+        if (lhs.isDirectory() && !rhs.isDirectory()) {
+            return -1;
+        } else if (rhs.isDirectory() && !lhs.isDirectory()) {
+            return 1;
+        } else {
+            return lhs.getName().compareToIgnoreCase(rhs.getName());
+        }
+    }
 }
