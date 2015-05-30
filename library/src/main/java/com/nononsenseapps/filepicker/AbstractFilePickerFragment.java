@@ -64,7 +64,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     public static final String KEY_START_PATH = "KEY_START_PATH";
     // See MODE_XXX constants above for possible values
     public static final String KEY_MODE = "KEY_MODE";
-    // If it should be possible to create directories. Only valid with MODE_DIR
+    // If it should be possible to create directories.
     public static final String KEY_ALLOW_DIR_CREATE = "KEY_ALLOW_DIR_CREATE";
     // Allow multiple items to be selected.
     public static final String KEY_ALLOW_MULTIPLE = "KEY_ALLOW_MULTIPLE";
@@ -296,7 +296,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         inflater.inflate(R.menu.picker_actions, menu);
 
         MenuItem item = menu.findItem(R.id.action_createdir);
-        item.setVisible(allowCreateDir && (mode == MODE_DIR));
+        item.setVisible(allowCreateDir);
     }
 
     @Override

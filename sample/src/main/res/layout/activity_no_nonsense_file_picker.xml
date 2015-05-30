@@ -92,7 +92,7 @@
                 <CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:text="Allow creation of directories\n(if selecting directories)"
+                    android:text="Allow creation of directories"
                     android:id="@+id/checkAllowCreateDir"
                     android:gravity="center_vertical"
                     style="?android:textAppearanceMedium"
