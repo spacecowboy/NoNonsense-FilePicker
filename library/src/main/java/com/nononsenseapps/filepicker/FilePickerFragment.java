@@ -152,13 +152,11 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 files.beginBatchedUpdates();
                 if (listFiles != null) {
                     for (java.io.File f : listFiles) {
-                        if ((mode == MODE_FILE || mode == MODE_FILE_AND_DIR)
-                                || f.isDirectory()) {
+                        if (isItemVisible(f)) {
                             files.add(f);
                         }
                     }
                 }
-
                 files.endBatchedUpdates();
 
                 return files;
@@ -229,5 +227,17 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
         }
     }
 
+    /**
+     * Used by the list to determine whether a file should be displayed or not.
+     * Default behavior is to always display folders. If files can be selected,
+     * then files are also displayed. Override this method to enable other
+     * filtering behaviour, like only displaying files with specific extensions (.zip, .txt, etc).
+     *
+     * @param file to maybe add. Can be either a directory or file.
+     * @return True if item should be added to the list, false otherwise
+     */
+    protected boolean isItemVisible(final File file) {
+        return isDir(file) || (mode == MODE_FILE || mode == MODE_FILE_AND_DIR);
+    }
 
 }
