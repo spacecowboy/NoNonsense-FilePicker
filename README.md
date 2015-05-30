@@ -139,12 +139,12 @@ you like..
     i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false);
     i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, false);
     i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_FILE);
-    
+
     // Configure initial directory by specifying a String.
     // You could specify a String like "/storage/emulated/0/", but that can
     // dangerous. Always use Android's API calls to get paths to the SD-card or
     // internal memory.
-    i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory());
+    i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory().getPath());
 
     startActivityForResult(i, FILE_CODE);
 ```
