@@ -125,6 +125,6 @@ public abstract class NewItemFragment extends DialogFragment {
          *
          * @param name The name of the folder the user wishes to create.
          */
-        public void onNewFolder(final String name);
+        void onNewFolder(final String name);
     }
 }

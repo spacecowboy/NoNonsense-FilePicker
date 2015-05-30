@@ -81,6 +81,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
     protected boolean allowMultiple = false;
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -149,7 +150,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
             }
             i.setClipData(clip);
         } else {
-            ArrayList<String> paths = new ArrayList<String>();
+            ArrayList<String> paths = new ArrayList<>();
             for (Uri file : files) {
                 paths.add(file.toString());
             }

@@ -40,7 +40,8 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     /**
      * Return true if the path is a directory and not a file.
      *
-     * @param path
+     * @param path either a file or directory
+     * @return true if path is a directory, false if file
      */
     @Override
     public boolean isDir(final File path) {
@@ -48,7 +49,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     }
 
     /**
-     * @param path
+     * @param path either a file or directory
      * @return filename of path
      */
     @Override
@@ -60,11 +61,15 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * Return the path to the parent directory. Should return the root if
      * from is root.
      *
-     * @param from
+     * @param from either a file or directory
+     * @return the parent directory
      */
     @Override
     public File getParent(final File from) {
-        if (from.getParentFile() != null) {
+        if (from.getPath().equals(getRoot().getPath())) {
+            // Already at root, we can't go higher
+            return from;
+        } else if (from.getParentFile() != null) {
             if (from.isFile()) {
                 return getParent(from.getParentFile());
             } else {
@@ -78,7 +83,8 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     /**
      * Convert the path to the type used.
      *
-     * @param path
+     * @param path either a file or directory
+     * @return File representation of the string path
      */
     @Override
     public File getPath(final String path) {
@@ -86,7 +92,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     }
 
     /**
-     * @param path
+     * @param path either a file or directory
      * @return the full path to the file
      */
     @Override
@@ -95,17 +101,19 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     }
 
     /**
-     * Get the root path (lowest allowed).
+     * Get the root path.
+     *
+     * @return the highest allowed path, which is "/" by default
      */
     @Override
     public File getRoot() {
-        return Environment.getExternalStorageDirectory();
+        return new File("/");
     }
 
     /**
      * Convert the path to a URI for the return intent
      *
-     * @param file
+     * @param file either a file or directory
      * @return a Uri
      */
     @Override

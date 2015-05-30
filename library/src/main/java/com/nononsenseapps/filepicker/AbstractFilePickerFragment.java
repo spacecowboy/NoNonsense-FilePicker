@@ -78,9 +78,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     private OnFilePickedListener listener;
     private FileItemAdapter<T> mAdapter = null;
     private TextView currentDirView;
-    private Toolbar mToolbar;
-    private RecyclerView mRecyclerView;
-    private LinearLayoutManager mLayoutManager;
     private SortedList<T> mFiles = null;
 
     protected FileItemAdapter<T> getAdapter() {
@@ -107,10 +104,10 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     /**
      * Set before making the fragment visible.
      *
-     * @param startPath
-     * @param mode
-     * @param allowMultiple
-     * @param allowDirCreate
+     * @param startPath path to directory the picker will show upon start
+     * @param mode what is allowed to be selected (dirs, files, both)
+     * @param allowMultiple selecting a single item or several?
+     * @param allowDirCreate can new directories be created?
      */
     public void setArgs(final String startPath, final int mode,
                         final boolean allowMultiple, final boolean allowDirCreate) {
@@ -129,19 +126,16 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_filepicker, container, false);
 
-        mToolbar = (Toolbar) view.findViewById(R.id.picker_toolbar);
+        Toolbar mToolbar = (Toolbar) view.findViewById(R.id.picker_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
 
 
-        mRecyclerView = (RecyclerView) view.findViewById(android.R.id.list);
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(android.R.id.list);
         // improve performance if you know that changes in content
         // do not change the size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
-        // I want some dividers
-        //mRecyclerView.addItemDecoration(new DividerColor
-        //        (getActivity(), DividerColor.VERTICAL_LIST, 0, 1));
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         // Set adapter
         mAdapter = new FileItemAdapter<>(this);
@@ -207,7 +201,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     }
 
     protected List<Uri> toUri(Iterable<T> files) {
-        ArrayList<Uri> uris = new ArrayList<Uri>();
+        ArrayList<Uri> uris = new ArrayList<>();
         for (T file : files) {
             uris.add(toUri(file));
         }
@@ -390,16 +384,16 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFilePickedListener {
-        public void onFilePicked(Uri file);
+        void onFilePicked(Uri file);
 
-        public void onFilesPicked(List<Uri> files);
+        void onFilesPicked(List<Uri> files);
 
-        public void onCancelled();
+        void onCancelled();
     }
 
     /**
      * @param position 0 - n, where the header has been subtracted
-     * @param data
+     * @param data the actual file or directory
      * @return an integer greater than 0
      */
     @Override
@@ -417,8 +411,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     }
 
     /**
-     * @param parent
-     * @param viewType
+     * @param parent Containing view
+     * @param viewType which the ViewHolder will contain
      * @return a view holder for a file or directory
      */
     @Override
@@ -444,7 +438,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     /**
      * @param vh       to bind data from either a file or directory
      * @param position 0 - n, where the header has been subtracted
-     * @param data
+     * @param data the file or directory which this item represents
      */
     @Override
     public void onBindViewHolder(DirViewHolder vh, int position, T data) {
@@ -457,6 +451,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 checkedVisibleViewHolders.add((CheckableViewHolder) vh);
                 ((CheckableViewHolder) vh).checkbox.setChecked(true);
             } else {
+                //noinspection SuspiciousMethodCalls
                 checkedVisibleViewHolders.remove(vh);
                 ((CheckableViewHolder) vh).checkbox.setChecked(false);
             }
