@@ -124,8 +124,8 @@ public class NoNonsenseFilePicker extends Activity {
 
                         i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
                                 checkAllowMultiple.isChecked());
-//                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
-//                                checkAllowCreateDir.isChecked());
+                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
+                                checkAllowCreateDir.isChecked());
 
                         // What mode is selected (makes no sense to restrict to folders here)
                         final int mode;
