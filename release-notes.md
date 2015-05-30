@@ -1,3 +1,11 @@
+# 2.1
+
+- Now easier to override sort-order and filtering in built in SD-card picker
+  with new methods: compareFiles, and isItemVisible.
+- SD-card picker: Correctly refuse to browse above the root-path.
+- Allow creation of directories even when picking files.
+- Upgrade to newest support-library versions and target android 5.1.
+
 # 2.0.5
 Remove unnecessary and conflicting ic_launcher icon.
 
