@@ -21,4 +21,4 @@ before_install:
 #  - emulator -avd test -no-skin -no-audio -no-window &
 
 script:
-  - ./gradlew build
+  - ./gradlew clean build check
