@@ -33,7 +33,7 @@
         android:visibility="visible"
         android:layout_width="?android:listPreferredItemHeight"
         android:layout_height="?android:listPreferredItemHeight"
-        android:scaleType="fitCenter"
+        android:scaleType="center"
         tools:ignore="ContentDescription"
         android:tint="?attr/colorAccent"
         android:adjustViewBounds="true"/>
