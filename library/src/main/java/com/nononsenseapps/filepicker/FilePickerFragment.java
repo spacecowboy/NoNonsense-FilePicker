@@ -132,7 +132,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
             @Override
             public SortedList<File> loadInBackground() {
-                File[] listFiles = currentPath.listFiles();
+                File[] listFiles = mCurrentPath.listFiles();
                 final int initCap = listFiles == null ? 0 : listFiles.length;
 
                 SortedList<File> files = new SortedList<>(File.class, new SortedListAdapterCallback<File>(getDummyAdapter()) {
@@ -174,12 +174,12 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 super.onStartLoading();
 
                 // handle if directory does not exist. Fall back to root.
-                if (currentPath == null || !currentPath.isDirectory()) {
-                    currentPath = getRoot();
+                if (mCurrentPath == null || !mCurrentPath.isDirectory()) {
+                    mCurrentPath = getRoot();
                 }
 
                 // Start watching for changes
-                fileObserver = new FileObserver(currentPath.getPath(),
+                fileObserver = new FileObserver(mCurrentPath.getPath(),
                         FileObserver.CREATE |
                                 FileObserver.DELETE
                                 | FileObserver.MOVED_FROM | FileObserver.MOVED_TO
@@ -220,10 +220,10 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      */
     @Override
     public void onNewFolder(final String name) {
-        File folder = new File(currentPath, name);
+        File folder = new File(mCurrentPath, name);
 
         if (folder.mkdir()) {
-            currentPath = folder;
+            mCurrentPath = folder;
             refresh();
         } else {
             Toast.makeText(getActivity(), R.string.nnf_create_folder_error,

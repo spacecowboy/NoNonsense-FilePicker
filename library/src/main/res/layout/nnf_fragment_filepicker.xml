@@ -24,7 +24,7 @@
     tools:context=".FilePickerActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/picker_toolbar"
+        android:id="@+id/nnf_picker_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -33,7 +33,7 @@
         android:theme="?nnf_toolbarTheme">
 
         <TextView
-            android:id="@+id/current_dir"
+            android:id="@+id/nnf_current_dir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="start"
@@ -45,19 +45,19 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button_container"
-        android:layout_below="@+id/picker_toolbar"
-        tools:listitem="@layout/filepicker_listitem_dir" />
+        android:layout_above="@+id/nnf_button_container"
+        android:layout_below="@+id/nnf_picker_toolbar"
+        tools:listitem="@layout/nnf_filepicker_listitem_dir" />
 
     <LinearLayout
-        android:id="@+id/button_container"
+        android:id="@+id/nnf_button_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_cancel"
+                android:id="@+id/nnf_button_cancel"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
@@ -65,7 +65,7 @@
                 android:text="@android:string/cancel" />
 
             <Button
-                android:id="@+id/button_ok"
+                android:id="@+id/nnf_button_ok"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="48dp"

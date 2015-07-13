@@ -3,6 +3,7 @@
 - Added two base themes for convenience.
 - Now possible to specify a specific Toolbar-theme separate from the rest
   of your theme.
+- Now possible to override toolbar behaviour in the fragment.
 
 # 2.1
 

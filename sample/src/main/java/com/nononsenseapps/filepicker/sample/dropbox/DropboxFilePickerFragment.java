@@ -56,7 +56,7 @@ public class DropboxFilePickerFragment
 
     @Override
     public void onNewFolder(final String name) {
-        File folder = new File(currentPath.path, name);
+        File folder = new File(mCurrentPath.path, name);
 
         if (folderCreator == null) {
             folderCreator = new FolderCreator();
@@ -147,13 +147,13 @@ public class DropboxFilePickerFragment
 
                 try {
 
-                    if (!dbApi.metadata(currentPath.path, 1, null, false,
+                    if (!dbApi.metadata(mCurrentPath.path, 1, null, false,
                             null).isDir) {
-                        currentPath = getRoot();
+                        mCurrentPath = getRoot();
                     }
 
                     DropboxAPI.Entry dirEntry =
-                            dbApi.metadata(currentPath.path, 0, null, true,
+                            dbApi.metadata(mCurrentPath.path, 0, null, true,
                                     null);
 
                     files.beginBatchedUpdates();
@@ -179,8 +179,8 @@ public class DropboxFilePickerFragment
             protected void onStartLoading() {
                 super.onStartLoading();
 
-                if (currentPath == null || !currentPath.isDir) {
-                    currentPath = getRoot();
+                if (mCurrentPath == null || !mCurrentPath.isDir) {
+                    mCurrentPath = getRoot();
                 }
 
                 forceLoad();
@@ -203,7 +203,7 @@ public class DropboxFilePickerFragment
             for (String path : paths) {
                 try {
                     dbApi.createFolder(path);
-                    currentPath = dbApi.metadata(path, 1, null, false, null);
+                    mCurrentPath = dbApi.metadata(path, 1, null, false, null);
                     refresh();
                 } catch (DropboxException e) {
                     Toast.makeText(getActivity(), R.string.nnf_create_folder_error,
