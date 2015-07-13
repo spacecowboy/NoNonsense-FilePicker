@@ -206,7 +206,7 @@ public class DropboxFilePickerFragment
                     currentPath = dbApi.metadata(path, 1, null, false, null);
                     refresh();
                 } catch (DropboxException e) {
-                    Toast.makeText(getActivity(), R.string.create_folder_error,
+                    Toast.makeText(getActivity(), R.string.nnf_create_folder_error,
                             Toast.LENGTH_SHORT).show();
                 }
             }

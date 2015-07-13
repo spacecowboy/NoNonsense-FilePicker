@@ -17,28 +17,23 @@
 
 <resources>
 
-    <style name="SampleTheme" parent="Theme.AppCompat.DialogWhenLarge">
+    <style name="SampleTheme" parent="NNF_BaseTheme">
         <item name="colorPrimary">@color/primary2</item>
         <item name="colorPrimaryDark">@color/primary_dark2</item>
         <item name="colorAccent">@color/accent2</item>
 
         <item name="alertDialogTheme">@style/SampleAlertDialogTheme</item>
-
-        <!-- These are important. Handled by toolbar -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="SampleThemeLight" parent="Theme.AppCompat.Light.DialogWhenLarge">
+    <style name="SampleThemeLight" parent="NNF_BaseTheme.Light">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
         <item name="alertDialogTheme">@style/SampleAlertDialogThemeLight</item>
 
-        <!-- These are important. Handled by toolbar -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <!-- Make sure toolbar title is white -->
+        <item name="nnf_toolbarTheme">@style/SampleToolbarTheme</item>
     </style>
 
     <style name="SampleAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
@@ -51,6 +46,10 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="SampleToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
     </style>
 
 </resources>

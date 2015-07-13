@@ -18,7 +18,6 @@
 package com.nononsenseapps.filepicker;
 
 import android.net.Uri;
-import android.os.Environment;
 import android.os.FileObserver;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
@@ -227,7 +226,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
             currentPath = folder;
             refresh();
         } else {
-            Toast.makeText(getActivity(), R.string.create_folder_error,
+            Toast.makeText(getActivity(), R.string.nnf_create_folder_error,
                     Toast.LENGTH_SHORT).show();
         }
     }

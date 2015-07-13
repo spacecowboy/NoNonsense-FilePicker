@@ -30,7 +30,7 @@
         android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+        android:theme="?nnf_toolbarTheme">
 
         <TextView
             android:id="@+id/current_dir"
@@ -38,7 +38,6 @@
             android:layout_height="wrap_content"
             android:ellipsize="start"
             android:singleLine="true"
-            android:textColor="@android:color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
     </android.support.v7.widget.Toolbar>
 

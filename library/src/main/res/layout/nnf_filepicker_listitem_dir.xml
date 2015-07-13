@@ -32,7 +32,7 @@
         android:layout_height="?android:listPreferredItemHeight"
         android:adjustViewBounds="true"
         android:scaleType="center"
-        android:src="@drawable/ic_file_folder"
+        android:src="@drawable/nnf_ic_file_folder"
         android:tint="?attr/colorAccent"
         android:visibility="visible"
         tools:ignore="ContentDescription" />
@@ -48,5 +48,5 @@
         android:maxLines="1"
         android:padding="8dp"
         android:singleLine="true"
-        android:text="@string/name"/>
+        android:text="@string/nnf_name"/>
 </LinearLayout>

@@ -1,3 +1,9 @@
+# 2.2
+- All library resources are now prefixed with "nnf_" to avoid conflicts.
+- Added two base themes for convenience.
+- Now possible to specify a specific Toolbar-theme separate from the rest
+  of your theme.
+
 # 2.1
 
 - Now easier to override sort-order and filtering in built in SD-card picker

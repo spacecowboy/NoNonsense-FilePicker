@@ -85,7 +85,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_filepicker);
+        setContentView(R.layout.nnf_activity_filepicker);
 
         Intent intent = getIntent();
         if (intent != null) {

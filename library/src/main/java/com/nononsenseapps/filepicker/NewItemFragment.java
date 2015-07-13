@@ -52,8 +52,8 @@ public abstract class NewItemFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(R.layout.dialog_folder_name)
-                .setTitle(R.string.new_folder)
+        builder.setView(R.layout.nnf_dialog_folder_name)
+                .setTitle(R.string.nnf_new_folder)
                 .setNegativeButton(android.R.string.cancel,
                         null)
                 .setPositiveButton(android.R.string.ok,

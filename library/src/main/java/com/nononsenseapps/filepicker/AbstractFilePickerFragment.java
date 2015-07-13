@@ -124,7 +124,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_filepicker, container, false);
+        View view = inflater.inflate(R.layout.nnf_fragment_filepicker, container, false);
 
         Toolbar mToolbar = (Toolbar) view.findViewById(R.id.picker_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(mToolbar);
@@ -162,7 +162,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                         // Some invalid cases first
                         if ((allowMultiple || mode == MODE_FILE) && checkedItems.isEmpty()) {
                             Toast.makeText(getActivity(),
-                                    R.string.select_something_first,
+                                    R.string.nnf_select_something_first,
                                     Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -289,13 +289,13 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.picker_actions, menu);
 
-        MenuItem item = menu.findItem(R.id.action_createdir);
+        MenuItem item = menu.findItem(R.id.nnf_action_createdir);
         item.setVisible(allowCreateDir);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-        if (R.id.action_createdir == menuItem.getItemId()) {
+        if (R.id.nnf_action_createdir == menuItem.getItemId()) {
             Activity activity = getActivity();
             if (activity instanceof AppCompatActivity) {
                 NewFolderFragment.showDialog(((AppCompatActivity) activity).getSupportFragmentManager(),
@@ -420,16 +420,16 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         View v;
         switch (viewType) {
             case LogicHandler.VIEWTYPE_HEADER:
-                v = LayoutInflater.from(getActivity()).inflate(R.layout.filepicker_listitem_dir,
+                v = LayoutInflater.from(getActivity()).inflate(R.layout.nnf_filepicker_listitem_dir,
                         parent, false);
                 return new HeaderViewHolder(v);
             case LogicHandler.VIEWTYPE_CHECKABLE:
-                v = LayoutInflater.from(getActivity()).inflate(R.layout.filepicker_listitem_checkable,
+                v = LayoutInflater.from(getActivity()).inflate(R.layout.nnf_filepicker_listitem_checkable,
                         parent, false);
                 return new CheckableViewHolder(v);
             case LogicHandler.VIEWTYPE_DIR:
             default:
-                v = LayoutInflater.from(getActivity()).inflate(R.layout.filepicker_listitem_dir,
+                v = LayoutInflater.from(getActivity()).inflate(R.layout.nnf_filepicker_listitem_dir,
                         parent, false);
                 return new DirViewHolder(v);
         }

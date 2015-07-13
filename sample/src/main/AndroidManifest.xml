@@ -27,7 +27,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/nnf_app_name"
         android:theme="@style/SampleTheme" >
 
         <!-- Sample app -->
@@ -43,7 +43,7 @@
         <!-- SD-card pickers -->
         <activity
             android:name="com.nononsenseapps.filepicker.FilePickerActivity"
-            android:label="@string/app_name"
+            android:label="@string/nnf_app_name"
             android:theme="@style/SampleTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -53,7 +53,7 @@
 
         <activity
             android:name="com.nononsenseapps.filepicker.sample.FilePickerActivity2"
-            android:label="@string/app_name"
+            android:label="@string/nnf_app_name"
             android:theme="@style/SampleThemeLight">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -63,7 +63,7 @@
 
         <activity
             android:name="com.nononsenseapps.filepicker.sample.ImagePickerActivity"
-            android:label="@string/app_name"
+            android:label="@string/nnf_app_name"
             android:theme="@style/SampleTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -73,7 +73,7 @@
 
         <activity
             android:name="com.nononsenseapps.filepicker.sample.ImagePickerActivity2"
-            android:label="@string/app_name"
+            android:label="@string/nnf_app_name"
             android:theme="@style/SampleThemeLight">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -84,12 +84,12 @@
         <!-- Dropbox pickers -->
         <activity
             android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity"
-            android:label="@string/app_name"
+            android:label="@string/nnf_app_name"
             android:theme="@style/SampleTheme">
         </activity>
         <activity
             android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2"
-            android:label="@string/app_name"
+            android:label="@string/nnf_app_name"
             android:theme="@style/SampleThemeLight">
         </activity>
         <!-- Dropbox authenticator -->
