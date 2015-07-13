@@ -68,7 +68,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.nononsenseapps:filepicker:2.1'
+    compile 'com.nononsenseapps:filepicker:2.2'
 }
 ```
 
@@ -105,8 +105,8 @@ match your existing application theme. You can also name it whatever
 you like..
 
 ```xml
-    <!-- You must inherit from Theme.AppCompat. Dark or light doesn't matter -->
-    <style name="FilePickerTheme" parent="Theme.AppCompat.DialogWhenLarge">
+    <!-- You can also inherit from NNF_BaseTheme.Light -->
+    <style name="FilePickerTheme" parent="NNF_BaseTheme">
         <!-- Set these to match your theme -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
@@ -114,10 +114,9 @@ you like..
 
         <!-- Need to set this also to style create folder dialog -->
         <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
-
-        <!-- These are important. Handled by toolbar -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        
+        <!-- If you want to set a specific toolbar theme, do it here -->
+        <!-- <item name="nnf_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item> -->
     </style>
 
     <style name="FilePickerAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
