@@ -202,3 +202,7 @@ implementation using Dropbox.
 Time to start! To convert your current Eclipse project, have a look at
 my brief explanation:
 <http://cowboyprogrammer.org/convert-to-android-studio-and-gradle-today/>
+
+## Changelog
+
+See [release notes](https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/release-notes.md)
