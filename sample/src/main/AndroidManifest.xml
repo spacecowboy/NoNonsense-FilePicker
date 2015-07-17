@@ -16,7 +16,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nononsenseapps.filepicker.sample" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.nononsenseapps.filepicker.sample">
 
     <!-- For SD-card -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -27,8 +28,9 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/nnf_app_name"
-        android:theme="@style/SampleTheme" >
+        android:label="@string/title_activity_no_nonsense_file_picker"
+        android:theme="@style/SampleTheme"
+        tools:replace="android:label">
 
         <!-- Sample app -->
         <activity
@@ -43,7 +45,7 @@
         <!-- SD-card pickers -->
         <activity
             android:name="com.nononsenseapps.filepicker.FilePickerActivity"
-            android:label="@string/nnf_app_name"
+            android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -53,7 +55,7 @@
 
         <activity
             android:name="com.nononsenseapps.filepicker.sample.FilePickerActivity2"
-            android:label="@string/nnf_app_name"
+            android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -63,7 +65,7 @@
 
         <activity
             android:name="com.nononsenseapps.filepicker.sample.ImagePickerActivity"
-            android:label="@string/nnf_app_name"
+            android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -73,7 +75,7 @@
 
         <activity
             android:name="com.nononsenseapps.filepicker.sample.ImagePickerActivity2"
-            android:label="@string/nnf_app_name"
+            android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
@@ -84,12 +86,12 @@
         <!-- Dropbox pickers -->
         <activity
             android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity"
-            android:label="@string/nnf_app_name"
+            android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleTheme">
         </activity>
         <activity
             android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2"
-            android:label="@string/nnf_app_name"
+            android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight">
         </activity>
         <!-- Dropbox authenticator -->
