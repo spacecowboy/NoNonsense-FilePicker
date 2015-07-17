@@ -1,3 +1,6 @@
+# 2.2.1
+- Removed superfluous tags from manifest to prevent merge conflicts.
+
 # 2.2
 - All library resources are now prefixed with "nnf_" to avoid conflicts.
 - Added two base themes for convenience.
