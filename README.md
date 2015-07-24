@@ -39,7 +39,7 @@ width="50%"
 I needed a file picker that had two primary properties:
 
 1.  Easy to extend: I needed a file picker that would work for normal
-    files on the SD-card, and also for using the Dropbox Sync API.
+    files on the SD-card, and also for using the Dropbox API.
 2.  Able to create a directory in the picker.
 
 This project has both of those qualities. As a bonus, it also scales
@@ -114,7 +114,7 @@ you like..
 
         <!-- Need to set this also to style create folder dialog -->
         <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
-        
+
         <!-- If you want to set a specific toolbar theme, do it here -->
         <!-- <item name="nnf_toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item> -->
     </style>
