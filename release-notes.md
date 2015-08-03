@@ -1,3 +1,6 @@
+# 2.2.2
+- Ensure toasts don't get queued up.
+
 # 2.2.1
 - Removed superfluous tags from manifest to prevent merge conflicts.
 
