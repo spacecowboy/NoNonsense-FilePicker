@@ -79,6 +79,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected FileItemAdapter<T> mAdapter = null;
     protected TextView mCurrentDirView;
     protected SortedList<T> mFiles = null;
+    protected Toast mToast = null;
 
     protected FileItemAdapter<T> getAdapter() {
         return mAdapter;
@@ -162,9 +163,11 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
 
                         // Some invalid cases first
                         if ((allowMultiple || mode == MODE_FILE) && mCheckedItems.isEmpty()) {
-                            Toast.makeText(getActivity(),
-                                    R.string.nnf_select_something_first,
-                                    Toast.LENGTH_SHORT).show();
+                            if (mToast == null) {
+                                mToast = Toast.makeText(getActivity(), R.string.nnf_select_something_first,
+                                                        Toast.LENGTH_SHORT);
+                            }
+                            mToast.show();
                             return;
                         }
 
