@@ -1,3 +1,7 @@
+# 2.2.3
+- Do not override existing arguments in AbstractFilePickerFragment. Allows you
+  to set custom arguments easily for your implementations.
+
 # 2.2.2
 - Ensure toasts don't get queued up.
 
