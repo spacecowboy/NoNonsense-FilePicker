@@ -103,7 +103,12 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     }
 
     /**
-     * Set before making the fragment visible.
+     * Set before making the fragment visible. This method will re-use the existing
+     * arguments bundle in the fragment if it exists so extra arguments will not
+     * be overwritten. This allows you to set any extra arguments in the fragment
+     * constructor if you wish.
+     *
+     * The key/value-pairs listed below will be overwritten however.
      *
      * @param startPath path to directory the picker will show upon start
      * @param mode what is allowed to be selected (dirs, files, both)
@@ -112,7 +117,12 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      */
     public void setArgs(final String startPath, final int mode,
                         final boolean allowMultiple, final boolean allowDirCreate) {
-        Bundle b = new Bundle();
+        // There might have been arguments set elsewhere, if so do not overwrite them.
+        Bundle b = getArguments();
+        if (b == null) {
+            b = new Bundle();
+        }
+
         if (startPath != null) {
             b.putString(KEY_START_PATH, startPath);
         }
