@@ -1,3 +1,6 @@
+# This allows it to run on faster containers
+sudo: false
+
 language: android
 env:
   matrix:
