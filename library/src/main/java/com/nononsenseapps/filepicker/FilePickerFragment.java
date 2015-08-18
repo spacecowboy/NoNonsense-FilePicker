@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.FileObserver;
 import android.support.annotation.NonNull;
 import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.util.SortedListAdapterCallback;
@@ -47,7 +48,8 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     @Override
     protected boolean hasPermission() {
         return PackageManager.PERMISSION_GRANTED ==
-                getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                ContextCompat.checkSelfPermission(getContext(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     /**
