@@ -1,3 +1,8 @@
+# 2.3.0
+- Added methods to handle runtime permissions in Android M.
+- FilePicker requests and handles SD-card permission at runtime in Android M.
+- Target latest Android SDK version.
+
 # 2.2.3
 - Do not override existing arguments in AbstractFilePickerFragment. Allows you
   to set custom arguments easily for your implementations.
