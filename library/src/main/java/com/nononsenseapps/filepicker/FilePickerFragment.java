@@ -17,8 +17,11 @@
 
 package com.nononsenseapps.filepicker;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.FileObserver;
+import android.support.annotation.NonNull;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.util.SortedList;
@@ -33,7 +36,65 @@ import java.io.File;
  */
 public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
+    protected static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+
     public FilePickerFragment() {
+    }
+
+    /**
+     * @return true if app has been granted permission to write to the SD-card.
+     */
+    @Override
+    protected boolean hasPermission() {
+        return PackageManager.PERMISSION_GRANTED ==
+                getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    }
+
+    /**
+     * Request permission to write to the SD-card.
+     */
+    protected void handlePermission() {
+//         Should we show an explanation?
+//        if (shouldShowRequestPermissionRationale(
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+//             Explain to the user why we need permission
+//        }
+
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+    }
+
+    /**
+     * This the method that gets notified when permission is granted/denied. By default,
+     * a granted request will result in a refresh of the list.
+     *
+     * @param requestCode  the code you requested
+     * @param permissions  array of permissions you requested. empty if process was cancelled.
+     * @param grantResults results for requests. empty if process was cancelled.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        // If arrays are empty, then process was cancelled
+        if (permissions.length == 0) {
+            // Treat this as a cancel press
+            if (mListener != null) {
+                mListener.onCancelled();
+            }
+        } else { // if (requestCode == PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
+            if (PackageManager.PERMISSION_GRANTED == grantResults[0]) {
+                // Do refresh
+                refresh();
+            } else {
+                Toast.makeText(getContext(), R.string.nnf_permission_external_write_denied,
+                        Toast.LENGTH_SHORT).show();
+                // Treat this as a cancel press
+                if (mListener != null) {
+                    mListener.onCancelled();
+                }
+            }
+        }
     }
 
     /**
@@ -247,7 +308,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     /**
      * Compare two files to determine their relative sort order. This follows the usual
      * comparison interface. Override to determine your own custom sort order.
-     *
+     * <p/>
      * Default behaviour is to place directories before files, but sort them alphabetically
      * otherwise.
      *

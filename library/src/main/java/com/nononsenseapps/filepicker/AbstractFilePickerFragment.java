@@ -18,6 +18,7 @@
 package com.nononsenseapps.filepicker;
 
 import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -57,7 +58,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     // The different preset modes of operation. This impacts the behaviour
     // and possible actions in the UI.
     public static final int MODE_FILE = 0;
-    protected int mode = MODE_FILE;
     public static final int MODE_DIR = 1;
     public static final int MODE_FILE_AND_DIR = 2;
     // Where to display on open.
@@ -72,6 +72,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected static final String KEY_CURRENT_PATH = "KEY_CURRENT PATH";
     protected final HashSet<T> mCheckedItems;
     protected final HashSet<CheckableViewHolder> mCheckedVisibleViewHolders;
+    protected int mode = MODE_FILE;
     protected T mCurrentPath = null;
     protected boolean allowCreateDir = false;
     protected boolean allowMultiple = false;
@@ -80,14 +81,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected TextView mCurrentDirView;
     protected SortedList<T> mFiles = null;
     protected Toast mToast = null;
-
-    protected FileItemAdapter<T> getAdapter() {
-        return mAdapter;
-    }
-
-    protected FileItemAdapter<T> getDummyAdapter() {
-        return new FileItemAdapter<>(this);
-    }
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -100,6 +93,14 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         // Retain this fragment across configuration changes, to allow
         // asynctasks and such to be used with ease.
         setRetainInstance(true);
+    }
+
+    protected FileItemAdapter<T> getAdapter() {
+        return mAdapter;
+    }
+
+    protected FileItemAdapter<T> getDummyAdapter() {
+        return new FileItemAdapter<>(this);
     }
 
     /**
@@ -219,6 +220,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     }
 
     public T getFirstCheckedItem() {
+        //noinspection LoopStatementThatDoesntLoop
         for (T file : mCheckedItems) {
             return file;
         }
@@ -246,12 +248,12 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         try {
-            mListener = (OnFilePickedListener) activity;
+            mListener = (OnFilePickedListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() +
+            throw new ClassCastException(context.toString() +
                     " must implement OnFilePickedListener");
         }
     }
@@ -349,11 +351,38 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     }
 
     /**
-     * Refreshes the list. Call this when current path changes.
+     * Refreshes the list. Call this when current path changes. This method also checks
+     * if permissions are granted and requests them if necessary. See hasPermission()
+     * and handlePermission(). By default, these methods do nothing. Override them if
+     * you need to request permissions at runtime.
      */
     protected void refresh() {
-        getLoaderManager()
-                .restartLoader(0, null, AbstractFilePickerFragment.this);
+        if (hasPermission()) {
+            getLoaderManager()
+                    .restartLoader(0, null, AbstractFilePickerFragment.this);
+        } else {
+            handlePermission();
+        }
+    }
+
+    /**
+     * If permission has not been granted yet, this method should request it.
+     * <p/>
+     * Override only if you need to request a permission.
+     */
+    protected void handlePermission() {
+        // Nothing to do by default
+    }
+
+    /**
+     * If your implementation needs to request a specific permission to function, check if it
+     * has been granted here. You should probably also override handlePermission() to request it.
+     *
+     * @return true if permission has been granted, false otherwise.
+     */
+    protected boolean hasPermission() {
+        // Nothing to request by default
+        return true;
     }
 
     /**
@@ -400,25 +429,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     }
 
     /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating
-     * .html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFilePickedListener {
-        void onFilePicked(Uri file);
-
-        void onFilesPicked(List<Uri> files);
-
-        void onCancelled();
-    }
-
-    /**
      * @param position 0 - n, where the header has been subtracted
      * @param data the actual file or directory
      * @return an integer greater than 0
@@ -438,7 +448,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     }
 
     /**
-     * @param parent Containing view
+     * @param parent   Containing view
      * @param viewType which the ViewHolder will contain
      * @return a view holder for a file or directory
      */
@@ -483,6 +493,37 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 ((CheckableViewHolder) vh).checkbox.setChecked(false);
             }
         }
+    }
+
+    /**
+     * Animate de-selection of visible views and clear
+     * selected set.
+     */
+    public void clearSelections() {
+        for (CheckableViewHolder vh : mCheckedVisibleViewHolders) {
+            vh.checkbox.setChecked(false);
+        }
+        mCheckedVisibleViewHolders.clear();
+        mCheckedItems.clear();
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating
+     * .html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFilePickedListener {
+        void onFilePicked(Uri file);
+
+        void onFilesPicked(List<Uri> files);
+
+        void onCancelled();
     }
 
     public class HeaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -603,18 +644,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             }
             return true;
         }
-    }
-
-    /**
-     * Animate de-selection of visible views and clear
-     * selected set.
-     */
-    public void clearSelections() {
-        for (CheckableViewHolder vh : mCheckedVisibleViewHolders) {
-            vh.checkbox.setChecked(false);
-        }
-        mCheckedVisibleViewHolders.clear();
-        mCheckedItems.clear();
     }
 
 }

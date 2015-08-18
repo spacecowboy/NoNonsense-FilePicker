@@ -21,4 +21,5 @@
     <string name="nnf_create_folder_error">Failed to create folder</string>
     <string name="nnf_name">Name</string>
     <string name="nnf_select_something_first">Please select something first</string>
+    <string name="nnf_permission_external_write_denied">Permisson to access filesystem denied</string>
 </resources>
