@@ -47,6 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/nnf_button_container"
         android:layout_below="@+id/nnf_picker_toolbar"
+        android:descendantFocusability="afterDescendants"
+        android:focusable="true"
         tools:listitem="@layout/nnf_filepicker_listitem_dir" />
 
     <LinearLayout
