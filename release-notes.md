@@ -1,3 +1,7 @@
+# 2.3.1
+- Library should work correctly with non-touch controls like directional pads
+  or keyboards.
+
 # 2.3.0
 - Added methods to handle runtime permissions in Android M.
 - FilePicker requests and handles SD-card permission at runtime in Android M.
