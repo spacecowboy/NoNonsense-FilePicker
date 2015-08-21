@@ -68,7 +68,7 @@ public class UITest extends InstrumentationTestCase {
     }
 
     @MediumTest
-    public void testSelectSingle() throws Exception {
+    public void testSelectSingleFile() throws Exception {
         // Default options are correct, press start
         UiObject sdButton = mDevice.findObject(new UiSelector().resourceId("com.nononsenseapps.filepicker.sample:id/button_sd"));
 
@@ -80,10 +80,16 @@ public class UITest extends InstrumentationTestCase {
 
         UiScrollable list = new UiScrollable(new UiSelector()
                 .className("android.support.v7.widget.RecyclerView"));
-        UiObject testFileItem = list.getChildByText(new UiSelector()
+        UiObject testFileItem2 = list.getChildByText(new UiSelector()
+                        .resourceId("com.nononsenseapps.filepicker.sample:id/nnf_item_container"),
+                sTestFiles[1]);
+        testFileItem2.click();
+
+        // Click another one, only one should be returned
+        UiObject testFileItem1 = list.getChildByText(new UiSelector()
                         .resourceId("com.nononsenseapps.filepicker.sample:id/nnf_item_container"),
                 sTestFiles[0]);
-        testFileItem.click();
+        testFileItem1.click();
 
         // Press oK
         UiObject okButton = mDevice.findObject(new UiSelector().resourceId("com.nononsenseapps.filepicker.sample:id/nnf_button_ok"));
@@ -92,5 +98,43 @@ public class UITest extends InstrumentationTestCase {
         // Make sure result is displayed correctly
         UiObject resultField = mDevice.findObject(new UiSelector().textContains(sTestFiles[0]));
         assertTrue(resultField.exists());
+
+        resultField = mDevice.findObject(new UiSelector().textContains(sTestFiles[1]));
+        assertFalse(resultField.exists());
+    }
+
+    @MediumTest
+    public void testSelectMultipleFiles() throws Exception {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @MediumTest
+    public void testSelectSingleDir() throws Exception {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @MediumTest
+    public void testSelectMultipleDirs() throws Exception {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @MediumTest
+    public void testSelectMultipleAny() throws Exception {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @MediumTest
+    public void testCreateDirModeFile() throws Exception {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @MediumTest
+    public void testCreateDirModeDir() throws Exception {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @MediumTest
+    public void testCreateDirModeAny() throws Exception {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }
