@@ -17,17 +17,26 @@
 
 package com.nononsenseapps.filepicker.sample;
 
-import android.app.Activity;
+import android.os.Environment;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.action.ViewActions;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.view.View;
 
+import java.io.File;
+import java.io.IOException;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
+
 public class NoNonsenseFilePickerTest extends ActivityInstrumentationTestCase2<NoNonsenseFilePicker> {
 
     private NoNonsenseFilePicker mActivity;
     private View mStartButton;
+    private static final String[] sTestFiles = new String[] {"zz.testfile1.zxvf", "zz.testfile2.zxvf"};
 
     public NoNonsenseFilePickerTest() {
         super(NoNonsenseFilePicker.class);
@@ -42,6 +51,19 @@ public class NoNonsenseFilePickerTest extends ActivityInstrumentationTestCase2<N
 
         mActivity = getActivity();
         mStartButton = mActivity.findViewById(R.id.button_sd);
+
+        // Create a few files so we know something exists
+        createTestFiles();
+    }
+
+    private void createTestFiles() throws IOException {
+        String folder = Environment.getExternalStorageDirectory().getPath();
+        for (String filename: sTestFiles) {
+            File file = new File(folder + "/" + filename);
+            if (!file.exists()) {
+                assertTrue(file.createNewFile());
+            }
+        }
     }
 
     /**
@@ -64,7 +86,32 @@ public class NoNonsenseFilePickerTest extends ActivityInstrumentationTestCase2<N
      * Start picker with default options
      */
     @MediumTest
-    public void testStartDefault() {
-        assertTrue(5 < 1);
+    public void testNoSelectionOnOk() {
+        getActivity();
+        onView(withId(R.id.button_sd)).perform(ViewActions.click());
+
+        // Activity should now be started
+        // Verify that OK-button is present
+        //onView(withId(R.id.nnf_button_ok)).check(ViewAssertions.matches(withText(android.R.string.ok)));
+        // Press it
+        onView(withId(R.id.nnf_button_ok)).perform(ViewActions.click());
+
+        // Should have given a toast, asking to select something first
+        // Press cancel to go back
+        onView(withId(R.id.nnf_button_cancel)).perform(ViewActions.click());
+    }
+
+    @MediumTest
+    public void testSelectOne() {
+        getActivity();
+        onView(withId(R.id.button_sd)).perform(ViewActions.click());
+
+        // Select a file
+
+        // Activity should now be started
+        // Verify that OK-button is present
+        //onView(withId(R.id.nnf_button_ok)).check(ViewAssertions.matches(withText(android.R.string.ok)));
+        // Press it
+        onView(withId(R.id.nnf_button_ok)).perform(ViewActions.click());
     }
 }
