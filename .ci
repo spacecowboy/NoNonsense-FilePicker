@@ -1,4 +1,4 @@
 #!/bin/bash
 
-## Runs the build.
-./gradlew clean build check
+## Install package and grant all permissions
+adb install -r -g sample/build/outputs/apk/sample-debug.apk
