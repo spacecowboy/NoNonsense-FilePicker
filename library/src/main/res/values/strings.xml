@@ -16,7 +16,6 @@
   -->
 
 <resources>
-    <string name="nnf_app_name">NoNonsense File Picker</string>
     <string name="nnf_new_folder">New folder</string>
     <string name="nnf_create_folder_error">Failed to create folder</string>
     <string name="nnf_name">Name</string>
