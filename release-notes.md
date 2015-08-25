@@ -1,3 +1,21 @@
+# 2.4.0
+- Added additional methods in AbstractFilePickerFragment to allow more
+  customized behavior. All methods have default behavior, but can be augmented
+  by child classes.:
+  
+  goUp, navigates to parent directory.
+  goToDir, navigates to specified directory.
+  onClickOK, handles ok button.
+  onClickCancel, handles cancel button.
+  onClickHeader, handles clicks on "..".
+  onClickDir, handles clicks on non-selectable items (usually directories).
+  onLongClickDir, handles long clicks on non-selectable items.
+  onClickCheckable, handles clicks on selectable items.
+  onLongClickCheckable, handles long clicks on selectable items.
+  onClickCheckBox, handles clicks on the checkbox of selectable items.
+
+  Please see default implementation and docstrings before overriding them.
+
 # 2.3.1
 - Library should work correctly with non-touch controls like directional pads
   or keyboards.
