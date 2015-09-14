@@ -1,3 +1,6 @@
+# 2.4.1
+- Update build-tools and support libraries to latest versions.
+
 # 2.4.0
 - Added additional methods in AbstractFilePickerFragment to allow more
   customized behavior. All methods have default behavior, but can be augmented
