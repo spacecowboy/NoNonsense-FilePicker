@@ -17,7 +17,10 @@
 
 package com.nononsenseapps.filepicker.sample;
 
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -33,11 +36,16 @@ import java.io.File;
  * I am still listing all files, so I extend from the ready made
  * SD-card browser classes. This allows this class to focus
  * entirely on the image side of things.
- *
+ * <p/>
  * To load the image I am using the super great Glide library
  * which only requires a single line of code in this file.
  */
 public class ImagePickerFragment extends FilePickerFragment {
+
+    // Make sure these do not collide with LogicHandler.VIEWTYPE codes.
+    // They are 1-2, so 11 leaves a lot of free space in between.
+    private static final int VIEWTYPE_IMAGE_CHECKABLE = 11;
+    private static final int VIEWTYPE_IMAGE = 12;
 
     /**
      * An extremely simple method for identifying images. This
@@ -47,6 +55,7 @@ public class ImagePickerFragment extends FilePickerFragment {
      * @return true if the file can be previewed, false otherwise
      */
     protected boolean isImage(File file) {
+        //noinspection SimplifiableIfStatement
         if (isDir(file)) {
             return false;
         }
@@ -60,6 +69,52 @@ public class ImagePickerFragment extends FilePickerFragment {
     }
 
     /**
+     * Here we check if the file is an image, and if thus if we should create views corresponding
+     * to our image layouts.
+     *
+     * @param position 0 - n, where the header has been subtracted
+     * @param file to check type of
+     * @return the viewtype of the item
+     */
+    @Override
+    public int getItemViewType(int position, File file) {
+        if (isImage(file)) {
+            if (isCheckable(file)) {
+                return VIEWTYPE_IMAGE_CHECKABLE;
+            } else {
+                return VIEWTYPE_IMAGE;
+            }
+        } else {
+            return super.getItemViewType(position, file);
+        }
+    }
+
+    /**
+     * We override this method and provide some special views for images.
+     * This is necessary to work around a bug on older Android versions (4.0.3 for example)
+     * where setting a "tint" would just make the entire image a square of solid color.
+     * <p/>
+     * So the special layouts used here are merely "untinted" copies from the library.
+     *
+     * @param parent   Containing view
+     * @param viewType which the ViewHolder will contain
+     * @return a DirViewHolder (or subclass thereof)
+     */
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case VIEWTYPE_IMAGE_CHECKABLE:
+                return new CheckableViewHolder(LayoutInflater.from(getActivity())
+                        .inflate(R.layout.listitem_image_checkable, parent, false));
+            case VIEWTYPE_IMAGE:
+                return new DirViewHolder(LayoutInflater.from(getActivity())
+                        .inflate(R.layout.listitem_image, parent, false));
+            default:
+                return super.onCreateViewHolder(parent, viewType);
+        }
+    }
+
+    /**
      * Overriding this method allows us to inject a preview image
      * in the layout
      *
@@ -69,15 +124,16 @@ public class ImagePickerFragment extends FilePickerFragment {
      */
     @Override
     public void onBindViewHolder(DirViewHolder vh, int position, File file) {
-        // Let the super method do its thing, we only care about the image
-        // We could load a specific layout in oncreateviewholder, but
-        // every item includes an image to hold the directory icon anyway
+        // Let the super method do its thing with checkboxes and text
         super.onBindViewHolder(vh, position, file);
 
-        // All we need to do is load the imageview with something useful, and make it visible
-        if (isImage(file)) {
+        // Here we load the preview image if it is an image file
+        final int viewType = getItemViewType(position, file);
+        if (viewType == VIEWTYPE_IMAGE_CHECKABLE || viewType == VIEWTYPE_IMAGE) {
+            // Need to set it to visible because the base code will set it to invisible by default
             vh.icon.setVisibility(View.VISIBLE);
-            Glide.with(this).load(file).centerCrop().into((ImageView) vh.icon);
+            // Just load the image
+            Glide.with(this).load(file).into((ImageView) vh.icon);
         }
     }
 }
