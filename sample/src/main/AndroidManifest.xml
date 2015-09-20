@@ -83,6 +83,16 @@
             </intent-filter>
         </activity>
 
+        <!-- FtpPickers -->
+        <activity
+            android:name="com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity"
+            android:label="@string/title_activity_no_nonsense_file_picker"
+            android:theme="@style/SampleTheme" />
+        <activity
+            android:name="com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity2"
+            android:label="@string/title_activity_no_nonsense_file_picker"
+            android:theme="@style/SampleThemeLight" />
+
         <!-- Dropbox pickers -->
         <activity
             android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity"
@@ -97,8 +107,8 @@
         <!-- Dropbox authenticator -->
         <activity
             android:name="com.dropbox.client2.android.AuthActivity"
-            android:launchMode="singleTask"
-            android:configChanges="orientation|keyboard">
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask">
             <intent-filter>
                 <!-- Change this to be db- followed by your app key -->
                 <data android:scheme="db-sm57t7s6lmgj745" />

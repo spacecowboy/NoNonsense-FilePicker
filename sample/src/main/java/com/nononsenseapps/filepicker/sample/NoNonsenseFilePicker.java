@@ -38,6 +38,8 @@ import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxSyncHelper;
+import com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity;
+import com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity2;
 
 import java.util.ArrayList;
 
@@ -46,6 +48,7 @@ public class NoNonsenseFilePicker extends Activity {
 
     private static final int CODE_SD = 0;
     private static final int CODE_DB = 1;
+    private static final int CODE_FTP = 2;
     private TextView textView;
     private DropboxAPI<AndroidAuthSession> mDBApi = null;
 
@@ -147,6 +150,49 @@ public class NoNonsenseFilePicker extends Activity {
                     }
                 });
 
+        findViewById(R.id.button_ftp)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        Intent i;
+
+                        if (checkLightTheme.isChecked()) {
+                            i = new Intent(NoNonsenseFilePicker.this,
+                                    FtpPickerActivity2.class);
+                        } else {
+                            i = new Intent(NoNonsenseFilePicker.this,
+                                    FtpPickerActivity.class);
+                        }
+                        i.setAction(Intent.ACTION_GET_CONTENT);
+
+                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
+                                checkAllowMultiple.isChecked());
+                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
+                                checkAllowCreateDir.isChecked());
+
+                        // What mode is selected (makes no sense to restrict to folders here)
+                        final int mode;
+                        switch (radioGroup.getCheckedRadioButtonId()) {
+                            case R.id.radioDir:
+                                mode = AbstractFilePickerFragment.MODE_DIR;
+                                break;
+                            case R.id.radioFilesAndDirs:
+                                mode =
+                                        AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                                break;
+                            case R.id.radioFile:
+                            default:
+                                mode = AbstractFilePickerFragment.MODE_FILE;
+                                break;
+                        }
+
+                        i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
+
+
+                        startActivityForResult(i, CODE_FTP);
+                    }
+                });
+
         findViewById(R.id.button_dropbox)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -242,7 +288,7 @@ public class NoNonsenseFilePicker extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data) {
-        if ((CODE_SD == requestCode || CODE_DB == requestCode) &&
+        if ((CODE_SD == requestCode || CODE_DB == requestCode || CODE_FTP == requestCode) &&
                 resultCode == Activity.RESULT_OK) {
             if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
                     false)) {
