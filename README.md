@@ -28,7 +28,7 @@ width="50%"
 </img>
 </p>
 
--   Extendable for sources other than SD-card (Dropbox, Drive, etc)
+-   Extendable for sources other than SD-card (Dropbox, FTP, Drive, etc)
 -   Can select multiple items
 -   Select directories or files, or both
 -   Create new directories in the picker
@@ -50,8 +50,8 @@ your own.
 The library includes an implementation that allows the user to pick
 files from the SD-card. But the picker could easily be extended to get
 its file listings from another source, such as Dropbox, FTP, SSH and
-so on. The sample app includes an implementation which browses your
-Dropbox.
+so on. The sample app includes implementations which browses your
+Dropbox and a Linux mirror FTP-server.
 
 By inheriting from an Activity, the picker is able to be rendered as
 full screen on small screens and as a dialog on large screens. It does
@@ -194,8 +194,8 @@ you can skip the second method.
 
 See some examples in the [Wiki](https://github.com/spacecowboy/NoNonsense-FilePicker/wiki)
 
-See the sample project for examples on dark and light themes, and an
-implementation using Dropbox.
+See the sample project for examples on dark and light themes, and
+implementations using Dropbox and FTP.
 
 ## Not using Gradle yet?
 
