@@ -107,7 +107,8 @@
                     android:layout_gravity="left"
                     android:fontFamily="light"
                     android:gravity="center_vertical"
-                    android:text="Use light theme" />
+                    android:text="Use light theme"
+                    android:checked="true"/>
 
             </LinearLayout>
 
@@ -131,7 +132,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="light"
                 android:gravity="center"
-                android:text="Pick SD-card with image preview" />
+                android:text="Pick SD-card with multimedia preview" />
 
             <Button
                 android:id="@+id/button_ftp"

@@ -40,7 +40,7 @@ import java.io.File;
  * To load the image I am using the super great Glide library
  * which only requires a single line of code in this file.
  */
-public class ImagePickerFragment extends FilePickerFragment {
+public class MultimediaPickerFragment extends FilePickerFragment {
 
     // Make sure these do not collide with LogicHandler.VIEWTYPE codes.
     // They are 1-2, so 11 leaves a lot of free space in between.
@@ -48,13 +48,13 @@ public class ImagePickerFragment extends FilePickerFragment {
     private static final int VIEWTYPE_IMAGE = 12;
 
     /**
-     * An extremely simple method for identifying images. This
+     * An extremely simple method for identifying multimedia. This
      * could be improved, but it's good enough for this example.
      *
      * @param file which could be an image
      * @return true if the file can be previewed, false otherwise
      */
-    protected boolean isImage(File file) {
+    protected boolean isMultimedia(File file) {
         //noinspection SimplifiableIfStatement
         if (isDir(file)) {
             return false;
@@ -78,7 +78,7 @@ public class ImagePickerFragment extends FilePickerFragment {
      */
     @Override
     public int getItemViewType(int position, File file) {
-        if (isImage(file)) {
+        if (isMultimedia(file)) {
             if (isCheckable(file)) {
                 return VIEWTYPE_IMAGE_CHECKABLE;
             } else {
