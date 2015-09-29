@@ -49,7 +49,7 @@ dependencies {
     compile project(':library')
 
     // Image loading sample
-    compile 'com.github.bumptech.glide:glide:3.5.2'
+    compile 'com.github.bumptech.glide:glide:3.6.1'
 
     // FTP browser sample
     compile 'commons-net:commons-net:3.3'
