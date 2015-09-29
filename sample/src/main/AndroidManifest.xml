@@ -64,7 +64,7 @@
         </activity>
 
         <activity
-            android:name="com.nononsenseapps.filepicker.sample.ImagePickerActivity"
+            android:name=".MultimediaPickerActivity"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleTheme">
             <intent-filter>
@@ -74,7 +74,7 @@
         </activity>
 
         <activity
-            android:name="com.nononsenseapps.filepicker.sample.ImagePickerActivity2"
+            android:name=".MultimediaPickerActivity2"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight">
             <intent-filter>

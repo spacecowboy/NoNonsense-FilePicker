@@ -125,7 +125,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                android:text="Pick SD-card with image preview"
+                android:text="Pick SD-card with multimedia preview"
                 android:layout_marginTop="16dp"
                 android:id="@+id/button_image"
                 android:gravity="center"

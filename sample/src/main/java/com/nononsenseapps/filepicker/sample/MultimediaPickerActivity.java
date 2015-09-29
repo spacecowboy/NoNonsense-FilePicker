@@ -27,9 +27,9 @@ import java.io.File;
 /**
  * All this class does is return a suitable fragment.
  */
-public class ImagePickerActivity extends AbstractFilePickerActivity {
+public class MultimediaPickerActivity extends AbstractFilePickerActivity {
 
-    public ImagePickerActivity() {
+    public MultimediaPickerActivity() {
         super();
     }
 
@@ -37,7 +37,7 @@ public class ImagePickerActivity extends AbstractFilePickerActivity {
     protected AbstractFilePickerFragment<File> getFragment(
             final String startPath, final int mode, final boolean allowMultiple,
             final boolean allowCreateDir) {
-        AbstractFilePickerFragment<File> fragment = new ImagePickerFragment();
+        AbstractFilePickerFragment<File> fragment = new MultimediaPickerFragment();
         // startPath is allowed to be null. In that case, default folder should be SD-card and not "/"
         fragment.setArgs(startPath != null ? startPath : Environment.getExternalStorageDirectory().getPath(),
                 mode, allowMultiple, allowCreateDir);

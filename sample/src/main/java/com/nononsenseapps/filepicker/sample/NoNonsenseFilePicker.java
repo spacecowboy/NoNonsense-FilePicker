@@ -115,10 +115,10 @@ public class NoNonsenseFilePicker extends Activity {
 
                         if (checkLightTheme.isChecked()) {
                             i = new Intent(NoNonsenseFilePicker.this,
-                                    ImagePickerActivity2.class);
+                                    MultimediaPickerActivity2.class);
                         } else {
                             i = new Intent(NoNonsenseFilePicker.this,
-                                    ImagePickerActivity.class);
+                                    MultimediaPickerActivity.class);
                         }
                         i.setAction(Intent.ACTION_GET_CONTENT);
 

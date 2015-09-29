@@ -28,16 +28,16 @@ import java.io.File;
 /**
  * A sample which demonstrates how appropriate methods
  * can be overwritten in order to enable enhanced
- * capabilities, in this case showing thumbnails of images.
+ * capabilities, in this case showing thumbnails of images and thumbnail of videos.
  * <p/>
  * I am still listing all files, so I extend from the ready made
  * SD-card browser classes. This allows this class to focus
  * entirely on the image side of things.
- *
+ * <p/>
  * To load the image I am using the super great Glide library
  * which only requires a single line of code in this file.
  */
-public class ImagePickerFragment extends FilePickerFragment {
+public class MultimediaPickerFragment extends FilePickerFragment {
 
     /**
      * An extremely simple method for identifying images. This
@@ -60,7 +60,22 @@ public class ImagePickerFragment extends FilePickerFragment {
     }
 
     /**
-     * Overriding this method allows us to inject a preview image
+     * An extremely simple method for identifying videos. This
+     * could be improved, but it's good enough for this example.
+     *
+     * @param file which could be an video
+     * @return true if the file can be previewed, false otherwise
+     */
+    private boolean isVideo(File file) {
+        if (isDir(file)) {
+            return false;
+        }
+        return file.getPath().endsWith(".mp4")||
+                file.getPath().endsWith(".MP4");
+    }
+
+    /**
+     * Overriding this method allows us to inject a preview image and thumbnail of videos
      * in the layout
      *
      * @param vh       to bind data from either a file or directory
@@ -78,6 +93,10 @@ public class ImagePickerFragment extends FilePickerFragment {
         if (isImage(file)) {
             vh.icon.setVisibility(View.VISIBLE);
             Glide.with(this).load(file).centerCrop().into((ImageView) vh.icon);
+        } else if (isVideo(file)) {
+            vh.icon.setVisibility(View.VISIBLE);
+            Glide.with(this).load(file).centerCrop().into((ImageView) vh.icon);
         }
     }
+
 }

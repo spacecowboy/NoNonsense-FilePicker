@@ -20,5 +20,5 @@ package com.nononsenseapps.filepicker.sample;
 /**
  * Duplicate to allow second theme to be used.
  */
-public class ImagePickerActivity2 extends ImagePickerActivity {
+public class MultimediaPickerActivity2 extends MultimediaPickerActivity {
 }
