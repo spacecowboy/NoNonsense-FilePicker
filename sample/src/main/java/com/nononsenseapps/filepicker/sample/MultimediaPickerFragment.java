@@ -47,11 +47,14 @@ public class MultimediaPickerFragment extends FilePickerFragment {
     private static final int VIEWTYPE_IMAGE_CHECKABLE = 11;
     private static final int VIEWTYPE_IMAGE = 12;
 
+    private static final String[] MULTIMEDIA_EXTENSIONS =
+            new String[]{".png", ".jpg", ".gif", ".mp4"};
+
     /**
      * An extremely simple method for identifying multimedia. This
      * could be improved, but it's good enough for this example.
      *
-     * @param file which could be an image
+     * @param file which could be an image or a video
      * @return true if the file can be previewed, false otherwise
      */
     protected boolean isMultimedia(File file) {
@@ -60,12 +63,14 @@ public class MultimediaPickerFragment extends FilePickerFragment {
             return false;
         }
 
-        return file.getPath().endsWith(".png") ||
-                file.getPath().endsWith(".PNG") ||
-                file.getPath().endsWith(".jpg") ||
-                file.getPath().endsWith(".JPG") ||
-                file.getPath().endsWith(".gif") ||
-                file.getPath().endsWith(".GIF");
+        String path = file.getPath().toLowerCase();
+        for (String ext : MULTIMEDIA_EXTENSIONS) {
+            if (path.endsWith(ext)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -73,7 +78,7 @@ public class MultimediaPickerFragment extends FilePickerFragment {
      * to our image layouts.
      *
      * @param position 0 - n, where the header has been subtracted
-     * @param file to check type of
+     * @param file     to check type of
      * @return the viewtype of the item
      */
     @Override
