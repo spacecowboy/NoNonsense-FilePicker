@@ -40,13 +40,13 @@ import java.io.File;
 public class MultimediaPickerFragment extends FilePickerFragment {
 
     /**
-     * An extremely simple method for identifying images. This
+     * An extremely simple method for identifying multimedia. This
      * could be improved, but it's good enough for this example.
      *
      * @param file which could be an image
      * @return true if the file can be previewed, false otherwise
      */
-    protected boolean isImage(File file) {
+    protected boolean isMultimedia(File file) {
         if (isDir(file)) {
             return false;
         }
@@ -56,21 +56,8 @@ public class MultimediaPickerFragment extends FilePickerFragment {
                 file.getPath().endsWith(".jpg") ||
                 file.getPath().endsWith(".JPG") ||
                 file.getPath().endsWith(".gif") ||
-                file.getPath().endsWith(".GIF");
-    }
-
-    /**
-     * An extremely simple method for identifying videos. This
-     * could be improved, but it's good enough for this example.
-     *
-     * @param file which could be an video
-     * @return true if the file can be previewed, false otherwise
-     */
-    private boolean isVideo(File file) {
-        if (isDir(file)) {
-            return false;
-        }
-        return file.getPath().endsWith(".mp4")||
+                file.getPath().endsWith(".GIF") ||
+                file.getPath().endsWith(".mp4") ||
                 file.getPath().endsWith(".MP4");
     }
 
@@ -90,10 +77,7 @@ public class MultimediaPickerFragment extends FilePickerFragment {
         super.onBindViewHolder(vh, position, file);
 
         // All we need to do is load the imageview with something useful, and make it visible
-        if (isImage(file)) {
-            vh.icon.setVisibility(View.VISIBLE);
-            Glide.with(this).load(file).centerCrop().into((ImageView) vh.icon);
-        } else if (isVideo(file)) {
+        if (isMultimedia(file)) {
             vh.icon.setVisibility(View.VISIBLE);
             Glide.with(this).load(file).centerCrop().into((ImageView) vh.icon);
         }
