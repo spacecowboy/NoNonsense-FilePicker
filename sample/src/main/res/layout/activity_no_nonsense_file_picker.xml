@@ -107,7 +107,8 @@
                     android:gravity="center_vertical"
                     style="?android:textAppearanceMedium"
                     android:fontFamily="light"
-                    android:layout_gravity="left"/>
+                    android:layout_gravity="left"
+                    android:checked="true"/>
 
             </LinearLayout>
 
