@@ -60,7 +60,7 @@
 
             <Button
                 android:id="@+id/nnf_button_cancel"
-                style="?android:attr/borderlessButtonStyle"
+                style="?attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -68,7 +68,7 @@
 
             <Button
                 android:id="@+id/nnf_button_ok"
-                style="?android:attr/borderlessButtonStyle"
+                style="?attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"

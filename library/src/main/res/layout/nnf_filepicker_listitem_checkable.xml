@@ -21,7 +21,7 @@
     android:id="@+id/nnf_item_container"
     android:layout_width="match_parent"
     android:layout_height="?android:listPreferredItemHeight"
-    android:background="?android:selectableItemBackground"
+    android:background="?selectableItemBackground"
     android:focusable="true"
     android:minHeight="?android:listPreferredItemHeight"
     android:nextFocusLeft="@+id/nnf_button_cancel"
