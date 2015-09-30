@@ -1,3 +1,6 @@
+# 2.4.2
+- Lower minimum SDK version to 9
+
 # 2.4.1
 - Update build-tools and support libraries to latest versions.
 
@@ -5,7 +8,7 @@
 - Added additional methods in AbstractFilePickerFragment to allow more
   customized behavior. All methods have default behavior, but can be augmented
   by child classes.:
-  
+
   goUp, navigates to parent directory.
   goToDir, navigates to specified directory.
   onClickOK, handles ok button.
