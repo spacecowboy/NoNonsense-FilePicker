@@ -114,7 +114,7 @@
 
             <Button
                 android:id="@+id/button_sd"
-                style="?android:attr/borderlessButtonStyle"
+                style="?attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_gravity="center"
@@ -125,7 +125,7 @@
 
             <Button
                 android:id="@+id/button_image"
-                style="?android:attr/borderlessButtonStyle"
+                style="?attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_gravity="center"
@@ -136,7 +136,7 @@
 
             <Button
                 android:id="@+id/button_ftp"
-                style="?android:attr/borderlessButtonStyle"
+                style="?attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_gravity="center"
@@ -147,7 +147,7 @@
 
             <Button
                 android:id="@+id/button_dropbox"
-                style="?android:attr/borderlessButtonStyle"
+                style="?attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_gravity="center"

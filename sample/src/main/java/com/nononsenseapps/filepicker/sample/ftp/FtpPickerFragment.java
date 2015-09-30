@@ -91,9 +91,9 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
         Bundle args = getArguments();
         this.server = args.getString(KEY_FTP_SERVER);
         this.port = args.getInt(KEY_FTP_PORT);
-        this.username = args.getString(KEY_FTP_USERNAME, "anonymous");
-        this.password = args.getString(KEY_FTP_PASSWORD, "anonymous");
-        this.rootDir = args.getString(KEY_FTP_ROOTDIR, "/");
+        this.username = args.getString(KEY_FTP_USERNAME) != null ? args.getString(KEY_FTP_USERNAME) : "anonymous";
+        this.password = args.getString(KEY_FTP_PASSWORD) != null ? args.getString(KEY_FTP_PASSWORD) : "anonymous";
+        this.rootDir = args.getString(KEY_FTP_ROOTDIR) != null ? args.getString(KEY_FTP_ROOTDIR) : "/";
     }
 
     /**
