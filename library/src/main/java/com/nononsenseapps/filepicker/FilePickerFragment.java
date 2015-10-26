@@ -305,7 +305,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @return True if item should be added to the list, false otherwise
      */
     protected boolean isItemVisible(final File file) {
-        if(!showHiddenFiles && file.isHidden()){
+        if(!showHiddenItems && file.isHidden()){
             return false;
         }
         return (isDir(file) || (mode == MODE_FILE || mode == MODE_FILE_AND_DIR);
