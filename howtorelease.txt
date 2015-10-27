@@ -1,18 +1,7 @@
-## New way
+# Make tag
+
+# Generate changelog
+github_changelog_generator -u spacecowboy -p NoNonsense-FilePicker --no-issues-wo-labels
+
+# Upload to jcenter
 ./gradlew clean build bintrayUpload -PdryRun=false
-
-## Old way...
-First upload artifacts
-
-    ./gradlew uploadArchives
-
-
-Sync runs every 2 hours, so wait a bit...
-
-Second close repository
-
-    ./gradlew closeRepository
-
-Third promote repository
-
-    ./gradlew promoteRepository
