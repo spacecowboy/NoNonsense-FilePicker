@@ -38,8 +38,28 @@ import java.io.File;
 public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
     protected static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+    protected boolean showHiddenItems = false;
 
     public FilePickerFragment() {
+    }
+
+    /**
+     * This method is used to dictate whether hidden files and folders should be shown or not
+     *
+     * @param showHiddenItems whether hidden items should be shown or not
+     */
+    public void showHiddenItems(boolean showHiddenItems){
+        this.showHiddenItems = showHiddenItems;
+    }
+
+    /**
+     * Returns if hidden items are shown or not
+     *
+     * @return true if hidden items are shown, otherwise false
+     */
+
+    public boolean areHiddenItemsShown(){
+        return showHiddenItems;
     }
 
     /**
@@ -297,14 +317,18 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     /**
      * Used by the list to determine whether a file should be displayed or not.
      * Default behavior is to always display folders. If files can be selected,
-     * then files are also displayed. Override this method to enable other
+     * then files are also displayed. Set the showHiddenFiles property to show
+     * hidden file. Default behaviour is to hide hidden files. Override this method to enable other
      * filtering behaviour, like only displaying files with specific extensions (.zip, .txt, etc).
      *
      * @param file to maybe add. Can be either a directory or file.
      * @return True if item should be added to the list, false otherwise
      */
     protected boolean isItemVisible(final File file) {
-        return isDir(file) || (mode == MODE_FILE || mode == MODE_FILE_AND_DIR);
+        if(!showHiddenItems && file.isHidden()){
+            return false;
+        }
+        return (isDir(file) || (mode == MODE_FILE || mode == MODE_FILE_AND_DIR));
     }
 
     /**
