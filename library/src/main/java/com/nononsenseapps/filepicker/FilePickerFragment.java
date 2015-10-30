@@ -38,8 +38,28 @@ import java.io.File;
 public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
     protected static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+    protected boolean showHiddenItems = false;
 
     public FilePickerFragment() {
+    }
+
+    /**
+     * This method is used to dictate whether hidden files and folders should be shown or not
+     *
+     * @param showHiddenItems whether hidden items should be shown or not
+     */
+    public void showHiddenItems(boolean showHiddenItems){
+        this.showHiddenItems = showHiddenItems;
+    }
+
+    /**
+     * Returns if hidden items are shown or not
+     *
+     * @return true if hidden items are shown, otherwise false
+     */
+
+    public boolean areHiddenItemsShown(){
+        return showHiddenItems;
     }
 
     /**
@@ -308,7 +328,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
         if(!showHiddenItems && file.isHidden()){
             return false;
         }
-        return (isDir(file) || (mode == MODE_FILE || mode == MODE_FILE_AND_DIR);
+        return (isDir(file) || (mode == MODE_FILE || mode == MODE_FILE_AND_DIR));
     }
 
     /**

@@ -77,7 +77,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected T mCurrentPath = null;
     protected boolean allowCreateDir = false;
     protected boolean allowMultiple = false;
-    protected boolean showHiddenItems = false;
     protected OnFilePickedListener mListener;
     protected FileItemAdapter<T> mAdapter = null;
     protected TextView mCurrentDirView;
@@ -403,14 +402,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected boolean hasPermission() {
         // Nothing to request by default
         return true;
-    }
-
-    public void showHiddenItems(boolean showHiddenItems){
-        this.showHiddenItems = showHiddenItems;
-    }
-
-    public boolean areHiddenItemsShown(){
-        return showHiddenItems;
     }
 
     /**
