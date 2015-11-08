@@ -17,6 +17,10 @@
 
 apply plugin: 'com.android.application'
 
+def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
+def gitCommitCount =
+        Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -29,8 +33,9 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 23
-        versionCode Integer.parseInt(project.VERSION_CODE)
-        versionName project.VERSION_NAME
+        versionCode gitCommitCount
+        versionName gitTag
+        archivesBaseName = "nononsensefilepicker-sample-${gitTag}".toString()
     }
 
     buildTypes {

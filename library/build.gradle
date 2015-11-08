@@ -16,9 +16,13 @@ apply plugin: 'com.android.library'
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// must be applied after your artifact generating plugin (eg. java /
-// com.android.library)
+// must be applied after your artifact generating plugin (eg. java /  com.android.library)
 apply plugin: 'bintray-release'
+
+// query git for the the SHA, Tag and commit count. Use these to automate versioning.
+def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
+def gitCommitCount =
+        Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
 
 android {
     compileSdkVersion 23
@@ -27,8 +31,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 23
-        versionCode Integer.parseInt(project.VERSION_CODE)
-        versionName project.VERSION_NAME
+        versionCode gitCommitCount
+        versionName gitTag
     }
 }
 
@@ -42,13 +46,13 @@ dependencies {
 }
 
 publish {
-  groupId = GROUP
-  artifactId = POM_ARTIFACT_ID
-  publishVersion = VERSION_NAME
-  description = POM_DESCRIPTION
-  website = POM_URL
-  licences = ['LGPL-3.0']
-  uploadName = PROJECT_NAME
-  bintrayUser = project.hasProperty("BINTRAY_USER")? BINTRAY_USER: "Dummy"
-  bintrayKey = project.hasProperty("BINTRAY_KEY") ? BINTRAY_KEY: "Dummy"
+    groupId = 'com.nononsenseapps'
+    artifactId = 'filepicker'
+    publishVersion = gitTag
+    description = 'An extendable Android file/directory-picker you can include in your app'
+    website = 'https://github.com/spacecowboy/NoNonsense-FilePicker'
+    licences = ['LGPL-3.0']
+    uploadName = 'com.nononsenseapps:filepicker'
+    bintrayUser = project.hasProperty("BINTRAY_USER")? BINTRAY_USER: "Dummy"
+    bintrayKey = project.hasProperty("BINTRAY_KEY") ? BINTRAY_KEY: "Dummy"
 }
