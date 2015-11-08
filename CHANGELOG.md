@@ -1,5 +1,16 @@
 # Change Log
 
+## [2.5.0](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.0) (2015-11-08)
+[Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.2...2.5.0)
+
+**Implemented enhancements:**
+
+- Add a separator line above OK/Cancel buttons [\#60](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/60)
+
+**Merged pull requests:**
+
+- Hide hidden files in SD card picker by default [\#58](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/58) ([dvrajan](https://github.com/dvrajan))
+
 ## [v2.4.2](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.4.2) (2015-09-30)
 [Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.1...v2.4.2)
 
@@ -127,10 +138,6 @@
 **Fixed bugs:**
 
 - Rotation doesn't work [\#15](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/15)
-
-**Closed issues:**
-
-- 'Select file' is shown instead of 'Select folder' [\#14](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/14)
 
 ## [v2.0.3](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.3) (2015-04-28)
 [Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.2...v2.0.3)
