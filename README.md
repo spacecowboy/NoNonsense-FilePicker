@@ -205,4 +205,4 @@ my brief explanation:
 
 ## Changelog
 
-See [release notes](https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/release-notes.md)
+See [CHANGELOG](https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/CHANGELOG.md)
