@@ -40,7 +40,7 @@ publish {
     publishVersion = gitTag
     description = 'An extendable Android file/directory-picker you can include in your app'
     website = 'https://github.com/spacecowboy/NoNonsense-FilePicker'
-    licences = ['LGPL-3.0']
+    licences = ['MPL-2.0']
     uploadName = 'com.nononsenseapps:filepicker'
     bintrayUser = project.hasProperty("BINTRAY_USER")? BINTRAY_USER: "Dummy"
     bintrayKey = project.hasProperty("BINTRAY_KEY") ? BINTRAY_KEY: "Dummy"
