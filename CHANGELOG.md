@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.5.1](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.1) (2016-01-14)
+[Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.0...2.5.1)
+
+**Implemented enhancements:**
+
+- Change license to MPL [\#66](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/66)
+
 ## [2.5.0](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.0) (2015-11-08)
 [Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.2...2.5.0)
 
