@@ -71,6 +71,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected TextView mCurrentDirView;
     protected SortedList<T> mFiles = null;
     protected Toast mToast = null;
+    // Keep track if we are currently loading a directory, in case it takes a long time
+    protected boolean isLoading = false;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -366,6 +368,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      */
     protected void refresh() {
         if (hasPermission()) {
+            isLoading = true;
             getLoaderManager()
                     .restartLoader(0, null, AbstractFilePickerFragment.this);
         } else {
@@ -414,6 +417,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public void onLoadFinished(final Loader<SortedList<T>> loader,
                                final SortedList<T> data) {
+        isLoading = false;
         mCheckedItems.clear();
         mCheckedVisibleViewHolders.clear();
         mFiles = data;
@@ -432,6 +436,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      */
     @Override
     public void onLoaderReset(final Loader<SortedList<T>> loader) {
+        isLoading = false;
         mAdapter.setList(null);
         mFiles = null;
     }
@@ -551,17 +556,20 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
 
     /**
      * Browses to the designated directory. It is up to the caller verify that the argument is
-     * in fact a directory.
+     * in fact a directory. If another directory is in the process of being loaded, this method
+     * will not start another load.
      * <p/>
      * Currently selected items are cleared by this operation.
      *
      * @param file representing the target directory.
      */
     public void goToDir(@NonNull T file) {
-        mCurrentPath = file;
-        mCheckedItems.clear();
-        mCheckedVisibleViewHolders.clear();
-        refresh();
+        if (!isLoading) {
+            mCurrentPath = file;
+            mCheckedItems.clear();
+            mCheckedVisibleViewHolders.clear();
+            refresh();
+        }
     }
 
     /**
