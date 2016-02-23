@@ -135,16 +135,16 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             setupToolbar(toolbar);
         }
 
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(android.R.id.list);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(android.R.id.list);
         // improve performance if you know that changes in content
         // do not change the size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
         // use a linear layout manager
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
         // Set adapter
         mAdapter = new FileItemAdapter<>(this);
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
 
         view.findViewById(R.id.nnf_button_cancel)
                 .setOnClickListener(new View.OnClickListener() {
