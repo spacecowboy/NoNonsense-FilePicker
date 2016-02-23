@@ -59,7 +59,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     // Allow multiple items to be selected.
     public static final String KEY_ALLOW_MULTIPLE = "KEY_ALLOW_MULTIPLE";
     // Used for saving state.
-    protected static final String KEY_CURRENT_PATH = "KEY_CURRENT PATH";
+    protected static final String KEY_CURRENT_PATH = "KEY_CURRENT_PATH";
     protected final HashSet<T> mCheckedItems;
     protected final HashSet<CheckableViewHolder> mCheckedVisibleViewHolders;
     protected int mode = MODE_FILE;
