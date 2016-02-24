@@ -1,6 +1,23 @@
 # Change Log
 
-## [2.5.1](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.1) (2016-01-14)
+## [2.5.2](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.2) (2016-02-24)
+[Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.1...2.5.2)
+
+**Implemented enhancements:**
+
+- Dropbox should show a progress bar when loading [\#74](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/74)
+
+**Fixed bugs:**
+
+- Dropbox sample can crash due to Inconsistent state in RecyclerView [\#75](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/75)
+- Dropbox sample crash if multiple press on folder [\#73](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/73)
+- probebly underscore missing [\#63](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/63)
+
+**Merged pull requests:**
+
+- Update README.md [\#68](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/68) ([callmepeanut](https://github.com/callmepeanut))
+
+## [2.5.1](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.1) (2016-01-13)
 [Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.0...2.5.1)
 
 **Implemented enhancements:**

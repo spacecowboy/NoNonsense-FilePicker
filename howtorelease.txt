@@ -1,7 +1,9 @@
-# Make tag
-
 # Generate changelog
-github_changelog_generator -u spacecowboy -p NoNonsense-FilePicker --no-issues-wo-labels
+github_changelog_generator -u spacecowboy -p NoNonsense-FilePicker --no-issues-wo-labels --future-release 2.5.1
+
+# Commit new changelog
+
+# Make tag
 
 # Upload to jcenter
 ./gradlew clean build bintrayUpload -PdryRun=false
