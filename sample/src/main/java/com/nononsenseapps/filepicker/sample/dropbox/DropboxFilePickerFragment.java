@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.util.SortedList;
@@ -146,12 +147,7 @@ public class DropboxFilePickerFragment
     @Override
     public void onNewFolder(final String name) {
         File folder = new File(mCurrentPath.path, name);
-
-        if (folderCreator == null) {
-            folderCreator = new FolderCreator();
-        }
-
-        folderCreator.execute(folder.getPath());
+        new FolderCreator().execute(folder.getPath());
     }
 
     @Override
@@ -305,21 +301,43 @@ public class DropboxFilePickerFragment
         };
     }
 
-    private class FolderCreator extends AsyncTask<String, Void, Void> {
+    /**
+     * Dropbox requires stuff to be done in a background thread. Refreshing has to be done on the
+     * UI thread however (it restarts the loader so actual work is done in the background).
+     */
+    private class FolderCreator extends AsyncTask<String, Void, DropboxAPI.Entry> {
+        @Override
+        protected void onPreExecute() {
+            // Switch to progress bar before starting work
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.INVISIBLE);
+        }
 
         @Override
-        protected Void doInBackground(final String... paths) {
-            for (String path : paths) {
-                try {
-                    dbApi.createFolder(path);
-                    mCurrentPath = dbApi.metadata(path, 1, null, false, null);
-                    refresh();
-                } catch (DropboxException e) {
-                    Toast.makeText(getActivity(), R.string.nnf_create_folder_error,
-                            Toast.LENGTH_SHORT).show();
-                }
+        protected DropboxAPI.Entry doInBackground(final String... paths) {
+            if (paths.length == 0) {
+                return null;
             }
-            return null;
+
+            String path = paths[0];
+            try {
+                dbApi.createFolder(path);
+                return dbApi.metadata(path, 1, null, false, null);
+            } catch (DropboxException e) {
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(@Nullable DropboxAPI.Entry path) {
+            if (path != null) {
+                goToDir(path);
+            } else {
+                progressBar.setVisibility(View.INVISIBLE);
+                recyclerView.setVisibility(View.VISIBLE);
+                Toast.makeText(getActivity(), R.string.nnf_create_folder_error,
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
