@@ -210,7 +210,7 @@ public class DropboxFilePickerFragment
             @Override
             public SortedList<DropboxAPI.Entry> loadInBackground() {
                 SortedList<DropboxAPI.Entry> files = new SortedList<>(DropboxAPI.Entry.class,
-                        new SortedListAdapterCallback<DropboxAPI.Entry>(getAdapter()) {
+                        new SortedListAdapterCallback<DropboxAPI.Entry>(null) {
                             @Override
                             public int compare(DropboxAPI.Entry lhs, DropboxAPI.Entry rhs) {
                                 if (isDir(lhs) && !isDir(rhs)) {
@@ -221,6 +221,26 @@ public class DropboxFilePickerFragment
                                     return lhs.fileName().toLowerCase()
                                             .compareTo(rhs.fileName().toLowerCase());
                                 }
+                            }
+
+                            @Override
+                            public void onInserted(int position, int count) {
+                                // Ignore (DO NOT MODIFY ADAPTER HERE!)
+                            }
+
+                            @Override
+                            public void onRemoved(int position, int count) {
+                                // Ignore (DO NOT MODIFY ADAPTER HERE!)
+                            }
+
+                            @Override
+                            public void onMoved(int fromPosition, int toPosition) {
+                                // Ignore (DO NOT MODIFY ADAPTER HERE!)
+                            }
+
+                            @Override
+                            public void onChanged(int position, int count) {
+                                // Ignore (DO NOT MODIFY ADAPTER HERE!)
                             }
 
                             @Override
