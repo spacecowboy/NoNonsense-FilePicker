@@ -11,6 +11,6 @@
         android:title="@string/nnf_new_folder"
         app:showAsAction="always"
         android:orderInCategory="1"
-        android:icon="@drawable/nnf_ic_collections_add_collection"
+        android:icon="@drawable/nnf_ic_create_new_folder_white_24dp"
         />
 </menu>

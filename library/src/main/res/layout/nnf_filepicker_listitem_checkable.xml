@@ -24,9 +24,9 @@
         android:layout_width="?android:listPreferredItemHeight"
         android:layout_height="?android:listPreferredItemHeight"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/nnf_ic_file_folder"
         android:tint="?attr/colorAccent"
+        android:scaleType="center"
+        android:src="@drawable/nnf_ic_folder_black_48dp"
         android:visibility="visible"
         tools:ignore="ContentDescription" />
 
