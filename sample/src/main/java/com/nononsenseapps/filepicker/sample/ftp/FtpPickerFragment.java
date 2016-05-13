@@ -9,6 +9,7 @@ package com.nononsenseapps.filepicker.sample.ftp;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.util.SortedList;
@@ -89,15 +90,16 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
      * Return true if the path is a directory and not a file.
      */
     @Override
-    public boolean isDir(FtpFile path) {
+    public boolean isDir(@NonNull FtpFile path) {
         return path.isDirectory();
     }
 
     /**
      * @return filename of path
      */
+    @NonNull
     @Override
-    public String getName(FtpFile path) {
+    public String getName(@NonNull FtpFile path) {
         return path.getName();
     }
 
@@ -106,8 +108,9 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
      *
      * @return a Uri
      */
+    @NonNull
     @Override
-    public Uri toUri(FtpFile path) {
+    public Uri toUri(@NonNull FtpFile path) {
         String user = "";
         if (!username.isEmpty()) {
             user = username;
@@ -124,8 +127,9 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
      * Return the path to the parent directory. Should return the root if
      * from is root.
      */
+    @NonNull
     @Override
-    public FtpFile getParent(FtpFile from) {
+    public FtpFile getParent(@NonNull FtpFile from) {
         if (from.getPath().equals(getRoot().getPath())) {
             // Already at root, we can't go higher
             return from;
@@ -143,22 +147,25 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
     /**
      * @return the full path to the file
      */
+    @NonNull
     @Override
-    public String getFullPath(FtpFile path) {
+    public String getFullPath(@NonNull FtpFile path) {
         return path.getPath();
     }
 
     /**
      * Convert the path to the type used.
      */
+    @NonNull
     @Override
-    public FtpFile getPath(String path) {
+    public FtpFile getPath(@NonNull String path) {
         return new FtpFile(path);
     }
 
     /**
      * Get the root path (lowest allowed).
      */
+    @NonNull
     @Override
     public FtpFile getRoot() {
         return new FtpDir(rootDir);
@@ -179,6 +186,7 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
      * Get a loader that lists the files in the current path,
      * and monitors changes.
      */
+    @NonNull
     @Override
     public Loader<SortedList<FtpFile>> getLoader() {
         return new AsyncTaskLoader<SortedList<FtpFile>>(getContext()) {
@@ -297,7 +305,7 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
      * @param name The name of the folder the user wishes to create.
      */
     @Override
-    public void onNewFolder(String name) {
+    public void onNewFolder(@NonNull String name) {
         AsyncTask<String, Void, FtpFile> task = new AsyncTask<String, Void, FtpFile>() {
 
             @Override

@@ -7,6 +7,7 @@
 package com.nononsenseapps.filepicker;
 
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.content.Loader;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
@@ -26,13 +27,14 @@ public interface LogicHandler<T> {
      *
      * @param path
      */
-    boolean isDir(final T path);
+    boolean isDir(@NonNull final T path);
 
     /**
      * @param path
      * @return filename of path
      */
-    String getName(final T path);
+    @NonNull
+    String getName(@NonNull final T path);
 
     /**
      * Convert the path to a URI for the return intent
@@ -40,7 +42,8 @@ public interface LogicHandler<T> {
      * @param path
      * @return a Uri
      */
-    Uri toUri(final T path);
+    @NonNull
+    Uri toUri(@NonNull final T path);
 
     /**
      * Return the path to the parent directory. Should return the root if
@@ -48,30 +51,35 @@ public interface LogicHandler<T> {
      *
      * @param from
      */
-    T getParent(final T from);
+    @NonNull
+    T getParent(@NonNull final T from);
 
     /**
      * @param path
      * @return the full path to the file
      */
-    String getFullPath(final T path);
+    @NonNull
+    String getFullPath(@NonNull final T path);
 
     /**
      * Convert the path to the type used.
      *
      * @param path
      */
-    T getPath(final String path);
+    @NonNull
+    T getPath(@NonNull final String path);
 
     /**
      * Get the root path (lowest allowed).
      */
+    @NonNull
     T getRoot();
 
     /**
      * Get a loader that lists the files in the current path,
      * and monitors changes.
      */
+    @NonNull
     Loader<SortedList<T>> getLoader();
 
     /**
@@ -79,7 +87,7 @@ public interface LogicHandler<T> {
      *
      * @param viewHolder
      */
-    void onBindHeaderViewHolder(AbstractFilePickerFragment<T>.HeaderViewHolder viewHolder);
+    void onBindHeaderViewHolder(@NonNull AbstractFilePickerFragment<T>.HeaderViewHolder viewHolder);
 
     /**
      * Header is subtracted from the position
@@ -88,19 +96,21 @@ public interface LogicHandler<T> {
      * @param viewType
      * @return a view holder for a file or directory
      */
-    RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType);
+    @NonNull
+    RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
 
     /**
      * @param viewHolder to bind data from either a file or directory
      * @param position   0 - n, where the header has been subtracted
      * @param data
      */
-    void onBindViewHolder(AbstractFilePickerFragment<T>.DirViewHolder viewHolder, int position, T data);
+    void onBindViewHolder(@NonNull AbstractFilePickerFragment<T>.DirViewHolder viewHolder,
+                          int position, @NonNull T data);
 
     /**
      * @param position 0 - n, where the header has been subtracted
      * @param data
      * @return an integer greater than 0
      */
-    int getItemViewType(int position, T data);
+    int getItemViewType(int position, @NonNull T data);
 }

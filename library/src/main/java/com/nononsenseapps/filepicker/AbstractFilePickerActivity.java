@@ -14,6 +14,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -105,7 +107,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
     }
 
     protected abstract AbstractFilePickerFragment<T> getFragment(
-            final String startPath, final int mode, final boolean allowMultiple,
+            @Nullable final String startPath, final int mode, final boolean allowMultiple,
             final boolean allowCreateDir);
 
     @Override
@@ -114,7 +116,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
     }
 
     @Override
-    public void onFilePicked(final Uri file) {
+    public void onFilePicked(@NonNull final Uri file) {
         Intent i = new Intent();
         i.setData(file);
         setResult(Activity.RESULT_OK, i);
@@ -123,7 +125,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public void onFilesPicked(final List<Uri> files) {
+    public void onFilesPicked(@NonNull final List<Uri> files) {
         Intent i = new Intent();
         i.putExtra(EXTRA_ALLOW_MULTIPLE, true);
 

@@ -6,6 +6,8 @@
 
 package com.nononsenseapps.filepicker;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
@@ -19,11 +21,11 @@ public class FileItemAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
     private final LogicHandler<T> mLogic;
     private SortedList<T> mList = null;
 
-    public FileItemAdapter(LogicHandler<T> logic) {
+    public FileItemAdapter(@NonNull LogicHandler<T> logic) {
         this.mLogic = logic;
     }
 
-    public void setList(SortedList<T> list) {
+    public void setList(@Nullable SortedList<T> list) {
         mList = list;
         notifyDataSetChanged();
     }

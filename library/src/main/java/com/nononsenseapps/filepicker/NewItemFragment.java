@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -28,7 +29,7 @@ public abstract class NewItemFragment extends DialogFragment {
         super();
     }
 
-    public void setListener(final OnNewFolderListener listener) {
+    public void setListener(@Nullable final OnNewFolderListener listener) {
         this.listener = listener;
     }
 
@@ -55,6 +56,10 @@ public abstract class NewItemFragment extends DialogFragment {
             public void onShow(DialogInterface dialog1) {
                 final AlertDialog dialog = (AlertDialog) dialog1;
                 final EditText editText = (EditText) dialog.findViewById(R.id.edit_text);
+
+                if (editText == null) {
+                    throw new NullPointerException("Could not find an edit text in the dialog");
+                }
 
                 Button cancel = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
                 cancel.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +119,6 @@ public abstract class NewItemFragment extends DialogFragment {
          *
          * @param name The name of the folder the user wishes to create.
          */
-        void onNewFolder(final String name);
+        void onNewFolder(@NonNull final String name);
     }
 }

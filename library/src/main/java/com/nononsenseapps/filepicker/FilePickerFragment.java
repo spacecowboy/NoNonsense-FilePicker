@@ -115,7 +115,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @return true if path is a directory, false if file
      */
     @Override
-    public boolean isDir(final File path) {
+    public boolean isDir(@NonNull final File path) {
         return path.isDirectory();
     }
 
@@ -123,8 +123,9 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @param path either a file or directory
      * @return filename of path
      */
+    @NonNull
     @Override
-    public String getName(File path) {
+    public String getName(@NonNull File path) {
         return path.getName();
     }
 
@@ -135,8 +136,9 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @param from either a file or directory
      * @return the parent directory
      */
+    @NonNull
     @Override
-    public File getParent(final File from) {
+    public File getParent(@NonNull final File from) {
         if (from.getPath().equals(getRoot().getPath())) {
             // Already at root, we can't go higher
             return from;
@@ -157,8 +159,9 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @param path either a file or directory
      * @return File representation of the string path
      */
+    @NonNull
     @Override
-    public File getPath(final String path) {
+    public File getPath(@NonNull final String path) {
         return new File(path);
     }
 
@@ -166,8 +169,9 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @param path either a file or directory
      * @return the full path to the file
      */
+    @NonNull
     @Override
-    public String getFullPath(final File path) {
+    public String getFullPath(@NonNull final File path) {
         return path.getPath();
     }
 
@@ -176,6 +180,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      *
      * @return the highest allowed path, which is "/" by default
      */
+    @NonNull
     @Override
     public File getRoot() {
         return new File("/");
@@ -187,8 +192,9 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @param file either a file or directory
      * @return a Uri
      */
+    @NonNull
     @Override
-    public Uri toUri(final File file) {
+    public Uri toUri(@NonNull final File file) {
         return Uri.fromFile(file);
     }
 
@@ -196,6 +202,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * Get a loader that lists the Files in the current path,
      * and monitors changes.
      */
+    @NonNull
     @Override
     public Loader<SortedList<File>> getLoader() {
         return new AsyncTaskLoader<SortedList<File>>(getActivity()) {
@@ -291,7 +298,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @param name The name of the folder the user wishes to create.
      */
     @Override
-    public void onNewFolder(final String name) {
+    public void onNewFolder(@NonNull final String name) {
         File folder = new File(mCurrentPath, name);
 
         if (folder.mkdir()) {
@@ -332,7 +339,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @return -1 if if lhs should be placed before rhs, 0 if they are equal,
      * and 1 if rhs should be placed before lhs
      */
-    protected int compareFiles(File lhs, File rhs) {
+    protected int compareFiles(@NonNull File lhs, @NonNull File rhs) {
         if (lhs.isDirectory() && !rhs.isDirectory()) {
             return -1;
         } else if (rhs.isDirectory() && !lhs.isDirectory()) {

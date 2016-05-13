@@ -7,6 +7,8 @@
 package com.nononsenseapps.filepicker.sample.ftp;
 
 
+import android.support.annotation.NonNull;
+
 import com.nononsenseapps.filepicker.AbstractFilePickerActivity;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 
@@ -17,7 +19,7 @@ import org.apache.commons.net.ftp.FTPClient;
  */
 public class FtpPickerActivity extends AbstractFilePickerActivity<FtpFile> {
     @Override
-    protected AbstractFilePickerFragment<FtpFile> getFragment(String startPath, int mode, boolean allowMultiple, boolean allowCreateDir) {
+    protected AbstractFilePickerFragment<FtpFile> getFragment(@NonNull String startPath, int mode, boolean allowMultiple, boolean allowCreateDir) {
         return FtpPickerFragment.newInstance(startPath, mode, allowMultiple, allowCreateDir,
                 "debian.simnet.is",
                 FTPClient.DEFAULT_PORT,

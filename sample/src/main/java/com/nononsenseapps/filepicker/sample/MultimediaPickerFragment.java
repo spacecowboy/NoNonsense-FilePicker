@@ -6,6 +6,7 @@
 
 package com.nononsenseapps.filepicker.sample;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,7 +72,7 @@ public class MultimediaPickerFragment extends FilePickerFragment {
      * @return the viewtype of the item
      */
     @Override
-    public int getItemViewType(int position, File file) {
+    public int getItemViewType(int position, @NonNull File file) {
         if (isMultimedia(file)) {
             if (isCheckable(file)) {
                 return VIEWTYPE_IMAGE_CHECKABLE;
@@ -94,8 +95,9 @@ public class MultimediaPickerFragment extends FilePickerFragment {
      * @param viewType which the ViewHolder will contain
      * @return a DirViewHolder (or subclass thereof)
      */
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, @NonNull int viewType) {
         switch (viewType) {
             case VIEWTYPE_IMAGE_CHECKABLE:
                 return new CheckableViewHolder(LayoutInflater.from(getActivity())
@@ -117,7 +119,7 @@ public class MultimediaPickerFragment extends FilePickerFragment {
      * @param file     to show info about
      */
     @Override
-    public void onBindViewHolder(DirViewHolder vh, int position, File file) {
+    public void onBindViewHolder(@NonNull DirViewHolder vh, int position, @NonNull File file) {
         // Let the super method do its thing with checkboxes and text
         super.onBindViewHolder(vh, position, file);
 

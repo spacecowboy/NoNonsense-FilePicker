@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
@@ -145,18 +146,19 @@ public class DropboxFilePickerFragment
     }
 
     @Override
-    public void onNewFolder(final String name) {
+    public void onNewFolder(@NonNull final String name) {
         File folder = new File(mCurrentPath.path, name);
         new FolderCreator().execute(folder.getPath());
     }
 
     @Override
-    public boolean isDir(final DropboxAPI.Entry file) {
+    public boolean isDir(@NonNull final DropboxAPI.Entry file) {
         return file.isDir;
     }
 
+    @NonNull
     @Override
-    public DropboxAPI.Entry getParent(final DropboxAPI.Entry from) {
+    public DropboxAPI.Entry getParent(@NonNull final DropboxAPI.Entry from) {
         // Take care of a slight limitation in Dropbox code:
         if (from.path.length() > 1 && from.path.endsWith("/")) {
             from.path = from.path.substring(0, from.path.length() - 1);
@@ -170,8 +172,9 @@ public class DropboxFilePickerFragment
 
     }
 
+    @NonNull
     @Override
-    public DropboxAPI.Entry getPath(final String path) {
+    public DropboxAPI.Entry getPath(@NonNull final String path) {
         final DropboxAPI.Entry entry = new DropboxAPI.Entry();
         entry.path = path;
         entry.isDir = true;
@@ -179,26 +182,31 @@ public class DropboxFilePickerFragment
 
     }
 
+    @NonNull
     @Override
-    public String getFullPath(final DropboxAPI.Entry file) {
+    public String getFullPath(@NonNull final DropboxAPI.Entry file) {
         return file.path;
     }
 
+    @NonNull
     @Override
-    public String getName(final DropboxAPI.Entry file) {
+    public String getName(@NonNull final DropboxAPI.Entry file) {
         return file.fileName();
     }
 
+    @NonNull
     @Override
     public DropboxAPI.Entry getRoot() {
         return getPath("/");
     }
 
+    @NonNull
     @Override
-    public Uri toUri(final DropboxAPI.Entry file) {
+    public Uri toUri(@NonNull final DropboxAPI.Entry file) {
         return new Uri.Builder().scheme("dropbox").authority("").path(file.path).build();
     }
 
+    @NonNull
     @Override
     public Loader<SortedList<DropboxAPI.Entry>> getLoader() {
         return new AsyncTaskLoader<SortedList<DropboxAPI.Entry>>(getActivity()) {

@@ -7,6 +7,8 @@
 package com.nononsenseapps.filepicker;
 
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 
@@ -14,14 +16,15 @@ public class NewFolderFragment extends NewItemFragment {
 
     private static final String TAG = "new_folder_fragment";
 
-    public static void showDialog(final FragmentManager fm, final OnNewFolderListener listener) {
+    public static void showDialog(@NonNull final FragmentManager fm,
+                                  @Nullable final OnNewFolderListener listener) {
         NewItemFragment d = new NewFolderFragment();
         d.setListener(listener);
         d.show(fm, TAG);
     }
 
     @Override
-    protected boolean validateName(final String itemName) {
+    protected boolean validateName(@Nullable final String itemName) {
         return !TextUtils.isEmpty(itemName)
                 && !itemName.contains("/")
                 && !itemName.equals(".")
