@@ -7,7 +7,7 @@
 package com.nononsenseapps.filepicker.sample;
 
 import android.os.Environment;
-import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.nononsenseapps.filepicker.AbstractFilePickerActivity;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
@@ -25,12 +25,12 @@ public class MultimediaPickerActivity extends AbstractFilePickerActivity {
 
     @Override
     protected AbstractFilePickerFragment<File> getFragment(
-            @NonNull final String startPath, final int mode, final boolean allowMultiple,
-            final boolean allowCreateDir) {
+            @Nullable final String startPath, final int mode, final boolean allowMultiple,
+            final boolean allowCreateDir, boolean allowExistingFile) {
         AbstractFilePickerFragment<File> fragment = new MultimediaPickerFragment();
         // startPath is allowed to be null. In that case, default folder should be SD-card and not "/"
         fragment.setArgs(startPath != null ? startPath : Environment.getExternalStorageDirectory().getPath(),
-                mode, allowMultiple, allowCreateDir);
+                mode, allowMultiple, allowCreateDir, allowExistingFile);
         return fragment;
     }
 }

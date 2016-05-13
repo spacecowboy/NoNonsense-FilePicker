@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
@@ -50,6 +51,8 @@ public class NoNonsenseFilePicker extends Activity {
                 (CheckBox) findViewById(R.id.checkAllowCreateDir);
         final CheckBox checkAllowMultiple =
                 (CheckBox) findViewById(R.id.checkAllowMultiple);
+        final CheckBox checkAllowExistingFile =
+                (CheckBox) findViewById(R.id.checkAllowExistingFile);
         final CheckBox checkLightTheme =
                 (CheckBox) findViewById(R.id.checkLightTheme);
         final RadioGroup radioGroup =
@@ -75,26 +78,38 @@ public class NoNonsenseFilePicker extends Activity {
                                 checkAllowMultiple.isChecked());
                         i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
                                 checkAllowCreateDir.isChecked());
+                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_EXISTING_FILE,
+                                checkAllowExistingFile.isChecked());
 
                         // What mode is selected
                         final int mode;
                         switch (radioGroup.getCheckedRadioButtonId()) {
                             case R.id.radioDir:
-                                mode = AbstractFilePickerFragment.MODE_DIR;
+                                mode = FilePickerActivity.MODE_DIR;
                                 break;
                             case R.id.radioFilesAndDirs:
-                                mode =
-                                        AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                                mode = FilePickerActivity.MODE_FILE_AND_DIR;
+                                break;
+                            case R.id.radioNewFile:
+                                mode = FilePickerActivity.MODE_NEW_FILE;
                                 break;
                             case R.id.radioFile:
                             default:
-                                mode = AbstractFilePickerFragment.MODE_FILE;
+                                mode = FilePickerActivity.MODE_FILE;
                                 break;
                         }
 
                         i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
 
-
+                        // Warn about invalid combination
+                        if (mode == FilePickerActivity.MODE_NEW_FILE &&
+                                checkAllowMultiple.isChecked()) {
+                            Toast.makeText(NoNonsenseFilePicker.this,
+                                    "'New file' does not support multiple items",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            return;
+                        }
                         startActivityForResult(i, CODE_SD);
                     }
                 });
@@ -118,6 +133,8 @@ public class NoNonsenseFilePicker extends Activity {
                                 checkAllowMultiple.isChecked());
                         i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
                                 checkAllowCreateDir.isChecked());
+                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_EXISTING_FILE,
+                                checkAllowExistingFile.isChecked());
 
                         // What mode is selected (makes no sense to restrict to folders here)
                         final int mode;
@@ -125,6 +142,9 @@ public class NoNonsenseFilePicker extends Activity {
                             case R.id.radioFilesAndDirs:
                                 mode =
                                         AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                                break;
+                            case R.id.radioNewFile:
+                                mode = FilePickerActivity.MODE_NEW_FILE;
                                 break;
                             case R.id.radioFile:
                             default:
@@ -158,6 +178,8 @@ public class NoNonsenseFilePicker extends Activity {
                                 checkAllowMultiple.isChecked());
                         i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
                                 checkAllowCreateDir.isChecked());
+                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_EXISTING_FILE,
+                                checkAllowExistingFile.isChecked());
 
                         // What mode is selected (makes no sense to restrict to folders here)
                         final int mode;
@@ -168,6 +190,9 @@ public class NoNonsenseFilePicker extends Activity {
                             case R.id.radioFilesAndDirs:
                                 mode =
                                         AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                                break;
+                            case R.id.radioNewFile:
+                                mode = FilePickerActivity.MODE_NEW_FILE;
                                 break;
                             case R.id.radioFile:
                             default:
@@ -212,6 +237,8 @@ public class NoNonsenseFilePicker extends Activity {
                             i.putExtra(
                                     FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
                                     checkAllowCreateDir.isChecked());
+                            i.putExtra(FilePickerActivity.EXTRA_ALLOW_EXISTING_FILE,
+                                    checkAllowExistingFile.isChecked());
 
                             // What mode is selected
                             final int mode;
@@ -222,6 +249,9 @@ public class NoNonsenseFilePicker extends Activity {
                                 case R.id.radioFilesAndDirs:
                                     mode =
                                             AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                                    break;
+                                case R.id.radioNewFile:
+                                    mode = FilePickerActivity.MODE_NEW_FILE;
                                     break;
                                 case R.id.radioFile:
                                 default:

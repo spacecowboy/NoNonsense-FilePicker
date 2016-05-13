@@ -10,7 +10,8 @@ package com.nononsenseapps.filepicker;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
-import android.text.TextUtils;
+
+import static com.nononsenseapps.filepicker.Utils.isValidFileName;
 
 public class NewFolderFragment extends NewItemFragment {
 
@@ -25,9 +26,6 @@ public class NewFolderFragment extends NewItemFragment {
 
     @Override
     protected boolean validateName(@Nullable final String itemName) {
-        return !TextUtils.isEmpty(itemName)
-                && !itemName.contains("/")
-                && !itemName.equals(".")
-                && !itemName.equals("..");
+        return isValidFileName(itemName);
     }
 }

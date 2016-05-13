@@ -53,13 +53,14 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
     public static AbstractFilePickerFragment<FtpFile> newInstance(String startPath, int mode,
                                                                   boolean allowMultiple,
                                                                   boolean allowCreateDir,
+                                                                  boolean allowExistingFile,
                                                                   String server, int port,
                                                                   String username,
                                                                   String password,
                                                                   String rootDir) {
         FtpPickerFragment fragment = new FtpPickerFragment();
         // Add arguments
-        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir);
+        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir, allowExistingFile);
         Bundle args = fragment.getArguments();
 
         // Add ftp related stuff

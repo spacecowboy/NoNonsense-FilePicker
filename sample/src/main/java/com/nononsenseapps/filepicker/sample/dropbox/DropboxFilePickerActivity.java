@@ -8,6 +8,7 @@ package com.nononsenseapps.filepicker.sample.dropbox;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
@@ -34,8 +35,8 @@ public class DropboxFilePickerActivity
 
     @Override
     protected AbstractFilePickerFragment<DropboxAPI.Entry> getFragment(
-            @NonNull final String startPath, final int mode, final boolean allowMultiple,
-            final boolean allowCreateDir) {
+            @Nullable final String startPath, final int mode, final boolean allowMultiple,
+            final boolean allowCreateDir, boolean allowExistingFile) {
         if (mDBApi == null || !mDBApi.getSession().isLinked()) {
             // No valid authentication
             finish();
@@ -44,7 +45,7 @@ public class DropboxFilePickerActivity
 
         DropboxFilePickerFragment fragment =
                 new DropboxFilePickerFragment(mDBApi);
-        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir);
+        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir, allowExistingFile);
         return fragment;
     }
 }

@@ -36,10 +36,10 @@ import java.util.List;
  * If you want to be able to select multiple items, include EXTRA_ALLOW_MULTIPLE
  * (default false).
  * <p/>
- * Two non-standard extra arguments are supported as well: EXTRA_ONLY_DIRS
- * (defaults to false)
- * allows only directories to be selected.
- * And EXTRA_START_PATH (default null), which should specify the starting path.
+ * Some non-standard extra arguments are supported as well:
+ * EXTRA_ONLY_DIRS - (default false) allows only directories to be selected.
+ * EXTRA_START_PATH - (default null) which should specify the starting path.
+ * EXTRA_ALLOW_EXISTING_FILE - (default true) if existing files are selectable in 'new file'-mode
  * <p/>
  * The result of the user's action is returned in onActivityResult intent,
  * access it using getUri.
@@ -60,16 +60,20 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
     // For compatibility
     public static final String EXTRA_ALLOW_MULTIPLE =
             "android.intent.extra" + ".ALLOW_MULTIPLE";
+    public static final String EXTRA_ALLOW_EXISTING_FILE =
+            "android.intent.extra" + ".ALLOW_EXISTING_FILE";
     public static final String EXTRA_PATHS = "nononsense.intent.PATHS";
     public static final int MODE_FILE = AbstractFilePickerFragment.MODE_FILE;
     public static final int MODE_FILE_AND_DIR =
             AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+    public static final int MODE_NEW_FILE = AbstractFilePickerFragment.MODE_NEW_FILE;
     public static final int MODE_DIR = AbstractFilePickerFragment.MODE_DIR;
     protected static final String TAG = "filepicker_fragment";
     protected String startPath = null;
     protected int mode = AbstractFilePickerFragment.MODE_FILE;
     protected boolean allowCreateDir = false;
     protected boolean allowMultiple = false;
+    private boolean allowExistingFile = true;
 
     @Override
     @SuppressWarnings("unchecked")
@@ -86,6 +90,8 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
                     allowCreateDir);
             allowMultiple =
                     intent.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, allowMultiple);
+            allowExistingFile =
+                    intent.getBooleanExtra(EXTRA_ALLOW_EXISTING_FILE, allowExistingFile);
         }
 
         FragmentManager fm = getSupportFragmentManager();
@@ -94,7 +100,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
 
         if (fragment == null) {
             fragment =
-                    getFragment(startPath, mode, allowMultiple, allowCreateDir);
+                    getFragment(startPath, mode, allowMultiple, allowCreateDir, allowExistingFile);
         }
 
         if (fragment != null) {
@@ -108,7 +114,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
 
     protected abstract AbstractFilePickerFragment<T> getFragment(
             @Nullable final String startPath, final int mode, final boolean allowMultiple,
-            final boolean allowCreateDir);
+            final boolean allowCreateDir, boolean allowExistingFile);
 
     @Override
     public void onSaveInstanceState(Bundle b) {

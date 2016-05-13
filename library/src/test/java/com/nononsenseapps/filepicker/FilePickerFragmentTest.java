@@ -12,7 +12,9 @@ import org.junit.Test;
 
 import java.io.File;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 
 public class FilePickerFragmentTest {
@@ -60,6 +62,17 @@ public class FilePickerFragmentTest {
     @Test
     public void testGetRoot() throws Exception {
         assertEquals("/", fragment.getRoot().getPath());
+    }
+
+    @Test
+    public void testSetArgsMultipleNewFiles() throws Exception {
+        try {
+            fragment.setArgs(null, AbstractFilePickerFragment.MODE_NEW_FILE, true, false, true);
+            fail("Expected exception");
+        } catch (IllegalArgumentException e) {
+            assertTrue("Should mention the mode limitations: " + e.getMessage(),
+                    e.getMessage().contains("MODE_NEW_FILE"));
+        }
     }
 
     @Test
