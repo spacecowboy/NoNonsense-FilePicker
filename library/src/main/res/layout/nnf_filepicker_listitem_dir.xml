@@ -24,8 +24,8 @@
         android:layout_height="?android:listPreferredItemHeight"
         android:adjustViewBounds="true"
         android:scaleType="center"
-        android:tint="?attr/colorAccent"
         android:src="@drawable/nnf_ic_folder_black_48dp"
+        android:tint="?attr/nnf_dir_icon_color"
         android:visibility="visible"
         tools:ignore="ContentDescription" />
 
