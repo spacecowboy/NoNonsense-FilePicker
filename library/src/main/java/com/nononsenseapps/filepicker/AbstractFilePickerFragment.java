@@ -20,6 +20,8 @@ import android.support.v7.util.SortedList;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -191,6 +193,23 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         mRegularButtonContainer = view.findViewById(R.id.nnf_button_container);
 
         mEditTextFileName = (EditText) view.findViewById(R.id.nnf_text_filename);
+        mEditTextFileName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // deSelect anything selected since the user just modified the name
+                clearSelections();
+            }
+        });
 
         mCurrentDirView = (TextView) view.findViewById(R.id.nnf_current_dir);
         // Restore state
