@@ -64,6 +64,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
     /**
      * Request permission to write to the SD-card.
      */
+    @Override
     protected void handlePermission() {
 //         Should we show an explanation?
 //        if (shouldShowRequestPermissionRationale(
