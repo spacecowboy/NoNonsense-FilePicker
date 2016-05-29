@@ -319,14 +319,13 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                     }
                 }
             }
-
-            // If still null
-            if (mCurrentPath == null) {
-                mCurrentPath = getRoot();
-            }
         }
 
-        refresh();
+        // If still null
+        if (mCurrentPath == null) {
+            mCurrentPath = getRoot();
+        }
+        refresh(mCurrentPath);
     }
 
     @Override
@@ -372,14 +371,17 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      * if permissions are granted and requests them if necessary. See hasPermission()
      * and handlePermission(). By default, these methods do nothing. Override them if
      * you need to request permissions at runtime.
+     *
+     * @param nextPath path to list files for
      */
-    protected void refresh() {
-        if (hasPermission()) {
+    protected void refresh(@NonNull T nextPath) {
+        if (hasPermission(nextPath)) {
+            mCurrentPath = nextPath;
             isLoading = true;
             getLoaderManager()
                     .restartLoader(0, null, AbstractFilePickerFragment.this);
         } else {
-            handlePermission();
+            handlePermission(nextPath);
         }
     }
 
@@ -387,8 +389,10 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      * If permission has not been granted yet, this method should request it.
      * <p/>
      * Override only if you need to request a permission.
+     *
+     * @param path The path for which permission should be requested
      */
-    protected void handlePermission() {
+    protected void handlePermission(@NonNull T path) {
         // Nothing to do by default
     }
 
@@ -396,9 +400,10 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      * If your implementation needs to request a specific permission to function, check if it
      * has been granted here. You should probably also override handlePermission() to request it.
      *
+     * @param path the path for which permissions should be checked
      * @return true if permission has been granted, false otherwise.
      */
-    protected boolean hasPermission() {
+    protected boolean hasPermission(@NonNull T path) {
         // Nothing to request by default
         return true;
     }
@@ -573,10 +578,9 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      */
     public void goToDir(@NonNull T file) {
         if (!isLoading) {
-            mCurrentPath = file;
             mCheckedItems.clear();
             mCheckedVisibleViewHolders.clear();
-            refresh();
+            refresh(file);
         }
     }
 

@@ -41,7 +41,6 @@ public class DropboxFilePickerFragment
         extends AbstractFilePickerFragment<DropboxAPI.Entry> {
 
     private final DropboxAPI<AndroidAuthSession> dbApi;
-    private FolderCreator folderCreator;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
 
@@ -114,10 +113,12 @@ public class DropboxFilePickerFragment
 
     /**
      * If we are loading, then hide the list and show the progress bar instead.
+     *
+     * @param nextPath path to list files for
      */
     @Override
-    protected void refresh() {
-        super.refresh();
+    protected void refresh(DropboxAPI.Entry nextPath) {
+        super.refresh(nextPath);
         if (isLoading) {
             progressBar.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.INVISIBLE);

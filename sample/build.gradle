@@ -47,4 +47,7 @@ dependencies {
 
     // FTP browser sample
     compile 'commons-net:commons-net:3.3'
+
+    // Root example
+    compile 'eu.chainfire:libsuperuser:1.0.0.+'
 }
