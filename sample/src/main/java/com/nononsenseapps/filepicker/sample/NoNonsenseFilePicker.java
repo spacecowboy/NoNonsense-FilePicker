@@ -29,6 +29,8 @@ import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxSyncHelper;
 import com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity;
 import com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity2;
+import com.nononsenseapps.filepicker.sample.root.SUPickerActivity;
+import com.nononsenseapps.filepicker.sample.root.SUPickerActivity2;
 
 import java.util.ArrayList;
 
@@ -235,6 +237,45 @@ public class NoNonsenseFilePicker extends Activity {
                         }
                     }
                 });
+
+        findViewById(R.id.button_root).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i;
+
+                if (checkLightTheme.isChecked()) {
+                    i = new Intent(NoNonsenseFilePicker.this,
+                            SUPickerActivity2.class);
+                } else {
+                    i = new Intent(NoNonsenseFilePicker.this,
+                            SUPickerActivity.class);
+                }
+                i.setAction(Intent.ACTION_GET_CONTENT);
+
+                i.putExtra(SUPickerActivity.EXTRA_ALLOW_MULTIPLE,
+                        checkAllowMultiple.isChecked());
+                i.putExtra(SUPickerActivity.EXTRA_ALLOW_CREATE_DIR,
+                        checkAllowCreateDir.isChecked());
+
+                // What mode is selected (makes no sense to restrict to folders here)
+                final int mode;
+                switch (radioGroup.getCheckedRadioButtonId()) {
+                    case R.id.radioFilesAndDirs:
+                        mode =
+                                AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                        break;
+                    case R.id.radioFile:
+                    default:
+                        mode = AbstractFilePickerFragment.MODE_FILE;
+                        break;
+                }
+
+                i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
+
+
+                startActivityForResult(i, CODE_SD);
+            }
+        });
     }
 
     /**

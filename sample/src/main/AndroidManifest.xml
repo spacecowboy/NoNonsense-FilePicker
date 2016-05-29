@@ -63,6 +63,26 @@
         </activity>
 
         <activity
+            android:name=".root.SUPickerActivity"
+            android:label="@string/title_activity_no_nonsense_file_picker"
+            android:theme="@style/SampleThemeLight">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".root.SUPickerActivity2"
+            android:label="@string/title_activity_no_nonsense_file_picker"
+            android:theme="@style/SampleTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".MultimediaPickerActivity2"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight">
