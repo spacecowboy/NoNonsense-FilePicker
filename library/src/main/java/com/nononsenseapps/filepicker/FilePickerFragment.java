@@ -28,6 +28,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
     protected static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     protected boolean showHiddenItems = false;
+    private File mRequestedPath = null;
 
     public FilePickerFragment() {
     }
@@ -55,7 +56,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @return true if app has been granted permission to write to the SD-card.
      */
     @Override
-    protected boolean hasPermission() {
+    protected boolean hasPermission(@NonNull File path) {
         return PackageManager.PERMISSION_GRANTED ==
                 ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -65,13 +66,14 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * Request permission to write to the SD-card.
      */
     @Override
-    protected void handlePermission() {
+    protected void handlePermission(@NonNull File path) {
 //         Should we show an explanation?
 //        if (shouldShowRequestPermissionRationale(
 //                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 //             Explain to the user why we need permission
 //        }
 
+        mRequestedPath = path;
         requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                 PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
     }
@@ -97,7 +99,9 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
         } else { // if (requestCode == PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
             if (PackageManager.PERMISSION_GRANTED == grantResults[0]) {
                 // Do refresh
-                refresh();
+                if (mRequestedPath != null) {
+                    refresh(mRequestedPath);
+                }
             } else {
                 Toast.makeText(getContext(), R.string.nnf_permission_external_write_denied,
                         Toast.LENGTH_SHORT).show();
@@ -303,8 +307,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
         File folder = new File(mCurrentPath, name);
 
         if (folder.mkdir()) {
-            mCurrentPath = folder;
-            refresh();
+            refresh(folder);
         } else {
             Toast.makeText(getActivity(), R.string.nnf_create_folder_error,
                     Toast.LENGTH_SHORT).show();
@@ -322,7 +325,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @return True if item should be added to the list, false otherwise
      */
     protected boolean isItemVisible(final File file) {
-        if(!showHiddenItems && file.isHidden()){
+        if (!showHiddenItems && file.isHidden()) {
             return false;
         }
         return (isDir(file) || (mode == MODE_FILE || mode == MODE_FILE_AND_DIR));

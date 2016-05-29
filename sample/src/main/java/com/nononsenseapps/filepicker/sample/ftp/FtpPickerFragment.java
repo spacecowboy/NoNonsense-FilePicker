@@ -320,8 +320,7 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
             @Override
             protected void onPostExecute(FtpFile folder) {
                 if (folder != null) {
-                    mCurrentPath = folder;
-                    refresh();
+                    refresh(folder);
                 } else {
                     Toast.makeText(getContext(), R.string.nnf_create_folder_error, Toast.LENGTH_SHORT).show();
                 }
