@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package com.nononsenseapps.filepicker.sample;
+package com.nononsenseapps.filepicker.sample.multimedia;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.nononsenseapps.filepicker.FilePickerFragment;
+import com.nononsenseapps.filepicker.sample.R;
 
 import java.io.File;
 
@@ -97,7 +98,7 @@ public class MultimediaPickerFragment extends FilePickerFragment {
      */
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, @NonNull int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEWTYPE_IMAGE_CHECKABLE:
                 return new CheckableViewHolder(LayoutInflater.from(getActivity())
