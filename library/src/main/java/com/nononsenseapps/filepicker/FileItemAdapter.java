@@ -18,8 +18,8 @@ import android.view.ViewGroup;
  */
 public class FileItemAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final LogicHandler<T> mLogic;
-    private SortedList<T> mList = null;
+    protected final LogicHandler<T> mLogic;
+    protected SortedList<T> mList = null;
 
     public FileItemAdapter(@NonNull LogicHandler<T> logic) {
         this.mLogic = logic;
@@ -64,5 +64,18 @@ public class FileItemAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         // header + count
         return 1 + mList.size();
+    }
+
+    /**
+     * Get the item at the designated position in the adapter.
+     *
+     * @param position of item in adapter
+     * @return null if position is zero (that means it's the ".." header), the item otherwise.
+     */
+    protected @Nullable T getItem(int position) {
+        if (position == 0) {
+            return null;
+        }
+        return mList.get(position - 1);
     }
 }
