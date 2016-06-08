@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 11
         targetSdkVersion 23
         versionCode gitCommitCount
         versionName gitTag
@@ -50,4 +50,7 @@ dependencies {
 
     // Root example
     compile 'eu.chainfire:libsuperuser:1.0.0.+'
+
+    // Fast scroll example
+    compile 'com.simplecityapps:recyclerview-fastscroll:1.0.9'
 }

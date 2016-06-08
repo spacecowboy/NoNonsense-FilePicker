@@ -53,9 +53,19 @@
         </activity>
 
         <activity
-            android:name=".MultimediaPickerActivity"
+            android:name=".multimedia.MultimediaPickerActivity"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".multimedia.MultimediaPickerActivity2"
+            android:label="@string/title_activity_no_nonsense_file_picker"
+            android:theme="@style/SampleThemeLight">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -83,9 +93,19 @@
         </activity>
 
         <activity
-            android:name=".MultimediaPickerActivity2"
+            android:name=".fastscroller.FastScrollerFilePickerActivity"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".fastscroller.FastScrollerFilePickerActivity2"
+            android:label="@string/title_activity_no_nonsense_file_picker"
+            android:theme="@style/SampleTheme">
             <intent-filter>
                 <action android:name="android.intent.action.GET_CONTENT" />
                 <category android:name="android.intent.category.DEFAULT" />

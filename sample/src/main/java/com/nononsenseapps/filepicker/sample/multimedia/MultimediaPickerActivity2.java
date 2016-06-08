@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package com.nononsenseapps.filepicker.sample;
+package com.nononsenseapps.filepicker.sample.multimedia;
 
 /**
  * Duplicate to allow second theme to be used.
