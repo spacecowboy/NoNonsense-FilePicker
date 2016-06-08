@@ -1,5 +1,22 @@
 # Change Log
 
+## [2.5.3](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.3) (2016-06-09)
+[Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.2...2.5.3)
+
+**Implemented enhancements:**
+
+- Add paths to permission and refresh methods [\#85](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/85)
+- Add FastScroller sample implementation [\#89](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/89) ([spacecowboy](https://github.com/spacecowboy))
+- Add a getItem method to FileItemAdapter [\#88](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/88) ([spacecowboy](https://github.com/spacecowboy))
+
+**Fixed bugs:**
+
+- Crash while creating folder in dropbox sample [\#76](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/76)
+
+**Closed issues:**
+
+- Fast Scroll [\#87](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/87)
+
 ## [2.5.2](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.2) (2016-02-24)
 [Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.1...2.5.2)
 
