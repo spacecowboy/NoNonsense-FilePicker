@@ -11,8 +11,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -23,13 +25,13 @@ import android.widget.EditText;
 
 public abstract class NewItemFragment extends DialogFragment {
 
-    private OnNewFolderListener listener = null;
+    private OnNewItemListener listener = null;
 
     public NewItemFragment() {
         super();
     }
 
-    public void setListener(@Nullable final OnNewFolderListener listener) {
+    public void setListener(@Nullable final OnNewItemListener listener) {
         this.listener = listener;
     }
 
@@ -42,8 +44,8 @@ public abstract class NewItemFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setView(R.layout.nnf_dialog_folder_name)
-                .setTitle(R.string.nnf_new_folder)
+        builder.setView(getLayout())
+                .setTitle(getTitle())
                 .setNegativeButton(android.R.string.cancel,
                         null)
                 .setPositiveButton(android.R.string.ok,
@@ -80,7 +82,7 @@ public abstract class NewItemFragment extends DialogFragment {
                         String itemName = editText.getText().toString();
                         if (validateName(itemName)) {
                             if (listener != null) {
-                                listener.onNewFolder(itemName);
+                                listener.onNewItem(itemName, isFile());
                             }
                             dialog.dismiss();
                         }
@@ -112,13 +114,19 @@ public abstract class NewItemFragment extends DialogFragment {
 
     protected abstract boolean validateName(final String itemName);
 
-    public interface OnNewFolderListener {
+    protected abstract @LayoutRes int getLayout();
+
+    protected abstract @StringRes int getTitle();
+
+    protected abstract boolean isFile();
+
+    public interface OnNewItemListener {
         /**
          * Name is validated to be non-null, non-empty and not containing any
          * slashes.
          *
          * @param name The name of the folder the user wishes to create.
          */
-        void onNewFolder(@NonNull final String name);
+        void onNewItem(@NonNull final String name, final boolean isFile);
     }
 }

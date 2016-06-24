@@ -44,7 +44,7 @@ import java.util.List;
  */
 public abstract class AbstractFilePickerFragment<T> extends Fragment
         implements LoaderManager.LoaderCallbacks<SortedList<T>>,
-        NewItemFragment.OnNewFolderListener, LogicHandler<T> {
+        NewItemFragment.OnNewItemListener, LogicHandler<T> {
 
     // The different preset modes of operation. This impacts the behaviour
     // and possible actions in the UI.
@@ -57,6 +57,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     public static final String KEY_MODE = "KEY_MODE";
     // If it should be possible to create directories.
     public static final String KEY_ALLOW_DIR_CREATE = "KEY_ALLOW_DIR_CREATE";
+    // If it should be possible to create files.
+    public static final String KEY_ALLOW_FILE_CREATE = "KEY_ALLOW_FILE_CREATE";
     // Allow multiple items to be selected.
     public static final String KEY_ALLOW_MULTIPLE = "KEY_ALLOW_MULTIPLE";
     // Used for saving state.
@@ -66,6 +68,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected int mode = MODE_FILE;
     protected T mCurrentPath = null;
     protected boolean allowCreateDir = false;
+    protected boolean allowCreateFile = false;
     protected boolean allowMultiple = false;
     protected OnFilePickedListener mListener;
     protected FileItemAdapter<T> mAdapter = null;
@@ -110,7 +113,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      * @param allowDirCreate can new directories be created?
      */
     public void setArgs(@Nullable final String startPath, final int mode,
-                        final boolean allowMultiple, final boolean allowDirCreate) {
+                        final boolean allowMultiple, final boolean allowDirCreate,
+                        final boolean allowFileCreate) {
         // There might have been arguments set elsewhere, if so do not overwrite them.
         Bundle b = getArguments();
         if (b == null) {
@@ -121,6 +125,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             b.putString(KEY_START_PATH, startPath);
         }
         b.putBoolean(KEY_ALLOW_DIR_CREATE, allowDirCreate);
+        b.putBoolean(KEY_ALLOW_FILE_CREATE, allowFileCreate);
         b.putBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
         b.putInt(KEY_MODE, mode);
         setArguments(b);
@@ -299,6 +304,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 mode = savedInstanceState.getInt(KEY_MODE, mode);
                 allowCreateDir = savedInstanceState
                         .getBoolean(KEY_ALLOW_DIR_CREATE, allowCreateDir);
+                allowCreateFile = savedInstanceState
+                        .getBoolean(KEY_ALLOW_FILE_CREATE, allowCreateFile);
                 allowMultiple = savedInstanceState
                         .getBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
 
@@ -310,6 +317,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 mode = getArguments().getInt(KEY_MODE, mode);
                 allowCreateDir = getArguments()
                         .getBoolean(KEY_ALLOW_DIR_CREATE, allowCreateDir);
+                allowCreateFile = getArguments()
+                        .getBoolean(KEY_ALLOW_FILE_CREATE, allowCreateFile);
                 allowMultiple = getArguments()
                         .getBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
                 if (getArguments().containsKey(KEY_START_PATH)) {
@@ -334,6 +343,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
 
         MenuItem item = menu.findItem(R.id.nnf_action_createdir);
         item.setVisible(allowCreateDir);
+        MenuItem itemFile = menu.findItem(R.id.nnf_action_createfile);
+        itemFile.setVisible(allowCreateFile);
     }
 
     @Override
@@ -342,6 +353,13 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             Activity activity = getActivity();
             if (activity instanceof AppCompatActivity) {
                 NewFolderFragment.showDialog(((AppCompatActivity) activity).getSupportFragmentManager(),
+                        AbstractFilePickerFragment.this);
+            }
+            return true;
+        } else if (R.id.nnf_action_createfile == menuItem.getItemId()) {
+            Activity activity = getActivity();
+            if (activity instanceof AppCompatActivity) {
+                NewFileFragment.showDialog(((AppCompatActivity) activity).getSupportFragmentManager(),
                         AbstractFilePickerFragment.this);
             }
             return true;
@@ -357,6 +375,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         b.putString(KEY_CURRENT_PATH, mCurrentPath.toString());
         b.putBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
         b.putBoolean(KEY_ALLOW_DIR_CREATE, allowCreateDir);
+        b.putBoolean(KEY_ALLOW_FILE_CREATE, allowCreateFile);
         b.putInt(KEY_MODE, mode);
     }
 
