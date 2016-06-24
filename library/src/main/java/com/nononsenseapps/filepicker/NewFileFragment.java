@@ -12,13 +12,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 
-public class NewFolderFragment extends NewItemFragment {
+public class NewFileFragment extends NewItemFragment {
 
-    private static final String TAG = "new_folder_fragment";
+    private static final String TAG = "new_file_fragment";
 
     public static void showDialog(@NonNull final FragmentManager fm,
                                   @Nullable final OnNewItemListener listener) {
-        NewItemFragment d = new NewFolderFragment();
+        NewItemFragment d = new NewFileFragment();
         d.setListener(listener);
         d.show(fm, TAG);
     }
@@ -38,11 +38,11 @@ public class NewFolderFragment extends NewItemFragment {
 
     @Override
     protected int getTitle() {
-        return R.string.nnf_new_folder;
+        return R.string.nnf_new_file;
     }
 
     @Override
     protected boolean isFile() {
-        return false;
+        return true;
     }
 }

@@ -57,6 +57,8 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
     public static final String EXTRA_MODE = "nononsense.intent.MODE";
     public static final String EXTRA_ALLOW_CREATE_DIR =
             "nononsense.intent" + ".ALLOW_CREATE_DIR";
+    public static final String EXTRA_ALLOW_CREATE_FILE =
+            "nononsense.intent" + ".ALLOW_CREATE_FILE";
     // For compatibility
     public static final String EXTRA_ALLOW_MULTIPLE =
             "android.intent.extra" + ".ALLOW_MULTIPLE";
@@ -69,6 +71,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
     protected String startPath = null;
     protected int mode = AbstractFilePickerFragment.MODE_FILE;
     protected boolean allowCreateDir = false;
+    protected boolean allowCreateFile = false;
     protected boolean allowMultiple = false;
 
     @Override
@@ -84,6 +87,8 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
             mode = intent.getIntExtra(EXTRA_MODE, mode);
             allowCreateDir = intent.getBooleanExtra(EXTRA_ALLOW_CREATE_DIR,
                     allowCreateDir);
+            allowCreateFile = intent.getBooleanExtra(EXTRA_ALLOW_CREATE_FILE,
+                    allowCreateFile);
             allowMultiple =
                     intent.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, allowMultiple);
         }
@@ -94,7 +99,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
 
         if (fragment == null) {
             fragment =
-                    getFragment(startPath, mode, allowMultiple, allowCreateDir);
+                    getFragment(startPath, mode, allowMultiple, allowCreateDir, allowCreateFile);
         }
 
         if (fragment != null) {
@@ -108,7 +113,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
 
     protected abstract AbstractFilePickerFragment<T> getFragment(
             @Nullable final String startPath, final int mode, final boolean allowMultiple,
-            final boolean allowCreateDir);
+            final boolean allowCreateDir, final boolean allowCreateFile);
 
     @Override
     public void onSaveInstanceState(Bundle b) {

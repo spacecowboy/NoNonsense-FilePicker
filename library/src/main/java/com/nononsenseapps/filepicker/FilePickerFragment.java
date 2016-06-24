@@ -303,14 +303,18 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @param name The name of the folder the user wishes to create.
      */
     @Override
-    public void onNewFolder(@NonNull final String name) {
-        File folder = new File(mCurrentPath, name);
-
-        if (folder.mkdir()) {
-            refresh(folder);
+    public void onNewItem(@NonNull final String name, final boolean isFile) {
+        if (isFile) {
+            mListener.onFilePicked(toUri(new File(mCurrentPath, name)));
         } else {
-            Toast.makeText(getActivity(), R.string.nnf_create_folder_error,
-                    Toast.LENGTH_SHORT).show();
+            File folder = new File(mCurrentPath, name);
+
+            if (folder.mkdir()) {
+                refresh(folder);
+            } else {
+                Toast.makeText(getActivity(), R.string.nnf_create_folder_error,
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

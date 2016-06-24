@@ -13,4 +13,10 @@
         android:orderInCategory="1"
         android:icon="@drawable/nnf_ic_create_new_folder_white_24dp"
         />
+    <item android:id="@+id/nnf_action_createfile"
+          android:title="@string/nnf_new_file"
+          app:showAsAction="always"
+          android:orderInCategory="2"
+          android:icon="@drawable/nnf_ic_note_add_white_24dp"
+        />
 </menu>
