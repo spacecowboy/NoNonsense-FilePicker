@@ -57,6 +57,8 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
     public static final String EXTRA_MODE = "nononsense.intent.MODE";
     public static final String EXTRA_ALLOW_CREATE_DIR =
             "nononsense.intent" + ".ALLOW_CREATE_DIR";
+    public static final String EXTRA_SINGLE_CLICK =
+            "nononsense.intent" + ".SINGLE_CLICK";
     // For compatibility
     public static final String EXTRA_ALLOW_MULTIPLE =
             "android.intent.extra" + ".ALLOW_MULTIPLE";
@@ -70,6 +72,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
     protected int mode = AbstractFilePickerFragment.MODE_FILE;
     protected boolean allowCreateDir = false;
     protected boolean allowMultiple = false;
+    protected boolean singleClick = false;
 
     @Override
     @SuppressWarnings("unchecked")
@@ -86,6 +89,8 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
                     allowCreateDir);
             allowMultiple =
                     intent.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, allowMultiple);
+            singleClick =
+                    intent.getBooleanExtra(EXTRA_SINGLE_CLICK, singleClick);
         }
 
         FragmentManager fm = getSupportFragmentManager();
@@ -94,7 +99,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
 
         if (fragment == null) {
             fragment =
-                    getFragment(startPath, mode, allowMultiple, allowCreateDir);
+                    getFragment(startPath, mode, allowMultiple, allowCreateDir, singleClick);
         }
 
         if (fragment != null) {
@@ -108,7 +113,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
 
     protected abstract AbstractFilePickerFragment<T> getFragment(
             @Nullable final String startPath, final int mode, final boolean allowMultiple,
-            final boolean allowCreateDir);
+            final boolean allowCreateDir, final boolean singleClick);
 
     @Override
     public void onSaveInstanceState(Bundle b) {
