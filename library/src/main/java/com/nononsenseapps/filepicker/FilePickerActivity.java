@@ -8,7 +8,6 @@ package com.nononsenseapps.filepicker;
 
 import android.annotation.SuppressLint;
 import android.os.Environment;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.io.File;

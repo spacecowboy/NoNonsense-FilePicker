@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
@@ -46,19 +47,26 @@ public class NoNonsenseFilePicker extends Activity {
     private static final int CODE_FTP = 2;
     private TextView textView;
     private DropboxAPI<AndroidAuthSession> mDBApi = null;
+    private CheckBox checkAllowCreateDir;
+    private CheckBox checkAllowMultiple;
+    private CheckBox checkSingleClick;
+    private CheckBox checkLightTheme;
+    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_nonsense_file_picker);
 
-        final CheckBox checkAllowCreateDir =
+        checkAllowCreateDir =
                 (CheckBox) findViewById(R.id.checkAllowCreateDir);
-        final CheckBox checkAllowMultiple =
+        checkAllowMultiple =
                 (CheckBox) findViewById(R.id.checkAllowMultiple);
-        final CheckBox checkLightTheme =
+        checkSingleClick =
+                (CheckBox) findViewById(R.id.checkSingleClick);
+        checkLightTheme =
                 (CheckBox) findViewById(R.id.checkLightTheme);
-        final RadioGroup radioGroup =
+        radioGroup =
                 (RadioGroup) findViewById(R.id.radioGroup);
         textView = (TextView) findViewById(R.id.text);
 
@@ -66,42 +74,11 @@ public class NoNonsenseFilePicker extends Activity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-                        Intent i;
-
                         if (checkLightTheme.isChecked()) {
-                            i = new Intent(NoNonsenseFilePicker.this,
-                                    FilePickerActivity2.class);
+                            startActivity(CODE_SD, FilePickerActivity2.class);
                         } else {
-                            i = new Intent(NoNonsenseFilePicker.this,
-                                    FilePickerActivity.class);
+                            startActivity(CODE_SD, FilePickerActivity.class);
                         }
-                        i.setAction(Intent.ACTION_GET_CONTENT);
-
-                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
-                                checkAllowMultiple.isChecked());
-                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
-                                checkAllowCreateDir.isChecked());
-
-                        // What mode is selected
-                        final int mode;
-                        switch (radioGroup.getCheckedRadioButtonId()) {
-                            case R.id.radioDir:
-                                mode = AbstractFilePickerFragment.MODE_DIR;
-                                break;
-                            case R.id.radioFilesAndDirs:
-                                mode =
-                                        AbstractFilePickerFragment.MODE_FILE_AND_DIR;
-                                break;
-                            case R.id.radioFile:
-                            default:
-                                mode = AbstractFilePickerFragment.MODE_FILE;
-                                break;
-                        }
-
-                        i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
-
-
-                        startActivityForResult(i, CODE_SD);
                     }
                 });
 
@@ -109,39 +86,11 @@ public class NoNonsenseFilePicker extends Activity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-                        Intent i;
-
                         if (checkLightTheme.isChecked()) {
-                            i = new Intent(NoNonsenseFilePicker.this,
-                                    MultimediaPickerActivity2.class);
+                            startActivity(CODE_SD, MultimediaPickerActivity2.class);
                         } else {
-                            i = new Intent(NoNonsenseFilePicker.this,
-                                    MultimediaPickerActivity.class);
+                            startActivity(CODE_SD, MultimediaPickerActivity.class);
                         }
-                        i.setAction(Intent.ACTION_GET_CONTENT);
-
-                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
-                                checkAllowMultiple.isChecked());
-                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
-                                checkAllowCreateDir.isChecked());
-
-                        // What mode is selected (makes no sense to restrict to folders here)
-                        final int mode;
-                        switch (radioGroup.getCheckedRadioButtonId()) {
-                            case R.id.radioFilesAndDirs:
-                                mode =
-                                        AbstractFilePickerFragment.MODE_FILE_AND_DIR;
-                                break;
-                            case R.id.radioFile:
-                            default:
-                                mode = AbstractFilePickerFragment.MODE_FILE;
-                                break;
-                        }
-
-                        i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
-
-
-                        startActivityForResult(i, CODE_SD);
                     }
                 });
 
@@ -149,42 +98,11 @@ public class NoNonsenseFilePicker extends Activity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-                        Intent i;
-
                         if (checkLightTheme.isChecked()) {
-                            i = new Intent(NoNonsenseFilePicker.this,
-                                    FtpPickerActivity2.class);
+                            startActivity(CODE_FTP, FtpPickerActivity2.class);
                         } else {
-                            i = new Intent(NoNonsenseFilePicker.this,
-                                    FtpPickerActivity.class);
+                            startActivity(CODE_FTP, FtpPickerActivity.class);
                         }
-                        i.setAction(Intent.ACTION_GET_CONTENT);
-
-                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
-                                checkAllowMultiple.isChecked());
-                        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
-                                checkAllowCreateDir.isChecked());
-
-                        // What mode is selected (makes no sense to restrict to folders here)
-                        final int mode;
-                        switch (radioGroup.getCheckedRadioButtonId()) {
-                            case R.id.radioDir:
-                                mode = AbstractFilePickerFragment.MODE_DIR;
-                                break;
-                            case R.id.radioFilesAndDirs:
-                                mode =
-                                        AbstractFilePickerFragment.MODE_FILE_AND_DIR;
-                                break;
-                            case R.id.radioFile:
-                            default:
-                                mode = AbstractFilePickerFragment.MODE_FILE;
-                                break;
-                        }
-
-                        i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
-
-
-                        startActivityForResult(i, CODE_FTP);
                     }
                 });
 
@@ -206,38 +124,10 @@ public class NoNonsenseFilePicker extends Activity {
                         } else {  // User is authorized, open file picker
                             Intent i;
                             if (checkLightTheme.isChecked()) {
-                                i = new Intent(NoNonsenseFilePicker.this,
-                                        DropboxFilePickerActivity2.class);
+                                startActivity(CODE_DB, DropboxFilePickerActivity2.class);
                             } else {
-                                i = new Intent(NoNonsenseFilePicker.this,
-                                        DropboxFilePickerActivity.class);
+                                startActivity(CODE_DB, DropboxFilePickerActivity.class);
                             }
-
-                            i.putExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
-                                    checkAllowMultiple.isChecked());
-                            i.putExtra(
-                                    FilePickerActivity.EXTRA_ALLOW_CREATE_DIR,
-                                    checkAllowCreateDir.isChecked());
-
-                            // What mode is selected
-                            final int mode;
-                            switch (radioGroup.getCheckedRadioButtonId()) {
-                                case R.id.radioDir:
-                                    mode = AbstractFilePickerFragment.MODE_DIR;
-                                    break;
-                                case R.id.radioFilesAndDirs:
-                                    mode =
-                                            AbstractFilePickerFragment.MODE_FILE_AND_DIR;
-                                    break;
-                                case R.id.radioFile:
-                                default:
-                                    mode = AbstractFilePickerFragment.MODE_FILE;
-                                    break;
-                            }
-
-                            i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
-
-                            startActivityForResult(i, CODE_DB);
                         }
                     }
                 });
@@ -245,80 +135,54 @@ public class NoNonsenseFilePicker extends Activity {
         findViewById(R.id.button_root).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i;
-
                 if (checkLightTheme.isChecked()) {
-                    i = new Intent(NoNonsenseFilePicker.this,
-                            SUPickerActivity.class);
+                    startActivity(CODE_SD, SUPickerActivity.class);
                 } else {
-                    i = new Intent(NoNonsenseFilePicker.this,
-                            SUPickerActivity2.class);
+                    startActivity(CODE_SD, SUPickerActivity2.class);
                 }
-                i.setAction(Intent.ACTION_GET_CONTENT);
-
-                i.putExtra(SUPickerActivity.EXTRA_ALLOW_MULTIPLE,
-                        checkAllowMultiple.isChecked());
-                i.putExtra(SUPickerActivity.EXTRA_ALLOW_CREATE_DIR,
-                        checkAllowCreateDir.isChecked());
-
-                // What mode is selected (makes no sense to restrict to folders here)
-                final int mode;
-                switch (radioGroup.getCheckedRadioButtonId()) {
-                    case R.id.radioFilesAndDirs:
-                        mode =
-                                AbstractFilePickerFragment.MODE_FILE_AND_DIR;
-                        break;
-                    case R.id.radioFile:
-                    default:
-                        mode = AbstractFilePickerFragment.MODE_FILE;
-                        break;
-                }
-
-                i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
-
-
-                startActivityForResult(i, CODE_SD);
             }
         });
 
         findViewById(R.id.button_fastscroll).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i;
-
                 if (checkLightTheme.isChecked()) {
-                    i = new Intent(NoNonsenseFilePicker.this,
-                            FastScrollerFilePickerActivity.class);
+                    startActivity(CODE_SD, FastScrollerFilePickerActivity.class);
                 } else {
-                    i = new Intent(NoNonsenseFilePicker.this,
-                            FastScrollerFilePickerActivity2.class);
+                    startActivity(CODE_SD, FastScrollerFilePickerActivity2.class);
                 }
-                i.setAction(Intent.ACTION_GET_CONTENT);
-
-                i.putExtra(SUPickerActivity.EXTRA_ALLOW_MULTIPLE,
-                        checkAllowMultiple.isChecked());
-                i.putExtra(SUPickerActivity.EXTRA_ALLOW_CREATE_DIR,
-                        checkAllowCreateDir.isChecked());
-
-                // What mode is selected (makes no sense to restrict to folders here)
-                final int mode;
-                switch (radioGroup.getCheckedRadioButtonId()) {
-                    case R.id.radioFilesAndDirs:
-                        mode =
-                                AbstractFilePickerFragment.MODE_FILE_AND_DIR;
-                        break;
-                    case R.id.radioFile:
-                    default:
-                        mode = AbstractFilePickerFragment.MODE_FILE;
-                        break;
-                }
-
-                i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
-
-
-                startActivityForResult(i, CODE_SD);
             }
         });
+    }
+
+    protected void startActivity(final int code, final Class<?> klass) {
+        final Intent i = new Intent(this, klass);
+
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        i.putExtra(SUPickerActivity.EXTRA_ALLOW_MULTIPLE,
+                checkAllowMultiple.isChecked());
+        i.putExtra(FilePickerActivity.EXTRA_SINGLE_CLICK,
+                checkSingleClick.isChecked());
+        i.putExtra(SUPickerActivity.EXTRA_ALLOW_CREATE_DIR,
+                checkAllowCreateDir.isChecked());
+
+        // What mode is selected (makes no sense to restrict to folders here)
+        final int mode;
+        switch (radioGroup.getCheckedRadioButtonId()) {
+            case R.id.radioFilesAndDirs:
+                mode =
+                        AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                break;
+            case R.id.radioFile:
+            default:
+                mode = AbstractFilePickerFragment.MODE_FILE;
+                break;
+        }
+
+        i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
+
+        startActivityForResult(i, code);
     }
 
     /**

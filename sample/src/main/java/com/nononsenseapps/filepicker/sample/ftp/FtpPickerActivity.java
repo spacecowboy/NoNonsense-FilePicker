@@ -19,12 +19,12 @@ import org.apache.commons.net.ftp.FTPClient;
  */
 public class FtpPickerActivity extends AbstractFilePickerActivity<FtpFile> {
     @Override
-    protected AbstractFilePickerFragment<FtpFile> getFragment(@NonNull String startPath, int mode, boolean allowMultiple, boolean allowCreateDir) {
-        return FtpPickerFragment.newInstance(startPath, mode, allowMultiple, allowCreateDir,
+    protected AbstractFilePickerFragment<FtpFile> getFragment(@NonNull String startPath, int mode, boolean allowMultiple, boolean allowCreateDir, boolean singleClick) {
+        return FtpPickerFragment.newInstance(startPath, mode, allowMultiple,
+                allowCreateDir, singleClick,
                 "debian.simnet.is",
                 FTPClient.DEFAULT_PORT,
                 null,
-                null,
-                "/");
+                null, "/");
     }
 }

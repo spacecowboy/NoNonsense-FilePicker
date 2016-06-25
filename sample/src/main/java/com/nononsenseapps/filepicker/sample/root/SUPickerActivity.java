@@ -18,13 +18,14 @@ public class SUPickerActivity extends AbstractFilePickerActivity<File> {
     protected AbstractFilePickerFragment<File> getFragment(@Nullable String startPath,
                                                            int mode,
                                                            boolean allowMultiple,
-                                                           boolean allowCreateDir) {
+                                                           boolean allowCreateDir,
+                                                           boolean singleClick) {
         AbstractFilePickerFragment<File> fragment = new SUPickerFragment();
         // startPath is allowed to be null. In that case, default folder should be SD-card and
         // not "/"
         fragment.setArgs(
                 startPath != null ? startPath : Environment.getExternalStorageDirectory().getPath(),
-                mode, allowMultiple, allowCreateDir);
+                mode, allowMultiple, allowCreateDir, singleClick);
         return fragment;
     }
 }

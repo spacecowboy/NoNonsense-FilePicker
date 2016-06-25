@@ -111,10 +111,10 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      * @param mode           what is allowed to be selected (dirs, files, both)
      * @param allowMultiple  selecting a single item or several?
      * @param allowDirCreate can new directories be created?
+     * @param singleClick    selecting an item does not require a press on OK
      */
     public void setArgs(@Nullable final String startPath, final int mode,
-                        final boolean allowMultiple, final boolean allowDirCreate,
-                        final boolean singleClick) {
+                        final boolean allowMultiple, final boolean allowDirCreate, boolean singleClick) {
         // There might have been arguments set elsewhere, if so do not overwrite them.
         Bundle b = getArguments();
         if (b == null) {
@@ -236,7 +236,9 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
     }
 
-    public @Nullable T getFirstCheckedItem() {
+    public
+    @Nullable
+    T getFirstCheckedItem() {
         //noinspection LoopStatementThatDoesntLoop
         for (T file : mCheckedItems) {
             return file;
@@ -244,7 +246,9 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         return null;
     }
 
-    protected @NonNull List<Uri> toUri(@NonNull Iterable<T> files) {
+    protected
+    @NonNull
+    List<Uri> toUri(@NonNull Iterable<T> files) {
         ArrayList<Uri> uris = new ArrayList<>();
         for (T file : files) {
             uris.add(toUri(file));
@@ -330,7 +334,14 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             }
         }
 
-        if (singleClick) getActivity().findViewById(R.id.nnf_button_ok).setVisibility(View.GONE);
+        // Single click only makes sense if we are not selecting multiple items
+        if (singleClick && allowMultiple || singleClick && (mode != MODE_FILE)) {
+            singleClick = false;
+        }
+
+        if (singleClick) {
+            getActivity().findViewById(R.id.nnf_button_ok).setVisibility(View.GONE);
+        }
 
         // If still null
         if (mCurrentPath == null) {
@@ -621,8 +632,10 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 // Clear is necessary, in case user clicked some checkbox directly
                 mCheckedItems.clear();
                 mCheckedItems.add(viewHolder.file);
-                onClickOk(null);
-            } else onLongClickCheckable(view, viewHolder);
+                onClickOk(view);
+            } else {
+                onLongClickCheckable(view, viewHolder);
+            }
         }
     }
 
@@ -746,7 +759,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         public CheckableViewHolder(View v) {
             super(v);
             checkbox = (CheckBox) v.findViewById(R.id.checkbox);
-            if (singleClick) checkbox.setVisibility(View.GONE);
+            checkbox.setVisibility(singleClick ? View.GONE : View.VISIBLE);
             checkbox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

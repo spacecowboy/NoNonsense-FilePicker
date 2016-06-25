@@ -79,6 +79,16 @@
                     android:text="Multiple items" />
 
                 <CheckBox
+                    android:id="@+id/checkSingleClick"
+                    style="?android:textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="left"
+                    android:fontFamily="light"
+                    android:gravity="center_vertical"
+                    android:text="Don't show OK button in case of single item" />
+
+                <CheckBox
                     android:id="@+id/checkAllowCreateDir"
                     style="?android:textAppearanceMedium"
                     android:layout_width="match_parent"
