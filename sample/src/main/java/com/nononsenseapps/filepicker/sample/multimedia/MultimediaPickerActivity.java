@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package com.nononsenseapps.filepicker.sample;
+package com.nononsenseapps.filepicker.sample.multimedia;
 
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -26,11 +26,12 @@ public class MultimediaPickerActivity extends AbstractFilePickerActivity {
     @Override
     protected AbstractFilePickerFragment<File> getFragment(
             @Nullable final String startPath, final int mode, final boolean allowMultiple,
-            final boolean allowCreateDir, boolean allowExistingFile) {
+            final boolean allowCreateDir, final boolean allowExistingFile,
+            final boolean singleClick) {
         AbstractFilePickerFragment<File> fragment = new MultimediaPickerFragment();
         // startPath is allowed to be null. In that case, default folder should be SD-card and not "/"
         fragment.setArgs(startPath != null ? startPath : Environment.getExternalStorageDirectory().getPath(),
-                mode, allowMultiple, allowCreateDir, allowExistingFile);
+                mode, allowMultiple, allowCreateDir, allowExistingFile, singleClick);
         return fragment;
     }
 }

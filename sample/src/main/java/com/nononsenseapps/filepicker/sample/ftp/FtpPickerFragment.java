@@ -54,13 +54,15 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
                                                                   boolean allowMultiple,
                                                                   boolean allowCreateDir,
                                                                   boolean allowExistingFile,
+                                                                  boolean singleClick,
                                                                   String server, int port,
                                                                   String username,
                                                                   String password,
                                                                   String rootDir) {
         FtpPickerFragment fragment = new FtpPickerFragment();
         // Add arguments
-        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir, allowExistingFile);
+        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir,
+                allowExistingFile, singleClick);
         Bundle args = fragment.getArguments();
 
         // Add ftp related stuff
@@ -321,8 +323,7 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
             @Override
             protected void onPostExecute(FtpFile folder) {
                 if (folder != null) {
-                    mCurrentPath = folder;
-                    refresh();
+                    refresh(folder);
                 } else {
                     Toast.makeText(getContext(), R.string.nnf_create_folder_error, Toast.LENGTH_SHORT).show();
                 }

@@ -90,6 +90,16 @@
                     android:text="Multiple items" />
 
                 <CheckBox
+                    android:id="@+id/checkSingleClick"
+                    style="?android:textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="left"
+                    android:fontFamily="light"
+                    android:gravity="center_vertical"
+                    android:text="Don't show OK button in case of single item" />
+
+                <CheckBox
                     android:id="@+id/checkAllowCreateDir"
                     style="?android:textAppearanceMedium"
                     android:layout_width="match_parent"
@@ -166,6 +176,28 @@
                 android:fontFamily="light"
                 android:gravity="center"
                 android:text="Pick Dropbox" />
+
+            <Button
+                android:id="@+id/button_fastscroll"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:fontFamily="light"
+                android:gravity="center"
+                android:text="Pick With Fast Scroller" />
+
+            <Button
+                android:id="@+id/button_root"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:fontFamily="light"
+                android:gravity="center"
+                android:text="Pick With Root Access" />
 
             <TextView
                 android:id="@+id/text"

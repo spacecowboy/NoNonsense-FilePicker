@@ -23,13 +23,13 @@ public class FtpPickerActivity extends AbstractFilePickerActivity<FtpFile> {
     protected AbstractFilePickerFragment<FtpFile> getFragment(@Nullable String startPath, int mode,
                                                               boolean allowMultiple,
                                                               boolean allowCreateDir,
-                                                              boolean allowExistingFile) {
+                                                              boolean allowExistingFile,
+                                                              boolean singleClick) {
         return FtpPickerFragment.newInstance(startPath, mode, allowMultiple, allowCreateDir,
-                allowExistingFile,
+                allowExistingFile, singleClick,
                 "debian.simnet.is",
                 FTPClient.DEFAULT_PORT,
                 null,
-                null,
-                "/");
+                null, "/");
     }
 }

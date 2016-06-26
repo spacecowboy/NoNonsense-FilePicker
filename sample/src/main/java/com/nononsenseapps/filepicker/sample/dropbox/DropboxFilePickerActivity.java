@@ -36,7 +36,8 @@ public class DropboxFilePickerActivity
     @Override
     protected AbstractFilePickerFragment<DropboxAPI.Entry> getFragment(
             @Nullable final String startPath, final int mode, final boolean allowMultiple,
-            final boolean allowCreateDir, boolean allowExistingFile) {
+            final boolean allowCreateDir, final boolean allowExistingFile,
+            final boolean singleClick) {
         if (mDBApi == null || !mDBApi.getSession().isLinked()) {
             // No valid authentication
             finish();
@@ -45,7 +46,8 @@ public class DropboxFilePickerActivity
 
         DropboxFilePickerFragment fragment =
                 new DropboxFilePickerFragment(mDBApi);
-        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir, allowExistingFile);
+        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir,
+                allowExistingFile, singleClick);
         return fragment;
     }
 }
