@@ -67,7 +67,7 @@ public class FilePickerFragmentTest {
     @Test
     public void testSetArgsMultipleNewFiles() throws Exception {
         try {
-            fragment.setArgs(null, AbstractFilePickerFragment.MODE_NEW_FILE, true, false, true);
+            fragment.setArgs(null, AbstractFilePickerFragment.MODE_NEW_FILE, true, false, true, false);
             fail("Expected exception");
         } catch (IllegalArgumentException e) {
             assertTrue("Should mention the mode limitations: " + e.getMessage(),
