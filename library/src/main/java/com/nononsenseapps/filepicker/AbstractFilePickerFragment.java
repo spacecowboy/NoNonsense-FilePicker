@@ -133,7 +133,10 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         if (mode == MODE_NEW_FILE && allowMultiple) {
             throw new IllegalArgumentException(
                     "MODE_NEW_FILE does not support 'allowMultiple'");
-
+        }
+        // Single click only makes sense if we are not selecting multiple items
+        if (singleClick && allowMultiple) {
+            throw new IllegalArgumentException("'singleClick' can not be used with 'allowMultiple'");
         }
         // There might have been arguments set elsewhere, if so do not overwrite them.
         Bundle b = getArguments();
@@ -407,11 +410,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                     }
                 }
             }
-        }
-
-        // Single click only makes sense if we are not selecting multiple items
-        if (singleClick && allowMultiple || singleClick && (mode != MODE_FILE)) {
-            singleClick = false;
         }
 
         setModeView();
@@ -715,13 +713,9 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         if (isDir(viewHolder.file)) {
             goToDir(viewHolder.file);
         } else {
-            if (!allowMultiple && singleClick) {
-                // Clear is necessary, in case user clicked some checkbox directly
-                mCheckedItems.clear();
-                mCheckedItems.add(viewHolder.file);
+            onLongClickCheckable(view, viewHolder);
+            if (singleClick) {
                 onClickOk(view);
-            } else {
-                onLongClickCheckable(view, viewHolder);
             }
         }
     }
@@ -849,8 +843,10 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
 
         public CheckableViewHolder(View v) {
             super(v);
+            boolean nf = mode == MODE_NEW_FILE;
+
             checkbox = (CheckBox) v.findViewById(R.id.checkbox);
-            checkbox.setVisibility(singleClick ? View.GONE : View.VISIBLE);
+            checkbox.setVisibility((nf || singleClick) ? View.GONE : View.VISIBLE);
             checkbox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

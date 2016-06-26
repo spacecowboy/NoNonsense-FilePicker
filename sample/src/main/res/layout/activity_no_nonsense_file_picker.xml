@@ -97,7 +97,7 @@
                     android:layout_gravity="left"
                     android:fontFamily="light"
                     android:gravity="center_vertical"
-                    android:text="Don't show OK button in case of single item" />
+                    android:text="Single selection returns immediately" />
 
                 <CheckBox
                     android:id="@+id/checkAllowCreateDir"
