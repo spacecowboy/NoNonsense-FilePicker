@@ -731,6 +731,9 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      */
     public boolean onLongClickCheckable(@NonNull View view,
                                         @NonNull CheckableViewHolder viewHolder) {
+        if (MODE_NEW_FILE == mode) {
+            mEditTextFileName.setText(getName(viewHolder.file));
+        }
         onClickCheckBox(viewHolder);
         return true;
     }
@@ -747,13 +750,9 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             viewHolder.checkbox.setChecked(false);
             mCheckedItems.remove(viewHolder.file);
             mCheckedVisibleViewHolders.remove(viewHolder);
-            if (!allowMultiple) {
-                mEditTextFileName.setText("");
-            }
         } else {
             if (!allowMultiple) {
                 clearSelections();
-                mEditTextFileName.setText(getName(viewHolder.file));
             }
             viewHolder.checkbox.setChecked(true);
             mCheckedItems.add(viewHolder.file);
