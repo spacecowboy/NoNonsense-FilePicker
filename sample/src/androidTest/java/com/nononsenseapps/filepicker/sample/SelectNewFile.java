@@ -22,7 +22,6 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 
-import static com.nononsenseapps.filepicker.sample.Helpers.createTestDirsAndFiles;
 import static com.nononsenseapps.filepicker.sample.PermissionGranter.allowPermissionsIfNeeded;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
@@ -32,7 +31,13 @@ import static org.hamcrest.Matchers.is;
 public class SelectNewFile {
 
     @Rule
-    public ActivityTestRule<NoNonsenseFilePicker> mActivityTestRule = new ActivityTestRule<>(NoNonsenseFilePicker.class);
+    public ActivityTestRule<NoNonsenseFilePickerTest> mActivityTestRule =
+            new ActivityTestRule<>(NoNonsenseFilePickerTest.class);
+
+    @Before
+    public void allowPermissions() {
+        allowPermissionsIfNeeded(mActivityTestRule.getActivity());
+    }
 
     @Test
     public void selectNewFile() throws IOException {
@@ -49,9 +54,6 @@ public class SelectNewFile {
         ViewInteraction button = onView(
                 allOf(withId(R.id.button_sd), withText("Pick SD-card"), isDisplayed()));
         button.perform(click());
-
-        allowPermissionsIfNeeded(mActivityTestRule.getActivity());
-        createTestDirsAndFiles();
 
         ViewInteraction recyclerView = onView(
                 allOf(withId(android.R.id.list), isDisplayed()));
@@ -101,9 +103,6 @@ public class SelectNewFile {
                 allOf(withId(R.id.button_sd), isDisplayed()));
         button.perform(click());
 
-        allowPermissionsIfNeeded(mActivityTestRule.getActivity());
-        createTestDirsAndFiles();
-
         ViewInteraction recyclerView = onView(
                 allOf(withId(android.R.id.list), isDisplayed()));
 
@@ -120,7 +119,6 @@ public class SelectNewFile {
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
         textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/B-dir/file-3.txt")));
-
     }
 
     @Test
@@ -134,10 +132,6 @@ public class SelectNewFile {
         ViewInteraction button = onView(
                 allOf(withId(R.id.button_sd), withText("Pick SD-card"), isDisplayed()));
         button.perform(click());
-
-
-        allowPermissionsIfNeeded(mActivityTestRule.getActivity());
-        createTestDirsAndFiles();
 
         ViewInteraction recyclerView = onView(
                 allOf(withId(android.R.id.list), isDisplayed()));
