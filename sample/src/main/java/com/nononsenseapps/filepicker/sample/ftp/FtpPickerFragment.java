@@ -137,11 +137,7 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
             // Already at root, we can't go higher
             return from;
         } else if (from.getParentFile() != null) {
-            if (from.isFile()) {
-                return getParent(from.getParentFile());
-            } else {
-                return from.getParentFile();
-            }
+            return from.getParentFile();
         } else {
             return from;
         }

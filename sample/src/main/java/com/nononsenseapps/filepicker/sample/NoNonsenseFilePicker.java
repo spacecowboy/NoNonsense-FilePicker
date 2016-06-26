@@ -43,17 +43,17 @@ import java.util.ArrayList;
 
 public class NoNonsenseFilePicker extends Activity {
 
-    private static final int CODE_SD = 0;
-    private static final int CODE_DB = 1;
-    private static final int CODE_FTP = 2;
-    private TextView textView;
-    private DropboxAPI<AndroidAuthSession> mDBApi = null;
-    private CheckBox checkAllowCreateDir;
-    private CheckBox checkAllowMultiple;
-    private CheckBox checkSingleClick;
-    private CheckBox checkLightTheme;
-    private RadioGroup radioGroup;
-    private CheckBox checkAllowExistingFile;
+    static final int CODE_SD = 0;
+    static final int CODE_DB = 1;
+    static final int CODE_FTP = 2;
+    TextView textView;
+    DropboxAPI<AndroidAuthSession> mDBApi = null;
+    CheckBox checkAllowCreateDir;
+    CheckBox checkAllowMultiple;
+    CheckBox checkSingleClick;
+    CheckBox checkLightTheme;
+    RadioGroup radioGroup;
+    CheckBox checkAllowExistingFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,6 +192,9 @@ public class NoNonsenseFilePicker extends Activity {
         }
 
         i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
+
+        // This line is solely so that test classes can override intents given through UI
+        i.putExtras(getIntent());
 
         startActivityForResult(i, code);
     }

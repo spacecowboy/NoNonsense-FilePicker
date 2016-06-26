@@ -391,7 +391,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
 
                 String path = savedInstanceState.getString(KEY_CURRENT_PATH);
                 if (path != null) {
-                    mCurrentPath = getPath(path);
+                    mCurrentPath = getPath(path.trim());
                 }
             } else if (getArguments() != null) {
                 mode = getArguments().getInt(KEY_MODE, mode);
@@ -406,7 +406,13 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 if (getArguments().containsKey(KEY_START_PATH)) {
                     String path = getArguments().getString(KEY_START_PATH);
                     if (path != null) {
-                        mCurrentPath = getPath(path);
+                        T file = getPath(path.trim());
+                        if (isDir(file)) {
+                            mCurrentPath = file;
+                        } else {
+                            mCurrentPath = getParent(file);
+                            mEditTextFileName.setText(getName(file));
+                        }
                     }
                 }
             }
