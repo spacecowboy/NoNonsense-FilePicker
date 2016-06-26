@@ -123,4 +123,46 @@ public class SelectNewFile {
 
     }
 
+    @Test
+    public void clickTwiceShouldNotClearFilename() throws IOException {
+        ViewInteraction radioButton = onView(
+                allOf(withId(R.id.radioNewFile), withText("Select new file"),
+                        withParent(withId(R.id.radioGroup)),
+                        isDisplayed()));
+        radioButton.perform(click());
+
+        ViewInteraction button = onView(
+                allOf(withId(R.id.button_sd), withText("Pick SD-card"), isDisplayed()));
+        button.perform(click());
+
+
+        allowPermissionsIfNeeded(mActivityTestRule.getActivity());
+        createTestDirsAndFiles();
+
+        ViewInteraction recyclerView = onView(
+                allOf(withId(android.R.id.list), isDisplayed()));
+
+        // Refresh view (into dir, and out again)
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
+        // Navigate to file
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+
+        recyclerView.perform(actionOnItemAtPosition(2, click()));
+
+        // Click on file once
+        recyclerView.perform(actionOnItemAtPosition(4, click()));
+
+        // Filename should be entered in field
+        ViewInteraction editText = onView(withId(R.id.nnf_text_filename));
+        editText.check(matches(withText("file-3.txt")));
+
+        // Click twice
+        recyclerView.perform(actionOnItemAtPosition(4, click()));
+
+        // Filename should not change
+        editText.check(matches(withText("file-3.txt")));
+    }
+
 }
