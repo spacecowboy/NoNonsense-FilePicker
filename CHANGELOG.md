@@ -1,5 +1,17 @@
 # Change Log
 
+## [3.0.0](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/3.0.0) (2016-07-03)
+[Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.3...3.0.0)
+
+**Implemented enhancements:**
+
+- Select one file with a single click [\#92](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/92) ([rastikw](https://github.com/rastikw))
+- Add ability to enter a new filename [\#83](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/83) ([spacecowboy](https://github.com/spacecowboy))
+
+**Closed issues:**
+
+- Add ability to input filename [\#82](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/82)
+
 ## [2.5.3](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.3) (2016-06-09)
 [Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.2...2.5.3)
 
