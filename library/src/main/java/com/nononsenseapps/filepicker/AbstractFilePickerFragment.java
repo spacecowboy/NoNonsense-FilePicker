@@ -33,10 +33,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import static com.nononsenseapps.filepicker.Utils.appendPath;
 import static com.nononsenseapps.filepicker.Utils.isValidFileName;
 
 /**
@@ -251,12 +253,12 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         }
 
         // Some invalid cases first
-        if (MODE_NEW_FILE == mode && !isValidFileName(getNewFileName())) {
+        /*if (MODE_NEW_FILE == mode && !isValidFileName(getNewFileName())) {
             mToast = Toast.makeText(getActivity(), R.string.nnf_need_valid_filename,
                     Toast.LENGTH_SHORT);
             mToast.show();
             return;
-        }
+        }*/
         if ((allowMultiple || mode == MODE_FILE) &&
                 (mCheckedItems.isEmpty() || getFirstCheckedItem() == null)) {
             if (mToast == null) {
@@ -269,10 +271,16 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
 
         // New file allows only a single file
         if (mode == MODE_NEW_FILE) {
-            mListener.onFilePicked(
-                    toUri(mCurrentPath).buildUpon()
-                            .appendPath(getNewFileName())
-                            .build());
+            final String filename = getNewFileName();
+            final Uri result;
+            if (filename.startsWith("/")) {
+                // Return absolute paths directly
+                result = toUri(getPath(filename));
+            } else {
+                // Append to current directory
+                result = toUri(getPath(appendPath(getFullPath(mCurrentPath), filename)));
+            }
+            mListener.onFilePicked(result);
         } else if (allowMultiple) {
             mListener.onFilesPicked(toUri(mCheckedItems));
         } else if (mode == MODE_FILE) {

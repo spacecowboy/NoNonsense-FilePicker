@@ -303,7 +303,7 @@ public class SelectNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/file.txt")));
+        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/../file.txt")));
     }
 
     @Test
@@ -352,7 +352,7 @@ public class SelectNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/file.txt")));
+        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/./file.txt")));
     }
 
     @Test
