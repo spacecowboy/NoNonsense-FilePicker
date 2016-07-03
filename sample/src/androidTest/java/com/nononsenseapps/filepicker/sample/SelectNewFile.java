@@ -159,4 +159,248 @@ public class SelectNewFile {
         editText.check(matches(withText("file-3.txt")));
     }
 
+    @Test
+    public void enterFileNameWithPathWhichExists() throws IOException {
+        ViewInteraction radioButton = onView(
+                allOf(withId(R.id.radioNewFile), withText("Select new file"),
+                        withParent(withId(R.id.radioGroup)),
+                        isDisplayed()));
+        radioButton.perform(click());
+
+        ViewInteraction checkBox = onView(
+                allOf(withId(R.id.checkAllowExistingFile),
+                        withText("Allow selection of existing (new) file"), isDisplayed()));
+        checkBox.perform(click());
+
+        ViewInteraction button = onView(
+                allOf(withId(R.id.button_sd), withText("Pick SD-card"), isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction recyclerView = onView(
+                allOf(withId(android.R.id.list), isDisplayed()));
+
+        // Refresh view (into dir, and out again)
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
+        // Click on test dir
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+
+        // Enter path in filename
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.nnf_text_filename),
+                        withParent(allOf(withId(R.id.nnf_newfile_button_container),
+                                withParent(withId(R.id.nnf_buttons_container)))),
+                        isDisplayed()));
+        // new file name
+        appCompatEditText.perform(replaceText("B-dir/file-3.txt"));
+
+        // Click ok
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withId(R.id.nnf_button_ok_newfile),
+                        withParent(allOf(withId(R.id.nnf_newfile_button_container),
+                                withParent(withId(R.id.nnf_buttons_container)))),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
+
+        // Should have returned
+        ViewInteraction textView = onView(withId(R.id.text));
+        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/B-dir/file-3.txt")));
+    }
+
+    @Test
+    public void enterFileNameWithPathWhichDoesNotExist() throws IOException {
+        ViewInteraction radioButton = onView(
+                allOf(withId(R.id.radioNewFile), withText("Select new file"),
+                        withParent(withId(R.id.radioGroup)),
+                        isDisplayed()));
+        radioButton.perform(click());
+
+        ViewInteraction checkBox = onView(
+                allOf(withId(R.id.checkAllowExistingFile),
+                        withText("Allow selection of existing (new) file"), isDisplayed()));
+        checkBox.perform(click());
+
+        ViewInteraction button = onView(
+                allOf(withId(R.id.button_sd), withText("Pick SD-card"), isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction recyclerView = onView(
+                allOf(withId(android.R.id.list), isDisplayed()));
+
+        // Refresh view (into dir, and out again)
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
+        // Click on test dir
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+
+        // Enter path in filename
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.nnf_text_filename),
+                        withParent(allOf(withId(R.id.nnf_newfile_button_container),
+                                withParent(withId(R.id.nnf_buttons_container)))),
+                        isDisplayed()));
+        // new file name
+        appCompatEditText.perform(replaceText("path/to/file"));
+
+        // Click ok
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withId(R.id.nnf_button_ok_newfile),
+                        withParent(allOf(withId(R.id.nnf_newfile_button_container),
+                                withParent(withId(R.id.nnf_buttons_container)))),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
+
+        // Should have returned
+        ViewInteraction textView = onView(withId(R.id.text));
+        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/path/to/file")));
+    }
+
+    @Test
+    public void enterFileNameWithDotDot() throws IOException {
+        ViewInteraction radioButton = onView(
+                allOf(withId(R.id.radioNewFile), withText("Select new file"),
+                        withParent(withId(R.id.radioGroup)),
+                        isDisplayed()));
+        radioButton.perform(click());
+
+        ViewInteraction checkBox = onView(
+                allOf(withId(R.id.checkAllowExistingFile),
+                        withText("Allow selection of existing (new) file"), isDisplayed()));
+        checkBox.perform(click());
+
+        ViewInteraction button = onView(
+                allOf(withId(R.id.button_sd), withText("Pick SD-card"), isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction recyclerView = onView(
+                allOf(withId(android.R.id.list), isDisplayed()));
+
+        // Refresh view (into dir, and out again)
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
+        // Click on test dir
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+
+        // Enter path in filename
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.nnf_text_filename),
+                        withParent(allOf(withId(R.id.nnf_newfile_button_container),
+                                withParent(withId(R.id.nnf_buttons_container)))),
+                        isDisplayed()));
+        // new file name
+        appCompatEditText.perform(replaceText("../file.txt"));
+
+        // Click ok
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withId(R.id.nnf_button_ok_newfile),
+                        withParent(allOf(withId(R.id.nnf_newfile_button_container),
+                                withParent(withId(R.id.nnf_buttons_container)))),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
+
+        // Should have returned
+        ViewInteraction textView = onView(withId(R.id.text));
+        textView.check(matches(withText("file:///storage/emulated/0/file.txt")));
+    }
+
+    @Test
+    public void enterFileNameWithDot() throws IOException {
+        ViewInteraction radioButton = onView(
+                allOf(withId(R.id.radioNewFile), withText("Select new file"),
+                        withParent(withId(R.id.radioGroup)),
+                        isDisplayed()));
+        radioButton.perform(click());
+
+        ViewInteraction checkBox = onView(
+                allOf(withId(R.id.checkAllowExistingFile),
+                        withText("Allow selection of existing (new) file"), isDisplayed()));
+        checkBox.perform(click());
+
+        ViewInteraction button = onView(
+                allOf(withId(R.id.button_sd), withText("Pick SD-card"), isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction recyclerView = onView(
+                allOf(withId(android.R.id.list), isDisplayed()));
+
+        // Refresh view (into dir, and out again)
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
+        // Click on test dir
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+
+        // Enter path in filename
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.nnf_text_filename),
+                        withParent(allOf(withId(R.id.nnf_newfile_button_container),
+                                withParent(withId(R.id.nnf_buttons_container)))),
+                        isDisplayed()));
+        // new file name
+        appCompatEditText.perform(replaceText("./file.txt"));
+
+        // Click ok
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withId(R.id.nnf_button_ok_newfile),
+                        withParent(allOf(withId(R.id.nnf_newfile_button_container),
+                                withParent(withId(R.id.nnf_buttons_container)))),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
+
+        // Should have returned
+        ViewInteraction textView = onView(withId(R.id.text));
+        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/file.txt")));
+    }
+
+    @Test
+    public void enterFileNameWithRoot() throws IOException {
+        ViewInteraction radioButton = onView(
+                allOf(withId(R.id.radioNewFile), withText("Select new file"),
+                        withParent(withId(R.id.radioGroup)),
+                        isDisplayed()));
+        radioButton.perform(click());
+
+        ViewInteraction checkBox = onView(
+                allOf(withId(R.id.checkAllowExistingFile),
+                        withText("Allow selection of existing (new) file"), isDisplayed()));
+        checkBox.perform(click());
+
+        ViewInteraction button = onView(
+                allOf(withId(R.id.button_sd), withText("Pick SD-card"), isDisplayed()));
+        button.perform(click());
+
+        ViewInteraction recyclerView = onView(
+                allOf(withId(android.R.id.list), isDisplayed()));
+
+        // Refresh view (into dir, and out again)
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+        recyclerView.perform(actionOnItemAtPosition(0, click()));
+
+        // Click on test dir
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
+
+        // Enter path in filename
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.nnf_text_filename),
+                        withParent(allOf(withId(R.id.nnf_newfile_button_container),
+                                withParent(withId(R.id.nnf_buttons_container)))),
+                        isDisplayed()));
+        // new file name
+        appCompatEditText.perform(replaceText("/file.txt"));
+
+        // Click ok
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withId(R.id.nnf_button_ok_newfile),
+                        withParent(allOf(withId(R.id.nnf_newfile_button_container),
+                                withParent(withId(R.id.nnf_buttons_container)))),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
+
+        // Should have returned
+        ViewInteraction textView = onView(withId(R.id.text));
+        textView.check(matches(withText("file:///file.txt")));
+    }
 }
