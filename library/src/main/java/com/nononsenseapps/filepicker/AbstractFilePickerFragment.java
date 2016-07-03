@@ -690,6 +690,21 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     }
 
     /**
+     * Cab be used by the list to determine whether a file should be displayed or not.
+     * Default behavior is to always display folders. If files can be selected,
+     * then files are also displayed. In case a new file is supposed to be selected,
+     * the {@link #allowExistingFile} determines if existing files are visible
+     *
+     * @param file either a directory or file.
+     * @return True if item should be visible in the picker, false otherwise
+     */
+    protected boolean isItemVisible(final T file) {
+        return (isDir(file) ||
+                (mode == MODE_FILE || mode == MODE_FILE_AND_DIR) ||
+                (mode == MODE_NEW_FILE && allowExistingFile));
+    }
+
+    /**
      * Browses to the designated directory. It is up to the caller verify that the argument is
      * in fact a directory. If another directory is in the process of being loaded, this method
      * will not start another load.

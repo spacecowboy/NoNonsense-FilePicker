@@ -324,8 +324,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
         if (!showHiddenItems && file.isHidden()) {
             return false;
         }
-        return (isDir(file) ||
-                (mode != MODE_DIR));
+        return super.isItemVisible(file);
     }
 
     /**
