@@ -31,6 +31,11 @@
             </intent-filter>
         </activity>
 
+        <!-- Sample test app -->
+        <activity
+            android:name="com.nononsenseapps.filepicker.sample.NoNonsenseFilePickerTest"
+            android:label="@string/title_activity_no_nonsense_file_picker"/>
+
         <!-- SD-card pickers -->
         <activity
             android:name="com.nononsenseapps.filepicker.FilePickerActivity"

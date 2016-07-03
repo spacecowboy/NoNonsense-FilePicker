@@ -48,6 +48,16 @@
                         android:text="Select file" />
 
                     <RadioButton
+                        android:id="@+id/radioNewFile"
+                        style="?android:textAppearanceMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:fontFamily="light"
+                        android:gravity="center_vertical"
+                        android:text="Select new file" />
+
+                    <RadioButton
                         android:id="@+id/radioDir"
                         style="?android:textAppearanceMedium"
                         android:layout_width="match_parent"
@@ -66,6 +76,7 @@
                         android:fontFamily="light"
                         android:gravity="center_vertical"
                         android:text="Select any" />
+
                 </RadioGroup>
 
                 <CheckBox
@@ -86,7 +97,7 @@
                     android:layout_gravity="left"
                     android:fontFamily="light"
                     android:gravity="center_vertical"
-                    android:text="Don't show OK button in case of single item" />
+                    android:text="Single selection returns immediately" />
 
                 <CheckBox
                     android:id="@+id/checkAllowCreateDir"
@@ -97,6 +108,17 @@
                     android:fontFamily="light"
                     android:gravity="center_vertical"
                     android:text="Allow creation of directories" />
+
+                <CheckBox
+                    android:id="@+id/checkAllowExistingFile"
+                    style="?android:textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="left"
+                    android:fontFamily="light"
+                    android:gravity="center_vertical"
+                    android:checked="true"
+                    android:text="Allow selection of existing (new) file" />
 
                 <CheckBox
                     android:id="@+id/checkLightTheme"

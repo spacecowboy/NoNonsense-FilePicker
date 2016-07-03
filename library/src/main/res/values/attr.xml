@@ -11,6 +11,8 @@
     <attr name="nnf_toolbarTheme" format="reference"/>
     <!-- Color to apply to separator for OK/Cancel buttons -->
     <attr name="nnf_separator_color" format="color"/>
+    <!-- Color to apply to the save icon -->
+    <attr name="nnf_save_icon_color" format="color"/>
     <!-- Color to apply to the directory icons in list -->
     <attr name="nnf_dir_icon_color" format="color"/>
 </resources>

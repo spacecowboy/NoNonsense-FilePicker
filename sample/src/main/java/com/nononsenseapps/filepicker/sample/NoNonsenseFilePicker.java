@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
+import com.nononsenseapps.filepicker.AbstractFilePickerActivity;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity;
@@ -42,16 +43,17 @@ import java.util.ArrayList;
 
 public class NoNonsenseFilePicker extends Activity {
 
-    private static final int CODE_SD = 0;
-    private static final int CODE_DB = 1;
-    private static final int CODE_FTP = 2;
-    private TextView textView;
-    private DropboxAPI<AndroidAuthSession> mDBApi = null;
-    private CheckBox checkAllowCreateDir;
-    private CheckBox checkAllowMultiple;
-    private CheckBox checkSingleClick;
-    private CheckBox checkLightTheme;
-    private RadioGroup radioGroup;
+    static final int CODE_SD = 0;
+    static final int CODE_DB = 1;
+    static final int CODE_FTP = 2;
+    TextView textView;
+    DropboxAPI<AndroidAuthSession> mDBApi = null;
+    CheckBox checkAllowCreateDir;
+    CheckBox checkAllowMultiple;
+    CheckBox checkSingleClick;
+    CheckBox checkLightTheme;
+    RadioGroup radioGroup;
+    CheckBox checkAllowExistingFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,8 @@ public class NoNonsenseFilePicker extends Activity {
                 (CheckBox) findViewById(R.id.checkAllowCreateDir);
         checkAllowMultiple =
                 (CheckBox) findViewById(R.id.checkAllowMultiple);
+        checkAllowExistingFile =
+                (CheckBox) findViewById(R.id.checkAllowExistingFile);
         checkSingleClick =
                 (CheckBox) findViewById(R.id.checkSingleClick);
         checkLightTheme =
@@ -166,13 +170,20 @@ public class NoNonsenseFilePicker extends Activity {
                 checkSingleClick.isChecked());
         i.putExtra(SUPickerActivity.EXTRA_ALLOW_CREATE_DIR,
                 checkAllowCreateDir.isChecked());
+        i.putExtra(FilePickerActivity.EXTRA_ALLOW_EXISTING_FILE,
+                checkAllowExistingFile.isChecked());
 
-        // What mode is selected (makes no sense to restrict to folders here)
+        // What mode is selected
         final int mode;
         switch (radioGroup.getCheckedRadioButtonId()) {
+            case R.id.radioDir:
+                mode = AbstractFilePickerFragment.MODE_DIR;
+                break;
             case R.id.radioFilesAndDirs:
-                mode =
-                        AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                mode = AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+                break;
+            case R.id.radioNewFile:
+                mode = AbstractFilePickerFragment.MODE_NEW_FILE;
                 break;
             case R.id.radioFile:
             default:
@@ -181,6 +192,9 @@ public class NoNonsenseFilePicker extends Activity {
         }
 
         i.putExtra(FilePickerActivity.EXTRA_MODE, mode);
+
+        // This line is solely so that test classes can override intents given through UI
+        i.putExtras(getIntent());
 
         startActivityForResult(i, code);
     }

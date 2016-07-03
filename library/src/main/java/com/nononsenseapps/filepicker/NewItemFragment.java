@@ -113,12 +113,6 @@ public abstract class NewItemFragment extends DialogFragment {
     protected abstract boolean validateName(final String itemName);
 
     public interface OnNewFolderListener {
-        /**
-         * Name is validated to be non-null, non-empty and not containing any
-         * slashes.
-         *
-         * @param name The name of the folder the user wishes to create.
-         */
         void onNewFolder(@NonNull final String name);
     }
 }

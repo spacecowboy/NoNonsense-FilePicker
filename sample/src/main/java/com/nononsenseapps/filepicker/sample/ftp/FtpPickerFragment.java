@@ -53,6 +53,7 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
     public static AbstractFilePickerFragment<FtpFile> newInstance(String startPath, int mode,
                                                                   boolean allowMultiple,
                                                                   boolean allowCreateDir,
+                                                                  boolean allowExistingFile,
                                                                   boolean singleClick,
                                                                   String server, int port,
                                                                   String username,
@@ -60,7 +61,8 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
                                                                   String rootDir) {
         FtpPickerFragment fragment = new FtpPickerFragment();
         // Add arguments
-        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir, singleClick);
+        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir,
+                allowExistingFile, singleClick);
         Bundle args = fragment.getArguments();
 
         // Add ftp related stuff
@@ -135,11 +137,7 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
             // Already at root, we can't go higher
             return from;
         } else if (from.getParentFile() != null) {
-            if (from.isFile()) {
-                return getParent(from.getParentFile());
-            } else {
-                return from.getParentFile();
-            }
+            return from.getParentFile();
         } else {
             return from;
         }
