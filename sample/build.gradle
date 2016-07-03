@@ -28,7 +28,7 @@ android {
         targetSdkVersion 23
         versionCode gitCommitCount
         versionName gitTag
-        //archivesBaseName = "nononsensefilepicker-sample-${gitTag}".toString()
+        archivesBaseName = "nononsensefilepicker-sample-${gitTag}".toString()
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
