@@ -5,6 +5,7 @@
 <a href="https://travis-ci.org/spacecowboy/NoNonsense-FilePicker">
 <img src="https://travis-ci.org/spacecowboy/NoNonsense-FilePicker.svg?branch=master">
 </a>
+<a href='https://dependencyci.com/github/spacecowboy/NoNonsense-FilePicker'><img src='https://dependencyci.com/github/spacecowboy/NoNonsense-FilePicker/badge' alt='Dependency Status'/></a>
 <a href='https://bintray.com/spacecowboy/maven/com.nononsenseapps%3Afilepicker/_latestVersion'><img src='https://api.bintray.com/packages/spacecowboy/maven/com.nononsenseapps%3Afilepicker/images/download.svg'></a>
 </p>
 
