@@ -2,6 +2,7 @@
 date = "2016-07-16T16:42:44+02:00"
 title = "Readme"
 type = "index"
+aliases = ["/readme/"]
 +++
 
 <p>

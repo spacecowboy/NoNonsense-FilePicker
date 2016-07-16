@@ -1,4 +1,4 @@
-baseurl = "http://spacecowboy.github.io/NoNonsense-FilePicker/"
+baseurl = "http://spacecowboy.github.io/nononsense-filepicker/"
 languageCode = "en-us"
 title = "NoNonsense FilePicker"
 theme = "hugo-material-docs"
@@ -50,12 +50,12 @@ PygmentsOptions = ""
 
 [[menu.main]]
 	name   = "Readme"
-	url    = "/"
+	url    = "readme/"
 	weight = 0
 
 [[menu.main]]
 	name   = "Changelog"
-	url    = "/changelog"
+	url    = "changelog/"
 	weight = 10
 
 [[menu.main]]
@@ -65,15 +65,7 @@ PygmentsOptions = ""
 
 [[menu.main]]
 	name   = "Examples"
-	url    = "examples/"
 	weight = 30
-
-
-#[[menu.main]]
-#	name   = "Roadmap"
-#	url    = "roadmap/"
-#	weight = 30
-
 
 [blackfriday]
 	smartypants	= true
