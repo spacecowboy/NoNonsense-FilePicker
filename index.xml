@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>NoNonsense FilePicker</title>
-    <link>http://spacecowboy.github.io/nononsense-filepicker/</link>
+    <link>http://spacecowboy.github.io/NoNonsense-FilePicker/</link>
     <description>Recent content on NoNonsense FilePicker</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 16 Jul 2016 17:36:40 +0200</lastBuildDate>
-    <atom:link href="http://spacecowboy.github.io/nononsense-filepicker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://spacecowboy.github.io/NoNonsense-FilePicker/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Standalone fragment</title>
-      <link>http://spacecowboy.github.io/nononsense-filepicker/example/standalone_fragment/</link>
+      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/example/standalone_fragment/</link>
       <pubDate>Sat, 16 Jul 2016 17:36:40 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/nononsense-filepicker/example/standalone_fragment/</guid>
+      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/example/standalone_fragment/</guid>
       <description>&lt;p&gt;To use the fragment together with an existing toolbar/action bar, a few things should be overridden.&lt;/p&gt;
 
 &lt;p&gt;Here&amp;rsquo;s a minimal example where the toolbar is intercepted from being set as the main toolbar. The menu creation is also intercepted and populates the toolbar directly.&lt;/p&gt;
@@ -52,10 +52,10 @@
     
     <item>
       <title>Override selection behavior</title>
-      <link>http://spacecowboy.github.io/nononsense-filepicker/example/override_selection_behavior/</link>
+      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/example/override_selection_behavior/</link>
       <pubDate>Sat, 16 Jul 2016 17:35:01 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/nononsense-filepicker/example/override_selection_behavior/</guid>
+      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/example/override_selection_behavior/</guid>
       <description>
 
 &lt;p&gt;New in &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/releases/tag/v2.4.0&#34;&gt;2.4.0&lt;/a&gt; are overridable methods to handle UI-interactions. The following methods are now available for augmentation:&lt;/p&gt;
@@ -104,10 +104,10 @@
     
     <item>
       <title>Override the back button</title>
-      <link>http://spacecowboy.github.io/nononsense-filepicker/example/override_back_button/</link>
+      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/example/override_back_button/</link>
       <pubDate>Sat, 16 Jul 2016 17:33:43 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/nononsense-filepicker/example/override_back_button/</guid>
+      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/example/override_back_button/</guid>
       <description>
 
 &lt;p&gt;In case you want the back button navigate the hierarchy instead of instantly exiting the activity, this
@@ -190,10 +190,10 @@ is one approach you might take.&lt;/p&gt;
     
     <item>
       <title>Filter based on file extension</title>
-      <link>http://spacecowboy.github.io/nononsense-filepicker/example/filter_file_extension/</link>
+      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/example/filter_file_extension/</link>
       <pubDate>Sat, 16 Jul 2016 17:32:07 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/nononsense-filepicker/example/filter_file_extension/</guid>
+      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/example/filter_file_extension/</guid>
       <description>
 
 &lt;p&gt;By default, the SD-card picker will display all files in alphabetical order. But let&amp;rsquo;s say that your app can only handle a specific type of file, like &lt;code&gt;.txt&lt;/code&gt;-files. Here&amp;rsquo;s a minimal example which will only display such files.&lt;/p&gt;
@@ -233,8 +233,8 @@ is one approach you might take.&lt;/p&gt;
 
 &lt;h3 id=&#34;before-and-after&#34;&gt;Before and After&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://spacecowboy.github.io/nononsense-filepicker/screenshots/filter_before.png&#34; width=&#34;30%&#34; alt=&#34;Before&#34;/&gt;
-&lt;img src=&#34;http://spacecowboy.github.io/nononsense-filepicker/screenshots/filter_after.png&#34; width=&#34;30%&#34; alt=&#34;After&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://spacecowboy.github.io/NoNonsense-FilePicker/screenshots/filter_before.png&#34; width=&#34;30%&#34; alt=&#34;Before&#34;/&gt;
+&lt;img src=&#34;http://spacecowboy.github.io/NoNonsense-FilePicker/screenshots/filter_after.png&#34; width=&#34;30%&#34; alt=&#34;After&#34;/&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;full-fragment-code&#34;&gt;Full Fragment code&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;com.nononsenseapps.filepicker.FilePickerFragment&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
@@ -277,15 +277,15 @@ is one approach you might take.&lt;/p&gt;
     
     <item>
       <title>Custom item layout</title>
-      <link>http://spacecowboy.github.io/nononsense-filepicker/example/custom_item_layout/</link>
+      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/example/custom_item_layout/</link>
       <pubDate>Sat, 16 Jul 2016 17:21:28 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/nononsense-filepicker/example/custom_item_layout/</guid>
+      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/example/custom_item_layout/</guid>
       <description>
 
 &lt;p&gt;Say you want to browse some files which have really long names. By default, filenames will be cut if they exceed one line in width like &lt;code&gt;ThisIsAReallyLongFi...&lt;/code&gt;. What if we really wanted it show like in this image?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://spacecowboy.github.io/nononsense-filepicker/screenshots/itemlayout_longfilename.png&#34; alt=&#34;Example of a long filename&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://spacecowboy.github.io/NoNonsense-FilePicker/screenshots/itemlayout_longfilename.png&#34; alt=&#34;Example of a long filename&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The behavior of the text is defined in the listitem layouts:
 &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/library/src/main/res/layout/nnf_filepicker_listitem_checkable.xml&#34;&gt;nnf_filepicker_listitem_checkable&lt;/a&gt;
@@ -444,10 +444,10 @@ and
     
     <item>
       <title>Customizing the filepicker</title>
-      <link>http://spacecowboy.github.io/nononsense-filepicker/example/</link>
+      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/example/</link>
       <pubDate>Sat, 16 Jul 2016 17:12:51 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/nononsense-filepicker/example/</guid>
+      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/example/</guid>
       <description>
 
 &lt;p&gt;Extend &lt;code&gt;AbstractFilePickerActivity&lt;/code&gt; and implement &lt;code&gt;getFragment&lt;/code&gt;. It
@@ -496,10 +496,10 @@ activity which actually has to do some extra work):&lt;/p&gt;
     
     <item>
       <title>Change the sort order</title>
-      <link>http://spacecowboy.github.io/nononsense-filepicker/example/sortorder/</link>
+      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/example/sortorder/</link>
       <pubDate>Sat, 16 Jul 2016 17:10:46 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/nononsense-filepicker/example/sortorder/</guid>
+      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/example/sortorder/</guid>
       <description>
 
 &lt;p&gt;By default, the SD-card picker will display all files in alphabetical order. But what if you want a different sort-order?&lt;/p&gt;
@@ -534,8 +534,8 @@ activity which actually has to do some extra work):&lt;/p&gt;
 
 &lt;h3 id=&#34;before-and-after&#34;&gt;Before and After&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://spacecowboy.github.io/nononsense-filepicker/screenshots/sorting_before.png&#34; width=&#34;30%&#34; alt=&#34;Before&#34;/&gt;
-&lt;img src=&#34;http://spacecowboy.github.io/nononsense-filepicker/screenshots/sorting_after.png&#34; width=&#34;30%&#34; alt=&#34;After&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://spacecowboy.github.io/NoNonsense-FilePicker/screenshots/sorting_before.png&#34; width=&#34;30%&#34; alt=&#34;Before&#34;/&gt;
+&lt;img src=&#34;http://spacecowboy.github.io/NoNonsense-FilePicker/screenshots/sorting_after.png&#34; width=&#34;30%&#34; alt=&#34;After&#34;/&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;full-fragment-code&#34;&gt;Full Fragment code&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;com.nononsenseapps.filepicker.FilePickerFragment&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
@@ -600,10 +600,10 @@ activity which actually has to do some extra work):&lt;/p&gt;
     
     <item>
       <title>ChangeLog</title>
-      <link>http://spacecowboy.github.io/nononsense-filepicker/changelog/</link>
+      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/changelog/</link>
       <pubDate>Sat, 16 Jul 2016 17:06:45 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/nononsense-filepicker/changelog/</guid>
+      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/changelog/</guid>
       <description>
 
 &lt;h2 id=&#34;3-0-0-https-github-com-spacecowboy-nononsense-filepicker-tree-3-0-0-2016-07-03&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/3.0.0&#34;&gt;3.0.0&lt;/a&gt; (2016-07-03)&lt;/h2&gt;
@@ -973,16 +973,16 @@ activity which actually has to do some extra work):&lt;/p&gt;
     
     <item>
       <title>Readme</title>
-      <link>http://spacecowboy.github.io/nononsense-filepicker/</link>
+      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/</link>
       <pubDate>Sat, 16 Jul 2016 16:42:44 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/nononsense-filepicker/</guid>
+      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/</guid>
       <description>
 
 &lt;p&gt;
-&lt;img src=&#34;http://spacecowboy.github.io/nononsense-filepicker/screenshots/Nexus6-picker-dark.png&#34; width=&#34;25%&#34;/&gt;
+&lt;img src=&#34;http://spacecowboy.github.io/NoNonsense-FilePicker/screenshots/Nexus6-picker-dark.png&#34; width=&#34;25%&#34;/&gt;
 
-&lt;img src=&#34;http://spacecowboy.github.io/nononsense-filepicker/screenshots/Nexus10-picker-light.png&#34; width=&#34;60%&#34;/&gt;
+&lt;img src=&#34;http://spacecowboy.github.io/NoNonsense-FilePicker/screenshots/Nexus10-picker-light.png&#34; width=&#34;60%&#34;/&gt;
 &lt;/p&gt;
 
 &lt;ul&gt;
@@ -1188,10 +1188,10 @@ activity which actually has to do some extra work):&lt;/p&gt;
     
     <item>
       <title>License</title>
-      <link>http://spacecowboy.github.io/nononsense-filepicker/license/</link>
+      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/license/</link>
       <pubDate>Sat, 16 Jul 2016 16:35:07 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/nononsense-filepicker/license/</guid>
+      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/license/</guid>
       <description>&lt;p&gt;Copyright &amp;copy; 2016 Jonas Kalderstam &lt;a href=&#34;mailto:jonas@cowboyprogrammer.org&#34;&gt;jonas@cowboyprogrammer.org&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;Mozilla Public License Version 2.0
 ==================================
