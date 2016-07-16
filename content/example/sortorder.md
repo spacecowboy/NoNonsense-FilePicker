@@ -6,6 +6,7 @@ title = "Change the sort order"
   [menu.main]
     parent = "Examples"
     identifier = "sortorder"
+    url = "example/sortorder/"
     weight = 0
 +++
 

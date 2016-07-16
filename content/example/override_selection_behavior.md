@@ -5,6 +5,7 @@ title = "Override selection behavior"
 [menu]
   [menu.main]
     identifier = "override_selection_behavior"
+    url = "example/override_selection_behavior/"
     parent = "Examples"
     weight = 99
 

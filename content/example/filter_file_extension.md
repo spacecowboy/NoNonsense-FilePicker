@@ -5,6 +5,7 @@ title = "Filter based on file extension"
 [menu]
   [menu.main]
     identifier = "filter_file_extension"
+    url = "example/filter_file_extension/"
     parent = "Examples"
     weight = 10
 

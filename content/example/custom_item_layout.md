@@ -4,7 +4,8 @@ title = "Custom item layout"
 
 [menu]
   [menu.main]
-    identifier = "customitemlayout"
+    identifier = "custom_item_layout"
+    url = "example/custom_item_layout/"
     parent = "Examples"
     weight = 20
 

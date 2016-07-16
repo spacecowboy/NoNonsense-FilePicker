@@ -5,6 +5,7 @@ title = "Standalone fragment"
 [menu]
   [menu.main]
     identifier = "standalone_fragment"
+    url = "example/standalone_fragment/"
     parent = "Examples"
     weight = 99
 

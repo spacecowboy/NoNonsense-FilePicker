@@ -5,6 +5,7 @@ title = "Override the back button"
 [menu]
   [menu.main]
     identifier = "override_back_button"
+    url = "example/override_back_button/"
     parent = "Examples"
     weight = 70
 

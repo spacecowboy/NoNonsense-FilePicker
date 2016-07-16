@@ -7,3 +7,4 @@ build
 .idea
 *.zip
 local.properties
+public
