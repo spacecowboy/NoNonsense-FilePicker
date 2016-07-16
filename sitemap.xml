@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/</loc>
+    <lastmod>2016-07-16T17:36:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/example/standalone_fragment/</loc>
+    <lastmod>2016-07-16T17:36:40+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/example/override_selection_behavior/</loc>
+    <lastmod>2016-07-16T17:35:01+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/example/override_back_button/</loc>
+    <lastmod>2016-07-16T17:33:43+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/example/filter_file_extension/</loc>
+    <lastmod>2016-07-16T17:32:07+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/example/custom_item_layout/</loc>
+    <lastmod>2016-07-16T17:21:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/example/</loc>
+    <lastmod>2016-07-16T17:12:51+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/example/sortorder/</loc>
+    <lastmod>2016-07-16T17:10:46+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/changelog/</loc>
+    <lastmod>2016-07-16T17:06:45+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/</loc>
+    <lastmod>2016-07-16T16:42:44+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://replace-this-with-your-hugo-site.com/license/</loc>
+    <lastmod>2016-07-16T16:35:07+02:00</lastmod>
+  </url>
+  
+</urlset>

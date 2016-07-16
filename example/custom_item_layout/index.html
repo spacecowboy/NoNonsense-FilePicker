@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <title>Custom item layout - NoNonsense FilePicker</title>
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    
+    <meta name="description" content="An extensible and flexible file-picker for Android.">
+    
+    <link rel="canonical" href="http://replace-this-with-your-hugo-site.com/example/custom_item_layout/">
+    
+    <meta name="author" content="SpaceCowboy">
+    
+
+    <meta property="og:url" content="http://replace-this-with-your-hugo-site.com/example/custom_item_layout/">
+    <meta property="og:title" content="NoNonsense FilePicker">
+    
+    <meta name="apple-mobile-web-app-title" content="NoNonsense FilePicker">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="http://replace-this-with-your-hugo-site.com/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="http://replace-this-with-your-hugo-site.com/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('http://replace-this-with-your-hugo-site.com/fonts/icon.eot?52m981');
+        src: url('http://replace-this-with-your-hugo-site.com/fonts/icon.eot?#iefix52m981')
+               format('embedded-opentype'),
+             url('http://replace-this-with-your-hugo-site.com/fonts/icon.woff?52m981')
+               format('woff'),
+             url('http://replace-this-with-your-hugo-site.com/fonts/icon.ttf?52m981')
+               format('truetype'),
+             url('http://replace-this-with-your-hugo-site.com/fonts/icon.svg?52m981#icon')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/stylesheets/application.css">
+    <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/stylesheets/temporary.css">
+    <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/stylesheets/palettes.css">
+    <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Roboto%2bMono">
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="http://replace-this-with-your-hugo-site.com/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-red palette-accent-light green">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Custom item layout
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/spacecowboy" title="@spacecowboy on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/spacecowboy/NoNonsense-FilePicker" class="project">
+    <div class="banner">
+      
+      <div class="name">
+        <strong>NoNonsense FilePicker </strong>
+        
+          <br>
+          spacecowboy/NoNonsense-FilePicker
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Readme" href="http://replace-this-with-your-hugo-site.com/">
+	
+	Readme
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Changelog" href="http://replace-this-with-your-hugo-site.com/changelog">
+	
+	Changelog
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License" href="http://replace-this-with-your-hugo-site.com/license/">
+	
+	License
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Examples</span>
+    <ul>
+      
+        
+        
+
+
+
+<a  title="Change the sort order" href="http://replace-this-with-your-hugo-site.com/example/sortorder/">
+	
+	Change the sort order
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Filter based on file extension" href="http://replace-this-with-your-hugo-site.com/example/filter_file_extension/">
+	
+	Filter based on file extension
+</a>
+
+
+      
+        
+        
+
+
+
+<a class="current" title="Custom item layout" href="http://replace-this-with-your-hugo-site.com/example/custom_item_layout/">
+	
+	Custom item layout
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+      
+        
+        
+
+
+
+<a  title="Override the back button" href="http://replace-this-with-your-hugo-site.com/example/override_back_button/">
+	
+	Override the back button
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Override selection behavior" href="http://replace-this-with-your-hugo-site.com/example/override_selection_behavior/">
+	
+	Override selection behavior
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Standalone fragment" href="http://replace-this-with-your-hugo-site.com/example/standalone_fragment/">
+	
+	Standalone fragment
+</a>
+
+
+      
+    </ul>
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+
+          
+          <li>
+            <a href="https://github.com/spacecowboy" target="_blank" title="@spacecowboy on GitHub">
+              @spacecowboy on GitHub
+            </a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Custom item layout </h1>
+
+			
+
+<p>Say you want to browse some files which have really long names. By default, filenames will be cut if they exceed one line in width like <code>ThisIsAReallyLongFi...</code>. What if we really wanted it show like in this image?</p>
+
+<p><img src="http://replace-this-with-your-hugo-site.com/screenshots/itemlayout_longfilename.png" alt="Example of a long filename" /></p>
+
+<p>The behavior of the text is defined in the listitem layouts:
+<a href="https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/library/src/main/res/layout/nnf_filepicker_listitem_checkable.xml">nnf_filepicker_listitem_checkable</a>
+and
+<a href="https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/library/src/main/res/layout/nnf_filepicker_listitem_dir.xml">nnf_filepicker_listitem_dir</a>.</p>
+
+<p>There are two kinds of layouts, one with a checkbox to allow selection, and one without a checkbox. The second one is also used for the special header item <code>..</code> though you could of course have a special layout for that if you wanted.</p>
+
+<h3 id="layouts">Layouts</h3>
+
+<p>Let&rsquo;s create some new layouts which will support longer filenames as follows:</p>
+
+<p><strong>longer_listitem_checkable.xml</strong></p>
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><span style="color: #007020">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span style="color: #062873; font-weight: bold">&lt;LinearLayout</span> <span style="color: #4070a0">xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span style="color: #4070a0">xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span>
+    <span style="color: #4070a0">android:layout_width=&quot;match_parent&quot;</span>
+    <span style="color: #4070a0">android:layout_height=&quot;wrap_content&quot;</span>
+    <span style="color: #4070a0">android:background=&quot;?android:selectableItemBackground&quot;</span>
+    <span style="color: #4070a0">android:minHeight=&quot;?android:listPreferredItemHeight&quot;</span>
+    <span style="color: #4070a0">android:orientation=&quot;horizontal&quot;</span><span style="color: #062873; font-weight: bold">&gt;</span>
+
+
+    <span style="color: #60a0b0; font-style: italic">&lt;!--suppress AndroidDomInspection --&gt;</span>
+    <span style="color: #062873; font-weight: bold">&lt;ImageView</span>
+        <span style="color: #4070a0">android:id=&quot;@+id/item_icon&quot;</span>
+        <span style="color: #4070a0">android:layout_width=&quot;?android:listPreferredItemHeight&quot;</span>
+        <span style="color: #4070a0">android:layout_height=&quot;?android:listPreferredItemHeight&quot;</span>
+        <span style="color: #4070a0">android:adjustViewBounds=&quot;true&quot;</span>
+        <span style="color: #4070a0">android:scaleType=&quot;fitCenter&quot;</span>
+        <span style="color: #4070a0">android:src=&quot;@drawable/nnf_ic_file_folder&quot;</span>
+        <span style="color: #4070a0">android:tint=&quot;?attr/colorAccent&quot;</span>
+        <span style="color: #4070a0">android:visibility=&quot;visible&quot;</span>
+        <span style="color: #4070a0">tools:ignore=&quot;ContentDescription&quot;</span> <span style="color: #062873; font-weight: bold">/&gt;</span>
+
+    <span style="color: #062873; font-weight: bold">&lt;TextView</span>
+        <span style="color: #4070a0">android:id=&quot;@android:id/text1&quot;</span>
+        <span style="color: #4070a0">style=&quot;?android:textAppearanceLarge&quot;</span>
+        <span style="color: #4070a0">android:layout_width=&quot;0dp&quot;</span>
+        <span style="color: #4070a0">android:layout_height=&quot;wrap_content&quot;</span>
+        <span style="color: #4070a0">android:minHeight=&quot;?android:listPreferredItemHeight&quot;</span>
+        <span style="color: #4070a0">android:layout_weight=&quot;1&quot;</span>
+        <span style="color: #4070a0">android:ellipsize=&quot;end&quot;</span>
+        <span style="color: #4070a0">android:gravity=&quot;center_vertical&quot;</span>
+        <span style="color: #4070a0">android:maxLines=&quot;4&quot;</span>
+        <span style="color: #4070a0">android:padding=&quot;8dp&quot;</span><span style="color: #062873; font-weight: bold">/&gt;</span>
+
+    <span style="color: #062873; font-weight: bold">&lt;CheckBox</span>
+        <span style="color: #4070a0">android:id=&quot;@+id/checkbox&quot;</span>
+        <span style="color: #4070a0">android:layout_width=&quot;wrap_content&quot;</span>
+        <span style="color: #4070a0">android:layout_height=&quot;match_parent&quot;</span>
+        <span style="color: #4070a0">android:paddingEnd=&quot;8dp&quot;</span>
+        <span style="color: #4070a0">android:paddingRight=&quot;8dp&quot;</span>
+        <span style="color: #4070a0">tools:ignore=&quot;RtlSymmetry&quot;</span> <span style="color: #062873; font-weight: bold">/&gt;</span>
+
+<span style="color: #062873; font-weight: bold">&lt;/LinearLayout&gt;</span>
+</pre></div>
+
+<p><strong>longer_listitem_dir.xml</strong></p>
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><span style="color: #007020">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span style="color: #062873; font-weight: bold">&lt;LinearLayout</span> <span style="color: #4070a0">xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span>
+    <span style="color: #4070a0">xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span>
+    <span style="color: #4070a0">android:layout_width=&quot;match_parent&quot;</span>
+    <span style="color: #4070a0">android:layout_height=&quot;wrap_content&quot;</span>
+    <span style="color: #4070a0">android:background=&quot;?android:selectableItemBackground&quot;</span>
+    <span style="color: #4070a0">android:minHeight=&quot;?android:listPreferredItemHeight&quot;</span>
+    <span style="color: #4070a0">android:orientation=&quot;horizontal&quot;</span>
+    <span style="color: #062873; font-weight: bold">&gt;</span>
+
+    <span style="color: #60a0b0; font-style: italic">&lt;!--suppress AndroidDomInspection --&gt;</span>
+    <span style="color: #062873; font-weight: bold">&lt;ImageView</span>
+        <span style="color: #4070a0">android:id=&quot;@+id/item_icon&quot;</span>
+        <span style="color: #4070a0">android:layout_width=&quot;?android:listPreferredItemHeight&quot;</span>
+        <span style="color: #4070a0">android:layout_height=&quot;?android:listPreferredItemHeight&quot;</span>
+        <span style="color: #4070a0">android:adjustViewBounds=&quot;true&quot;</span>
+        <span style="color: #4070a0">android:scaleType=&quot;center&quot;</span>
+        <span style="color: #4070a0">android:src=&quot;@drawable/nnf_ic_file_folder&quot;</span>
+        <span style="color: #4070a0">android:tint=&quot;?attr/colorAccent&quot;</span>
+        <span style="color: #4070a0">android:visibility=&quot;visible&quot;</span>
+        <span style="color: #4070a0">tools:ignore=&quot;ContentDescription&quot;</span> <span style="color: #062873; font-weight: bold">/&gt;</span>
+
+    <span style="color: #062873; font-weight: bold">&lt;TextView</span>
+        <span style="color: #4070a0">android:id=&quot;@android:id/text1&quot;</span>
+        <span style="color: #4070a0">style=&quot;?android:textAppearanceLarge&quot;</span>
+        <span style="color: #4070a0">android:layout_width=&quot;0dp&quot;</span>
+        <span style="color: #4070a0">android:layout_height=&quot;wrap_content&quot;</span>
+        <span style="color: #4070a0">android:minHeight=&quot;?android:listPreferredItemHeight&quot;</span>
+        <span style="color: #4070a0">android:layout_weight=&quot;1&quot;</span>
+        <span style="color: #4070a0">android:ellipsize=&quot;end&quot;</span>
+        <span style="color: #4070a0">android:gravity=&quot;center_vertical&quot;</span>
+        <span style="color: #4070a0">android:maxLines=&quot;4&quot;</span>
+        <span style="color: #4070a0">android:padding=&quot;8dp&quot;</span><span style="color: #062873; font-weight: bold">/&gt;</span>
+<span style="color: #062873; font-weight: bold">&lt;/LinearLayout&gt;</span>
+</pre></div>
+
+<p>Note that I defined the TextViews to have a maximum of 4 lines (actual number is up to you), and a minimum height of <code>android:listPreferredItemHeight</code> (this I recommend, otherwise it looks wonky and off-center). And just be clear, the <em>ids</em> of these fields must be <code>@+id/item_icon</code>, <code>@android:id/text1</code>, and <code>@+id/checkbox</code>, or the code WILL crash on you.</p>
+
+<h3 id="code">Code</h3>
+
+<p>To use the new layouts, you need to override the <code>onCreateViewHolder</code> method in
+<a href="https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/library/src/main/java/com/nononsenseapps/filepicker/AbstractFilePickerFragment.java">AbstractFilePickerFragment</a>.</p>
+
+<p>Since this example will be browsing the SD-card, I will extend from the built-in FilePickerFragment.</p>
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><span style="color: #007020; font-weight: bold">public</span> <span style="color: #007020; font-weight: bold">class</span> <span style="color: #0e84b5; font-weight: bold">CustomLayoutFilePickerFragment</span> <span style="color: #007020; font-weight: bold">extends</span> FilePickerFragment <span style="color: #666666">{</span>
+    <span style="color: #60a0b0; font-style: italic">/**</span>
+<span style="color: #60a0b0; font-style: italic">     * @param parent Containing view</span>
+<span style="color: #60a0b0; font-style: italic">     * @param viewType which the ViewHolder will contain. Will be one of:</span>
+<span style="color: #60a0b0; font-style: italic">     * [VIEWTYPE_HEADER, VIEWTYPE_CHECKABLE, VIEWTYPE_DIR]. It is OK, and even expected, to use the same</span>
+<span style="color: #60a0b0; font-style: italic">     * layout for VIEWTYPE_HEADER and VIEWTYPE_DIR.</span>
+<span style="color: #60a0b0; font-style: italic">     * @return a view holder for a file or directory (the difference is presence of checkbox).</span>
+<span style="color: #60a0b0; font-style: italic">     */</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #007020; font-weight: bold">public</span> RecyclerView<span style="color: #666666">.</span><span style="color: #4070a0">ViewHolder</span> <span style="color: #06287e">onCreateViewHolder</span><span style="color: #666666">(</span>ViewGroup parent<span style="color: #666666">,</span> <span style="color: #902000">int</span> viewType<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+        View v<span style="color: #666666">;</span>
+        <span style="color: #007020; font-weight: bold">switch</span> <span style="color: #666666">(</span>viewType<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+            <span style="color: #007020; font-weight: bold">case</span> LogicHandler<span style="color: #666666">.</span><span style="color: #4070a0">VIEWTYPE_HEADER</span><span style="color: #666666">:</span>
+                v <span style="color: #666666">=</span> LayoutInflater<span style="color: #666666">.</span><span style="color: #4070a0">from</span><span style="color: #666666">(</span>getActivity<span style="color: #666666">()).</span><span style="color: #4070a0">inflate</span><span style="color: #666666">(</span>R<span style="color: #666666">.</span><span style="color: #4070a0">layout</span><span style="color: #666666">.</span><span style="color: #4070a0">longer_listitem_dir</span><span style="color: #666666">,</span>
+                        parent<span style="color: #666666">,</span> <span style="color: #007020; font-weight: bold">false</span><span style="color: #666666">);</span>
+                <span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">new</span> HeaderViewHolder<span style="color: #666666">(</span>v<span style="color: #666666">);</span>
+            <span style="color: #007020; font-weight: bold">case</span> LogicHandler<span style="color: #666666">.</span><span style="color: #4070a0">VIEWTYPE_CHECKABLE</span><span style="color: #666666">:</span>
+                v <span style="color: #666666">=</span> LayoutInflater<span style="color: #666666">.</span><span style="color: #4070a0">from</span><span style="color: #666666">(</span>getActivity<span style="color: #666666">()).</span><span style="color: #4070a0">inflate</span><span style="color: #666666">(</span>R<span style="color: #666666">.</span><span style="color: #4070a0">layout</span><span style="color: #666666">.</span><span style="color: #4070a0">longer_listitem_checkable</span><span style="color: #666666">,</span>
+                        parent<span style="color: #666666">,</span> <span style="color: #007020; font-weight: bold">false</span><span style="color: #666666">);</span>
+                <span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">new</span> CheckableViewHolder<span style="color: #666666">(</span>v<span style="color: #666666">);</span>
+            <span style="color: #007020; font-weight: bold">case</span> LogicHandler<span style="color: #666666">.</span><span style="color: #4070a0">VIEWTYPE_DIR</span><span style="color: #666666">:</span>
+            <span style="color: #007020; font-weight: bold">default</span><span style="color: #666666">:</span>
+                v <span style="color: #666666">=</span> LayoutInflater<span style="color: #666666">.</span><span style="color: #4070a0">from</span><span style="color: #666666">(</span>getActivity<span style="color: #666666">()).</span><span style="color: #4070a0">inflate</span><span style="color: #666666">(</span>R<span style="color: #666666">.</span><span style="color: #4070a0">layout</span><span style="color: #666666">.</span><span style="color: #4070a0">longer_listitem_dir</span><span style="color: #666666">,</span>
+                        parent<span style="color: #666666">,</span> <span style="color: #007020; font-weight: bold">false</span><span style="color: #666666">);</span>
+                <span style="color: #007020; font-weight: bold">return</span> <span style="color: #007020; font-weight: bold">new</span> DirViewHolder<span style="color: #666666">(</span>v<span style="color: #666666">);</span>
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+</pre></div>
+
+<p>And as always, to use your custom fragment you need a custom activity which loads it for you:</p>
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><span style="color: #007020; font-weight: bold">public</span> <span style="color: #007020; font-weight: bold">class</span> <span style="color: #0e84b5; font-weight: bold">CustomLayoutPickerActivity</span> <span style="color: #007020; font-weight: bold">extends</span> AbstractFilePickerActivity <span style="color: #666666">{</span>
+
+    <span style="color: #007020; font-weight: bold">public</span> <span style="color: #06287e">CustomLayoutPickerActivity</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>
+        <span style="color: #007020; font-weight: bold">super</span><span style="color: #666666">();</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #007020; font-weight: bold">protected</span> AbstractFilePickerFragment<span style="color: #666666">&lt;</span>File<span style="color: #666666">&gt;</span> <span style="color: #06287e">getFragment</span><span style="color: #666666">(</span>
+            <span style="color: #007020; font-weight: bold">final</span> String startPath<span style="color: #666666">,</span> <span style="color: #007020; font-weight: bold">final</span> <span style="color: #902000">int</span> mode<span style="color: #666666">,</span> <span style="color: #007020; font-weight: bold">final</span> <span style="color: #902000">boolean</span> allowMultiple<span style="color: #666666">,</span>
+            <span style="color: #007020; font-weight: bold">final</span> <span style="color: #902000">boolean</span> allowCreateDir<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+        <span style="color: #60a0b0; font-style: italic">// Load our custom fragment here</span>
+        AbstractFilePickerFragment<span style="color: #666666">&lt;</span>File<span style="color: #666666">&gt;</span> fragment <span style="color: #666666">=</span> <span style="color: #007020; font-weight: bold">new</span> CustomLayoutFilePickerFragment<span style="color: #666666">();</span>
+        <span style="color: #60a0b0; font-style: italic">// startPath is allowed to be null. In that case, default folder should be SD-card and not &quot;/&quot;</span>
+        fragment<span style="color: #666666">.</span><span style="color: #4070a0">setArgs</span><span style="color: #666666">(</span>startPath <span style="color: #666666">!=</span> <span style="color: #007020; font-weight: bold">null</span> <span style="color: #666666">?</span> startPath <span style="color: #666666">:</span> Environment<span style="color: #666666">.</span><span style="color: #4070a0">getExternalStorageDirectory</span><span style="color: #666666">().</span><span style="color: #4070a0">getPath</span><span style="color: #666666">(),</span>
+                mode<span style="color: #666666">,</span> allowMultiple<span style="color: #666666">,</span> allowCreateDir<span style="color: #666666">);</span>
+        <span style="color: #007020; font-weight: bold">return</span> fragment<span style="color: #666666">;</span>
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+</pre></div>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2016 Released under the Mozilla Public License 2.0 &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="http://replace-this-with-your-hugo-site.com/example/filter_file_extension/" title="Filter based on file extension">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Filter based on file extension
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="http://replace-this-with-your-hugo-site.com/example/" title="Customizing the filepicker">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Customizing the filepicker
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'http:\/\/replace-this-with-your-hugo-site.com\/';
+      var repo_id  = 'spacecowboy\/NoNonsense-FilePicker';
+    
+    </script>
+
+    <script src="http://replace-this-with-your-hugo-site.com/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//gohugo.io/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

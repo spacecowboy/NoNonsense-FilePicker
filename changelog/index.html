@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <title>ChangeLog - NoNonsense FilePicker</title>
+    <meta name="generator" content="Hugo 0.17-DEV" />
+
+    
+    <meta name="description" content="An extensible and flexible file-picker for Android.">
+    
+    <link rel="canonical" href="http://replace-this-with-your-hugo-site.com/changelog/">
+    
+    <meta name="author" content="SpaceCowboy">
+    
+
+    <meta property="og:url" content="http://replace-this-with-your-hugo-site.com/changelog/">
+    <meta property="og:title" content="NoNonsense FilePicker">
+    
+    <meta name="apple-mobile-web-app-title" content="NoNonsense FilePicker">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="http://replace-this-with-your-hugo-site.com/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="http://replace-this-with-your-hugo-site.com/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('http://replace-this-with-your-hugo-site.com/fonts/icon.eot?52m981');
+        src: url('http://replace-this-with-your-hugo-site.com/fonts/icon.eot?#iefix52m981')
+               format('embedded-opentype'),
+             url('http://replace-this-with-your-hugo-site.com/fonts/icon.woff?52m981')
+               format('woff'),
+             url('http://replace-this-with-your-hugo-site.com/fonts/icon.ttf?52m981')
+               format('truetype'),
+             url('http://replace-this-with-your-hugo-site.com/fonts/icon.svg?52m981#icon')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/stylesheets/application.css">
+    <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/stylesheets/temporary.css">
+    <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/stylesheets/palettes.css">
+    <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Roboto%2bMono">
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="http://replace-this-with-your-hugo-site.com/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-red palette-accent-light green">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        ChangeLog
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/spacecowboy" title="@spacecowboy on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/spacecowboy/NoNonsense-FilePicker" class="project">
+    <div class="banner">
+      
+      <div class="name">
+        <strong>NoNonsense FilePicker </strong>
+        
+          <br>
+          spacecowboy/NoNonsense-FilePicker
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Readme" href="http://replace-this-with-your-hugo-site.com/">
+	
+	Readme
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Changelog" href="http://replace-this-with-your-hugo-site.com/changelog">
+	
+	Changelog
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License" href="http://replace-this-with-your-hugo-site.com/license/">
+	
+	License
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Examples</span>
+    <ul>
+      
+        
+        
+
+
+
+<a  title="Change the sort order" href="http://replace-this-with-your-hugo-site.com/example/sortorder/">
+	
+	Change the sort order
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Filter based on file extension" href="http://replace-this-with-your-hugo-site.com/example/filter_file_extension/">
+	
+	Filter based on file extension
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Custom item layout" href="http://replace-this-with-your-hugo-site.com/example/custom_item_layout/">
+	
+	Custom item layout
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Override the back button" href="http://replace-this-with-your-hugo-site.com/example/override_back_button/">
+	
+	Override the back button
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Override selection behavior" href="http://replace-this-with-your-hugo-site.com/example/override_selection_behavior/">
+	
+	Override selection behavior
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Standalone fragment" href="http://replace-this-with-your-hugo-site.com/example/standalone_fragment/">
+	
+	Standalone fragment
+</a>
+
+
+      
+    </ul>
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+
+          
+          <li>
+            <a href="https://github.com/spacecowboy" target="_blank" title="@spacecowboy on GitHub">
+              @spacecowboy on GitHub
+            </a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>ChangeLog </h1>
+
+			
+
+<h2 id="3-0-0-https-github-com-spacecowboy-nononsense-filepicker-tree-3-0-0-2016-07-03"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/3.0.0">3.0.0</a> (2016-07-03)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.3...3.0.0">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Select one file with a single click <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/92">#92</a> (<a href="https://github.com/rastikw">rastikw</a>)</li>
+<li>Add ability to enter a new filename <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/83">#83</a> (<a href="https://github.com/spacecowboy">spacecowboy</a>)</li>
+</ul>
+
+<p><strong>Closed issues:</strong></p>
+
+<ul>
+<li>Add ability to input filename <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/82">#82</a></li>
+</ul>
+
+<h2 id="2-5-3-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-3-2016-06-09"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.3">2.5.3</a> (2016-06-09)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.2...2.5.3">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Add paths to permission and refresh methods <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/85">#85</a></li>
+<li>Add FastScroller sample implementation <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/89">#89</a> (<a href="https://github.com/spacecowboy">spacecowboy</a>)</li>
+<li>Add a getItem method to FileItemAdapter <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/88">#88</a> (<a href="https://github.com/spacecowboy">spacecowboy</a>)</li>
+</ul>
+
+<p><strong>Fixed bugs:</strong></p>
+
+<ul>
+<li>Crash while creating folder in dropbox sample <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/76">#76</a></li>
+</ul>
+
+<p><strong>Closed issues:</strong></p>
+
+<ul>
+<li>Fast Scroll <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/87">#87</a></li>
+</ul>
+
+<h2 id="2-5-2-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-2-2016-02-24"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.2">2.5.2</a> (2016-02-24)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.1...2.5.2">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Dropbox should show a progress bar when loading <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/74">#74</a></li>
+</ul>
+
+<p><strong>Fixed bugs:</strong></p>
+
+<ul>
+<li>Dropbox sample can crash due to Inconsistent state in RecyclerView <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/75">#75</a></li>
+<li>Dropbox sample crash if multiple press on folder <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/73">#73</a></li>
+<li>probebly underscore missing <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/63">#63</a></li>
+</ul>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Update README.md <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/68">#68</a> (<a href="https://github.com/callmepeanut">callmepeanut</a>)</li>
+</ul>
+
+<h2 id="2-5-1-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-1-2016-01-13"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.1">2.5.1</a> (2016-01-13)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.0...2.5.1">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Change license to MPL <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/66">#66</a></li>
+</ul>
+
+<h2 id="2-5-0-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-0-2015-11-08"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.0">2.5.0</a> (2015-11-08)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.2...2.5.0">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Add a separator line above OK/Cancel buttons <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/60">#60</a></li>
+</ul>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Hide hidden files in SD card picker by default <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/58">#58</a> (<a href="https://github.com/dvrajan">dvrajan</a>)</li>
+</ul>
+
+<h2 id="v2-4-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-4-2-2015-09-30"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.4.2">v2.4.2</a> (2015-09-30)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.1...v2.4.2">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>lower minSdk <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/54">#54</a></li>
+<li>Spacing of filename items <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/52">#52</a></li>
+</ul>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Lowered minSdk to API 9 <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/55">#55</a> (<a href="https://github.com/marbat87">marbat87</a>)</li>
+<li>Add Video Thumbnail preview and set default theme to light <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/53">#53</a> (<a href="https://github.com/alishari">alishari</a>)</li>
+</ul>
+
+<h2 id="v2-4-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-4-1-2015-09-14"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.4.1">v2.4.1</a> (2015-09-14)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.0...v2.4.1">Full Changelog</a></p>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Update to latest build tools and support library 23.0.1 <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/51">#51</a> (<a href="https://github.com/alishari">alishari</a>)</li>
+</ul>
+
+<h2 id="v2-4-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-4-0-2015-08-25"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.4.0">v2.4.0</a> (2015-08-25)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.3.1...v2.4.0">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Only allow selecting single files (when EXTRA_ALLOW_MULTIPLE is set to false) <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/48">#48</a></li>
+</ul>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Make click events overridable <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/49">#49</a> (<a href="https://github.com/spacecowboy">spacecowboy</a>)</li>
+</ul>
+
+<h2 id="v2-3-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-3-1-2015-08-20"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.3.1">v2.3.1</a> (2015-08-20)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.3.0...v2.3.1">Full Changelog</a></p>
+
+<p><strong>Fixed bugs:</strong></p>
+
+<ul>
+<li>FilePicker cannot be used with non-touchscreen devices <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/44">#44</a></li>
+</ul>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Make list focusable. <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/45">#45</a> (<a href="https://github.com/spacecowboy">spacecowboy</a>)</li>
+</ul>
+
+<h2 id="v2-3-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-3-0-2015-08-18"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.3.0">v2.3.0</a> (2015-08-18)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2.3...v2.3.0">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Make sure to handle Android M&rsquo;s new permission requests <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/24">#24</a></li>
+</ul>
+
+<h2 id="v2-2-3-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-3-2015-08-04"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2.3">v2.2.3</a> (2015-08-04)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2.2...v2.2.3">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Enhancement: Allow adding more arguments to FilePickerFragment <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/40">#40</a></li>
+<li>Do not override existing arguments <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/41">#41</a> (<a href="https://github.com/spacecowboy">spacecowboy</a>)</li>
+</ul>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Update travis config to run on faster containers <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/42">#42</a> (<a href="https://github.com/spacecowboy">spacecowboy</a>)</li>
+</ul>
+
+<h2 id="v2-2-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-2-2015-08-03"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2.2">v2.2.2</a> (2015-08-03)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2.1...v2.2.2">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Dropbox Sync API is deprecated <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/35">#35</a></li>
+</ul>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Ensure toasts don&rsquo;t get queued up <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/39">#39</a> (<a href="https://github.com/hcoosthuizen">hcoosthuizen</a>)</li>
+</ul>
+
+<h2 id="v2-2-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-1-2015-07-17"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2.1">v2.2.1</a> (2015-07-17)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2...v2.2.1">Full Changelog</a></p>
+
+<p><strong>Fixed bugs:</strong></p>
+
+<ul>
+<li>Strange error <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/34">#34</a></li>
+</ul>
+
+<h2 id="v2-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-2015-07-13"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2">v2.2</a> (2015-07-13)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.1...v2.2">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Allow fragment to be used with default action bar <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/32">#32</a></li>
+<li>Allow setting of toolbar text colour <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/31">#31</a></li>
+</ul>
+
+<p><strong>Fixed bugs:</strong></p>
+
+<ul>
+<li>Licence <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/29">#29</a></li>
+</ul>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Specifying GPL3 or later <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/30">#30</a> (<a href="https://github.com/spacecowboy">spacecowboy</a>)</li>
+</ul>
+
+<h2 id="v2-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-1-2015-05-30"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.1">v2.1</a> (2015-05-30)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.5...v2.1">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Make filepicker depend only on EXTRA_ALLOW_CREATE_DIR <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/25">#25</a></li>
+</ul>
+
+<p><strong>Fixed bugs:</strong></p>
+
+<ul>
+<li>Build fails <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/21">#21</a></li>
+</ul>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Mention that start-path is configurable <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/20">#20</a> (<a href="https://github.com/spacecowboy">spacecowboy</a>)</li>
+</ul>
+
+<h2 id="v2-0-5-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-5-2015-05-01"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.5">v2.0.5</a> (2015-05-01)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.4...v2.0.5">Full Changelog</a></p>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Ic_launcher conflict with app one <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/16">#16</a> (<a href="https://github.com/NitroG42">NitroG42</a>)</li>
+</ul>
+
+<h2 id="v2-0-4-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-4-2015-04-29"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.4">v2.0.4</a> (2015-04-29)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.3...v2.0.4">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Show miniatures for images <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/10">#10</a></li>
+</ul>
+
+<p><strong>Fixed bugs:</strong></p>
+
+<ul>
+<li>Rotation doesn&rsquo;t work <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/15">#15</a></li>
+</ul>
+
+<h2 id="v2-0-3-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-3-2015-04-28"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.3">v2.0.3</a> (2015-04-28)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.2...v2.0.3">Full Changelog</a></p>
+
+<h2 id="v2-0-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-2-2015-04-28"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.2">v2.0.2</a> (2015-04-28)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.0...v2.0.2">Full Changelog</a></p>
+
+<h2 id="v2-0-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-0-2015-04-27"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.0">v2.0.0</a> (2015-04-27)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.2.0...v2.0.0">Full Changelog</a></p>
+
+<p><strong>Fixed bugs:</strong></p>
+
+<ul>
+<li>crash InBackground thread <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/13">#13</a></li>
+<li>Crash on root folders <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/12">#12</a></li>
+</ul>
+
+<h2 id="v1-2-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-2-0-2015-04-27"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.2.0">v1.2.0</a> (2015-04-27)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1.3...v1.2.0">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Verify Proguard <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/8">#8</a></li>
+<li>Upload the Dropbox sample <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/5">#5</a></li>
+</ul>
+
+<p><strong>Merged pull requests:</strong></p>
+
+<ul>
+<li>Add a Gitter chat badge to README.org <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/11">#11</a> (<a href="https://github.com/gitter-badger">gitter-badger</a>)</li>
+<li>NPE on empty dir <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/pull/6">#6</a> (<a href="https://github.com/arkty">arkty</a>)</li>
+</ul>
+
+<h2 id="v1-1-3-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-3-2014-04-02"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1.3">v1.1.3</a> (2014-04-02)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1.2...v1.1.3">Full Changelog</a></p>
+
+<p><strong>Fixed bugs:</strong></p>
+
+<ul>
+<li>FilePicker: Handle case if startPath does not exist <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/4">#4</a></li>
+</ul>
+
+<h2 id="v1-1-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-2-2014-04-02"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1.2">v1.1.2</a> (2014-04-02)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1.1...v1.1.2">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Upload to Maven Central  <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/3">#3</a></li>
+</ul>
+
+<h2 id="v1-1-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-1-2014-04-02"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1.1">v1.1.1</a> (2014-04-02)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1...v1.1.1">Full Changelog</a></p>
+
+<h2 id="v1-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-2014-04-01"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1">v1.1</a> (2014-04-01)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.0...v1.1">Full Changelog</a></p>
+
+<p><strong>Implemented enhancements:</strong></p>
+
+<ul>
+<li>Add only files option <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/2">#2</a></li>
+<li>Make create directory toggleable <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/1">#1</a></li>
+</ul>
+
+<h2 id="v1-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-0-2014-04-01"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.0">v1.0</a> (2014-04-01)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v0.99...v1.0">Full Changelog</a></p>
+
+<h2 id="v0-99-https-github-com-spacecowboy-nononsense-filepicker-tree-v0-99-2014-03-31"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v0.99">v0.99</a> (2014-03-31)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v0.91...v0.99">Full Changelog</a></p>
+
+<h2 id="v0-91-https-github-com-spacecowboy-nononsense-filepicker-tree-v0-91-2014-03-31"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v0.91">v0.91</a> (2014-03-31)</h2>
+
+<p><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v0.9...v0.91">Full Changelog</a></p>
+
+<h2 id="v0-9-https-github-com-spacecowboy-nononsense-filepicker-tree-v0-9-2014-03-31"><a href="https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v0.9">v0.9</a> (2014-03-31)</h2>
+
+<p>* <em>This Change Log was automatically generated by <a href="https://github.com/skywinder/Github-Changelog-Generator">github_changelog_generator</a></em></p>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2016 Released under the Mozilla Public License 2.0 &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="http://replace-this-with-your-hugo-site.com/example/sortorder/" title="Change the sort order">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Change the sort order
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="http://replace-this-with-your-hugo-site.com/" title="Readme">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Readme
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'http:\/\/replace-this-with-your-hugo-site.com\/';
+      var repo_id  = 'spacecowboy\/NoNonsense-FilePicker';
+    
+    </script>
+
+    <script src="http://replace-this-with-your-hugo-site.com/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//gohugo.io/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
