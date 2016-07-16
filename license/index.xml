@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Licenses on NoNonsense FilePicker</title>
-    <link>http://spacecowboy.github.io/NoNonsense-FilePicker/license/</link>
+    <link>http://spacecowboy.github.io/nononsense-filepicker/license/</link>
     <description>Recent content in Licenses on NoNonsense FilePicker</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 16 Jul 2016 16:35:07 +0200</lastBuildDate>
-    <atom:link href="http://spacecowboy.github.io/NoNonsense-FilePicker/license/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://spacecowboy.github.io/nononsense-filepicker/license/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>License</title>
-      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/license/</link>
+      <link>http://spacecowboy.github.io/nononsense-filepicker/license/</link>
       <pubDate>Sat, 16 Jul 2016 16:35:07 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/license/</guid>
+      <guid>http://spacecowboy.github.io/nononsense-filepicker/license/</guid>
       <description>&lt;p&gt;Copyright &amp;copy; 2016 Jonas Kalderstam &lt;a href=&#34;mailto:jonas@cowboyprogrammer.org&#34;&gt;jonas@cowboyprogrammer.org&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;Mozilla Public License Version 2.0
 ==================================

@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Changelogs on NoNonsense FilePicker</title>
+    <link>http://spacecowboy.github.io/nononsense-filepicker/changelog/</link>
+    <description>Recent content in Changelogs on NoNonsense FilePicker</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Jul 2016 17:06:45 +0200</lastBuildDate>
+    <atom:link href="http://spacecowboy.github.io/nononsense-filepicker/changelog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ChangeLog</title>
+      <link>http://spacecowboy.github.io/nononsense-filepicker/changelog/</link>
+      <pubDate>Sat, 16 Jul 2016 17:06:45 +0200</pubDate>
+      
+      <guid>http://spacecowboy.github.io/nononsense-filepicker/changelog/</guid>
+      <description>
+
+&lt;h2 id=&#34;3-0-0-https-github-com-spacecowboy-nononsense-filepicker-tree-3-0-0-2016-07-03&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/3.0.0&#34;&gt;3.0.0&lt;/a&gt; (2016-07-03)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.3...3.0.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Select one file with a single click &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/92&#34;&gt;#92&lt;/a&gt; (&lt;a href=&#34;https://github.com/rastikw&#34;&gt;rastikw&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add ability to enter a new filename &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/83&#34;&gt;#83&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Closed issues:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add ability to input filename &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/82&#34;&gt;#82&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-5-3-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-3-2016-06-09&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.3&#34;&gt;2.5.3&lt;/a&gt; (2016-06-09)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.2...2.5.3&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add paths to permission and refresh methods &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/85&#34;&gt;#85&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Add FastScroller sample implementation &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/89&#34;&gt;#89&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add a getItem method to FileItemAdapter &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/88&#34;&gt;#88&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Crash while creating folder in dropbox sample &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/76&#34;&gt;#76&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Closed issues:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fast Scroll &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/87&#34;&gt;#87&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-5-2-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-2-2016-02-24&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.2&#34;&gt;2.5.2&lt;/a&gt; (2016-02-24)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.1...2.5.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dropbox should show a progress bar when loading &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/74&#34;&gt;#74&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dropbox sample can crash due to Inconsistent state in RecyclerView &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/75&#34;&gt;#75&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dropbox sample crash if multiple press on folder &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/73&#34;&gt;#73&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;probebly underscore missing &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/63&#34;&gt;#63&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Update README.md &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/68&#34;&gt;#68&lt;/a&gt; (&lt;a href=&#34;https://github.com/callmepeanut&#34;&gt;callmepeanut&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-5-1-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-1-2016-01-13&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.1&#34;&gt;2.5.1&lt;/a&gt; (2016-01-13)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.0...2.5.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Change license to MPL &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/66&#34;&gt;#66&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-5-0-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-0-2015-11-08&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.0&#34;&gt;2.5.0&lt;/a&gt; (2015-11-08)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.2...2.5.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add a separator line above OK/Cancel buttons &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/60&#34;&gt;#60&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Hide hidden files in SD card picker by default &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/58&#34;&gt;#58&lt;/a&gt; (&lt;a href=&#34;https://github.com/dvrajan&#34;&gt;dvrajan&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-4-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-4-2-2015-09-30&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.4.2&#34;&gt;v2.4.2&lt;/a&gt; (2015-09-30)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.1...v2.4.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;lower minSdk &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/54&#34;&gt;#54&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spacing of filename items &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/52&#34;&gt;#52&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Lowered minSdk to API 9 &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/55&#34;&gt;#55&lt;/a&gt; (&lt;a href=&#34;https://github.com/marbat87&#34;&gt;marbat87&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add Video Thumbnail preview and set default theme to light &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/53&#34;&gt;#53&lt;/a&gt; (&lt;a href=&#34;https://github.com/alishari&#34;&gt;alishari&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-4-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-4-1-2015-09-14&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.4.1&#34;&gt;v2.4.1&lt;/a&gt; (2015-09-14)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.0...v2.4.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Update to latest build tools and support library 23.0.1 &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/51&#34;&gt;#51&lt;/a&gt; (&lt;a href=&#34;https://github.com/alishari&#34;&gt;alishari&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-4-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-4-0-2015-08-25&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.4.0&#34;&gt;v2.4.0&lt;/a&gt; (2015-08-25)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.3.1...v2.4.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Only allow selecting single files (when EXTRA_ALLOW_MULTIPLE is set to false) &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/48&#34;&gt;#48&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make click events overridable &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/49&#34;&gt;#49&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-3-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-3-1-2015-08-20&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.3.1&#34;&gt;v2.3.1&lt;/a&gt; (2015-08-20)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.3.0...v2.3.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;FilePicker cannot be used with non-touchscreen devices &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/44&#34;&gt;#44&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make list focusable. &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/45&#34;&gt;#45&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-3-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-3-0-2015-08-18&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.3.0&#34;&gt;v2.3.0&lt;/a&gt; (2015-08-18)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2.3...v2.3.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make sure to handle Android M&amp;rsquo;s new permission requests &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/24&#34;&gt;#24&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-2-3-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-3-2015-08-04&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2.3&#34;&gt;v2.2.3&lt;/a&gt; (2015-08-04)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2.2...v2.2.3&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Enhancement: Allow adding more arguments to FilePickerFragment &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/40&#34;&gt;#40&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Do not override existing arguments &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/41&#34;&gt;#41&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Update travis config to run on faster containers &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/42&#34;&gt;#42&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-2-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-2-2015-08-03&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2.2&#34;&gt;v2.2.2&lt;/a&gt; (2015-08-03)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2.1...v2.2.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dropbox Sync API is deprecated &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/35&#34;&gt;#35&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ensure toasts don&amp;rsquo;t get queued up &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/39&#34;&gt;#39&lt;/a&gt; (&lt;a href=&#34;https://github.com/hcoosthuizen&#34;&gt;hcoosthuizen&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-2-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-1-2015-07-17&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2.1&#34;&gt;v2.2.1&lt;/a&gt; (2015-07-17)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2...v2.2.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Strange error &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/34&#34;&gt;#34&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-2015-07-13&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2&#34;&gt;v2.2&lt;/a&gt; (2015-07-13)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.1...v2.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Allow fragment to be used with default action bar &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/32&#34;&gt;#32&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Allow setting of toolbar text colour &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/31&#34;&gt;#31&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Licence &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/29&#34;&gt;#29&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Specifying GPL3 or later &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/30&#34;&gt;#30&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-1-2015-05-30&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.1&#34;&gt;v2.1&lt;/a&gt; (2015-05-30)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.5...v2.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make filepicker depend only on EXTRA_ALLOW_CREATE_DIR &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/25&#34;&gt;#25&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Build fails &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/21&#34;&gt;#21&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mention that start-path is configurable &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/20&#34;&gt;#20&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-0-5-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-5-2015-05-01&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.5&#34;&gt;v2.0.5&lt;/a&gt; (2015-05-01)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.4...v2.0.5&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ic_launcher conflict with app one &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/16&#34;&gt;#16&lt;/a&gt; (&lt;a href=&#34;https://github.com/NitroG42&#34;&gt;NitroG42&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-0-4-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-4-2015-04-29&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.4&#34;&gt;v2.0.4&lt;/a&gt; (2015-04-29)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.3...v2.0.4&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Show miniatures for images &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/10&#34;&gt;#10&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rotation doesn&amp;rsquo;t work &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/15&#34;&gt;#15&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-0-3-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-3-2015-04-28&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.3&#34;&gt;v2.0.3&lt;/a&gt; (2015-04-28)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.2...v2.0.3&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v2-0-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-2-2015-04-28&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.2&#34;&gt;v2.0.2&lt;/a&gt; (2015-04-28)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.0...v2.0.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v2-0-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-0-2015-04-27&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.0&#34;&gt;v2.0.0&lt;/a&gt; (2015-04-27)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.2.0...v2.0.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;crash InBackground thread &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/13&#34;&gt;#13&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Crash on root folders &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/12&#34;&gt;#12&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v1-2-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-2-0-2015-04-27&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.2.0&#34;&gt;v1.2.0&lt;/a&gt; (2015-04-27)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1.3...v1.2.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Verify Proguard &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/8&#34;&gt;#8&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Upload the Dropbox sample &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/5&#34;&gt;#5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add a Gitter chat badge to README.org &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/11&#34;&gt;#11&lt;/a&gt; (&lt;a href=&#34;https://github.com/gitter-badger&#34;&gt;gitter-badger&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;NPE on empty dir &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/6&#34;&gt;#6&lt;/a&gt; (&lt;a href=&#34;https://github.com/arkty&#34;&gt;arkty&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v1-1-3-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-3-2014-04-02&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1.3&#34;&gt;v1.1.3&lt;/a&gt; (2014-04-02)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1.2...v1.1.3&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;FilePicker: Handle case if startPath does not exist &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/4&#34;&gt;#4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v1-1-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-2-2014-04-02&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1.2&#34;&gt;v1.1.2&lt;/a&gt; (2014-04-02)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1.1...v1.1.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Upload to Maven Central  &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/3&#34;&gt;#3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v1-1-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-1-2014-04-02&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1.1&#34;&gt;v1.1.1&lt;/a&gt; (2014-04-02)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1...v1.1.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v1-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-2014-04-01&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1&#34;&gt;v1.1&lt;/a&gt; (2014-04-01)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.0...v1.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add only files option &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/2&#34;&gt;#2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Make create directory toggleable &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/1&#34;&gt;#1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v1-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-0-2014-04-01&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.0&#34;&gt;v1.0&lt;/a&gt; (2014-04-01)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v0.99...v1.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v0-99-https-github-com-spacecowboy-nononsense-filepicker-tree-v0-99-2014-03-31&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v0.99&#34;&gt;v0.99&lt;/a&gt; (2014-03-31)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v0.91...v0.99&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v0-91-https-github-com-spacecowboy-nononsense-filepicker-tree-v0-91-2014-03-31&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v0.91&#34;&gt;v0.91&lt;/a&gt; (2014-03-31)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v0.9...v0.91&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v0-9-https-github-com-spacecowboy-nononsense-filepicker-tree-v0-9-2014-03-31&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v0.9&#34;&gt;v0.9&lt;/a&gt; (2014-03-31)&lt;/h2&gt;
+
+&lt;p&gt;* &lt;em&gt;This Change Log was automatically generated by &lt;a href=&#34;https://github.com/skywinder/Github-Changelog-Generator&#34;&gt;github_changelog_generator&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
