@@ -1,4 +1,4 @@
-baseurl = "http://spacecowboy.github.io/nononsense-filepicker/"
+baseurl = "http://spacecowboy.github.io/NoNonsense-FilePicker/"
 languageCode = "en-us"
 title = "NoNonsense FilePicker"
 theme = "hugo-material-docs"
