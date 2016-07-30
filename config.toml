@@ -25,7 +25,7 @@ PygmentsOptions = ""
 	logo = ""
 	favicon = ""
 
-	permalink = "#"
+	permalink = ":slug"
 
 	# Custom assets
 	custom_css = []
