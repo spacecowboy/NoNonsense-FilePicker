@@ -8,6 +8,8 @@ package com.nononsenseapps.filepicker;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -33,13 +35,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 import static com.nononsenseapps.filepicker.Utils.appendPath;
-import static com.nononsenseapps.filepicker.Utils.isValidFileName;
 
 /**
  * A fragment representing a list of Files.
@@ -233,6 +233,22 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         }
 
         return view;
+    }
+
+    /**
+     * Checks if a divider drawable has been defined in the current theme. If it has, will apply
+     * an item decoration with the divider. If no divider has been specified, then does nothing.
+     */
+    protected void configureItemDecoration(@NonNull LayoutInflater inflater,
+                                           @NonNull RecyclerView recyclerView) {
+        final TypedArray attributes =
+                getActivity().obtainStyledAttributes(new int[]{R.attr.nnf_list_item_divider});
+        Drawable divider = attributes.getDrawable(0);
+        attributes.recycle();
+
+        if (divider != null) {
+            recyclerView.addItemDecoration(new DividerItemDecoration(divider));
+        }
     }
 
     /**
