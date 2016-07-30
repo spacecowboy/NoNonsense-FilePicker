@@ -15,6 +15,8 @@
     </style>
 
     <style name="SampleThemeLight" parent="NNF_BaseTheme.Light">
+        <item name="nnf_list_item_divider">?android:attr/listDivider</item>
+
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
