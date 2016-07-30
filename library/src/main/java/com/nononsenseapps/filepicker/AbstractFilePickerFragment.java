@@ -85,6 +85,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected FileItemAdapter<T> mAdapter = null;
     protected TextView mCurrentDirView;
     protected EditText mEditTextFileName;
+    protected RecyclerView recyclerView;
+    protected LinearLayoutManager layoutManager;
     protected SortedList<T> mFiles = null;
     protected Toast mToast = null;
     // Keep track if we are currently loading a directory, in case it takes a long time
@@ -167,13 +169,15 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             setupToolbar(toolbar);
         }
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(android.R.id.list);
+        recyclerView = (RecyclerView) view.findViewById(android.R.id.list);
         // improve performance if you know that changes in content
         // do not change the size of the RecyclerView
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+        // Set Item Decoration if exists
+        configureItemDecoration(inflater, recyclerView);
         // Set adapter
         mAdapter = new FileItemAdapter<>(this);
         recyclerView.setAdapter(mAdapter);
