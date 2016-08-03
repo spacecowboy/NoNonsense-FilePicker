@@ -6,9 +6,11 @@
 
 package com.nononsenseapps.filepicker;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -350,9 +352,27 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         return checkable;
     }
 
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            onAttachToContext(activity);
+        }
+    }
+
+    @TargetApi(23)
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        onAttachToContext(context);
+    }
+
+    /**
+     * Called when attached to activity/context
+     * @param context we attached to
+     */
+    protected void onAttachToContext(Context context) {
         try {
             mListener = (OnFilePickedListener) context;
         } catch (ClassCastException e) {
