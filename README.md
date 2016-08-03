@@ -113,6 +113,9 @@ you like..
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
+        <!-- Setting a divider is entirely optional -->
+        <item name="nnf_list_item_divider">?android:attr/listDivider</item>
+
         <!-- Need to set this also to style create folder dialog -->
         <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
 

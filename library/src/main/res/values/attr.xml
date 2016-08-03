@@ -15,4 +15,6 @@
     <attr name="nnf_save_icon_color" format="color"/>
     <!-- Color to apply to the directory icons in list -->
     <attr name="nnf_dir_icon_color" format="color"/>
+    <!-- Drawable to use as a divider between list items (optional) -->
+    <attr name="nnf_list_item_divider" format="reference"/>
 </resources>
