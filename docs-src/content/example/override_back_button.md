@@ -11,12 +11,17 @@ title = "Override the back button"
 
 +++
 
-In case you want the back button navigate the hierarchy instead of instantly exiting the activity, this
-is one approach you might take.
+In case you want the back button to navigate the hierarchy instead of
+instantly exiting the activity, this is one approach you might take.
 
-## Create an activity which overrides the back button, and loads a custom fragment
+## Create an activity which overrides the back button and loads a custom fragment
 
 ```java
+import android.os.Environment;
+import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
+import com.nononsenseapps.filepicker.FilePickerActivity;
+import java.io.File;
+
 public class BackHandlingFilePickerActivity extends FilePickerActivity {
 
     /**
@@ -30,11 +35,17 @@ public class BackHandlingFilePickerActivity extends FilePickerActivity {
     @Override
     protected AbstractFilePickerFragment<File> getFragment(
             final String startPath, final int mode, final boolean allowMultiple,
-            final boolean allowCreateDir) {
+            final boolean allowDirCreate, final boolean allowExistingFile,
+            final boolean singleClick) {
+
+        // startPath is allowed to be null.
+        // In that case, default folder should be SD-card and not "/"
+        String path = (startPath != null ? startPath
+                                         : Environment.getExternalStorageDirectory().getPath());
+
         currentFragment = new BackHandlingFilePickerFragment();
-        // startPath is allowed to be null. In that case, default folder should be SD-card and not "/"
-        currentFragment.setArgs(startPath != null ? startPath : Environment.getExternalStorageDirectory().getPath(),
-                mode, allowMultiple, allowCreateDir);
+        currentFragment.setArgs(path, mode, allowMultiple, allowDirCreate,
+                                allowExistingFile, singleClick);
         return currentFragment;
     }
 
@@ -54,9 +65,12 @@ public class BackHandlingFilePickerActivity extends FilePickerActivity {
 }
 ```
 
-## In you custom fragment, implement the goUp and isBackTop methods
+## In your custom fragment, implement the goUp and isBackTop methods
 
 ```java
+import com.nononsenseapps.filepicker.FilePickerFragment;
+import java.io.File;
+
 public class BackHandlingFilePickerFragment extends FilePickerFragment {
 
     /**
@@ -86,7 +100,23 @@ public class BackHandlingFilePickerFragment extends FilePickerFragment {
         mCurrentPath = getParent(mCurrentPath);
         mCheckedItems.clear();
         mCheckedVisibleViewHolders.clear();
-        refresh();
+        refresh(mCurrentPath);
     }
 }
+```
+
+## And finally, add the following to your manifest
+
+And make sure `android-theme` points to the correct theme.
+
+```xml
+<activity
+    android:name=".BackHandlingFilePickerActivity"
+    android:label="@string/select_file"
+    android:theme="@style/FilePickerTheme">
+    <intent-filter>
+        <action android:name="android.intent.action.GET_CONTENT" />
+        <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter>
+</activity>
 ```

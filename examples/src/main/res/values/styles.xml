@@ -1,0 +1,17 @@
+<resources>
+
+    <style name="FilePickerTheme" parent="NNF_BaseTheme">
+        <item name="colorPrimary">@color/primary2</item>
+        <item name="colorPrimaryDark">@color/primary_dark2</item>
+        <item name="colorAccent">@color/accent2</item>
+
+        <item name="alertDialogTheme">@style/FilePickerAlertDialogTheme</item>
+    </style>
+
+    <style name="FilePickerAlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorPrimary">@color/primary2</item>
+        <item name="colorPrimaryDark">@color/primary_dark2</item>
+        <item name="colorAccent">@color/accent2</item>
+    </style>
+
+</resources>
