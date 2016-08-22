@@ -1,0 +1,1522 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NoNonsense FilePicker</title>
+    <link>http://localhost:1313/NoNonsense-FilePicker/</link>
+    <description>Recent content on NoNonsense FilePicker</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Jul 2016 17:36:40 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/NoNonsense-FilePicker/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Standalone fragment</title>
+      <link>http://localhost:1313/NoNonsense-FilePicker/example/standalone_fragment/</link>
+      <pubDate>Sat, 16 Jul 2016 17:36:40 +0200</pubDate>
+      
+      <guid>http://localhost:1313/NoNonsense-FilePicker/example/standalone_fragment/</guid>
+      <description>&lt;p&gt;To use the fragment together with an existing toolbar/action bar, a few things should be overridden.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s a minimal example where the toolbar is intercepted from being set as the main toolbar. The menu creation is also intercepted and populates the toolbar directly.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;StandaloneFilePickerFragment&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;extends&lt;/span&gt; FilePickerFragment &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; Toolbar mToolbar&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;setupToolbar&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;Toolbar toolbar&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Prevent it from being set as main toolbar by NOT calling super.setupToolbar().&lt;/span&gt;
+        mToolbar &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; toolbar&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;onCreateOptionsMenu&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;Menu menu&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; MenuInflater inflater&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Populate the toolbar with the menu items instead of the action bar.&lt;/span&gt;
+        mToolbar&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;inflateMenu&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;R&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;menu&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;picker_actions&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Set a menu listener on the toolbar with calls the regular onOptionsItemSelected method.&lt;/span&gt;
+        mToolbar&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;setOnMenuItemClickListener&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; Toolbar&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;OnMenuItemClickListener&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;onMenuItemClick&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;MenuItem item&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; onOptionsItemSelected&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;item&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+            &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;});&lt;/span&gt;
+
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// This is usually handled in onCreateOptions so do it here instead.&lt;/span&gt;
+        MenuItem item &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; mToolbar&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getMenu&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;findItem&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;com&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;nononsenseapps&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;filepicker&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;R&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;nnf_action_createdir&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        item&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;setVisible&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;allowCreateDir&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Override selection behavior</title>
+      <link>http://localhost:1313/NoNonsense-FilePicker/example/override_selection_behavior/</link>
+      <pubDate>Sat, 16 Jul 2016 17:35:01 +0200</pubDate>
+      
+      <guid>http://localhost:1313/NoNonsense-FilePicker/example/override_selection_behavior/</guid>
+      <description>
+
+&lt;p&gt;New in &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/releases/tag/v2.4.0&#34;&gt;2.4.0&lt;/a&gt; are overridable methods to handle UI-interactions. The following methods are now available for augmentation:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;onClickOK, handles ok button.&lt;/li&gt;
+&lt;li&gt;onClickCancel, handles cancel button.&lt;/li&gt;
+&lt;li&gt;onClickHeader, handles clicks on &amp;ldquo;..&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;onClickDir, handles clicks on non-selectable items (usually directories).&lt;/li&gt;
+&lt;li&gt;onLongClickDir, handles long clicks on non-selectable items.&lt;/li&gt;
+&lt;li&gt;onClickCheckable, handles clicks on selectable items.&lt;/li&gt;
+&lt;li&gt;onLongClickCheckable, handles long clicks on selectable items.&lt;/li&gt;
+&lt;li&gt;onClickCheckBox, handles clicks on the checkbox of selectable items.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please see the existing implementations before you override any of them.&lt;/p&gt;
+
+&lt;h2 id=&#34;simple-example-make-clicks-instantly-select-items&#34;&gt;Simple example, make clicks instantly select items&lt;/h2&gt;
+
+&lt;p&gt;As asked in &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/48&#34;&gt;#48&lt;/a&gt;, what if the picker is configured for selecting a single file and you want a click on that to instantly return the result. The default implementation will mark the item as selected, and then the user is required to press the OK button. This small change will make the operation a single click action, returning instantly once the user selects something.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;SingleFilePickerFragment&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;extends&lt;/span&gt; FilePickerFragment &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;onClickCheckable&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;View v&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; CheckableViewHolder vh&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(!&lt;/span&gt;allowMultiple&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Clear is necessary, in case user clicked some checkbox directly&lt;/span&gt;
+            mCheckedItems&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;clear&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+            mCheckedItems&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;add&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;vh&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;file&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+            onClickOk&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;super&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;onClickCheckable&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;v&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; vh&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now the astute reader might wonder, if my filepicker is only going to be used for selecting single files, why not just do:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;onClickCheckable&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;View v&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; CheckableViewHolder vh&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;super&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;onClickCheckable&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;v&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; vh&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+    onClickOk&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The reason is that the default implementation will animate the checkbox being selected on press. If you are closing the picker directly once the user selects something, you are basically animating something which isn&amp;rsquo;t going to be seen and thus you are wasting (not that much) resources. Better to not animate at all in that case.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Override the back button</title>
+      <link>http://localhost:1313/NoNonsense-FilePicker/example/override_back_button/</link>
+      <pubDate>Sat, 16 Jul 2016 17:33:43 +0200</pubDate>
+      
+      <guid>http://localhost:1313/NoNonsense-FilePicker/example/override_back_button/</guid>
+      <description>
+
+&lt;p&gt;In case you want the back button navigate the hierarchy instead of instantly exiting the activity, this
+is one approach you might take.&lt;/p&gt;
+
+&lt;h2 id=&#34;create-an-activity-which-overrides-the-back-button-and-loads-a-custom-fragment&#34;&gt;Create an activity which overrides the back button, and loads a custom fragment&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;BackHandlingFilePickerActivity&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;extends&lt;/span&gt; FilePickerActivity &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * Need access to the fragment&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    BackHandlingFilePickerFragment currentFragment&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * Return a copy of the new fragment and set the variable above.&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; AbstractFilePickerFragment&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;File&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;getFragment&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; String startPath&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; mode&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; allowMultiple&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; allowCreateDir&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        currentFragment &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; BackHandlingFilePickerFragment&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// startPath is allowed to be null. In that case, default folder should be SD-card and not &amp;quot;/&amp;quot;&lt;/span&gt;
+        currentFragment&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;setArgs&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;startPath &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;?&lt;/span&gt; startPath &lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; Environment&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getExternalStorageDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getPath&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(),&lt;/span&gt;
+                mode&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; allowMultiple&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; allowCreateDir&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; currentFragment&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * Override the back-button.&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;onBackPressed&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// If at top most level, normal behaviour&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;currentFragment&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;isBackTop&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;())&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;super&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;onBackPressed&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Else go up&lt;/span&gt;
+            currentFragment&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;goUp&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&#34;in-you-custom-fragment-implement-the-goup-and-isbacktop-methods&#34;&gt;In you custom fragment, implement the goUp and isBackTop methods&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;BackHandlingFilePickerFragment&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;extends&lt;/span&gt; FilePickerFragment &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * For consistency, the top level the back button checks against should be the start path.&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * But it will fall back on /.&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; File &lt;span style=&#34;color: #06287e&#34;&gt;getBackTop&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getArguments&lt;span style=&#34;color: #666666&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;containsKey&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;KEY_START_PATH&lt;span style=&#34;color: #666666&#34;&gt;))&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; getPath&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getArguments&lt;span style=&#34;color: #666666&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getString&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;KEY_START_PATH&lt;span style=&#34;color: #666666&#34;&gt;));&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; File&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     *&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @return true if the current path is the startpath or /&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;isBackTop&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; compareFiles&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;mCurrentPath&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; getBackTop&lt;span style=&#34;color: #666666&#34;&gt;())&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; compareFiles&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;mCurrentPath&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; File&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;));&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * Go up on level, same as pressing on &amp;quot;..&amp;quot;.&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;goUp&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        mCurrentPath &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; getParent&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;mCurrentPath&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        mCheckedItems&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;clear&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+        mCheckedVisibleViewHolders&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;clear&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+        refresh&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Filter based on file extension</title>
+      <link>http://localhost:1313/NoNonsense-FilePicker/example/filter_file_extension/</link>
+      <pubDate>Sat, 16 Jul 2016 17:32:07 +0200</pubDate>
+      
+      <guid>http://localhost:1313/NoNonsense-FilePicker/example/filter_file_extension/</guid>
+      <description>
+
+&lt;p&gt;By default, the SD-card picker will display all files in alphabetical order. But let&amp;rsquo;s say that your app can only handle a specific type of file, like &lt;code&gt;.txt&lt;/code&gt;-files. Here&amp;rsquo;s a minimal example which will only display such files.&lt;/p&gt;
+
+&lt;p&gt;First, a convenience method to get the extension of files:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// File extension to filter on, including the initial dot.&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; String EXTENSION &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;.txt&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     *&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @param file&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @return The file extension. If file has no extension, it returns null.&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; String &lt;span style=&#34;color: #06287e&#34;&gt;getExtension&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@NonNull&lt;/span&gt; File file&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        String path &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; file&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getPath&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+        &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; path&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;lastIndexOf&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;i &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; path&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;substring&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;i&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The decision to display files or not is done with the &lt;code&gt;isItemVisible&lt;/code&gt; method. Just add a check for the file-extension:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;isItemVisible&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; File file&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// simplified behavior   (see below full code)&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// return isDir(file) || (mode == MODE_FILE || mode == MODE_FILE_AND_DIR);&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(!&lt;/span&gt;isDir&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;file&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;mode &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; MODE_FILE &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; mode &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; MODE_FILE_AND_DIR&lt;span style=&#34;color: #666666&#34;&gt;))&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            String ext &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;file&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; ext &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; EXTENSION&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;ext&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; isDir&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;file&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;before-and-after&#34;&gt;Before and After&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/NoNonsense-FilePicker/screenshots/filter_before.png&#34; width=&#34;30%&#34; alt=&#34;Before&#34;/&gt;
+&lt;img src=&#34;http://localhost:1313/NoNonsense-FilePicker/screenshots/filter_after.png&#34; width=&#34;30%&#34; alt=&#34;After&#34;/&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;full-fragment-code&#34;&gt;Full Fragment code&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;com.nononsenseapps.filepicker.FilePickerFragment&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;java.io.File&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;FilteredFilePickerFragment&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;extends&lt;/span&gt; FilePickerFragment &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// File extension to filter on&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; String EXTENSION &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;.txt&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     *&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @param file&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @return The file extension. If file has no extension, it returns null.&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; String &lt;span style=&#34;color: #06287e&#34;&gt;getExtension&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@NonNull&lt;/span&gt; File file&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        String path &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; file&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getPath&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+        &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; path&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;lastIndexOf&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;i &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; path&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;substring&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;i&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;isItemVisible&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; File file&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; ret &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;super&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;isItemVisible&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;file&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;ret &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!&lt;/span&gt;isDir&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;file&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;mode &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; MODE_FILE &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt; mode &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; MODE_FILE_AND_DIR&lt;span style=&#34;color: #666666&#34;&gt;))&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            String ext &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;file&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; ext &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; EXTENSION&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;ext&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; ret&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Custom item layout</title>
+      <link>http://localhost:1313/NoNonsense-FilePicker/example/custom_item_layout/</link>
+      <pubDate>Sat, 16 Jul 2016 17:21:28 +0200</pubDate>
+      
+      <guid>http://localhost:1313/NoNonsense-FilePicker/example/custom_item_layout/</guid>
+      <description>
+
+&lt;p&gt;Say you want to browse some files which have really long names. By default, filenames will be cut if they exceed one line in width like &lt;code&gt;ThisIsAReallyLongFi...&lt;/code&gt;. What if we really wanted it show like in this image?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/NoNonsense-FilePicker/screenshots/itemlayout_longfilename.png&#34; alt=&#34;Example of a long filename&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The behavior of the text is defined in the listitem layouts:
+&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/library/src/main/res/layout/nnf_filepicker_listitem_checkable.xml&#34;&gt;nnf_filepicker_listitem_checkable&lt;/a&gt;
+and
+&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/library/src/main/res/layout/nnf_filepicker_listitem_dir.xml&#34;&gt;nnf_filepicker_listitem_dir&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are two kinds of layouts, one with a checkbox to allow selection, and one without a checkbox. The second one is also used for the special header item &lt;code&gt;..&lt;/code&gt; though you could of course have a special layout for that if you wanted.&lt;/p&gt;
+
+&lt;h3 id=&#34;layouts&#34;&gt;Layouts&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;rsquo;s create some new layouts which will support longer filenames as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;longer_listitem_checkable.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;LinearLayout&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;xmlns:tools=&amp;quot;http://schemas.android.com/tools&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_width=&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_height=&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:background=&amp;quot;?android:selectableItemBackground&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:minHeight=&amp;quot;?android:listPreferredItemHeight&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:orientation=&amp;quot;horizontal&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;&amp;lt;!--suppress AndroidDomInspection --&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;ImageView&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:id=&amp;quot;@+id/item_icon&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_width=&amp;quot;?android:listPreferredItemHeight&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_height=&amp;quot;?android:listPreferredItemHeight&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:adjustViewBounds=&amp;quot;true&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:scaleType=&amp;quot;fitCenter&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:src=&amp;quot;@drawable/nnf_ic_file_folder&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:tint=&amp;quot;?attr/colorAccent&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:visibility=&amp;quot;visible&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;tools:ignore=&amp;quot;ContentDescription&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;TextView&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:id=&amp;quot;@android:id/text1&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;style=&amp;quot;?android:textAppearanceLarge&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_width=&amp;quot;0dp&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_height=&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:minHeight=&amp;quot;?android:listPreferredItemHeight&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_weight=&amp;quot;1&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:ellipsize=&amp;quot;end&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:gravity=&amp;quot;center_vertical&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:maxLines=&amp;quot;4&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:padding=&amp;quot;8dp&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;CheckBox&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:id=&amp;quot;@+id/checkbox&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_width=&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_height=&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:paddingEnd=&amp;quot;8dp&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:paddingRight=&amp;quot;8dp&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;tools:ignore=&amp;quot;RtlSymmetry&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;longer_listitem_dir.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;LinearLayout&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;xmlns:android=&amp;quot;http://schemas.android.com/apk/res/android&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;xmlns:tools=&amp;quot;http://schemas.android.com/tools&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_width=&amp;quot;match_parent&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_height=&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:background=&amp;quot;?android:selectableItemBackground&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:minHeight=&amp;quot;?android:listPreferredItemHeight&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:orientation=&amp;quot;horizontal&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;&amp;lt;!--suppress AndroidDomInspection --&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;ImageView&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:id=&amp;quot;@+id/item_icon&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_width=&amp;quot;?android:listPreferredItemHeight&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_height=&amp;quot;?android:listPreferredItemHeight&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:adjustViewBounds=&amp;quot;true&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:scaleType=&amp;quot;center&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:src=&amp;quot;@drawable/nnf_ic_file_folder&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:tint=&amp;quot;?attr/colorAccent&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:visibility=&amp;quot;visible&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;tools:ignore=&amp;quot;ContentDescription&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;TextView&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:id=&amp;quot;@android:id/text1&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;style=&amp;quot;?android:textAppearanceLarge&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_width=&amp;quot;0dp&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_height=&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:minHeight=&amp;quot;?android:listPreferredItemHeight&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_weight=&amp;quot;1&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:ellipsize=&amp;quot;end&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:gravity=&amp;quot;center_vertical&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:maxLines=&amp;quot;4&amp;quot;&lt;/span&gt;
+        &lt;span style=&#34;color: #4070a0&#34;&gt;android:padding=&amp;quot;8dp&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/LinearLayout&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that I defined the TextViews to have a maximum of 4 lines (actual number is up to you), and a minimum height of &lt;code&gt;android:listPreferredItemHeight&lt;/code&gt; (this I recommend, otherwise it looks wonky and off-center). And just be clear, the &lt;em&gt;ids&lt;/em&gt; of these fields must be &lt;code&gt;@+id/item_icon&lt;/code&gt;, &lt;code&gt;@android:id/text1&lt;/code&gt;, and &lt;code&gt;@+id/checkbox&lt;/code&gt;, or the code WILL crash on you.&lt;/p&gt;
+
+&lt;h3 id=&#34;code&#34;&gt;Code&lt;/h3&gt;
+
+&lt;p&gt;To use the new layouts, you need to override the &lt;code&gt;onCreateViewHolder&lt;/code&gt; method in
+&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/library/src/main/java/com/nononsenseapps/filepicker/AbstractFilePickerFragment.java&#34;&gt;AbstractFilePickerFragment&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Since this example will be browsing the SD-card, I will extend from the built-in FilePickerFragment.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;CustomLayoutFilePickerFragment&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;extends&lt;/span&gt; FilePickerFragment &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @param parent Containing view&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @param viewType which the ViewHolder will contain. Will be one of:&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * [VIEWTYPE_HEADER, VIEWTYPE_CHECKABLE, VIEWTYPE_DIR]. It is OK, and even expected, to use the same&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * layout for VIEWTYPE_HEADER and VIEWTYPE_DIR.&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @return a view holder for a file or directory (the difference is presence of checkbox).&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; RecyclerView&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;ViewHolder&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;onCreateViewHolder&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;ViewGroup parent&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; viewType&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        View v&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;switch&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;viewType&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;case&lt;/span&gt; LogicHandler&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;VIEWTYPE_HEADER&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt;
+                v &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; LayoutInflater&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;from&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getActivity&lt;span style=&#34;color: #666666&#34;&gt;()).&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;inflate&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;R&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;layout&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;longer_listitem_dir&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt;
+                        parent&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; HeaderViewHolder&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;v&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;case&lt;/span&gt; LogicHandler&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;VIEWTYPE_CHECKABLE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt;
+                v &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; LayoutInflater&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;from&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getActivity&lt;span style=&#34;color: #666666&#34;&gt;()).&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;inflate&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;R&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;layout&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;longer_listitem_checkable&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt;
+                        parent&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; CheckableViewHolder&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;v&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;case&lt;/span&gt; LogicHandler&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;VIEWTYPE_DIR&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;default&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt;
+                v &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; LayoutInflater&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;from&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getActivity&lt;span style=&#34;color: #666666&#34;&gt;()).&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;inflate&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;R&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;layout&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;longer_listitem_dir&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt;
+                        parent&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; DirViewHolder&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;v&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And as always, to use your custom fragment you need a custom activity which loads it for you:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;CustomLayoutPickerActivity&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;extends&lt;/span&gt; AbstractFilePickerActivity &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;CustomLayoutPickerActivity&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;super&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; AbstractFilePickerFragment&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;File&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;getFragment&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; String startPath&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; mode&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; allowMultiple&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; allowCreateDir&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Load our custom fragment here&lt;/span&gt;
+        AbstractFilePickerFragment&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;File&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt; fragment &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; CustomLayoutFilePickerFragment&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// startPath is allowed to be null. In that case, default folder should be SD-card and not &amp;quot;/&amp;quot;&lt;/span&gt;
+        fragment&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;setArgs&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;startPath &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;?&lt;/span&gt; startPath &lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; Environment&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getExternalStorageDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getPath&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(),&lt;/span&gt;
+                mode&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; allowMultiple&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; allowCreateDir&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; fragment&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Change the sort order</title>
+      <link>http://localhost:1313/NoNonsense-FilePicker/example/sortorder/</link>
+      <pubDate>Sat, 16 Jul 2016 17:10:46 +0200</pubDate>
+      
+      <guid>http://localhost:1313/NoNonsense-FilePicker/example/sortorder/</guid>
+      <description>
+
+&lt;p&gt;By default, the SD-card picker will display all files in alphabetical order. But what if you want a different sort-order?&lt;/p&gt;
+
+&lt;p&gt;You can override the sorting by overriding the &lt;code&gt;compareFiles&lt;/code&gt;-method:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;compareFiles&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;File lhs&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; File rhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;isDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;isDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;())&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color: #40a070&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;isDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;isDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;())&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// This was the previous behaviour for all file-file comparisons. Now it&amp;#39;s&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// only done if the files have the same extension, or no extension.&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;).&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;))&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt;
+                getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; lhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getName&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;compareToIgnoreCase&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getName&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;());&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Otherwise, we sort on extension placing files with no extension last.&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Both have extension, just compare extensions&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;).&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;compareToIgnoreCase&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;));&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Left has extension, place it first&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color: #40a070&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Right has extension, place it first&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;before-and-after&#34;&gt;Before and After&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/NoNonsense-FilePicker/screenshots/sorting_before.png&#34; width=&#34;30%&#34; alt=&#34;Before&#34;/&gt;
+&lt;img src=&#34;http://localhost:1313/NoNonsense-FilePicker/screenshots/sorting_after.png&#34; width=&#34;30%&#34; alt=&#34;After&#34;/&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;full-fragment-code&#34;&gt;Full Fragment code&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;com.nononsenseapps.filepicker.FilePickerFragment&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;java.io.File&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;SortedFilePickerFragment&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;extends&lt;/span&gt; FilePickerFragment &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     *&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @param file&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @return The file extension. If file has no extension, it returns null.&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; String &lt;span style=&#34;color: #06287e&#34;&gt;getExtension&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@NonNull&lt;/span&gt; File file&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        String path &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; file&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getPath&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+        &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; path&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;lastIndexOf&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;.&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;i &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; path&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;substring&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;i&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/**&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * Compare two files to determine their relative sort order. This follows the usual&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * comparison interface. Override to determine your own custom sort order.&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     *&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @param lhs File on the &amp;quot;left-hand side&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @param rhs File on the &amp;quot;right-hand side&amp;quot;&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * @return -1 if if lhs should be placed before rhs, 0 if they are equal,&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     * and 1 if rhs should be placed before lhs&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;     */&lt;/span&gt;
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;compareFiles&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;File lhs&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; File rhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;isDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;isDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;())&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color: #40a070&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;isDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;isDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;())&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// This was the previous behaviour for all file-file comparisons. Now it&amp;#39;s&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// only done if the files have the same extension, or no extension.&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;).&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;))&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;||&lt;/span&gt;
+                getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; lhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getName&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;compareToIgnoreCase&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getName&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;());&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Otherwise, we sort on extension placing files with no extension last.&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Both have extension, just compare extensions&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;).&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;compareToIgnoreCase&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;rhs&lt;span style=&#34;color: #666666&#34;&gt;));&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;getExtension&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;lhs&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Left has extension, place it first&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color: #40a070&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Right has extension, place it first&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ChangeLog</title>
+      <link>http://localhost:1313/NoNonsense-FilePicker/changelog/</link>
+      <pubDate>Sat, 16 Jul 2016 17:06:45 +0200</pubDate>
+      
+      <guid>http://localhost:1313/NoNonsense-FilePicker/changelog/</guid>
+      <description>
+
+&lt;h2 id=&#34;3-0-0-https-github-com-spacecowboy-nononsense-filepicker-tree-3-0-0-2016-07-03&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/3.0.0&#34;&gt;3.0.0&lt;/a&gt; (2016-07-03)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.3...3.0.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Select one file with a single click &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/92&#34;&gt;#92&lt;/a&gt; (&lt;a href=&#34;https://github.com/rastikw&#34;&gt;rastikw&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add ability to enter a new filename &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/83&#34;&gt;#83&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Closed issues:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add ability to input filename &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/82&#34;&gt;#82&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-5-3-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-3-2016-06-09&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.3&#34;&gt;2.5.3&lt;/a&gt; (2016-06-09)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.2...2.5.3&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add paths to permission and refresh methods &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/85&#34;&gt;#85&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Add FastScroller sample implementation &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/89&#34;&gt;#89&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add a getItem method to FileItemAdapter &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/88&#34;&gt;#88&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Crash while creating folder in dropbox sample &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/76&#34;&gt;#76&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Closed issues:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fast Scroll &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/87&#34;&gt;#87&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-5-2-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-2-2016-02-24&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.2&#34;&gt;2.5.2&lt;/a&gt; (2016-02-24)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.1...2.5.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dropbox should show a progress bar when loading &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/74&#34;&gt;#74&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dropbox sample can crash due to Inconsistent state in RecyclerView &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/75&#34;&gt;#75&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dropbox sample crash if multiple press on folder &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/73&#34;&gt;#73&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;probebly underscore missing &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/63&#34;&gt;#63&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Update README.md &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/68&#34;&gt;#68&lt;/a&gt; (&lt;a href=&#34;https://github.com/callmepeanut&#34;&gt;callmepeanut&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-5-1-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-1-2016-01-13&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.1&#34;&gt;2.5.1&lt;/a&gt; (2016-01-13)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.0...2.5.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Change license to MPL &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/66&#34;&gt;#66&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2-5-0-https-github-com-spacecowboy-nononsense-filepicker-tree-2-5-0-2015-11-08&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.0&#34;&gt;2.5.0&lt;/a&gt; (2015-11-08)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.2...2.5.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add a separator line above OK/Cancel buttons &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/60&#34;&gt;#60&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Hide hidden files in SD card picker by default &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/58&#34;&gt;#58&lt;/a&gt; (&lt;a href=&#34;https://github.com/dvrajan&#34;&gt;dvrajan&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-4-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-4-2-2015-09-30&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.4.2&#34;&gt;v2.4.2&lt;/a&gt; (2015-09-30)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.1...v2.4.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;lower minSdk &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/54&#34;&gt;#54&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Spacing of filename items &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/52&#34;&gt;#52&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Lowered minSdk to API 9 &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/55&#34;&gt;#55&lt;/a&gt; (&lt;a href=&#34;https://github.com/marbat87&#34;&gt;marbat87&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add Video Thumbnail preview and set default theme to light &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/53&#34;&gt;#53&lt;/a&gt; (&lt;a href=&#34;https://github.com/alishari&#34;&gt;alishari&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-4-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-4-1-2015-09-14&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.4.1&#34;&gt;v2.4.1&lt;/a&gt; (2015-09-14)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.4.0...v2.4.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Update to latest build tools and support library 23.0.1 &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/51&#34;&gt;#51&lt;/a&gt; (&lt;a href=&#34;https://github.com/alishari&#34;&gt;alishari&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-4-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-4-0-2015-08-25&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.4.0&#34;&gt;v2.4.0&lt;/a&gt; (2015-08-25)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.3.1...v2.4.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Only allow selecting single files (when EXTRA_ALLOW_MULTIPLE is set to false) &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/48&#34;&gt;#48&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make click events overridable &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/49&#34;&gt;#49&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-3-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-3-1-2015-08-20&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.3.1&#34;&gt;v2.3.1&lt;/a&gt; (2015-08-20)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.3.0...v2.3.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;FilePicker cannot be used with non-touchscreen devices &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/44&#34;&gt;#44&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make list focusable. &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/45&#34;&gt;#45&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-3-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-3-0-2015-08-18&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.3.0&#34;&gt;v2.3.0&lt;/a&gt; (2015-08-18)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2.3...v2.3.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make sure to handle Android M&amp;rsquo;s new permission requests &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/24&#34;&gt;#24&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-2-3-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-3-2015-08-04&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2.3&#34;&gt;v2.2.3&lt;/a&gt; (2015-08-04)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2.2...v2.2.3&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Enhancement: Allow adding more arguments to FilePickerFragment &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/40&#34;&gt;#40&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Do not override existing arguments &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/41&#34;&gt;#41&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Update travis config to run on faster containers &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/42&#34;&gt;#42&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-2-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-2-2015-08-03&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2.2&#34;&gt;v2.2.2&lt;/a&gt; (2015-08-03)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2.1...v2.2.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dropbox Sync API is deprecated &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/35&#34;&gt;#35&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ensure toasts don&amp;rsquo;t get queued up &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/39&#34;&gt;#39&lt;/a&gt; (&lt;a href=&#34;https://github.com/hcoosthuizen&#34;&gt;hcoosthuizen&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-2-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-1-2015-07-17&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2.1&#34;&gt;v2.2.1&lt;/a&gt; (2015-07-17)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.2...v2.2.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Strange error &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/34&#34;&gt;#34&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-2-2015-07-13&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.2&#34;&gt;v2.2&lt;/a&gt; (2015-07-13)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.1...v2.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Allow fragment to be used with default action bar &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/32&#34;&gt;#32&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Allow setting of toolbar text colour &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/31&#34;&gt;#31&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Licence &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/29&#34;&gt;#29&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Specifying GPL3 or later &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/30&#34;&gt;#30&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-1-2015-05-30&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.1&#34;&gt;v2.1&lt;/a&gt; (2015-05-30)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.5...v2.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make filepicker depend only on EXTRA_ALLOW_CREATE_DIR &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/25&#34;&gt;#25&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Build fails &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/21&#34;&gt;#21&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mention that start-path is configurable &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/20&#34;&gt;#20&lt;/a&gt; (&lt;a href=&#34;https://github.com/spacecowboy&#34;&gt;spacecowboy&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-0-5-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-5-2015-05-01&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.5&#34;&gt;v2.0.5&lt;/a&gt; (2015-05-01)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.4...v2.0.5&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ic_launcher conflict with app one &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/16&#34;&gt;#16&lt;/a&gt; (&lt;a href=&#34;https://github.com/NitroG42&#34;&gt;NitroG42&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-0-4-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-4-2015-04-29&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.4&#34;&gt;v2.0.4&lt;/a&gt; (2015-04-29)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.3...v2.0.4&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Show miniatures for images &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/10&#34;&gt;#10&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Rotation doesn&amp;rsquo;t work &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/15&#34;&gt;#15&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v2-0-3-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-3-2015-04-28&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.3&#34;&gt;v2.0.3&lt;/a&gt; (2015-04-28)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.2...v2.0.3&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v2-0-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-2-2015-04-28&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.2&#34;&gt;v2.0.2&lt;/a&gt; (2015-04-28)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v2.0.0...v2.0.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v2-0-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v2-0-0-2015-04-27&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v2.0.0&#34;&gt;v2.0.0&lt;/a&gt; (2015-04-27)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.2.0...v2.0.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;crash InBackground thread &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/13&#34;&gt;#13&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Crash on root folders &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/12&#34;&gt;#12&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v1-2-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-2-0-2015-04-27&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.2.0&#34;&gt;v1.2.0&lt;/a&gt; (2015-04-27)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1.3...v1.2.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Verify Proguard &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/8&#34;&gt;#8&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Upload the Dropbox sample &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/5&#34;&gt;#5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Merged pull requests:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add a Gitter chat badge to README.org &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/11&#34;&gt;#11&lt;/a&gt; (&lt;a href=&#34;https://github.com/gitter-badger&#34;&gt;gitter-badger&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;NPE on empty dir &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/pull/6&#34;&gt;#6&lt;/a&gt; (&lt;a href=&#34;https://github.com/arkty&#34;&gt;arkty&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v1-1-3-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-3-2014-04-02&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1.3&#34;&gt;v1.1.3&lt;/a&gt; (2014-04-02)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1.2...v1.1.3&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fixed bugs:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;FilePicker: Handle case if startPath does not exist &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/4&#34;&gt;#4&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v1-1-2-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-2-2014-04-02&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1.2&#34;&gt;v1.1.2&lt;/a&gt; (2014-04-02)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1.1...v1.1.2&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Upload to Maven Central  &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/3&#34;&gt;#3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v1-1-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-1-2014-04-02&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1.1&#34;&gt;v1.1.1&lt;/a&gt; (2014-04-02)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.1...v1.1.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v1-1-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-1-2014-04-01&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.1&#34;&gt;v1.1&lt;/a&gt; (2014-04-01)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v1.0...v1.1&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Implemented enhancements:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add only files option &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/2&#34;&gt;#2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Make create directory toggleable &lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/issues/1&#34;&gt;#1&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;v1-0-https-github-com-spacecowboy-nononsense-filepicker-tree-v1-0-2014-04-01&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v1.0&#34;&gt;v1.0&lt;/a&gt; (2014-04-01)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v0.99...v1.0&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v0-99-https-github-com-spacecowboy-nononsense-filepicker-tree-v0-99-2014-03-31&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v0.99&#34;&gt;v0.99&lt;/a&gt; (2014-03-31)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v0.91...v0.99&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v0-91-https-github-com-spacecowboy-nononsense-filepicker-tree-v0-91-2014-03-31&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v0.91&#34;&gt;v0.91&lt;/a&gt; (2014-03-31)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/compare/v0.9...v0.91&#34;&gt;Full Changelog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;v0-9-https-github-com-spacecowboy-nononsense-filepicker-tree-v0-9-2014-03-31&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/v0.9&#34;&gt;v0.9&lt;/a&gt; (2014-03-31)&lt;/h2&gt;
+
+&lt;p&gt;* &lt;em&gt;This Change Log was automatically generated by &lt;a href=&#34;https://github.com/skywinder/Github-Changelog-Generator&#34;&gt;github_changelog_generator&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Readme</title>
+      <link>http://localhost:1313/NoNonsense-FilePicker/</link>
+      <pubDate>Sat, 16 Jul 2016 16:42:44 +0200</pubDate>
+      
+      <guid>http://localhost:1313/NoNonsense-FilePicker/</guid>
+      <description>
+
+&lt;p&gt;
+&lt;img src=&#34;http://localhost:1313/NoNonsense-FilePicker/screenshots/Nexus6-picker-dark.png&#34; width=&#34;25%&#34;/&gt;
+
+&lt;img src=&#34;http://localhost:1313/NoNonsense-FilePicker/screenshots/Nexus10-picker-light.png&#34; width=&#34;60%&#34;/&gt;
+&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Extendable for sources other than SD-card (Dropbox, FTP, Drive, etc)&lt;/li&gt;
+&lt;li&gt;Can select multiple items&lt;/li&gt;
+&lt;li&gt;Select directories or files, or both&lt;/li&gt;
+&lt;li&gt;Create new directories in the picker&lt;/li&gt;
+&lt;li&gt;Material theme with AppCompat&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;yet-another-file-picker-library&#34;&gt;Yet another file picker library?&lt;/h2&gt;
+
+&lt;p&gt;I needed a file picker that had two primary properties:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Easy to extend: I needed a file picker that would work for normal
+files on the SD-card, and also for using the Dropbox API.&lt;/li&gt;
+&lt;li&gt;Able to create a directory in the picker.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This project has both of those qualities. As a bonus, it also scales
+nicely to work on any phone or tablet. The core is placed in abstract
+classes, so it is fairly easy to extend the picker to create
+your own.&lt;/p&gt;
+
+&lt;p&gt;The library includes an implementation that allows the user to pick
+files from the SD-card. But the picker could easily be extended to get
+its file listings from another source, such as Dropbox, FTP, SSH and
+so on. The sample app includes implementations which browses your
+Dropbox and a Linux mirror FTP-server.&lt;/p&gt;
+
+&lt;p&gt;By inheriting from an Activity, the picker is able to be rendered as
+full screen on small screens and as a dialog on large screens. It does
+this through the theme system, so it is very important for the
+activity to use a correctly configured theme.&lt;/p&gt;
+
+&lt;h2 id=&#34;how-to-include-in-your-project-with-gradle&#34;&gt;How to include in your project (with Gradle)&lt;/h2&gt;
+
+&lt;p&gt;Just add the dependency to your &lt;em&gt;build.gradle&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;repositories &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+    jcenter&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+dependencies &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+    compile &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;com.nononsenseapps:filepicker:3.0.0&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&#34;how-to-use-the-included-sd-card-picker&#34;&gt;How to use the included SD-card picker:&lt;/h2&gt;
+
+&lt;h3 id=&#34;include-permission-in-your-manifest&#34;&gt;Include permission in your manifest&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;uses-permission&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;android:name=&amp;quot;android.permission.WRITE_EXTERNAL_STORAGE&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;include-the-file-picker-activity&#34;&gt;Include the file picker activity&lt;/h3&gt;
+
+&lt;p&gt;The intent filter is optional depending on your use case. Note that
+the theme set in the manifest is important.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;activity&lt;/span&gt;
+       &lt;span style=&#34;color: #4070a0&#34;&gt;android:name=&amp;quot;com.nononsenseapps.filepicker.FilePickerActivity&amp;quot;&lt;/span&gt;
+       &lt;span style=&#34;color: #4070a0&#34;&gt;android:label=&amp;quot;@string/app_name&amp;quot;&lt;/span&gt;
+       &lt;span style=&#34;color: #4070a0&#34;&gt;android:theme=&amp;quot;@style/FilePickerTheme&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+       &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;intent-filter&amp;gt;&lt;/span&gt;
+          &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;action&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;android:name=&amp;quot;android.intent.action.GET_CONTENT&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+          &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;category&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;android:name=&amp;quot;android.intent.category.DEFAULT&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+       &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/intent-filter&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/activity&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;configure-the-theme&#34;&gt;Configure the theme&lt;/h3&gt;
+
+&lt;p&gt;You must &lt;strong&gt;set the theme&lt;/strong&gt; on the activity, but you can configure it to
+match your existing application theme. You can also name it whatever
+you like..&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;&amp;lt;!-- You can also inherit from NNF_BaseTheme.Light --&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;style&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;name=&amp;quot;FilePickerTheme&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;parent=&amp;quot;NNF_BaseTheme&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;&amp;lt;!-- Set these to match your theme --&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;item&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;name=&amp;quot;colorPrimary&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;@color/primary&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;item&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;name=&amp;quot;colorPrimaryDark&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;@color/primary_dark&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;item&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;name=&amp;quot;colorAccent&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;@color/accent&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;&amp;lt;!-- Need to set this also to style create folder dialog --&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;item&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;name=&amp;quot;alertDialogTheme&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;@style/FilePickerAlertDialogTheme&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;&amp;lt;!-- If you want to set a specific toolbar theme, do it here --&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;&amp;lt;!-- &amp;lt;item name=&amp;quot;nnf_toolbarTheme&amp;quot;&amp;gt;@style/ThemeOverlay.AppCompat.Dark.ActionBar&amp;lt;/item&amp;gt; --&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;style&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;name=&amp;quot;FilePickerAlertDialogTheme&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;parent=&amp;quot;Theme.AppCompat.Dialog.Alert&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;item&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;name=&amp;quot;colorPrimary&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;@color/primary&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;item&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;name=&amp;quot;colorPrimaryDark&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;@color/primary_dark&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;item&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;name=&amp;quot;colorAccent&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;@color/accent&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/item&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;starting-the-picker-in-your-app&#34;&gt;Starting the picker in your app&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// This always works&lt;/span&gt;
+    Intent i &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; Intent&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;context&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; FilePickerActivity&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// This works if you defined the intent filter&lt;/span&gt;
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Intent i = new Intent(Intent.ACTION_GET_CONTENT);&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Set these depending on your use case. These are the defaults.&lt;/span&gt;
+    i&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;putExtra&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;FilePickerActivity&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;EXTRA_ALLOW_MULTIPLE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+    i&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;putExtra&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;FilePickerActivity&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;EXTRA_ALLOW_CREATE_DIR&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+    i&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;putExtra&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;FilePickerActivity&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;EXTRA_MODE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; FilePickerActivity&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;MODE_FILE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Configure initial directory by specifying a String.&lt;/span&gt;
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// You could specify a String like &amp;quot;/storage/emulated/0/&amp;quot;, but that can&lt;/span&gt;
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// dangerous. Always use Android&amp;#39;s API calls to get paths to the SD-card or&lt;/span&gt;
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// internal memory.&lt;/span&gt;
+    i&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;putExtra&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;FilePickerActivity&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;EXTRA_START_PATH&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; Environment&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getExternalStorageDirectory&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getPath&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;());&lt;/span&gt;
+
+    startActivityForResult&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;i&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; FILE_CODE&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;handling-the-result&#34;&gt;Handling the result&lt;/h3&gt;
+
+&lt;p&gt;If you have a minimum requirement of Jelly Bean (API 16) and above,
+you can skip the second method.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@TargetApi&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;Build&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;VERSION_CODES&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;JELLY_BEAN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt;
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;onActivityResult&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; requestCode&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; resultCode&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; Intent data&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;requestCode &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; FILE_CODE &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; resultCode &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; Activity&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;RESULT_OK&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;data&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getBooleanExtra&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;FilePickerActivity&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;EXTRA_ALLOW_MULTIPLE&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;))&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+                &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// For JellyBean and above&lt;/span&gt;
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;Build&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;VERSION&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;SDK_INT&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;=&lt;/span&gt; Build&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;VERSION_CODES&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;JELLY_BEAN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+                    ClipData clip &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; data&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getClipData&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+
+                    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;clip &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+                        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt; i &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; clip&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getItemCount&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt; i&lt;span style=&#34;color: #666666&#34;&gt;++)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+                            Uri uri &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; clip&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getItemAt&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;i&lt;span style=&#34;color: #666666&#34;&gt;).&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getUri&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+                            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Do something with the URI&lt;/span&gt;
+                        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+                    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+                &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// For Ice Cream Sandwich&lt;/span&gt;
+                &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+                    ArrayList&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;String&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt; paths &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; data&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getStringArrayListExtra&lt;/span&gt;
+                                &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;FilePickerActivity&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;EXTRA_PATHS&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+
+                    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;paths &lt;span style=&#34;color: #666666&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+                        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;String path&lt;span style=&#34;color: #666666&#34;&gt;:&lt;/span&gt; paths&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+                            Uri uri &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; Uri&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;parse&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;path&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+                            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Do something with the URI&lt;/span&gt;
+                        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+                    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+                &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+            &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+                Uri uri &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; data&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getData&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+                &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Do something with the URI&lt;/span&gt;
+            &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&#34;customizing-the-picker&#34;&gt;Customizing the picker&lt;/h2&gt;
+
+&lt;p&gt;Extend &lt;code&gt;AbstractFilePickerActivity&lt;/code&gt; and implement &lt;code&gt;getFragment&lt;/code&gt;. It
+should return an instance of &lt;code&gt;AbstractFilePickerFragment&lt;/code&gt;. This
+basically means that the activity is just the same boilerplate with as
+single line changed (see the sample app&amp;rsquo;s Dropbox example for an
+activity which actually has to do some extra work):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Making a custom SD-card picker&lt;/span&gt;
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;MyPickerActivity&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;extends&lt;/span&gt; AbstractFilePickerActivity&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;File&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;MyPickerActivity&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;super&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+
+    &lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; AbstractFilePickerFragment&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;File&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;getFragment&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; String startPath&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; mode&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; allowMultiple&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; allowCreateDir&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Only the fragment in this line needs to be changed&lt;/span&gt;
+        AbstractFilePickerFragment&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;File&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt; fragment &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; MyPickerFragment&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+        fragment&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;setArgs&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;startPath&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; mode&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; allowMultiple&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; allowCreateDir&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; fragment&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&#34;extend-abstractfilepickerfragment&#34;&gt;Extend AbstractFilePickerFragment&lt;/h3&gt;
+
+&lt;p&gt;Which requires you to implement&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;onNewFolder&lt;/li&gt;
+&lt;li&gt;isDir&lt;/li&gt;
+&lt;li&gt;getParent&lt;/li&gt;
+&lt;li&gt;getPath&lt;/li&gt;
+&lt;li&gt;getFullPath&lt;/li&gt;
+&lt;li&gt;getName&lt;/li&gt;
+&lt;li&gt;getRoot&lt;/li&gt;
+&lt;li&gt;toUri&lt;/li&gt;
+&lt;li&gt;getLoader&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you only want to make a custom SD-card picker, you can instead extend &lt;code&gt;FilePickerFragment&lt;/code&gt;, and only override the relevant method you want to change.&lt;/p&gt;
+
+&lt;p&gt;See the sample app and the examples for some concrete code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>License</title>
+      <link>http://localhost:1313/NoNonsense-FilePicker/license/</link>
+      <pubDate>Sat, 16 Jul 2016 16:35:07 +0200</pubDate>
+      
+      <guid>http://localhost:1313/NoNonsense-FilePicker/license/</guid>
+      <description>&lt;p&gt;Copyright &amp;copy; 2016 Jonas Kalderstam &lt;a href=&#34;mailto:jonas@cowboyprogrammer.org&#34;&gt;jonas@cowboyprogrammer.org&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;Mozilla Public License Version 2.0
+==================================
+
+1. Definitions
+--------------
+
+1.1. &amp;quot;Contributor&amp;quot;
+    means each individual or legal entity that creates, contributes to
+    the creation of, or owns Covered Software.
+
+1.2. &amp;quot;Contributor Version&amp;quot;
+    means the combination of the Contributions of others (if any) used
+    by a Contributor and that particular Contributor&amp;#39;s Contribution.
+
+1.3. &amp;quot;Contribution&amp;quot;
+    means Covered Software of a particular Contributor.
+
+1.4. &amp;quot;Covered Software&amp;quot;
+    means Source Code Form to which the initial Contributor has attached
+    the notice in Exhibit A, the Executable Form of such Source Code
+    Form, and Modifications of such Source Code Form, in each case
+    including portions thereof.
+
+1.5. &amp;quot;Incompatible With Secondary Licenses&amp;quot;
+    means
+
+    (a) that the initial Contributor has attached the notice described
+        in Exhibit B to the Covered Software; or
+
+    (b) that the Covered Software was made available under the terms of
+        version 1.1 or earlier of the License, but not also under the
+        terms of a Secondary License.
+
+1.6. &amp;quot;Executable Form&amp;quot;
+    means any form of the work other than Source Code Form.
+
+1.7. &amp;quot;Larger Work&amp;quot;
+    means a work that combines Covered Software with other material, in
+    a separate file or files, that is not Covered Software.
+
+1.8. &amp;quot;License&amp;quot;
+    means this document.
+
+1.9. &amp;quot;Licensable&amp;quot;
+    means having the right to grant, to the maximum extent possible,
+    whether at the time of the initial grant or subsequently, any and
+    all of the rights conveyed by this License.
+
+1.10. &amp;quot;Modifications&amp;quot;
+    means any of the following:
+
+    (a) any file in Source Code Form that results from an addition to,
+        deletion from, or modification of the contents of Covered
+        Software; or
+
+    (b) any new file in Source Code Form that contains any Covered
+        Software.
+
+1.11. &amp;quot;Patent Claims&amp;quot; of a Contributor
+    means any patent claim(s), including without limitation, method,
+    process, and apparatus claims, in any patent Licensable by such
+    Contributor that would be infringed, but for the grant of the
+    License, by the making, using, selling, offering for sale, having
+    made, import, or transfer of either its Contributions or its
+    Contributor Version.
+
+1.12. &amp;quot;Secondary License&amp;quot;
+    means either the GNU General Public License, Version 2.0, the GNU
+    Lesser General Public License, Version 2.1, the GNU Affero General
+    Public License, Version 3.0, or any later versions of those
+    licenses.
+
+1.13. &amp;quot;Source Code Form&amp;quot;
+    means the form of the work preferred for making modifications.
+
+1.14. &amp;quot;You&amp;quot; (or &amp;quot;Your&amp;quot;)
+    means an individual or a legal entity exercising rights under this
+    License. For legal entities, &amp;quot;You&amp;quot; includes any entity that
+    controls, is controlled by, or is under common control with You. For
+    purposes of this definition, &amp;quot;control&amp;quot; means (a) the power, direct
+    or indirect, to cause the direction or management of such entity,
+    whether by contract or otherwise, or (b) ownership of more than
+    fifty percent (50%) of the outstanding shares or beneficial
+    ownership of such entity.
+
+2. License Grants and Conditions
+--------------------------------
+
+2.1. Grants
+
+Each Contributor hereby grants You a world-wide, royalty-free,
+non-exclusive license:
+
+(a) under intellectual property rights (other than patent or trademark)
+    Licensable by such Contributor to use, reproduce, make available,
+    modify, display, perform, distribute, and otherwise exploit its
+    Contributions, either on an unmodified basis, with Modifications, or
+    as part of a Larger Work; and
+
+(b) under Patent Claims of such Contributor to make, use, sell, offer
+    for sale, have made, import, and otherwise transfer either its
+    Contributions or its Contributor Version.
+
+2.2. Effective Date
+
+The licenses granted in Section 2.1 with respect to any Contribution
+become effective for each Contribution on the date the Contributor first
+distributes such Contribution.
+
+2.3. Limitations on Grant Scope
+
+The licenses granted in this Section 2 are the only rights granted under
+this License. No additional rights or licenses will be implied from the
+distribution or licensing of Covered Software under this License.
+Notwithstanding Section 2.1(b) above, no patent license is granted by a
+Contributor:
+
+(a) for any code that a Contributor has removed from Covered Software;
+    or
+
+(b) for infringements caused by: (i) Your and any other third party&amp;#39;s
+    modifications of Covered Software, or (ii) the combination of its
+    Contributions with other software (except as part of its Contributor
+    Version); or
+
+(c) under Patent Claims infringed by Covered Software in the absence of
+    its Contributions.
+
+This License does not grant any rights in the trademarks, service marks,
+or logos of any Contributor (except as may be necessary to comply with
+the notice requirements in Section 3.4).
+
+2.4. Subsequent Licenses
+
+No Contributor makes additional grants as a result of Your choice to
+distribute the Covered Software under a subsequent version of this
+License (see Section 10.2) or under the terms of a Secondary License (if
+permitted under the terms of Section 3.3).
+
+2.5. Representation
+
+Each Contributor represents that the Contributor believes its
+Contributions are its original creation(s) or it has sufficient rights
+to grant the rights to its Contributions conveyed by this License.
+
+2.6. Fair Use
+
+This License is not intended to limit any rights You have under
+applicable copyright doctrines of fair use, fair dealing, or other
+equivalents.
+
+2.7. Conditions
+
+Sections 3.1, 3.2, 3.3, and 3.4 are conditions of the licenses granted
+in Section 2.1.
+
+3. Responsibilities
+-------------------
+
+3.1. Distribution of Source Form
+
+All distribution of Covered Software in Source Code Form, including any
+Modifications that You create or to which You contribute, must be under
+the terms of this License. You must inform recipients that the Source
+Code Form of the Covered Software is governed by the terms of this
+License, and how they can obtain a copy of this License. You may not
+attempt to alter or restrict the recipients&amp;#39; rights in the Source Code
+Form.
+
+3.2. Distribution of Executable Form
+
+If You distribute Covered Software in Executable Form then:
+
+(a) such Covered Software must also be made available in Source Code
+    Form, as described in Section 3.1, and You must inform recipients of
+    the Executable Form how they can obtain a copy of such Source Code
+    Form by reasonable means in a timely manner, at a charge no more
+    than the cost of distribution to the recipient; and
+
+(b) You may distribute such Executable Form under the terms of this
+    License, or sublicense it under different terms, provided that the
+    license for the Executable Form does not attempt to limit or alter
+    the recipients&amp;#39; rights in the Source Code Form under this License.
+
+3.3. Distribution of a Larger Work
+
+You may create and distribute a Larger Work under terms of Your choice,
+provided that You also comply with the requirements of this License for
+the Covered Software. If the Larger Work is a combination of Covered
+Software with a work governed by one or more Secondary Licenses, and the
+Covered Software is not Incompatible With Secondary Licenses, this
+License permits You to additionally distribute such Covered Software
+under the terms of such Secondary License(s), so that the recipient of
+the Larger Work may, at their option, further distribute the Covered
+Software under the terms of either this License or such Secondary
+License(s).
+
+3.4. Notices
+
+You may not remove or alter the substance of any license notices
+(including copyright notices, patent notices, disclaimers of warranty,
+or limitations of liability) contained within the Source Code Form of
+the Covered Software, except that You may alter any license notices to
+the extent required to remedy known factual inaccuracies.
+
+3.5. Application of Additional Terms
+
+You may choose to offer, and to charge a fee for, warranty, support,
+indemnity or liability obligations to one or more recipients of Covered
+Software. However, You may do so only on Your own behalf, and not on
+behalf of any Contributor. You must make it absolutely clear that any
+such warranty, support, indemnity, or liability obligation is offered by
+You alone, and You hereby agree to indemnify every Contributor for any
+liability incurred by such Contributor as a result of warranty, support,
+indemnity or liability terms You offer. You may include additional
+disclaimers of warranty and limitations of liability specific to any
+jurisdiction.
+
+4. Inability to Comply Due to Statute or Regulation
+---------------------------------------------------
+
+If it is impossible for You to comply with any of the terms of this
+License with respect to some or all of the Covered Software due to
+statute, judicial order, or regulation then You must: (a) comply with
+the terms of this License to the maximum extent possible; and (b)
+describe the limitations and the code they affect. Such description must
+be placed in a text file included with all distributions of the Covered
+Software under this License. Except to the extent prohibited by statute
+or regulation, such description must be sufficiently detailed for a
+recipient of ordinary skill to be able to understand it.
+
+5. Termination
+--------------
+
+5.1. The rights granted under this License will terminate automatically
+if You fail to comply with any of its terms. However, if You become
+compliant, then the rights granted under this License from a particular
+Contributor are reinstated (a) provisionally, unless and until such
+Contributor explicitly and finally terminates Your grants, and (b) on an
+ongoing basis, if such Contributor fails to notify You of the
+non-compliance by some reasonable means prior to 60 days after You have
+come back into compliance. Moreover, Your grants from a particular
+Contributor are reinstated on an ongoing basis if such Contributor
+notifies You of the non-compliance by some reasonable means, this is the
+first time You have received notice of non-compliance with this License
+from such Contributor, and You become compliant prior to 30 days after
+Your receipt of the notice.
+
+5.2. If You initiate litigation against any entity by asserting a patent
+infringement claim (excluding declaratory judgment actions,
+counter-claims, and cross-claims) alleging that a Contributor Version
+directly or indirectly infringes any patent, then the rights granted to
+You by any and all Contributors for the Covered Software under Section
+2.1 of this License shall terminate.
+
+5.3. In the event of termination under Sections 5.1 or 5.2 above, all
+end user license agreements (excluding distributors and resellers) which
+have been validly granted by You or Your distributors under this License
+prior to termination shall survive termination.
+
+************************************************************************
+*                                                                      *
+*  6. Disclaimer of Warranty                                           *
+*  -------------------------                                           *
+*                                                                      *
+*  Covered Software is provided under this License on an &amp;quot;as is&amp;quot;       *
+*  basis, without warranty of any kind, either expressed, implied, or  *
+*  statutory, including, without limitation, warranties that the       *
+*  Covered Software is free of defects, merchantable, fit for a        *
+*  particular purpose or non-infringing. The entire risk as to the     *
+*  quality and performance of the Covered Software is with You.        *
+*  Should any Covered Software prove defective in any respect, You     *
+*  (not any Contributor) assume the cost of any necessary servicing,   *
+*  repair, or correction. This disclaimer of warranty constitutes an   *
+*  essential part of this License. No use of any Covered Software is   *
+*  authorized under this License except under this disclaimer.         *
+*                                                                      *
+************************************************************************
+
+************************************************************************
+*                                                                      *
+*  7. Limitation of Liability                                          *
+*  --------------------------                                          *
+*                                                                      *
+*  Under no circumstances and under no legal theory, whether tort      *
+*  (including negligence), contract, or otherwise, shall any           *
+*  Contributor, or anyone who distributes Covered Software as          *
+*  permitted above, be liable to You for any direct, indirect,         *
+*  special, incidental, or consequential damages of any character      *
+*  including, without limitation, damages for lost profits, loss of    *
+*  goodwill, work stoppage, computer failure or malfunction, or any    *
+*  and all other commercial damages or losses, even if such party      *
+*  shall have been informed of the possibility of such damages. This   *
+*  limitation of liability shall not apply to liability for death or   *
+*  personal injury resulting from such party&amp;#39;s negligence to the       *
+*  extent applicable law prohibits such limitation. Some               *
+*  jurisdictions do not allow the exclusion or limitation of           *
+*  incidental or consequential damages, so this exclusion and          *
+*  limitation may not apply to You.                                    *
+*                                                                      *
+************************************************************************
+
+8. Litigation
+-------------
+
+Any litigation relating to this License may be brought only in the
+courts of a jurisdiction where the defendant maintains its principal
+place of business and such litigation shall be governed by laws of that
+jurisdiction, without reference to its conflict-of-law provisions.
+Nothing in this Section shall prevent a party&amp;#39;s ability to bring
+cross-claims or counter-claims.
+
+9. Miscellaneous
+----------------
+
+This License represents the complete agreement concerning the subject
+matter hereof. If any provision of this License is held to be
+unenforceable, such provision shall be reformed only to the extent
+necessary to make it enforceable. Any law or regulation which provides
+that the language of a contract shall be construed against the drafter
+shall not be used to construe this License against a Contributor.
+
+10. Versions of the License
+---------------------------
+
+10.1. New Versions
+
+Mozilla Foundation is the license steward. Except as provided in Section
+10.3, no one other than the license steward has the right to modify or
+publish new versions of this License. Each version will be given a
+distinguishing version number.
+
+10.2. Effect of New Versions
+
+You may distribute the Covered Software under the terms of the version
+of the License under which You originally received the Covered Software,
+or under the terms of any subsequent version published by the license
+steward.
+
+10.3. Modified Versions
+
+If you create software not governed by this License, and you want to
+create a new license for such software, you may create and use a
+modified version of this License if you rename the license and remove
+any references to the name of the license steward (except to note that
+such modified license differs from this License).
+
+10.4. Distributing Source Code Form that is Incompatible With Secondary
+Licenses
+
+If You choose to distribute Source Code Form that is Incompatible With
+Secondary Licenses under the terms of this version of the License, the
+notice described in Exhibit B of this License must be attached.
+
+Exhibit A - Source Code Form License Notice
+-------------------------------------------
+
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+If it is not possible or desirable to put the notice in a particular
+file, then You may include the notice in a location (such as a LICENSE
+file in a relevant directory) where a recipient would be likely to look
+for such a notice.
+
+You may add additional accurate notices of copyright ownership.
+
+Exhibit B - &amp;quot;Incompatible With Secondary Licenses&amp;quot; Notice
+---------------------------------------------------------
+
+  This Source Code Form is &amp;quot;Incompatible With Secondary Licenses&amp;quot;, as
+  defined by the Mozilla Public License, v. 2.0.
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

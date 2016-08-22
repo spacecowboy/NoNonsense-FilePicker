@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Override selection behavior - NoNonsense FilePicker</title>
+    <meta name="generator" content="Hugo 0.16" />
+
+    
+    <meta name="description" content="An extensible and flexible file-picker for Android.">
+    
+    <link rel="canonical" href="http://localhost:1313/NoNonsense-FilePicker/example/override_selection_behavior/">
+    
+    <meta name="author" content="SpaceCowboy">
+    
+
+    <meta property="og:url" content="http://localhost:1313/NoNonsense-FilePicker/example/override_selection_behavior/">
+    <meta property="og:title" content="NoNonsense FilePicker">
+    
+    <meta name="apple-mobile-web-app-title" content="NoNonsense FilePicker">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:1313/NoNonsense-FilePicker/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="http://localhost:1313/NoNonsense-FilePicker/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('http://localhost:1313/NoNonsense-FilePicker/fonts/icon.eot?52m981');
+        src: url('http://localhost:1313/NoNonsense-FilePicker/fonts/icon.eot?#iefix52m981')
+               format('embedded-opentype'),
+             url('http://localhost:1313/NoNonsense-FilePicker/fonts/icon.woff?52m981')
+               format('woff'),
+             url('http://localhost:1313/NoNonsense-FilePicker/fonts/icon.ttf?52m981')
+               format('truetype'),
+             url('http://localhost:1313/NoNonsense-FilePicker/fonts/icon.svg?52m981#icon')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="http://localhost:1313/NoNonsense-FilePicker/stylesheets/application.css">
+    <link rel="stylesheet" href="http://localhost:1313/NoNonsense-FilePicker/stylesheets/temporary.css">
+    <link rel="stylesheet" href="http://localhost:1313/NoNonsense-FilePicker/stylesheets/palettes.css">
+    <link rel="stylesheet" href="http://localhost:1313/NoNonsense-FilePicker/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Roboto%2bMono">
+    <style>
+      body, input {
+        font-family: 'Roboto', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="http://localhost:1313/NoNonsense-FilePicker/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-red palette-accent-light green">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Override selection behavior
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/spacecowboy" title="@spacecowboy on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/spacecowboy/NoNonsense-FilePicker" class="project">
+    <div class="banner">
+      
+      <div class="name">
+        <strong>NoNonsense FilePicker </strong>
+        
+          <br>
+          spacecowboy/NoNonsense-FilePicker
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Readme" href="http://localhost:1313/NoNonsense-FilePicker/readme/">
+	
+	Readme
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Changelog" href="http://localhost:1313/NoNonsense-FilePicker/changelog/">
+	
+	Changelog
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="License" href="http://localhost:1313/NoNonsense-FilePicker/license/">
+	
+	License
+</a>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Examples</span>
+    <ul>
+      
+        
+        
+
+
+
+<a  title="Change the sort order" href="http://localhost:1313/NoNonsense-FilePicker/example/sortorder/">
+	
+	Change the sort order
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Filter based on file extension" href="http://localhost:1313/NoNonsense-FilePicker/example/filter_file_extension/">
+	
+	Filter based on file extension
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Custom item layout" href="http://localhost:1313/NoNonsense-FilePicker/example/custom_item_layout/">
+	
+	Custom item layout
+</a>
+
+
+      
+        
+        
+
+
+
+<a  title="Override the back button" href="http://localhost:1313/NoNonsense-FilePicker/example/override_back_button/">
+	
+	Override the back button
+</a>
+
+
+      
+        
+        
+
+
+
+<a class="current" title="Override selection behavior" href="http://localhost:1313/NoNonsense-FilePicker/example/override_selection_behavior/">
+	
+	Override selection behavior
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+      
+        
+        
+
+
+
+<a  title="Standalone fragment" href="http://localhost:1313/NoNonsense-FilePicker/example/standalone_fragment/">
+	
+	Standalone fragment
+</a>
+
+
+      
+    </ul>
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        <hr>
+        <span class="section">The author</span>
+        
+        <ul>
+          
+
+          
+          <li>
+            <a href="https://github.com/spacecowboy" target="_blank" title="@spacecowboy on GitHub">
+              @spacecowboy on GitHub
+            </a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Override selection behavior </h1>
+
+			
+
+<p>New in <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/releases/tag/v2.4.0">2.4.0</a> are overridable methods to handle UI-interactions. The following methods are now available for augmentation:</p>
+
+<ul>
+<li>onClickOK, handles ok button.</li>
+<li>onClickCancel, handles cancel button.</li>
+<li>onClickHeader, handles clicks on &ldquo;..&rdquo;.</li>
+<li>onClickDir, handles clicks on non-selectable items (usually directories).</li>
+<li>onLongClickDir, handles long clicks on non-selectable items.</li>
+<li>onClickCheckable, handles clicks on selectable items.</li>
+<li>onLongClickCheckable, handles long clicks on selectable items.</li>
+<li>onClickCheckBox, handles clicks on the checkbox of selectable items.</li>
+</ul>
+
+<p>Please see the existing implementations before you override any of them.</p>
+
+<h2 id="simple-example-make-clicks-instantly-select-items">Simple example, make clicks instantly select items</h2>
+
+<p>As asked in <a href="https://github.com/spacecowboy/NoNonsense-FilePicker/issues/48">#48</a>, what if the picker is configured for selecting a single file and you want a click on that to instantly return the result. The default implementation will mark the item as selected, and then the user is required to press the OK button. This small change will make the operation a single click action, returning instantly once the user selects something.</p>
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><span style="color: #007020; font-weight: bold">public</span> <span style="color: #007020; font-weight: bold">class</span> <span style="color: #0e84b5; font-weight: bold">SingleFilePickerFragment</span> <span style="color: #007020; font-weight: bold">extends</span> FilePickerFragment <span style="color: #666666">{</span>
+    <span style="color: #555555; font-weight: bold">@Override</span>
+    <span style="color: #007020; font-weight: bold">public</span> <span style="color: #902000">void</span> <span style="color: #06287e">onClickCheckable</span><span style="color: #666666">(</span>View v<span style="color: #666666">,</span> CheckableViewHolder vh<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+        <span style="color: #007020; font-weight: bold">if</span> <span style="color: #666666">(!</span>allowMultiple<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+            <span style="color: #60a0b0; font-style: italic">// Clear is necessary, in case user clicked some checkbox directly</span>
+            mCheckedItems<span style="color: #666666">.</span><span style="color: #4070a0">clear</span><span style="color: #666666">();</span>
+            mCheckedItems<span style="color: #666666">.</span><span style="color: #4070a0">add</span><span style="color: #666666">(</span>vh<span style="color: #666666">.</span><span style="color: #4070a0">file</span><span style="color: #666666">);</span>
+            onClickOk<span style="color: #666666">(</span><span style="color: #007020; font-weight: bold">null</span><span style="color: #666666">);</span>
+        <span style="color: #666666">}</span> <span style="color: #007020; font-weight: bold">else</span> <span style="color: #666666">{</span>
+            <span style="color: #007020; font-weight: bold">super</span><span style="color: #666666">.</span><span style="color: #4070a0">onClickCheckable</span><span style="color: #666666">(</span>v<span style="color: #666666">,</span> vh<span style="color: #666666">);</span>
+        <span style="color: #666666">}</span>
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+</pre></div>
+
+<p>Now the astute reader might wonder, if my filepicker is only going to be used for selecting single files, why not just do:</p>
+<div class="highlight" style="background: #f0f0f0"><pre style="line-height: 125%"><span></span><span style="color: #007020; font-weight: bold">public</span> <span style="color: #902000">void</span> <span style="color: #06287e">onClickCheckable</span><span style="color: #666666">(</span>View v<span style="color: #666666">,</span> CheckableViewHolder vh<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+    <span style="color: #007020; font-weight: bold">super</span><span style="color: #666666">.</span><span style="color: #4070a0">onClickCheckable</span><span style="color: #666666">(</span>v<span style="color: #666666">,</span> vh<span style="color: #666666">);</span>
+    onClickOk<span style="color: #666666">(</span><span style="color: #007020; font-weight: bold">null</span><span style="color: #666666">);</span>
+<span style="color: #666666">}</span>
+</pre></div>
+
+<p>The reason is that the default implementation will animate the checkbox being selected on press. If you are closing the picker directly once the user selects something, you are basically animating something which isn&rsquo;t going to be seen and thus you are wasting (not that much) resources. Better to not animate at all in that case.</p>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2016 Released under the Mozilla Public License 2.0 &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="http://localhost:1313/NoNonsense-FilePicker/example/standalone_fragment/" title="Standalone fragment">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Standalone fragment
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+      <a href="http://localhost:1313/NoNonsense-FilePicker/example/override_back_button/" title="Override the back button">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Override the back button
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'http:\/\/localhost:1313\/NoNonsense-FilePicker\/';
+      var repo_id  = 'spacecowboy\/NoNonsense-FilePicker';
+    
+    </script>
+
+    <script src="http://localhost:1313/NoNonsense-FilePicker/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+            
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+        
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = ":slug";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//gohugo.io/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  <script data-no-instant>document.write('<script src="/livereload.js?mindelay=10"></' + 'script>')</script></body>
+</html>
