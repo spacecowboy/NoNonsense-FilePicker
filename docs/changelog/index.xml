@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Changelogs on NoNonsense FilePicker</title>
-    <link>http://spacecowboy.github.io/NoNonsense-FilePicker/changelog/</link>
+    <link>http://localhost:1313/NoNonsense-FilePicker/changelog/</link>
     <description>Recent content in Changelogs on NoNonsense FilePicker</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 16 Jul 2016 17:06:45 +0200</lastBuildDate>
-    <atom:link href="http://spacecowboy.github.io/NoNonsense-FilePicker/changelog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/NoNonsense-FilePicker/changelog/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>ChangeLog</title>
-      <link>http://spacecowboy.github.io/NoNonsense-FilePicker/changelog/</link>
+      <link>http://localhost:1313/NoNonsense-FilePicker/changelog/</link>
       <pubDate>Sat, 16 Jul 2016 17:06:45 +0200</pubDate>
       
-      <guid>http://spacecowboy.github.io/NoNonsense-FilePicker/changelog/</guid>
+      <guid>http://localhost:1313/NoNonsense-FilePicker/changelog/</guid>
       <description>
 
 &lt;h2 id=&#34;3-0-0-https-github-com-spacecowboy-nononsense-filepicker-tree-3-0-0-2016-07-03&#34;&gt;&lt;a href=&#34;https://github.com/spacecowboy/NoNonsense-FilePicker/tree/3.0.0&#34;&gt;3.0.0&lt;/a&gt; (2016-07-03)&lt;/h2&gt;
