@@ -196,7 +196,7 @@ you can skip the second method.
 
 ## Want to customize further?
 
-See some examples in the [Wiki](https://github.com/spacecowboy/NoNonsense-FilePicker/wiki)
+See some examples in the [Wiki](http://spacecowboy.github.io/NoNonsense-FilePicker/)
 
 See the sample project for examples on dark and light themes, and
 implementations using Dropbox and FTP.
