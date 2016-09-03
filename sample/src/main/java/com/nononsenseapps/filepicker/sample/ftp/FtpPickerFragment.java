@@ -15,6 +15,10 @@ import android.support.v4.content.Loader;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
@@ -44,6 +48,7 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
     private String password;
     private boolean loggedIn = false;
     private String rootDir = "/";
+    private ProgressBar progressBar;
 
     public FtpPickerFragment() {
         super();
@@ -87,6 +92,16 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
         this.username = args.getString(KEY_FTP_USERNAME) != null ? args.getString(KEY_FTP_USERNAME) : "anonymous";
         this.password = args.getString(KEY_FTP_PASSWORD) != null ? args.getString(KEY_FTP_PASSWORD) : "anonymous";
         this.rootDir = args.getString(KEY_FTP_ROOTDIR) != null ? args.getString(KEY_FTP_ROOTDIR) : "/";
+    }
+
+    @Override
+    protected View inflateRootView(LayoutInflater inflater, ViewGroup container) {
+        // Load the specific layout we created for dropbox/ftp
+        View view = inflater.inflate(R.layout.fragment_loading_filepicker, container, false);
+        // And bind the progress bar
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        return view;
     }
 
     /**
@@ -326,6 +341,34 @@ public class FtpPickerFragment extends AbstractFilePickerFragment<FtpFile> {
             }
         };
         task.execute(name);
+    }
+
+    /**
+     * If we are loading, then hide the list and show the progress bar instead.
+     *
+     * @param nextPath path to list files for
+     */
+    @Override
+    protected void refresh(@NonNull FtpFile nextPath) {
+        super.refresh(nextPath);
+        if (isLoading) {
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
+    public void onLoadFinished(Loader<SortedList<FtpFile>> loader, SortedList<FtpFile> data) {
+        progressBar.setVisibility(View.INVISIBLE);
+        recyclerView.setVisibility(View.VISIBLE);
+        super.onLoadFinished(loader, data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<SortedList<FtpFile>> loader) {
+        progressBar.setVisibility(View.INVISIBLE);
+        recyclerView.setVisibility(View.VISIBLE);
+        super.onLoaderReset(loader);
     }
 
     /**

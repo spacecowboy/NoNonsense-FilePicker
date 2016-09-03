@@ -56,57 +56,12 @@ public class DropboxFilePickerFragment
         this.dbApi = api;
     }
 
-    /**
-     * Copy paste of normal onCreateView, except we load a different layout, and bind the progress
-     * bar which was added to it.
-     */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    protected View inflateRootView(LayoutInflater inflater, ViewGroup container) {
         // Load the specific layout we created for dropbox/ftp
         View view = inflater.inflate(R.layout.fragment_loading_filepicker, container, false);
-
         // And bind the progress bar
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-
-        Toolbar toolbar =
-                (Toolbar) view.findViewById(com.nononsenseapps.filepicker.R.id.nnf_picker_toolbar);
-        if (toolbar != null) {
-            setupToolbar(toolbar);
-        }
-
-        recyclerView = (RecyclerView) view.findViewById(android.R.id.list);
-        // improve performance if you know that changes in content
-        // do not change the size of the RecyclerView
-        recyclerView.setHasFixedSize(true);
-        // use a linear layout manager
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        // Set adapter
-        mAdapter = new FileItemAdapter<>(this);
-        recyclerView.setAdapter(mAdapter);
-
-        view.findViewById(com.nononsenseapps.filepicker.R.id.nnf_button_cancel)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(final View v) {
-                        onClickCancel(v);
-                    }
-                });
-
-        view.findViewById(com.nononsenseapps.filepicker.R.id.nnf_button_ok)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(final View v) {
-                        onClickOk(v);
-                    }
-                });
-
-        mCurrentDirView = (TextView) view.findViewById(com.nononsenseapps.filepicker.R.id.nnf_current_dir);
-        // Restore state
-        if (mCurrentPath != null && mCurrentDirView != null) {
-            mCurrentDirView.setText(getFullPath(mCurrentPath));
-        }
 
         return view;
     }
