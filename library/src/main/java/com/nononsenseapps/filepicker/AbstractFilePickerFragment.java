@@ -91,8 +91,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected Toast mToast = null;
     // Keep track if we are currently loading a directory, in case it takes a long time
     protected boolean isLoading = false;
-    private View mNewFileButtonContainer = null;
-    private View mRegularButtonContainer = null;
+    protected View mNewFileButtonContainer = null;
+    protected View mRegularButtonContainer = null;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -162,7 +162,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.nnf_fragment_filepicker, container, false);
+        final View view = inflateRootView(inflater, container);
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.nnf_picker_toolbar);
         if (toolbar != null) {
@@ -233,6 +233,10 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         }
 
         return view;
+    }
+
+    protected View inflateRootView(LayoutInflater inflater, ViewGroup container) {
+        return inflater.inflate( R.layout.nnf_fragment_filepicker, container, false);
     }
 
     /**
