@@ -36,7 +36,7 @@
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/nnf_button_container"
+        android:layout_above="@+id/nnf_buttons_container"
         android:layout_below="@+id/nnf_picker_toolbar"
         android:descendantFocusability="afterDescendants"
         android:focusable="true"
@@ -51,30 +51,63 @@
         android:layout_centerVertical="true"
         android:visibility="invisible"/>
 
-    <LinearLayout
-        android:id="@+id/nnf_button_container"
+    <FrameLayout
+        android:id="@+id/nnf_buttons_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:layout_alignParentBottom="true">
 
-        <Button
-            android:id="@+id/nnf_button_cancel"
-            style="?attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="@android:string/cancel"/>
+        <LinearLayout
+            android:id="@+id/nnf_button_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/nnf_button_ok"
-            style="?attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="@android:string/ok"/>
+            <Button
+                android:id="@+id/nnf_button_cancel"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="@android:string/cancel"/>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/nnf_button_ok"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="@android:string/ok"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nnf_newfile_button_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/nnf_text_filename"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:hint="@string/nnf_filename"
+                android:maxLines="1"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"/>
+
+            <ImageButton
+                android:id="@+id/nnf_button_ok_newfile"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:hint="@android:string/ok"
+                android:src="@drawable/nnf_ic_save_black_24dp"
+                android:tint="?attr/nnf_save_icon_color"/>
+
+        </LinearLayout>
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/divider"
