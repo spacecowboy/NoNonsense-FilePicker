@@ -26,6 +26,8 @@ import java.io.File;
  */
 public class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
+    private static final String[] extensions = new String[]{".doc", ".docx", ".xlsx", ".xls", ".png", ".jpg", ".tif", ".pdf", ".jpeg"};
+
     protected static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     protected boolean showHiddenItems = false;
     private File mRequestedPath = null;
@@ -38,7 +40,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      *
      * @param showHiddenItems whether hidden items should be shown or not
      */
-    public void showHiddenItems(boolean showHiddenItems){
+    public void showHiddenItems(boolean showHiddenItems) {
         this.showHiddenItems = showHiddenItems;
     }
 
@@ -48,7 +50,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @return true if hidden items are shown, otherwise false
      */
 
-    public boolean areHiddenItemsShown(){
+    public boolean areHiddenItemsShown() {
         return showHiddenItems;
     }
 
@@ -237,7 +239,9 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 if (listFiles != null) {
                     for (java.io.File f : listFiles) {
                         if (isItemVisible(f)) {
-                            files.add(f);
+                            if ((f.isFile() && isNeededExtension(f.toString())) || (f.isDirectory() && directoryHasNeededFiles(f))) {
+                                files.add(f);
+                            }
                         }
                     }
                 }
@@ -290,6 +294,39 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 }
             }
         };
+    }
+
+    private boolean directoryHasNeededFiles(@NonNull final File file) {
+        final File[] fileList = file.listFiles();
+        if (fileList == null) {
+            return isNeededExtension(file.toString());
+        }
+        if (fileList.length > 0) {
+            for (final File fileInDirectory : fileList) {
+                if (!isItemVisible(fileInDirectory)) {
+                    continue;
+                }
+                if (!fileInDirectory.isDirectory()) {
+                    if (isNeededExtension(fileInDirectory.toString())) {
+                        return true;
+                    }
+                } else {
+                    if (directoryHasNeededFiles(fileInDirectory)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isNeededExtension(@NonNull final String fileName) {
+        for (final String extension : extensions) {
+            if (fileName.endsWith(extension)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
