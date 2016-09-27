@@ -238,10 +238,8 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 files.beginBatchedUpdates();
                 if (listFiles != null) {
                     for (java.io.File f : listFiles) {
-                        if (isItemVisible(f)) {
-                            if ((f.isFile() && isNeededExtension(f.toString())) || (f.isDirectory() && directoryHasNeededFiles(f))) {
-                                files.add(f);
-                            }
+                        if (isItemVisible(f) && directoryHasNeededFiles(f)) {
+                            files.add(f);
                         }
                     }
                 }
@@ -301,23 +299,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
         if (fileList == null) {
             return isNeededExtension(file.toString());
         }
-        if (fileList.length > 0) {
-            for (final File fileInDirectory : fileList) {
-                if (!isItemVisible(fileInDirectory)) {
-                    continue;
-                }
-                if (!fileInDirectory.isDirectory()) {
-                    if (isNeededExtension(fileInDirectory.toString())) {
-                        return true;
-                    }
-                } else {
-                    if (directoryHasNeededFiles(fileInDirectory)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        return true;
     }
 
     private boolean isNeededExtension(@NonNull final String fileName) {
