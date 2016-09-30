@@ -69,7 +69,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.nononsenseapps:filepicker:3.0.0'
+    compile 'com.nononsenseapps:filepicker:3.1.0'
 }
 ```
 
