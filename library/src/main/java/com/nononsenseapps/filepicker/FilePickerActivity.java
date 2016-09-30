@@ -8,12 +8,18 @@ package com.nononsenseapps.filepicker;
 
 import android.annotation.SuppressLint;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressLint("Registered")
 public class FilePickerActivity extends AbstractFilePickerActivity<File> {
+
+    @NonNull
+    private final List<OnBackPressedListener> onBackPressedListeners = new ArrayList<>();
 
     public FilePickerActivity() {
         super();
@@ -30,4 +36,39 @@ public class FilePickerActivity extends AbstractFilePickerActivity<File> {
                 mode, allowMultiple, allowCreateDir, allowExistingFile, singleClick);
         return fragment;
     }
+
+    public void addOnBackPressedListener(@NonNull final OnBackPressedListener onBackPressedListener) {
+        onBackPressedListeners.add(onBackPressedListener);
+    }
+
+    public void removeOnBackPressedListener(@NonNull final OnBackPressedListener onBackPressedListener) {
+        onBackPressedListeners.remove(onBackPressedListener);
+    }
+
+    @Override
+    public void onBackPressed() {
+        for (final OnBackPressedListener onBackPressedListener : onBackPressedListeners) {
+            if (onBackPressedListener.onBackPressed()) {
+                return;
+            }
+        }
+
+        if (getSupportFragmentManager().getBackStackEntryCount() <= 1) {
+            supportFinishAfterTransition();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+    }
+
+    public interface OnBackPressedListener {
+
+        /**
+         * Calls when user presses device back button.
+         *
+         * @return True if it is processed by this object.
+         */
+        boolean onBackPressed();
+
+    }
+
 }
