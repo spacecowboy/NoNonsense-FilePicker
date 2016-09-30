@@ -9,29 +9,24 @@ package com.nononsenseapps.filepicker.sample.dropbox;
 import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.util.SortedList;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.exception.DropboxException;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
-import com.nononsenseapps.filepicker.FileItemAdapter;
 import com.nononsenseapps.filepicker.sample.R;
 
 import java.io.File;
@@ -72,7 +67,7 @@ public class DropboxFilePickerFragment
      * @param nextPath path to list files for
      */
     @Override
-    protected void refresh(DropboxAPI.Entry nextPath) {
+    protected void refresh(@NonNull DropboxAPI.Entry nextPath) {
         super.refresh(nextPath);
         if (isLoading) {
             progressBar.setVisibility(View.VISIBLE);
