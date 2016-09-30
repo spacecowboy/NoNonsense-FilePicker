@@ -10,6 +10,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FilePickerActivity">
 
     <android.support.v7.widget.Toolbar
@@ -92,7 +93,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:hint="@android:string/ok"
-                android:src="@drawable/nnf_ic_save_black_24dp"
+                app:srcCompat="@drawable/nnf_ic_save_black_24dp"
                 android:tint="?attr/nnf_save_icon_color"/>
 
         </LinearLayout>

@@ -30,6 +30,7 @@ android {
         versionName gitTag
         archivesBaseName = "nononsensefilepicker-sample-${gitTag}".toString()
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {

@@ -9,6 +9,7 @@
 <!-- This file is just a copy of the normal nnf_fragment_filepicker, with an added progress bar -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -103,7 +104,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:hint="@android:string/ok"
-                android:src="@drawable/nnf_ic_save_black_24dp"
+                app:srcCompat="@drawable/nnf_ic_save_black_24dp"
                 android:tint="?attr/nnf_save_icon_color"/>
 
         </LinearLayout>
@@ -113,6 +114,6 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_above="@id/nnf_button_container"
+        android:layout_above="@id/nnf_buttons_container"
         android:background="?nnf_separator_color"/>
 </RelativeLayout>
