@@ -1,5 +1,36 @@
 # Change Log
 
+## [3.1.0](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/3.1.0) (2016-09-30)
+[Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/3.0.1...3.1.0)
+
+**Merged pull requests:**
+
+- Bump versions [\#113](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/113) ([spacecowboy](https://github.com/spacecowboy))
+
+## [3.0.1](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/3.0.1) (2016-09-30)
+[Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/3.0.0...3.0.1)
+
+**Implemented enhancements:**
+
+- SDK 24 - android.os.FileUriExposedException [\#107](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/107)
+- Feature: RecyclerView.ItemDecoration  [\#97](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/97)
+- Add ability to define a list divider in theme [\#99](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/99) ([spacecowboy](https://github.com/spacecowboy))
+
+**Fixed bugs:**
+
+- ImageButton should be with srcCompat instead of src [\#110](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/110)
+
+**Closed issues:**
+
+- Update Override back button Wiki page [\#106](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/106)
+- select only one file when EXTRA\_ALLOW\_MULTIPLE == true [\#105](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/105)
+- integration with preferences [\#93](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/93)
+
+**Merged pull requests:**
+
+- Use `srcCompat` for vector drawables [\#112](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/112) ([spacecowboy](https://github.com/spacecowboy))
+- Fix some of the samples [\#108](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/108) ([spacecowboy](https://github.com/spacecowboy))
+
 ## [3.0.0](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/3.0.0) (2016-07-03)
 [Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.3...3.0.0)
 
@@ -12,7 +43,7 @@
 
 - Add ability to input filename [\#82](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/82)
 
-## [2.5.3](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.3) (2016-06-09)
+## [2.5.3](https://github.com/spacecowboy/NoNonsense-FilePicker/tree/2.5.3) (2016-06-08)
 [Full Changelog](https://github.com/spacecowboy/NoNonsense-FilePicker/compare/2.5.2...2.5.3)
 
 **Implemented enhancements:**
