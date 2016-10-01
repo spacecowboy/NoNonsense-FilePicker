@@ -1,0 +1,113 @@
+## ----------------------------------------------------------------
+## sample-config
+##
+## All settings are listed. Non-required options are commented out
+## with their default value. Required options are not commented out
+## and have placeholder values.
+##
+## The file is in TOML-format. See the spec at
+## https://github.com/toml-lang/toml
+## if you have questions about its syntax.
+##
+## ----------------------------------------------------------------
+
+## Path to file where the change log is written
+#output = "CHANGELOG.md"
+
+## Changes added after the last tag will be listed under this header
+#nextheader = "Unreleased"
+
+## Categories to use. 'Misc' is always included for PRs with no category.
+## Note that sub projects get their own category based on their 'name'.
+##
+## Example: ["Kernel", "Cypher"]
+## Example: ["Breaking Changes", "Enhancements", "Bug Fixes"]
+categories = ["Breaking changes", "Security fixes", "Added",
+              "Changed", "Fixed", "Removed", "Deprecated"]
+
+## Settings related to git go in this section
+#[git]
+## Local clone of remote repo (recommend to do `git fetch <UPSTREAM>` first)
+#dir = "./"
+
+## Git SHA/tag which will mark the start of the change log Not required
+## but highly recommended. You can get a sensible value by doing:
+##
+##`git log branch1..branch2 --oneline | tail -n 1`
+##
+## That will give you the first commit of branch2, which means you can
+## then simply specify "to=upstream/branch2" or something, and
+## generate a change log for the entire branch2 history.
+#from = ""
+
+## Git SHA/tag/branch/name which will mark the end of the change log.
+## If you don't have a specific SHA or version number in mind, you can
+## specify something like origin/branch to consider everything up to
+## latest known change. (Remember to do `git fetch origin`) first.
+#to = "HEAD"
+
+## Only consider tags with the following regex-pattern (java-style, so
+## remember your backslashes). A [semantic
+## version](http://semver.org/) must be available in the first match
+## group (first parenthesis). Default is to assume entire tag name is
+## a version.
+##
+## Example v-prefixed versions: v(.+)
+## Example only want the 3.1 versions: (3\\.1\\..+)
+#tag_pattern = "(.+)"
+
+## Settings related to github go in this section
+[github]
+## It is highly recommended to specify a github token for talking to
+## the Github API with. Otherwise you will be subject to heavy
+## throttling, daily limits, etc. You can get generate one at
+## https://github.com/settings/tokens.
+#token = ""
+
+## Set this to true if you with PR authors to be listed in the change
+## log along with the PR link.
+include_author = true
+
+## Combined to form the url where pull requests are fetched from
+## Required
+user = "spacecowboy"
+repo = "NoNonsense-FilePicker"
+
+## Settings related to github labels go in this section
+#[github.labels]
+## A prefix given here is used to exclude PRs which list version(s),
+## and none of those versions have this prefix. For example, if a PR
+## is tagged with "2.3" and "3.0", and this config gives "3.1" as its
+## versionprefix, then that PR is not listed in the change log.  By
+## default (empty string) PR version tags are ignored.
+#version_prefix = ""
+
+## Only PRs with this GH-label will be downloaded and considered for
+## inclusion in the change log. You can specify multiple labels as
+## well, example: "changelog,kernel" in which case ALL labels must be
+## included.
+#required = ""
+
+## Only PRs which have at least one GH-label in this list will be
+## included in the change log.
+#include = []
+
+## Only PRs which have no GH-labels in this list will be included in
+## the change log.
+#exclude = ["question", "duplicate", "invalid", "wontfix"]
+
+## Set this to true to completely ignore PRs with no label information
+## attached.
+#exclude_unlabeled = false
+
+## This section can be used to define custom mappings from GH-labels
+## to better categories in the change log.
+[github.labels.category_map]
+#bug = "Bug fixes"
+#enhancement = "Enhancements"
+BReakIng = "breaking changes"
+security = "security fixes"
+addition = "Added"
+change = "Changed"
+fix = "Fixed"
+bug = "Fixed"
