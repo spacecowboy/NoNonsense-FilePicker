@@ -1,0 +1,288 @@
+include_author = false
+
+#[[commits]]
+#sha = "f460071a007171872f08c8757974da3d11665fde"
+#category = "Fixed"
+#text = """Use `srcCompat` for vector drawables
+#
+#Fixes [\\#110](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/110)
+#"""
+
+[[commits]]
+sha = "d20afa13d261c51a4b4c0a0c6ea17b1932854b14"
+category = "Changed"
+text = """Update back button example
+
+Fixes [\\#106](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/106)
+"""
+
+#[[commits]]
+#sha = "9300ef2409c88727880d6c173f804f6b1b5371ec"
+#category = "Added"
+#text = """Add ability to set a listitem divider in theme
+#
+#Fixes [\\#97](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/97)
+#"""
+
+#[[commits]]
+#sha = "6b8a78743655c4d97561eaae8b8c99681a16f1f2"
+#category = "Added"
+#text = """Add FastScroller sample implementation
+#
+#And organize samples into packages
+#Fixes [\\#87](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/87)
+#"""
+
+[[commits]]
+sha = "c9d70351e183bf65ed85b2acab5488118c9b1dae"
+category = "Changed"
+text = """Pass path into permission and refresh handlers
+
+This allows for better handling in case of denied/missing permissions,
+as well the ability to request more fine-grained permissions.
+
+Fixes [\\#85](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/85), [\\#84](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/84)
+"""
+
+#[[commits]]
+#sha = "c8978a988094837e7eb1bbc5da4c3ab58c54e674"
+#category = "Added"
+#text = """Add a new mode for picking new files
+#
+#This adds a new mode so the library can be used for
+#"Save-As"-dialogs.
+#
+#Fixes [\\#82](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/82)
+#"""
+
+[[commits]]
+sha = "0a511acb59fe02ad38d16bc0e4fd05c4a2cc6edb"
+category = "Fixed"
+text = """Fix crash when creating dropbox directory
+
+Also improves loading screen usage for directory creation.
+
+Fixes [\\#76](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/76)
+"""
+
+[[commits]]
+sha = "b7baea37113435e2a8cb07ca5126b075a67ff128"
+category = "Fixed"
+text = """Fix concurrent modification of adapter in dropbox sample
+
+Fixes [\\#75](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/75)
+"""
+
+[[commits]]
+sha = "9880562413b7cd42c778b49dc219fb71d07c0e00"
+category = "Changed"
+text = """Show a progress bar when loading dropbox directory
+
+Fixes [\\#74](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/74)
+"""
+
+[[commits]]
+sha = "0351a698587378cbd519cd68a648a0ed9e420ecf"
+category = "Changed"
+text = """Add missing underscore
+
+Fixes [\\#63](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/63)
+"""
+
+[[commits]]
+sha = "c83ad0afc3c7f9503e9e59f5f2fc47a6bcd1cf04"
+category = "Fixed"
+text = """Do not load directory again if already loading
+
+Fixes crash if user quickly taps on two different directories,
+where loading directories take a while, like Dropbox or any
+other network source.
+
+Fixes [\\#73](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/73)
+"""
+
+[[commits]]
+sha = "e9211ff53f0f127e56b07888e0905036d764614e"
+category = "Changed"
+text = """Change to the MPL
+
+To actually be compatible with Android and because it
+is more aligned with my interests.
+
+Fixes [\\#66](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/66)
+"""
+
+[[commits]]
+sha = "846c5e209e0478ee8cc284b8a812b1688ee0cc51"
+category = "Changed"
+text = """Add separator above OK/Cancel buttons
+
+Fixes [\\#60](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/60)
+"""
+
+[[commits]]
+sha = "aa53b9091eb4bc2aad5c2fbf59cc241bc66cad47"
+category = "Fixed"
+text = """Change to special image viewtypes for sample
+
+This Fixes an issue on older android versions (4.0.3)
+where setting a tint on an imageview would incorrectly
+color the entire image.
+
+Fixes [\\#50](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/50)
+"""
+
+#[[commits]]
+#sha = "7201a2130e7d2a5487ace2193082769d1160a425"
+#category = "Added"
+#text = """Make click events overridable.
+#
+#Fixes [\\#48](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/48)
+#"""
+
+#[[commits]]
+#sha = "bbc03961edbbbae97326b28e9c7c192e0b8a4b9f"
+#category = "Changed"
+#text = """Make list focusable.
+#
+#Appears to make the filepicker usable in non-touch screen environments
+#(e.g. D-Pad).
+#
+#Fixes [\\#44](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/44)
+#"""
+
+[[commits]]
+sha = "c2f4f054b714a218bd368bd2d51876ad79b5d8e9"
+category = "Added"
+text = """Handle runtime permissions in Android M.
+
+Fixes [\\#24](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/24)
+"""
+
+#[[commits]]
+#sha = "4a2001ef570cd62b38f9f571ea81a8d6c59bcc4d"
+#category = "Fixes"
+#text = """Do not override existing arguments
+#
+#Fixes [\\#40](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/40)
+#"""
+
+[[commits]]
+sha = "7090da920c75d4c91a09628e7cf584920d065ac0"
+category = "Changed"
+text = """Update Dropbox library version
+
+And remove mention of now deprecated API.
+Fixes [\\#35](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/35)
+"""
+
+[[commits]]
+sha = "4a6e0ae0341cbd2fe9ee8af5577a9a739550c681"
+category = "Fixed"
+text = """Remove all tags from library manifest
+
+They are not needed in libraries and only result in
+conflicts. Fixes [\\#34](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/34).
+"""
+
+[[commits]]
+sha = "15c59b5b0d28d48698a176b08787ffbb90829928"
+#category = ""
+text = """Include link to change log in README
+
+Fixes [\\#33](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/33)"""
+
+[[commits]]
+sha = "2ede72dca975ed5f27da91a623df9b058d114a2e"
+category = "Added"
+text = """Fragment can now be used together with action bar
+
+Now possible to load the fragment even with existing
+toolbar, as long as setupToolbar() is overriden.
+
+Fixes [\\#32](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/32)
+"""
+
+[[commits]]
+sha = "4124e8ea20b31b2fddb01f0ef929d54106bb74d9"
+category = "Changed"
+text = """Prefix resources
+
+And add an overridable toolbar theme. Fixes [\\#31](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/31)
+"""
+
+[[commits]]
+sha = "4f5c2de6f1a362c4198e7f3a293c017c1eeb3c92"
+#category = ""
+text = """Update LICENSE to mention "or later"
+
+Fixes [\\#29](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/29)
+"""
+
+[[commits]]
+sha = "5e14cb248130df26399e24c359837bd9fa2fc02a"
+#category = ""
+text = """README example was slightly wrong.
+
+Fixes [\\#26](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/26)
+"""
+
+[[commits]]
+sha = "38f4ee21c4b727dcb20f32c82a561c22001f46a2"
+category = "Changed"
+text = """Make createdir depend only on CREATE_DIR argument
+
+Fixes [\\#25](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/25)
+"""
+
+#[[commits]]
+#sha = "6c003b472fe41acff6af661c3b050fa63e793fb8"
+#category = ""
+#text = """Mention that start-path is configurable
+#
+#Fixes [\\#18](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/18), [\\#19](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/19)"""
+
+[[commits]]
+sha = "9857de8523976105d1f666360c397c1158244eb8"
+category = "Fixed"
+text = """Handle rotation correctly
+
+Fixes [\\#15](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/15)
+"""
+
+[[commits]]
+sha = "d860af7efe00ce241ae37ddb8bb73f8fb4a9b28c"
+category = "Added"
+text = """Adding Dropbox Core sample
+
+Fixes [\\#5](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/5)
+"""
+
+[[commits]]
+sha = "a17d6552d7ec436795469e44ecb336c270072b66"
+category = "Fixed"
+text = """Handle case if directory does not exist in FilePicker
+
+Fixes [\\#4](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/4)
+"""
+
+[[commits]]
+sha = "3afc546037639d74eb24afe83176d090132339c8"
+category = ""
+text = """Update readme with maven info
+
+Fixes [\\#3](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/3)"""
+
+[[commits]]
+sha = "26b05955df11e1bdd6e0543b8fa4a2ec3bab23fb"
+category = "Changed"
+text = """Picker now has more options
+
+Removed onlyDirs in favor of a mode variable. Now possible to
+select between: Files, Dirs, or Both.
+
+The ability to create directories is now an option as well
+which defaults to false.
+
+Fixes [\\#1](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/1), [\\#2](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/2)
+"""

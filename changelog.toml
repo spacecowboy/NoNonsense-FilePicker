@@ -26,7 +26,8 @@ categories = ["Breaking changes", "Security fixes", "Added",
               "Changed", "Fixed", "Removed", "Deprecated"]
 
 ## Settings related to git go in this section
-#[git]
+[git]
+commits_file = "commits.toml"
 ## Local clone of remote repo (recommend to do `git fetch <UPSTREAM>` first)
 #dir = "./"
 
