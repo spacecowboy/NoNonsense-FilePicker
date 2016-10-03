@@ -7,7 +7,6 @@
 package com.nononsenseapps.filepicker;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -82,7 +81,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected boolean allowMultiple = false;
     protected boolean allowExistingFile = true;
     protected boolean singleClick = false;
-    protected OnFilePickedListener mListener;
     protected FileItemAdapter<T> mAdapter = null;
     protected TextView mCurrentDirView;
     protected EditText mEditTextFileName;
@@ -119,7 +117,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getContext().getTheme().applyStyle(getStyleId(),true);
+        getContext().getTheme().applyStyle(getStyleId(), true);
         final View view = inflater.inflate(R.layout.nnf_fragment_filepicker, container, false);
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.nnf_picker_toolbar);
@@ -215,8 +213,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      * @param view which was clicked. Not used in default implementation.
      */
     public void onClickCancel(@NonNull View view) {
-        if (mListener != null) {
-            mListener.onCancelled();
+        if (getTargetFragment() != null) {
+            ((OnFilePickedListener) getTargetFragment()).onCancelled();
         }
     }
 
@@ -226,7 +224,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      * @param view which was clicked. Not used in default implementation.
      */
     public void onClickOk(@NonNull View view) {
-        if (mListener == null) {
+        if (getTargetFragment() == null) {
             return;
         }
 
@@ -258,20 +256,20 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 // Append to current directory
                 result = toUri(getPath(appendPath(getFullPath(mCurrentPath), filename)));
             }
-            mListener.onFilePicked(result);
+            ((OnFilePickedListener) getTargetFragment()).onFilePicked(result);
         } else if (allowMultiple) {
-            mListener.onFilesPicked(toUri(mCheckedItems));
+            ((OnFilePickedListener) getTargetFragment()).onFilesPicked(toUri(mCheckedItems));
         } else if (mode == MODE_FILE) {
             //noinspection ConstantConditions
-            mListener.onFilePicked(toUri(getFirstCheckedItem()));
+            ((OnFilePickedListener) getTargetFragment()).onFilePicked(toUri(getFirstCheckedItem()));
         } else if (mode == MODE_DIR) {
-            mListener.onFilePicked(toUri(mCurrentPath));
+            ((OnFilePickedListener) getTargetFragment()).onFilePicked(toUri(mCurrentPath));
         } else {
             // single FILE OR DIR
             if (mCheckedItems.isEmpty()) {
-                mListener.onFilePicked(toUri(mCurrentPath));
+                ((OnFilePickedListener) getTargetFragment()).onFilePicked(toUri(mCurrentPath));
             } else {
-                mListener.onFilePicked(toUri(getFirstCheckedItem()));
+                ((OnFilePickedListener) getTargetFragment()).onFilePicked(toUri(getFirstCheckedItem()));
             }
         }
     }
@@ -325,17 +323,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             checkable = (mode == MODE_FILE || mode == MODE_FILE_AND_DIR || allowExistingFile);
         }
         return checkable;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            mListener = (OnFilePickedListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() +
-                    " must implement OnFilePickedListener");
-        }
     }
 
     @Override
@@ -461,12 +448,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         b.putInt(KEY_MODE, mode);
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
     /**
      * Refreshes the list. Call this when current path changes. This method also checks
      * if permissions are granted and requests them if necessary. See hasPermission()
@@ -582,7 +563,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
-        getContext().getTheme().applyStyle(getStyleId(),true);
+        getContext().getTheme().applyStyle(getStyleId(), true);
         switch (viewType) {
             case LogicHandler.VIEWTYPE_HEADER:
                 v = LayoutInflater.from(getActivity()).inflate(R.layout.nnf_filepicker_listitem_dir,

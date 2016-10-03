@@ -31,7 +31,6 @@
 
     <TextView
         android:id="@android:id/text1"
-        style="?android:textAppearanceLarge"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -39,5 +38,6 @@
         android:gravity="center_vertical"
         android:maxLines="1"
         android:padding="8dp"
-        android:text="@string/nnf_name"/>
+        android:text="@string/nnf_name"
+        android:textColor="@android:color/black"/>
 </LinearLayout>

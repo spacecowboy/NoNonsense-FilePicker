@@ -92,8 +92,8 @@ public abstract class FilePickerFragment extends AbstractFilePickerFragment<File
         // If arrays are empty, then process was cancelled
         if (permissions.length == 0) {
             // Treat this as a cancel press
-            if (mListener != null) {
-                mListener.onCancelled();
+            if (getTargetFragment() != null) {
+                ((OnFilePickedListener) getTargetFragment()).onCancelled();
             }
         } else { // if (requestCode == PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
             if (PackageManager.PERMISSION_GRANTED == grantResults[0]) {
@@ -105,8 +105,8 @@ public abstract class FilePickerFragment extends AbstractFilePickerFragment<File
                 Toast.makeText(getContext(), R.string.nnf_permission_external_write_denied,
                         Toast.LENGTH_SHORT).show();
                 // Treat this as a cancel press
-                if (mListener != null) {
-                    mListener.onCancelled();
+                if (getTargetFragment() != null) {
+                    ((OnFilePickedListener) getTargetFragment()).onCancelled();
                 }
             }
         }
