@@ -9,7 +9,6 @@ package com.nononsenseapps.filepicker;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.FileObserver;
 import android.support.annotation.NonNull;
 import android.support.v4.content.AsyncTaskLoader;
@@ -25,22 +24,13 @@ import java.io.File;
  * An implementation of the picker which allows you to select a file from the internal/external
  * storage (SD-card) on a device.
  */
-public class FilePickerFragment extends AbstractFilePickerFragment<File> implements FilePickerActivity.OnBackPressedListener {
+public abstract class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
     private static final String[] extensions = new String[]{".doc", ".docx", ".xlsx", ".xls", ".png", ".jpg", ".tif", ".pdf", ".jpeg"};
 
     protected static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     protected boolean showHiddenItems = false;
     private File mRequestedPath = null;
-
-    public FilePickerFragment() {
-    }
-
-    @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ((FilePickerActivity) getActivity()).addOnBackPressedListener(this);
-    }
 
     /**
      * This method is used to dictate whether hidden files and folders should be shown or not
@@ -373,22 +363,6 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> impleme
         } else {
             return lhs.getName().compareToIgnoreCase(rhs.getName());
         }
-    }
-
-    @Override
-    public boolean onBackPressed() {
-        if ("/".equals(mCurrentPath.toString())) {
-            return false;
-        } else {
-            goUp();
-            return true;
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ((FilePickerActivity) getActivity()).removeOnBackPressedListener(this);
     }
 
 }
