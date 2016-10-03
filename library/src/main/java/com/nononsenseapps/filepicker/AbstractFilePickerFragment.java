@@ -20,7 +20,6 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.util.SortedList;
-import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -117,56 +116,11 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         return new FileItemAdapter<>(this);
     }
 
-    /**
-     * Set before making the fragment visible. This method will re-use the existing
-     * arguments bundle in the fragment if it exists so extra arguments will not
-     * be overwritten. This allows you to set any extra arguments in the fragment
-     * constructor if you wish.
-     * <p/>
-     * The key/value-pairs listed below will be overwritten however.
-     *
-     * @param startPath         path to directory the picker will show upon start
-     * @param mode              what is allowed to be selected (dirs, files, both)
-     * @param allowMultiple     selecting a single item or several?
-     * @param allowDirCreate    can new directories be created?
-     * @param allowExistingFile if selecting a "new" file, can existing files be chosen
-     * @param singleClick       selecting an item does not require a press on OK
-     */
-    public void setArgs(@Nullable final String startPath, final int mode,
-                        final boolean allowMultiple, final boolean allowDirCreate,
-                        final boolean allowExistingFile, final boolean singleClick) {
-        // Validate some assumptions so users don't get surprised (or get surprised early)
-        if (mode == MODE_NEW_FILE && allowMultiple) {
-            throw new IllegalArgumentException(
-                    "MODE_NEW_FILE does not support 'allowMultiple'");
-        }
-        // Single click only makes sense if we are not selecting multiple items
-        if (singleClick && allowMultiple) {
-            throw new IllegalArgumentException("'singleClick' can not be used with 'allowMultiple'");
-        }
-        // There might have been arguments set elsewhere, if so do not overwrite them.
-        Bundle b = getArguments();
-        if (b == null) {
-            b = new Bundle();
-        }
-
-        if (startPath != null) {
-            b.putString(KEY_START_PATH, startPath);
-        }
-        b.putBoolean(KEY_ALLOW_DIR_CREATE, allowDirCreate);
-        b.putBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
-        b.putBoolean(KEY_ALLOW_EXISTING_FILE, allowExistingFile);
-        b.putBoolean(KEY_SINGLE_CLICK, singleClick);
-        b.putInt(KEY_MODE, mode);
-        setArguments(b);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), getStyleId());
-        final LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
-        final View view = localInflater.inflate(R.layout.nnf_fragment_filepicker, container, false);
+        getContext().getTheme().applyStyle(getStyleId(),true);
+        final View view = inflater.inflate(R.layout.nnf_fragment_filepicker, container, false);
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.nnf_picker_toolbar);
         if (toolbar != null) {
@@ -181,7 +135,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         // Set Item Decoration if exists
-        configureItemDecoration(localInflater, recyclerView);
+        configureItemDecoration(inflater, recyclerView);
         // Set adapter
         mAdapter = new FileItemAdapter<>(this);
         recyclerView.setAdapter(mAdapter);
@@ -210,8 +164,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
 
         mNewFileButtonContainer = view.findViewById(R.id.nnf_newfile_button_container);
         mRegularButtonContainer = view.findViewById(R.id.nnf_button_container);
-
-        setModeView(view);
 
         mEditTextFileName = (EditText) view.findViewById(R.id.nnf_text_filename);
         mEditTextFileName.addTextChangedListener(new TextWatcher() {
@@ -389,8 +341,25 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setHasOptionsMenu(true);
+    }
+
+    /**
+     * Called when the fragment's activity has been created and this
+     * fragment's view hierarchy instantiated.  It can be used to do final
+     * initialization once these pieces are in place, such as retrieving
+     * views or restoring state.  It is also useful for fragments that use
+     * {@link #setRetainInstance(boolean)} to retain their instance,
+     * as this callback tells the fragment when it is fully associated with
+     * the new activity instance.  This is called after {@link #onCreateView}
+     * and before {@link #onViewStateRestored(Bundle)}.
+     *
+     * @param savedInstanceState If the fragment is being re-created from
+     *                           a previous saved state, this is the state.
+     */
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         // Only if we have no state
         if (mCurrentPath == null) {
@@ -434,11 +403,14 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             }
         }
 
+        setModeView(getView());
+
         // If still null
         if (mCurrentPath == null) {
             mCurrentPath = getRoot();
         }
         refresh(mCurrentPath);
+
     }
 
 
@@ -610,20 +582,19 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
-        final Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), getStyleId());
-        final LayoutInflater localInflater = LayoutInflater.from(getActivity()).cloneInContext(contextThemeWrapper);
+        getContext().getTheme().applyStyle(getStyleId(),true);
         switch (viewType) {
             case LogicHandler.VIEWTYPE_HEADER:
-                v = localInflater.inflate(R.layout.nnf_filepicker_listitem_dir,
+                v = LayoutInflater.from(getActivity()).inflate(R.layout.nnf_filepicker_listitem_dir,
                         parent, false);
                 return new HeaderViewHolder(v);
             case LogicHandler.VIEWTYPE_CHECKABLE:
-                v = localInflater.inflate(R.layout.nnf_filepicker_listitem_checkable,
+                v = LayoutInflater.from(getActivity()).inflate(R.layout.nnf_filepicker_listitem_checkable,
                         parent, false);
                 return new CheckableViewHolder(v);
             case LogicHandler.VIEWTYPE_DIR:
             default:
-                v = localInflater.inflate(R.layout.nnf_filepicker_listitem_dir,
+                v = LayoutInflater.from(getActivity()).inflate(R.layout.nnf_filepicker_listitem_dir,
                         parent, false);
                 return new DirViewHolder(v);
         }
