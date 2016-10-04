@@ -217,6 +217,7 @@ public abstract class AbstractFilePickerFragment<T> extends DialogFragment
     public void onClickCancel(@NonNull View view) {
         if (mListener != null) {
             mListener.onCancelled();
+            dismiss();
         }
     }
 
@@ -274,6 +275,7 @@ public abstract class AbstractFilePickerFragment<T> extends DialogFragment
                 mListener.onFilePicked(toUri(getFirstCheckedItem()));
             }
         }
+        dismiss();
     }
 
     /**
