@@ -7,6 +7,7 @@
 package com.nononsenseapps.filepicker;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -81,6 +82,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     protected boolean allowMultiple = false;
     protected boolean allowExistingFile = true;
     protected boolean singleClick = false;
+    protected OnFilePickedListener mListener;
     protected FileItemAdapter<T> mAdapter = null;
     protected TextView mCurrentDirView;
     protected EditText mEditTextFileName;
@@ -213,8 +215,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      * @param view which was clicked. Not used in default implementation.
      */
     public void onClickCancel(@NonNull View view) {
-        if (getTargetFragment() != null) {
-            ((OnFilePickedListener) getTargetFragment()).onCancelled();
+        if (mListener != null) {
+            mListener.onCancelled();
         }
     }
 
@@ -224,7 +226,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
      * @param view which was clicked. Not used in default implementation.
      */
     public void onClickOk(@NonNull View view) {
-        if (getTargetFragment() == null) {
+        if (mListener == null) {
             return;
         }
 
@@ -256,20 +258,20 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 // Append to current directory
                 result = toUri(getPath(appendPath(getFullPath(mCurrentPath), filename)));
             }
-            ((OnFilePickedListener) getTargetFragment()).onFilePicked(result);
+            mListener.onFilePicked(result);
         } else if (allowMultiple) {
-            ((OnFilePickedListener) getTargetFragment()).onFilesPicked(toUri(mCheckedItems));
+            mListener.onFilesPicked(toUri(mCheckedItems));
         } else if (mode == MODE_FILE) {
             //noinspection ConstantConditions
-            ((OnFilePickedListener) getTargetFragment()).onFilePicked(toUri(getFirstCheckedItem()));
+            mListener.onFilePicked(toUri(getFirstCheckedItem()));
         } else if (mode == MODE_DIR) {
-            ((OnFilePickedListener) getTargetFragment()).onFilePicked(toUri(mCurrentPath));
+            mListener.onFilePicked(toUri(mCurrentPath));
         } else {
             // single FILE OR DIR
             if (mCheckedItems.isEmpty()) {
-                ((OnFilePickedListener) getTargetFragment()).onFilePicked(toUri(mCurrentPath));
+                mListener.onFilePicked(toUri(mCurrentPath));
             } else {
-                ((OnFilePickedListener) getTargetFragment()).onFilePicked(toUri(getFirstCheckedItem()));
+                mListener.onFilePicked(toUri(getFirstCheckedItem()));
             }
         }
     }
@@ -323,6 +325,23 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             checkable = (mode == MODE_FILE || mode == MODE_FILE_AND_DIR || allowExistingFile);
         }
         return checkable;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (OnFilePickedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() +
+                    " must implement OnFilePickedListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
     @Override
