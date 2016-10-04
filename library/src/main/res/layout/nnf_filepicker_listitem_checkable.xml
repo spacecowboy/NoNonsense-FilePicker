@@ -5,17 +5,17 @@
   ~ License, v. 2.0. If a copy of the MPL was not distributed with this
   ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nnf_item_container"
-    android:layout_width="match_parent"
-    android:layout_height="?android:listPreferredItemHeight"
-    android:background="?selectableItemBackground"
-    android:focusable="true"
-    android:minHeight="?android:listPreferredItemHeight"
-    android:nextFocusLeft="@+id/nnf_button_cancel"
-    android:nextFocusRight="@id/checkbox"
-    android:orientation="horizontal">
+<LinearLayout android:id="@+id/nnf_item_container"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="?android:listPreferredItemHeight"
+              android:background="?selectableItemBackground"
+              android:focusable="true"
+              android:minHeight="?android:listPreferredItemHeight"
+              android:nextFocusLeft="@+id/nnf_button_cancel"
+              android:nextFocusRight="@id/checkbox"
+              android:orientation="horizontal">
 
 
     <!--suppress AndroidDomInspection -->
@@ -28,10 +28,11 @@
         android:src="@drawable/nnf_ic_folder_black_48dp"
         android:tint="?attr/nnf_dir_icon_color"
         android:visibility="visible"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <TextView
         android:id="@android:id/text1"
+        style="?android:textAppearanceLarge"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -39,8 +40,8 @@
         android:gravity="center_vertical"
         android:maxLines="1"
         android:padding="8dp"
-        android:textColor="@android:color/black"
-        android:text="@string/nnf_name" />
+        android:text="@string/nnf_name"
+        android:textColor="@android:color/black"/>
 
     <CheckBox
         android:id="@+id/checkbox"
@@ -50,6 +51,6 @@
         android:nextFocusRight="@+id/nnf_button_ok"
         android:paddingEnd="8dp"
         android:paddingRight="8dp"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlSymmetry"/>
 
 </LinearLayout>
