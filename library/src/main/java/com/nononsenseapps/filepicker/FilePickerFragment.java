@@ -19,6 +19,7 @@ import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.Locale;
 
 /**
  * An implementation of the picker which allows you to select a file from the internal/external
@@ -26,7 +27,7 @@ import java.io.File;
  */
 public abstract class FilePickerFragment extends AbstractFilePickerFragment<File> {
 
-    private static final String[] extensions = new String[]{".doc", ".docx", ".xlsx", ".xls", ".png", ".jpg", ".tif", ".pdf", ".jpeg"};
+    private static final String[] extensions = new String[]{".doc", ".docx", ".xlsx", ".xls", ".png", ".jpg", ".tif", ".tiff", ".pdf", ".jpeg"};
 
     protected static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     protected boolean showHiddenItems = false;
@@ -301,7 +302,7 @@ public abstract class FilePickerFragment extends AbstractFilePickerFragment<File
 
     private boolean isNeededExtension(@NonNull final String fileName) {
         for (final String extension : extensions) {
-            if (fileName.endsWith(extension)) {
+            if (fileName.endsWith(extension) || fileName.endsWith(extension.toUpperCase(Locale.getDefault()))) {
                 return true;
             }
         }
