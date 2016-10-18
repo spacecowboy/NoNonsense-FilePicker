@@ -3,213 +3,216 @@
   ~ License, v. 2.0. If a copy of the MPL was not distributed with this
   ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
   -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.nononsenseapps.filepicker.sample.NoNonsenseFilePicker">
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            tools:context="com.nononsenseapps.filepicker.sample.NoNonsenseFilePicker">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:orientation="vertical">
 
-                <RadioGroup
-                    android:id="@+id/radioGroup"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    >
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/radioFile"
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/radioFile"
+                            style="?android:textAppearanceMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:checked="true"
+                            android:fontFamily="light"
+                            android:gravity="center_vertical"
+                            android:text="Select file" />
+
+                        <RadioButton
+                            android:id="@+id/radioNewFile"
+                            style="?android:textAppearanceMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:fontFamily="light"
+                            android:gravity="center_vertical"
+                            android:text="Select new file" />
+
+                        <RadioButton
+                            android:id="@+id/radioDir"
+                            style="?android:textAppearanceMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:fontFamily="light"
+                            android:gravity="center_vertical"
+                            android:text="Select directory" />
+
+                        <RadioButton
+                            android:id="@+id/radioFilesAndDirs"
+                            style="?android:textAppearanceMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:fontFamily="light"
+                            android:gravity="center_vertical"
+                            android:text="Select any" />
+
+                    </RadioGroup>
+
+                    <CheckBox
+                        android:id="@+id/checkAllowMultiple"
                         style="?android:textAppearanceMedium"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_gravity="left"
+                        android:fontFamily="light"
+                        android:gravity="center_vertical"
+                        android:text="Multiple items" />
+
+                    <CheckBox
+                        android:id="@+id/checkSingleClick"
+                        style="?android:textAppearanceMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="left"
+                        android:fontFamily="light"
+                        android:gravity="center_vertical"
+                        android:text="Single selection returns immediately" />
+
+                    <CheckBox
+                        android:id="@+id/checkAllowCreateDir"
+                        style="?android:textAppearanceMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="left"
+                        android:fontFamily="light"
+                        android:gravity="center_vertical"
+                        android:text="Allow creation of directories" />
+
+                    <CheckBox
+                        android:id="@+id/checkAllowExistingFile"
+                        style="?android:textAppearanceMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
                         android:layout_gravity="left"
                         android:checked="true"
                         android:fontFamily="light"
                         android:gravity="center_vertical"
-                        android:text="Select file" />
+                        android:text="Allow selection of existing (new) file" />
 
-                    <RadioButton
-                        android:id="@+id/radioNewFile"
+                    <CheckBox
+                        android:id="@+id/checkLightTheme"
                         style="?android:textAppearanceMedium"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
                         android:layout_gravity="left"
+                        android:checked="true"
                         android:fontFamily="light"
                         android:gravity="center_vertical"
-                        android:text="Select new file" />
+                        android:text="Use light theme" />
 
-                    <RadioButton
-                        android:id="@+id/radioDir"
-                        style="?android:textAppearanceMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:fontFamily="light"
-                        android:gravity="center_vertical"
-                        android:text="Select directory" />
+                </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/radioFilesAndDirs"
-                        style="?android:textAppearanceMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="left"
-                        android:fontFamily="light"
-                        android:gravity="center_vertical"
-                        android:text="Select any" />
-
-                </RadioGroup>
-
-                <CheckBox
-                    android:id="@+id/checkAllowMultiple"
-                    style="?android:textAppearanceMedium"
+                <Button
+                    android:id="@+id/button_sd"
+                    style="?attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="left"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
                     android:fontFamily="light"
-                    android:gravity="center_vertical"
-                    android:text="Multiple items" />
+                    android:gravity="center"
+                    android:text="Pick SD-card" />
 
-                <CheckBox
-                    android:id="@+id/checkSingleClick"
-                    style="?android:textAppearanceMedium"
+                <Button
+                    android:id="@+id/button_image"
+                    style="?attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="left"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
                     android:fontFamily="light"
-                    android:gravity="center_vertical"
-                    android:text="Single selection returns immediately" />
+                    android:gravity="center"
+                    android:text="Pick SD-card with multimedia preview" />
 
-                <CheckBox
-                    android:id="@+id/checkAllowCreateDir"
-                    style="?android:textAppearanceMedium"
+                <Button
+                    android:id="@+id/button_ftp"
+                    style="?attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="left"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
                     android:fontFamily="light"
-                    android:gravity="center_vertical"
-                    android:text="Allow creation of directories" />
+                    android:gravity="center"
+                    android:text="Pick FTP" />
 
-                <CheckBox
-                    android:id="@+id/checkAllowExistingFile"
-                    style="?android:textAppearanceMedium"
+                <Button
+                    android:id="@+id/button_dropbox"
+                    style="?attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="left"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="light"
-                    android:gravity="center_vertical"
-                    android:checked="true"
-                    android:text="Allow selection of existing (new) file" />
+                    android:gravity="center"
+                    android:text="Pick Dropbox" />
 
-                <CheckBox
-                    android:id="@+id/checkLightTheme"
-                    style="?android:textAppearanceMedium"
+                <Button
+                    android:id="@+id/button_fastscroll"
+                    style="?attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="left"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="light"
-                    android:gravity="center_vertical"
-                    android:text="Use light theme"
-                    android:checked="true"/>
+                    android:gravity="center"
+                    android:text="Pick With Fast Scroller" />
 
+                <Button
+                    android:id="@+id/button_root"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="light"
+                    android:gravity="center"
+                    android:text="Pick With Root Access" />
+
+                <TextView
+                    android:id="@+id/text"
+                    style="?android:textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="light"
+                    android:padding="16dp"
+                    android:text="Result will be displayed here" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/button_sd"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:fontFamily="light"
-                android:gravity="center"
-                android:text="Pick SD-card" />
-
-            <Button
-                android:id="@+id/button_image"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:fontFamily="light"
-                android:gravity="center"
-                android:text="Pick SD-card with multimedia preview" />
-
-            <Button
-                android:id="@+id/button_ftp"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:fontFamily="light"
-                android:gravity="center"
-                android:text="Pick FTP" />
-
-            <Button
-                android:id="@+id/button_dropbox"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:fontFamily="light"
-                android:gravity="center"
-                android:text="Pick Dropbox" />
-
-            <Button
-                android:id="@+id/button_fastscroll"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:fontFamily="light"
-                android:gravity="center"
-                android:text="Pick With Fast Scroller" />
-
-            <Button
-                android:id="@+id/button_root"
-                style="?attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="8dp"
-                android:fontFamily="light"
-                android:gravity="center"
-                android:text="Pick With Root Access" />
-
-            <TextView
-                android:id="@+id/text"
-                style="?android:textAppearanceMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:fontFamily="light"
-                android:padding="16dp"
-                android:text="Result will be displayed here" />
-        </LinearLayout>
-
-    </FrameLayout>
-</ScrollView>
+        </FrameLayout>
+    </ScrollView>
+</layout>
