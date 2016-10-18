@@ -7,48 +7,18 @@
 package com.nononsenseapps.filepicker.sample;
 
 import android.Manifest;
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.ClipData;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.CheckBox;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.dropbox.client2.DropboxAPI;
-import com.dropbox.client2.android.AndroidAuthSession;
-import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
-import com.nononsenseapps.filepicker.FilePickerActivity;
-import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity;
-import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2;
-import com.nononsenseapps.filepicker.sample.dropbox.DropboxSyncHelper;
-import com.nononsenseapps.filepicker.sample.fastscroller.FastScrollerFilePickerActivity;
-import com.nononsenseapps.filepicker.sample.fastscroller.FastScrollerFilePickerActivity2;
-import com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity;
-import com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity2;
-import com.nononsenseapps.filepicker.sample.multimedia.MultimediaPickerActivity;
-import com.nononsenseapps.filepicker.sample.multimedia.MultimediaPickerActivity2;
-import com.nononsenseapps.filepicker.sample.root.SUPickerActivity;
-import com.nononsenseapps.filepicker.sample.root.SUPickerActivity2;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static junit.framework.Assert.assertTrue;
 
 
 public class NoNonsenseFilePickerTest extends NoNonsenseFilePicker {

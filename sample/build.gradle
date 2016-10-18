@@ -24,13 +24,20 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 18
+        minSdkVersion 11
         targetSdkVersion 24
         versionCode gitCommitCount
         versionName gitTag
         archivesBaseName = "nononsensefilepicker-sample-${gitTag}".toString()
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
+    }
+
+    productFlavors {
+        sample {}
+        uitests {
+            minSdkVersion 18
+        }
     }
 
     buildTypes {
@@ -62,8 +69,8 @@ dependencies {
     compile 'com.simplecityapps:recyclerview-fastscroll:1.0.9'
 
     // UI Tests
-    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    compile 'com.android.support.test:runner:0.5'
-    compile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
-    compile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    uitestsCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    uitestsCompile 'com.android.support.test:runner:0.5'
+    uitestsCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
+    uitestsCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
 }
