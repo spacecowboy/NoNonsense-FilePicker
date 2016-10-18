@@ -66,7 +66,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.nononsenseapps:filepicker:4.0.0'
+    compile 'com.nononsenseapps:filepicker:3.1.0'
 }
 ```
 
@@ -152,9 +152,7 @@ you like..
 ### Handling the result
 
 If you have a minimum requirement of Jelly Bean (API 16) and above,
-you can choose whichever of the two methods for multiple results you like. 
-
-If you are have API 15 or below as your minimumSdk, you can use method number 2.
+you can skip the second method.
 
 ```java
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -162,17 +160,17 @@ If you are have API 15 or below as your minimumSdk, you can use method number 2.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == FILE_CODE && resultCode == Activity.RESULT_OK) {
             if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
-                // Method 1: For JellyBean and above
+                // For JellyBean and above
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     ClipData clip = data.getClipData();
 
                     if (clip != null) {
                         for (int i = 0; i < clip.getItemCount(); i++) {
-                            Uri uri = Uri.parse(clip.getItemAt(i).getText().toString());
+                            Uri uri = clip.getItemAt(i).getUri();
                             // Do something with the URI
                         }
                     }
-                // Method 2: For all versions
+                // For Ice Cream Sandwich
                 } else {
                     ArrayList<String> paths = data.getStringArrayListExtra
                                 (FilePickerActivity.EXTRA_PATHS);
@@ -185,7 +183,7 @@ If you are have API 15 or below as your minimumSdk, you can use method number 2.
                     }
                 }
 
-            } else /* Single file was returned */ {
+            } else {
                 Uri uri = data.getData();
                 // Do something with the URI
             }
