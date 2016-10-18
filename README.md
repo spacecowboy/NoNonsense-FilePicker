@@ -66,7 +66,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.nononsenseapps:filepicker:3.1.0'
+    compile 'com.nononsenseapps:filepicker:4.0.0'
 }
 ```
 
@@ -152,7 +152,9 @@ you like..
 ### Handling the result
 
 If you have a minimum requirement of Jelly Bean (API 16) and above,
-you can skip the second method.
+you can choose whichever of the two methods for multiple results you like. 
+
+If you are have API 15 or below as your minimumSdk, you can use method number 2.
 
 ```java
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -160,17 +162,17 @@ you can skip the second method.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == FILE_CODE && resultCode == Activity.RESULT_OK) {
             if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
-                // For JellyBean and above
+                // Method 1: For JellyBean and above
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     ClipData clip = data.getClipData();
 
                     if (clip != null) {
                         for (int i = 0; i < clip.getItemCount(); i++) {
-                            Uri uri = clip.getItemAt(i).getUri();
+                            Uri uri = Uri.parse(clip.getItemAt(i).getText().toString());
                             // Do something with the URI
                         }
                     }
-                // For Ice Cream Sandwich
+                // Method 2: For all versions
                 } else {
                     ArrayList<String> paths = data.getStringArrayListExtra
                                 (FilePickerActivity.EXTRA_PATHS);
@@ -183,7 +185,7 @@ you can skip the second method.
                     }
                 }
 
-            } else {
+            } else /* Single file was returned */ {
                 Uri uri = data.getData();
                 // Do something with the URI
             }
