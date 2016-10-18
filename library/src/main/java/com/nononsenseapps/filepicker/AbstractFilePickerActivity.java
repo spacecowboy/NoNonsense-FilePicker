@@ -142,23 +142,23 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
         Intent i = new Intent();
         i.putExtra(EXTRA_ALLOW_MULTIPLE, true);
 
-        ArrayList<String> paths = new ArrayList<>();
-        for (Uri file : files) {
-            paths.add(file.toString());
-        }
-        i.putStringArrayListExtra(EXTRA_PATHS, paths);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             ClipData clip = null;
             for (Uri file : files) {
                 if (clip == null) {
                     clip = new ClipData("Paths", new String[]{},
-                            new ClipData.Item(file.toString()));
+                            new ClipData.Item(file));
                 } else {
-                    clip.addItem(new ClipData.Item(file.toString()));
+                    clip.addItem(new ClipData.Item(file));
                 }
             }
             i.setClipData(clip);
+        } else {
+            ArrayList<String> paths = new ArrayList<>();
+            for (Uri file : files) {
+                paths.add(file.toString());
+            }
+            i.putStringArrayListExtra(EXTRA_PATHS, paths);
         }
 
         setResult(Activity.RESULT_OK, i);

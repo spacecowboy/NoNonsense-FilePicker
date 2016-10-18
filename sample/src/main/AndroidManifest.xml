@@ -31,9 +31,9 @@
             </intent-filter>
         </activity>
 
-        <!-- Test activity, required to deal with runtime permissions -->
+        <!-- Sample test app -->
         <activity
-            android:name=".NoNonsenseFilePickerTest"
+            android:name="com.nononsenseapps.filepicker.sample.NoNonsenseFilePickerTest"
             android:label="@string/title_activity_no_nonsense_file_picker"/>
 
         <!-- SD-card pickers -->
@@ -48,7 +48,7 @@
         </activity>
 
         <activity
-            android:name=".FilePickerActivity2"
+            android:name="com.nononsenseapps.filepicker.sample.FilePickerActivity2"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight">
             <intent-filter>
@@ -119,22 +119,22 @@
 
         <!-- FtpPickers -->
         <activity
-            android:name=".ftp.FtpPickerActivity"
+            android:name="com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleTheme" />
         <activity
-            android:name=".ftp.FtpPickerActivity2"
+            android:name="com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity2"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight" />
 
         <!-- Dropbox pickers -->
         <activity
-            android:name=".dropbox.DropboxFilePickerActivity"
+            android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleTheme">
         </activity>
         <activity
-            android:name=".dropbox.DropboxFilePickerActivity2"
+            android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight">
         </activity>
