@@ -22,7 +22,7 @@
         android:hint="@string/nnf_name"
         android:imeOptions="actionDone"
         android:inputType="textAutoComplete|textAutoCorrect"
-        android:maxLines="1"
+        android:singleLine="true"
         android:padding="4dp"
         tools:ignore="UnusedAttribute"/>
 </FrameLayout>
