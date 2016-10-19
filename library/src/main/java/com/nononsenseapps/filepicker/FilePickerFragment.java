@@ -95,6 +95,7 @@ public abstract class FilePickerFragment extends AbstractFilePickerFragment<File
             // Treat this as a cancel press
             if (mListener != null) {
                 mListener.onCancelled();
+                dismiss();
             }
         } else { // if (requestCode == PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
             if (PackageManager.PERMISSION_GRANTED == grantResults[0]) {
@@ -108,6 +109,7 @@ public abstract class FilePickerFragment extends AbstractFilePickerFragment<File
                 // Treat this as a cancel press
                 if (mListener != null) {
                     mListener.onCancelled();
+                    dismiss();
                 }
             }
         }
