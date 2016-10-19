@@ -38,7 +38,7 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:gravity="center_vertical"
-        android:maxLines="1"
+        android:singleLine="true"
         android:padding="8dp"
         android:text="@string/nnf_name"
         android:textColor="@android:color/black"/>
