@@ -57,7 +57,8 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="@android:string/cancel"/>
+                android:text="@android:string/cancel"
+                android:textColor="@android:color/white"/>
 
             <Button
                 android:id="@+id/nnf_button_ok"
@@ -65,7 +66,8 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="@android:string/ok"/>
+                android:text="@android:string/ok"
+                android:textColor="@android:color/white"/>
 
         </LinearLayout>
 
@@ -81,9 +83,9 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:hint="@string/nnf_filename"
-                android:singleLine="true"
                 android:paddingLeft="8dp"
-                android:paddingRight="8dp"/>
+                android:paddingRight="8dp"
+                android:singleLine="true"/>
 
             <ImageButton
                 android:id="@+id/nnf_button_ok_newfile"

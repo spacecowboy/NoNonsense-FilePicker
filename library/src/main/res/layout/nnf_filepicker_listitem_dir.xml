@@ -37,7 +37,8 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:gravity="center_vertical"
-        android:singleLine="true"
         android:padding="8dp"
-        android:text="@string/nnf_name"/>
+        android:singleLine="true"
+        android:text="@string/nnf_name"
+        android:textColor="@android:color/white"/>
 </LinearLayout>

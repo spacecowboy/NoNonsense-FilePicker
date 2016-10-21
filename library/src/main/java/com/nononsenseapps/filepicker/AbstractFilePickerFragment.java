@@ -17,6 +17,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.util.SortedList;
@@ -826,6 +827,7 @@ public abstract class AbstractFilePickerFragment<T> extends DialogFragment
             v.setOnLongClickListener(this);
             icon = v.findViewById(R.id.item_icon);
             text = (TextView) v.findViewById(android.R.id.text1);
+            text.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.white));
         }
 
         /**
