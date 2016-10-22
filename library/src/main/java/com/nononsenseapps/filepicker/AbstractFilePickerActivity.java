@@ -142,6 +142,14 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
         Intent i = new Intent();
         i.putExtra(EXTRA_ALLOW_MULTIPLE, true);
 
+        // Set as String Extras for all versions
+        ArrayList<String> paths = new ArrayList<>();
+        for (Uri file : files) {
+            paths.add(file.toString());
+        }
+        i.putStringArrayListExtra(EXTRA_PATHS, paths);
+
+        // Set as Clip Data for Jelly bean and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             ClipData clip = null;
             for (Uri file : files) {
@@ -153,12 +161,6 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
                 }
             }
             i.setClipData(clip);
-        } else {
-            ArrayList<String> paths = new ArrayList<>();
-            for (Uri file : files) {
-                paths.add(file.toString());
-            }
-            i.putStringArrayListExtra(EXTRA_PATHS, paths);
         }
 
         setResult(Activity.RESULT_OK, i);
