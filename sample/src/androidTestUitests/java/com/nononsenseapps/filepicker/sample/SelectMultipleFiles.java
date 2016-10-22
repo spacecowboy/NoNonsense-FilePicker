@@ -46,7 +46,23 @@ public class SelectMultipleFiles {
      * Should not throw on Android 24
      */
     @Test
-    public void selectTwoFilesDoesNotThrow() {
+    public void selectTwoFilesDoesNotThrowWithClipData() {
+        NoNonsenseFilePicker.useClipData = true;
+
+        selectTwoFilesDoesNotThrow();
+    }
+
+    /**
+     * Should not throw on Android 24
+     */
+    @Test
+    public void selectTwoFilesDoesNotThrowWithStringExtras() {
+        NoNonsenseFilePicker.useClipData = false;
+
+        selectTwoFilesDoesNotThrow();
+    }
+
+    private void selectTwoFilesDoesNotThrow() {
         ViewInteraction radioButton = onView(
                 allOf(withId(R.id.radioFile), withText("Select file"),
                         withParent(withId(R.id.radioGroup)),

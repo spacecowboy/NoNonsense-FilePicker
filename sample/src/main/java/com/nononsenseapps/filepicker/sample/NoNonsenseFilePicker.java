@@ -42,6 +42,9 @@ import java.util.ArrayList;
 
 public class NoNonsenseFilePicker extends Activity {
 
+    // How to handle multiple return data
+    public static boolean useClipData = true;
+
     static final int CODE_SD = 0;
     static final int CODE_DB = 1;
     static final int CODE_FTP = 2;
@@ -226,7 +229,8 @@ public class NoNonsenseFilePicker extends Activity {
             // If we handled multiple files, we need to get the result differently
             if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
                 // This is the typical style on Android 4.2 and above
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                if (useClipData && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    Log.i("SAMPLEAPP", "onActivityResult: Using ClipData");
                     ClipData clip = data.getClipData();
                     StringBuilder sb = new StringBuilder();
 
@@ -245,6 +249,7 @@ public class NoNonsenseFilePicker extends Activity {
 
                     binding.text.setText(sb.toString());
                 } else /* This style is available in all SDK versions */ {
+                    Log.i("SAMPLEAPP", "onActivityResult: Using StringExtras");
                     ArrayList<String> paths = data.getStringArrayListExtra(
                             FilePickerActivity.EXTRA_PATHS);
                     StringBuilder sb = new StringBuilder();
@@ -255,7 +260,7 @@ public class NoNonsenseFilePicker extends Activity {
                                 sb.append("\n");
                             }
                             sb.append(CODE_SD == requestCode ?
-                                    Utils.getFileForUriString(path).toString() :
+                                    Utils.getFileForUri(Uri.parse(path)).toString() :
                                     path);
                         }
                     }
