@@ -11,6 +11,7 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerActivity;
+import com.nononsenseapps.filepicker.Utils;
 import com.nononsenseapps.filepicker.sample.databinding.ActivityNoNonsenseFilePickerBinding;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2;
@@ -234,8 +236,10 @@ public class NoNonsenseFilePicker extends Activity {
                             if (i > 0) {
                                 sb.append("\n");
                             }
-                            // Returns Strings to workaround a bug in Android 7.0 Nougat
-                            sb.append(clip.getItemAt(i).getText());
+                            Uri uri = clip.getItemAt(i).getUri();
+                            sb.append(CODE_SD == requestCode ?
+                                    Utils.getFileForUri(uri).toString() :
+                                    uri.toString());
                         }
                     }
 
@@ -250,13 +254,17 @@ public class NoNonsenseFilePicker extends Activity {
                             if (sb.length() > 0) {
                                 sb.append("\n");
                             }
-                            sb.append(path);
+                            sb.append(CODE_SD == requestCode ?
+                                    Utils.getFileForUriString(path).toString() :
+                                    path);
                         }
                     }
                     binding.text.setText(sb.toString());
                 }
             } else /* Single file mode */ {
-                binding.text.setText(data.getData().toString());
+                binding.text.setText(CODE_SD == requestCode ?
+                        Utils.getFileForUri(data.getData()).toString() :
+                        data.getDataString());
             }
         }
     }
