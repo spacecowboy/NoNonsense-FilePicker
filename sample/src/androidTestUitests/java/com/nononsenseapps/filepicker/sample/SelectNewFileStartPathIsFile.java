@@ -85,6 +85,6 @@ public class SelectNewFileStartPathIsFile {
         appCompatImageButton.perform(click());
 
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/A-dir/file-3.txt")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/A-dir/file-3.txt")));
     }
 }

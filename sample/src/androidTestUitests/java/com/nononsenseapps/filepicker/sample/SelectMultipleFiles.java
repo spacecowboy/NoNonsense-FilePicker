@@ -1,15 +1,20 @@
 package com.nononsenseapps.filepicker.sample;
 
 
+import android.net.Uri;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import com.nononsenseapps.filepicker.Utils;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.io.File;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -21,6 +26,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.nononsenseapps.filepicker.sample.PermissionGranter.allowPermissionsIfNeeded;
 import static org.hamcrest.Matchers.allOf;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -79,7 +86,16 @@ public class SelectMultipleFiles {
 
         ViewInteraction textView = onView(withId(R.id.text));
         textView.check(matches(
-                withText("file:///storage/emulated/0/000000_nonsense-tests/A-dir/file-1.txt\n" +
-                        "file:///storage/emulated/0/000000_nonsense-tests/A-dir/file-0.txt")));
+                withText("/storage/emulated/0/000000_nonsense-tests/A-dir/file-1.txt\n" +
+                        "/storage/emulated/0/000000_nonsense-tests/A-dir/file-0.txt")));
+
+        // Make sure we can read one
+        File file =
+                Utils.getFileForUri(
+                        Uri.parse("content://com.nononsenseapps.filepicker.sample.provider/root/storage/emulated/0/000000_nonsense-tests/A-dir/file-1.txt"));
+        assertEquals("/storage/emulated/0/000000_nonsense-tests/A-dir/file-1.txt", file.toString());
+        assertTrue(file.isFile());
+        assertTrue(file.canRead());
+        assertTrue(file.canWrite());
     }
 }
