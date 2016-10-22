@@ -23,7 +23,7 @@
 
         <!-- Sample app -->
         <activity
-            android:name="com.nononsenseapps.filepicker.sample.NoNonsenseFilePicker"
+            android:name=".NoNonsenseFilePicker"
             android:label="@string/title_activity_no_nonsense_file_picker">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,9 +31,9 @@
             </intent-filter>
         </activity>
 
-        <!-- Sample test app -->
+        <!-- Test activity, required to deal with runtime permissions -->
         <activity
-            android:name="com.nononsenseapps.filepicker.sample.NoNonsenseFilePickerTest"
+            android:name=".NoNonsenseFilePickerTest"
             android:label="@string/title_activity_no_nonsense_file_picker"/>
 
         <!-- SD-card pickers -->
@@ -58,7 +58,7 @@
         </activity>
 
         <activity
-            android:name="com.nononsenseapps.filepicker.sample.FilePickerActivity2"
+            android:name=".FilePickerActivity2"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight">
             <intent-filter>
@@ -129,22 +129,22 @@
 
         <!-- FtpPickers -->
         <activity
-            android:name="com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity"
+            android:name=".ftp.FtpPickerActivity"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleTheme" />
         <activity
-            android:name="com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity2"
+            android:name=".ftp.FtpPickerActivity2"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight" />
 
         <!-- Dropbox pickers -->
         <activity
-            android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity"
+            android:name=".dropbox.DropboxFilePickerActivity"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleTheme">
         </activity>
         <activity
-            android:name="com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2"
+            android:name=".dropbox.DropboxFilePickerActivity2"
             android:label="@string/title_activity_no_nonsense_file_picker"
             android:theme="@style/SampleThemeLight">
         </activity>
