@@ -222,55 +222,13 @@ public class NoNonsenseFilePicker extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data) {
-        // Always check the resultCode!
-        // Checking for the requestCodes is a bit redundant but good style
-        if (resultCode == Activity.RESULT_OK &&
-                (CODE_SD == requestCode || CODE_DB == requestCode || CODE_FTP == requestCode)) {
-            // If we handled multiple files, we need to get the result differently
-            if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
-                // This is the typical style on Android 4.2 and above
-                if (useClipData && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    Log.i("SAMPLEAPP", "onActivityResult: Using ClipData");
-                    ClipData clip = data.getClipData();
-                    StringBuilder sb = new StringBuilder();
-
-                    // clip data CAN be null in case of an empty result
-                    if (clip != null) {
-                        for (int i = 0; i < clip.getItemCount(); i++) {
-                            if (i > 0) {
-                                sb.append("\n");
-                            }
-                            Uri uri = clip.getItemAt(i).getUri();
-                            sb.append(CODE_SD == requestCode ?
-                                    Utils.getFileForUri(uri).toString() :
-                                    uri.toString());
-                        }
-                    }
-
-                    binding.text.setText(sb.toString());
-                } else /* This style is available in all SDK versions */ {
-                    Log.i("SAMPLEAPP", "onActivityResult: Using StringExtras");
-                    ArrayList<String> paths = data.getStringArrayListExtra(
-                            FilePickerActivity.EXTRA_PATHS);
-                    StringBuilder sb = new StringBuilder();
-
-                    if (paths != null) {
-                        for (String path : paths) {
-                            if (sb.length() > 0) {
-                                sb.append("\n");
-                            }
-                            sb.append(CODE_SD == requestCode ?
-                                    Utils.getFileForUri(Uri.parse(path)).toString() :
-                                    path);
-                        }
-                    }
-                    binding.text.setText(sb.toString());
-                }
-            } else /* Single file mode */ {
-                binding.text.setText(CODE_SD == requestCode ?
-                        Utils.getFileForUri(data.getData()).toString() :
-                        data.getDataString());
+        if ((CODE_SD == requestCode || CODE_DB == requestCode || CODE_FTP == requestCode) &&
+                resultCode == Activity.RESULT_OK) {
+            StringBuilder sb = new StringBuilder();
+            for (Uri uri : FilePickerActivity.getActivityResult(data)){
+                sb.append(uri).append('\n');
             }
+            binding.text.setText(sb.toString());
         }
     }
 
