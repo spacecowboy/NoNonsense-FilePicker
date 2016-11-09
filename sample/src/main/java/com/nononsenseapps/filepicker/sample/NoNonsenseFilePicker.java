@@ -10,6 +10,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -241,37 +242,11 @@ public class NoNonsenseFilePicker extends Activity {
                                     Intent data) {
         if ((CODE_SD == requestCode || CODE_DB == requestCode || CODE_FTP == requestCode) &&
                 resultCode == Activity.RESULT_OK) {
-            if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE,
-                    false)) {
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    ClipData clip = data.getClipData();
-                    StringBuilder sb = new StringBuilder();
-
-                    if (clip != null) {
-                        for (int i = 0; i < clip.getItemCount(); i++) {
-                            sb.append(clip.getItemAt(i).getUri().toString());
-                            sb.append("\n");
-                        }
-                    }
-
-                    textView.setText(sb.toString());
-                } else {
-                    ArrayList<String> paths = data.getStringArrayListExtra(
-                            FilePickerActivity.EXTRA_PATHS);
-                    StringBuilder sb = new StringBuilder();
-
-                    if (paths != null) {
-                        for (String path : paths) {
-                            sb.append(path);
-                            sb.append("\n");
-                        }
-                    }
-                    textView.setText(sb.toString());
-                }
-            } else {
-                textView.setText(data.getData().toString());
+            StringBuilder sb = new StringBuilder();
+            for (Uri uri : FilePickerActivity.getActivityResult(data)){
+                sb.append(uri).append('\n');
             }
+            textView.setText(sb.toString());
         }
     }
 
