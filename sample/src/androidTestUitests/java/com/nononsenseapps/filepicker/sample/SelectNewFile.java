@@ -6,15 +6,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
-import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static android.support.test.espresso.action.ViewActions.*;
-import static android.support.test.espresso.assertion.ViewAssertions.*;
-import static android.support.test.espresso.matcher.ViewMatchers.*;
-
-import com.nononsenseapps.filepicker.sample.R;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -22,9 +13,17 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withParent;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.nononsenseapps.filepicker.sample.PermissionGranter.allowPermissionsIfNeeded;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -84,7 +83,7 @@ public class SelectNewFile {
         appCompatImageButton.perform(click());
 
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/C-dir/testfile")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/C-dir/testfile")));
     }
 
     @Test
@@ -118,7 +117,7 @@ public class SelectNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/B-dir/file-3.txt")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/B-dir/file-3.txt")));
     }
 
     @Test
@@ -205,7 +204,7 @@ public class SelectNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/B-dir/file-3.txt")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/B-dir/file-3.txt")));
     }
 
     @Test
@@ -254,7 +253,7 @@ public class SelectNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/path/to/file")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/path/to/file")));
     }
 
     @Test
@@ -303,7 +302,7 @@ public class SelectNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/../file.txt")));
+        textView.check(matches(withText("/storage/emulated/0/file.txt")));
     }
 
     @Test
@@ -352,7 +351,7 @@ public class SelectNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/./file.txt")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/file.txt")));
     }
 
     @Test
@@ -401,6 +400,6 @@ public class SelectNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///file.txt")));
+        textView.check(matches(withText("/file.txt")));
     }
 }

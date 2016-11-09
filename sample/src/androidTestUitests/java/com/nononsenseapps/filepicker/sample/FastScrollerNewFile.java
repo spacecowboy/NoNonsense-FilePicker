@@ -19,7 +19,6 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
-import static android.support.test.espresso.contrib.RecyclerViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
@@ -88,7 +87,7 @@ public class FastScrollerNewFile {
         appCompatImageButton.perform(click());
 
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/C-dir/testfile")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/C-dir/testfile")));
     }
 
     @Test
@@ -124,7 +123,7 @@ public class FastScrollerNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/B-dir/file-3.txt")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/B-dir/file-3.txt")));
     }
 
     @Test
@@ -216,7 +215,7 @@ public class FastScrollerNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/B-dir/file-3.txt")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/B-dir/file-3.txt")));
     }
 
     @Test
@@ -267,7 +266,7 @@ public class FastScrollerNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/path/to/file")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/path/to/file")));
     }
 
     @Test
@@ -318,7 +317,7 @@ public class FastScrollerNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/../file.txt")));
+        textView.check(matches(withText("/storage/emulated/0/file.txt")));
     }
 
     @Test
@@ -369,7 +368,7 @@ public class FastScrollerNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///storage/emulated/0/000000_nonsense-tests/./file.txt")));
+        textView.check(matches(withText("/storage/emulated/0/000000_nonsense-tests/file.txt")));
     }
 
     @Test
@@ -420,6 +419,6 @@ public class FastScrollerNewFile {
 
         // Should have returned
         ViewInteraction textView = onView(withId(R.id.text));
-        textView.check(matches(withText("file:///file.txt")));
+        textView.check(matches(withText("/file.txt")));
     }
 }
