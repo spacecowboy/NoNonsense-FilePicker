@@ -66,7 +66,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.nononsenseapps:filepicker:3.1.0'
+    compile 'com.nononsenseapps:filepicker:4.0.0'
 }
 ```
 
@@ -77,6 +77,24 @@ dependencies {
 
 ```xml
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+```
+
+### Include a provider element
+
+Due to recent changes in Android 7.0 Nougat, bare File URIs can no
+longer be returned in a safe way. This change requires you to add an
+entry to your manifest to use the included FilePickerFragment:
+
+```xml
+    <provider
+        android:name="android.support.v4.content.FileProvider"
+        android:authorities="${applicationId}.provider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/nnf_provider_paths" />
+    </provider>
 ```
 
 ### Include the file picker activity
@@ -155,40 +173,32 @@ If you have a minimum requirement of Jelly Bean (API 16) and above,
 you can skip the second method.
 
 ```java
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == FILE_CODE && resultCode == Activity.RESULT_OK) {
-            if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
-                // For JellyBean and above
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    ClipData clip = data.getClipData();
-
-                    if (clip != null) {
-                        for (int i = 0; i < clip.getItemCount(); i++) {
-                            Uri uri = clip.getItemAt(i).getUri();
-                            // Do something with the URI
-                        }
-                    }
-                // For Ice Cream Sandwich
-                } else {
-                    ArrayList<String> paths = data.getStringArrayListExtra
-                                (FilePickerActivity.EXTRA_PATHS);
-
-                    if (paths != null) {
-                        for (String path: paths) {
-                            Uri uri = Uri.parse(path);
-                            // Do something with the URI
-                        }
-                    }
+protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    if (requestCode == FILE_CODE && resultCode == Activity.RESULT_OK) {
+        if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
+            // The URI will now be something like content://PACKAGE-NAME/root/path/to/file
+            Uri uri = intent.getData();
+            // A utility method is provided to transform the URI to a File object
+            File file = com.nononsenseapps.filepicker.Utils.getFileForUri(uri);
+            // If you want a URI which matches the old return value, you can do
+            Uri fileUri = Uri.fromFile(file);
+            // Do something with the result...
+        } else {
+            // Handling multiple results is one extra step
+            ArrayList<String> paths = data.getStringArrayListExtra(FilePickerActivity.EXTRA_PATHS);
+            if (paths != null) {
+                for (String path: paths) {
+                    Uri uri = Uri.parse(path);
+                    // Do something with the URI
+                    File file = com.nononsenseapps.filepicker.Utils.getFileForUri(uri);
+                    // If you want a URI which matches the old return value, you can do
+                    Uri fileUri = Uri.fromFile(file);
+                    // Do something with the result...
                 }
-
-            } else {
-                Uri uri = data.getData();
-                // Do something with the URI
             }
         }
     }
+}
 ```
 
 ## Want to customize further?
