@@ -1,4 +1,44 @@
 
+## 4.0.0
+
+
+### Breaking changes
+
+- You are now required to define a `FileProvider` in your manifest for the SD-card picker [\#118](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/118) ([spacecowboy](https://github.com/spacecowboy))
+
+    
+    Due to recent changes in Android 7.0 Nougat, bare File URIs can no longer be returned in a safe way. This change requires you to add an entry to your manifest to use the included `FilePickerFragment` and change how you handle the results.
+    - You need to add the following to your app's `AndroidManifest.xml`:
+    
+    ``` xml
+            <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="${applicationId}.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+                <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/nnf_provider_paths" />
+            </provider>
+    ```
+    - Then you must change your result handling. Here is a code snippet illustrating the change for a single result (the same applies to multiple results):
+    
+    ``` java
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        // The URI will now be something like content://PACKAGE-NAME/root/path/to/file
+        Uri uri = intent.getData();
+        // A new utility method is provided to transform the URI to a File object
+        File file = com.nononsenseapps.filepicker.Utils.getFileForUri(uri);
+        // If you want a URI which matches the old return value, you can do
+        Uri fileUri = Uri.fromFile(file);
+        // Do something with the result...
+    }
+    ```
+    
+    This change was required in order to fix `FileUriExposedException` being thrown on Android 7.0 Nougat, as reported in [#115](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/115) and [#107](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/107).
+    
+    Please see the updated [activity in the sample app](https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/sample/src/main/java/com/nononsenseapps/filepicker/sample/NoNonsenseFilePicker.java) for more examples.
+
 ## 3.1.0
 
 
@@ -46,7 +86,7 @@
 
     This allows for better handling in case of denied/missing permissions,
     as well the ability to request more fine-grained permissions.
-
+    
     Fixes [\#85](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/85), [\#84](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/84)
 
 ### Fixed
@@ -54,7 +94,7 @@
 - Fix crash when creating dropbox directory [0a511ac](https://github.com/spacecowboy/NoNonsense-FilePicker/commit/0a511acb59fe02ad38d16bc0e4fd05c4a2cc6edb)
 
     Also improves loading screen usage for directory creation.
-
+    
     Fixes [\#76](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/76)
 
 ## 2.5.2
@@ -76,7 +116,7 @@
     Fixes crash if user quickly taps on two different directories,
     where loading directories take a while, like Dropbox or any
     other network source.
-
+    
     Fixes [\#73](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/73)
 - Fix concurrent modification of adapter in dropbox sample [b7baea3](https://github.com/spacecowboy/NoNonsense-FilePicker/commit/b7baea37113435e2a8cb07ca5126b075a67ff128)
 
@@ -95,7 +135,7 @@
 
     To actually be compatible with Android and because it
     is more aligned with my interests.
-
+    
     Fixes [\#66](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/66)
 
 ## 2.5.0
@@ -126,7 +166,7 @@
     This Fixes an issue on older android versions (4.0.3)
     where setting a tint on an imageview would incorrectly
     color the entire image.
-
+    
     Fixes [\#50](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/50)
 
 ## v2.4.1
@@ -200,7 +240,7 @@
 
     Fixes [\#33](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/33)
 
-## v2.2
+## 2.2.0
 
 
 ### Added
@@ -209,7 +249,7 @@
 
     Now possible to load the fragment even with existing
     toolbar, as long as setupToolbar() is overriden.
-
+    
     Fixes [\#32](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/32)
 
 ### Changed
@@ -228,7 +268,7 @@
 
     Fixes [\#29](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/29)
 
-## v2.1
+## 2.1.0
 
 
 ### Changed
@@ -288,7 +328,7 @@
 
     Fixes [\#3](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/3)
 
-## v1.1
+## 1.1.0
 
 
 ### Changed
@@ -297,8 +337,8 @@
 
     Removed onlyDirs in favor of a mode variable. Now possible to
     select between: Files, Dirs, or Both.
-
+    
     The ability to create directories is now an option as well
     which defaults to false.
-
+    
     Fixes [\#1](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/1), [\#2](https://github.com/spacecowboy/NoNonsense-FilePicker/issues/2)

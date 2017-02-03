@@ -55,7 +55,7 @@ commits_file = "commits.toml"
 ##
 ## Example v-prefixed versions: v(.+)
 ## Example only want the 3.1 versions: (3\\.1\\..+)
-#tag_pattern = "(.+)"
+tag_pattern = "^v?(\\d+\\.\\d+\\.\\d+)$"
 
 ## Settings related to github go in this section
 [github]
