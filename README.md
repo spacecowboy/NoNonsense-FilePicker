@@ -175,7 +175,7 @@ you can skip the second method.
 ```java
 protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     if (requestCode == FILE_CODE && resultCode == Activity.RESULT_OK) {
-        if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
+        if (!data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
             // The URI will now be something like content://PACKAGE-NAME/root/path/to/file
             Uri uri = intent.getData();
             // A utility method is provided to transform the URI to a File object
