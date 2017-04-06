@@ -18,11 +18,11 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:fontFamily="light"
+        android:maxLines="1"
         android:gravity="center_vertical"
         android:hint="@string/nnf_name"
         android:imeOptions="actionDone"
         android:inputType="textAutoComplete|textAutoCorrect"
-        android:singleLine="true"
         android:padding="4dp"
         tools:ignore="UnusedAttribute"/>
 </FrameLayout>
