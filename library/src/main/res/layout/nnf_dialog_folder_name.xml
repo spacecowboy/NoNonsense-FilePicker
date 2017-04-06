@@ -6,23 +6,23 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
     <EditText
         android:id="@+id/edit_text"
+        style="?android:textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:fontFamily="light"
-        android:padding="4dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:hint="@string/nnf_name"
-        android:singleLine="true"
+        android:fontFamily="light"
         android:maxLines="1"
         android:gravity="center_vertical"
+        android:hint="@string/nnf_name"
         android:imeOptions="actionDone"
-        style="?android:textAppearanceMedium"
         android:inputType="textAutoComplete|textAutoCorrect"
-        tools:ignore="UnusedAttribute" />
+        android:padding="4dp"
+        tools:ignore="UnusedAttribute"/>
 </FrameLayout>

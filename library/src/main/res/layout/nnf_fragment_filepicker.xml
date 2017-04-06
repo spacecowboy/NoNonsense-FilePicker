@@ -7,10 +7,9 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FilePickerActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/nnf_picker_toolbar"
@@ -26,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="start"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
     </android.support.v7.widget.Toolbar>
 
@@ -58,7 +57,8 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="@android:string/cancel"/>
+                android:text="@android:string/cancel"
+                android:textColor="@android:color/white"/>
 
             <Button
                 android:id="@+id/nnf_button_ok"
@@ -66,7 +66,8 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="@android:string/ok"/>
+                android:text="@android:string/ok"
+                android:textColor="@android:color/white"/>
 
         </LinearLayout>
 
@@ -93,7 +94,8 @@
                 android:layout_height="48dp"
                 android:hint="@android:string/ok"
                 android:src="@drawable/nnf_ic_save_black_24dp"
-                android:tint="?attr/nnf_save_icon_color"/>
+                android:tint="?attr/nnf_save_icon_color"
+                tools:ignore="VectorDrawableCompat"/>
 
         </LinearLayout>
     </FrameLayout>

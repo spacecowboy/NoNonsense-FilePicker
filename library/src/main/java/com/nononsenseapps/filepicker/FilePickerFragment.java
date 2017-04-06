@@ -19,26 +19,26 @@ import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.Locale;
 
 /**
  * An implementation of the picker which allows you to select a file from the internal/external
  * storage (SD-card) on a device.
  */
-public class FilePickerFragment extends AbstractFilePickerFragment<File> {
+public abstract class FilePickerFragment extends AbstractFilePickerFragment<File> {
+
+    private static final String[] extensions = new String[]{".doc", ".docx", ".xlsx", ".xls", ".png", ".jpg", ".tif", ".tiff", ".pdf", ".jpeg"};
 
     protected static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     protected boolean showHiddenItems = false;
     private File mRequestedPath = null;
-
-    public FilePickerFragment() {
-    }
 
     /**
      * This method is used to dictate whether hidden files and folders should be shown or not
      *
      * @param showHiddenItems whether hidden items should be shown or not
      */
-    public void showHiddenItems(boolean showHiddenItems){
+    public void showHiddenItems(boolean showHiddenItems) {
         this.showHiddenItems = showHiddenItems;
     }
 
@@ -48,7 +48,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
      * @return true if hidden items are shown, otherwise false
      */
 
-    public boolean areHiddenItemsShown(){
+    public boolean areHiddenItemsShown() {
         return showHiddenItems;
     }
 
@@ -95,6 +95,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
             // Treat this as a cancel press
             if (mListener != null) {
                 mListener.onCancelled();
+                dismiss();
             }
         } else { // if (requestCode == PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
             if (PackageManager.PERMISSION_GRANTED == grantResults[0]) {
@@ -108,6 +109,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 // Treat this as a cancel press
                 if (mListener != null) {
                     mListener.onCancelled();
+                    dismiss();
                 }
             }
         }
@@ -236,7 +238,7 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 files.beginBatchedUpdates();
                 if (listFiles != null) {
                     for (java.io.File f : listFiles) {
-                        if (isItemVisible(f)) {
+                        if (isItemVisible(f) && directoryHasNeededFiles(f)) {
                             files.add(f);
                         }
                     }
@@ -290,6 +292,23 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
                 }
             }
         };
+    }
+
+    private boolean directoryHasNeededFiles(@NonNull final File file) {
+        final File[] fileList = file.listFiles();
+        if (fileList == null) {
+            return isNeededExtension(file.toString());
+        }
+        return true;
+    }
+
+    private boolean isNeededExtension(@NonNull final String fileName) {
+        for (final String extension : extensions) {
+            if (fileName.endsWith(extension) || fileName.endsWith(extension.toUpperCase(Locale.getDefault()))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -348,4 +367,5 @@ public class FilePickerFragment extends AbstractFilePickerFragment<File> {
             return lhs.getName().compareToIgnoreCase(rhs.getName());
         }
     }
+
 }

@@ -14,8 +14,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.annotation.StyleRes;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.util.SortedList;
@@ -49,7 +51,7 @@ import static com.nononsenseapps.filepicker.Utils.appendPath;
  * OnFilePickedListener}
  * interface.
  */
-public abstract class AbstractFilePickerFragment<T> extends Fragment
+public abstract class AbstractFilePickerFragment<T> extends DialogFragment
         implements LoaderManager.LoaderCallbacks<SortedList<T>>,
         NewItemFragment.OnNewFolderListener, LogicHandler<T> {
 
@@ -115,54 +117,11 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         return new FileItemAdapter<>(this);
     }
 
-    /**
-     * Set before making the fragment visible. This method will re-use the existing
-     * arguments bundle in the fragment if it exists so extra arguments will not
-     * be overwritten. This allows you to set any extra arguments in the fragment
-     * constructor if you wish.
-     * <p/>
-     * The key/value-pairs listed below will be overwritten however.
-     *
-     * @param startPath      path to directory the picker will show upon start
-     * @param mode           what is allowed to be selected (dirs, files, both)
-     * @param allowMultiple  selecting a single item or several?
-     * @param allowDirCreate can new directories be created?
-     * @param allowExistingFile if selecting a "new" file, can existing files be chosen
-     * @param singleClick    selecting an item does not require a press on OK
-     */
-    public void setArgs(@Nullable final String startPath, final int mode,
-                        final boolean allowMultiple, final boolean allowDirCreate,
-                        final boolean allowExistingFile, final boolean singleClick) {
-        // Validate some assumptions so users don't get surprised (or get surprised early)
-        if (mode == MODE_NEW_FILE && allowMultiple) {
-            throw new IllegalArgumentException(
-                    "MODE_NEW_FILE does not support 'allowMultiple'");
-        }
-        // Single click only makes sense if we are not selecting multiple items
-        if (singleClick && allowMultiple) {
-            throw new IllegalArgumentException("'singleClick' can not be used with 'allowMultiple'");
-        }
-        // There might have been arguments set elsewhere, if so do not overwrite them.
-        Bundle b = getArguments();
-        if (b == null) {
-            b = new Bundle();
-        }
-
-        if (startPath != null) {
-            b.putString(KEY_START_PATH, startPath);
-        }
-        b.putBoolean(KEY_ALLOW_DIR_CREATE, allowDirCreate);
-        b.putBoolean(KEY_ALLOW_MULTIPLE, allowMultiple);
-        b.putBoolean(KEY_ALLOW_EXISTING_FILE, allowExistingFile);
-        b.putBoolean(KEY_SINGLE_CLICK, singleClick);
-        b.putInt(KEY_MODE, mode);
-        setArguments(b);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflateRootView(inflater, container);
+        getContext().getTheme().applyStyle(getStyleId(), true);
+        final View view = inflater.inflate(R.layout.nnf_fragment_filepicker, container, false);
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.nnf_picker_toolbar);
         if (toolbar != null) {
@@ -191,11 +150,11 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 });
 
         view.findViewById(R.id.nnf_button_ok).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(final View v) {
-                        onClickOk(v);
-                    }
-                });
+            @Override
+            public void onClick(final View v) {
+                onClickOk(v);
+            }
+        });
         view.findViewById(R.id.nnf_button_ok_newfile).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -235,10 +194,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         return view;
     }
 
-    protected View inflateRootView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate( R.layout.nnf_fragment_filepicker, container, false);
-    }
-
     /**
      * Checks if a divider drawable has been defined in the current theme. If it has, will apply
      * an item decoration with the divider. If no divider has been specified, then does nothing.
@@ -263,6 +218,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     public void onClickCancel(@NonNull View view) {
         if (mListener != null) {
             mListener.onCancelled();
+            dismiss();
         }
     }
 
@@ -320,10 +276,10 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 mListener.onFilePicked(toUri(getFirstCheckedItem()));
             }
         }
+        dismiss();
     }
 
     /**
-     *
      * @return filename as entered/picked by the user for the new file
      */
     @NonNull
@@ -386,9 +342,14 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setHasOptionsMenu(true);
     }
 
@@ -408,6 +369,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         // Only if we have no state
         if (mCurrentPath == null) {
             if (savedInstanceState != null) {
@@ -450,25 +412,27 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             }
         }
 
-        setModeView();
+        setModeView(getView());
 
         // If still null
         if (mCurrentPath == null) {
             mCurrentPath = getRoot();
         }
         refresh(mCurrentPath);
+
     }
+
 
     /**
      * Hides/Shows appropriate views depending on mode
      */
-    protected void setModeView() {
+    protected void setModeView(@NonNull View view) {
         boolean nf = mode == MODE_NEW_FILE;
         mNewFileButtonContainer.setVisibility(nf ? View.VISIBLE : View.GONE);
         mRegularButtonContainer.setVisibility(nf ? View.GONE : View.VISIBLE);
 
         if (!nf && singleClick) {
-            getActivity().findViewById(R.id.nnf_button_ok).setVisibility(View.GONE);
+            view.findViewById(R.id.nnf_button_ok).setVisibility(View.GONE);
         }
     }
 
@@ -504,12 +468,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         b.putBoolean(KEY_ALLOW_DIR_CREATE, allowCreateDir);
         b.putBoolean(KEY_SINGLE_CLICK, singleClick);
         b.putInt(KEY_MODE, mode);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
     }
 
     /**
@@ -627,6 +585,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
+        getContext().getTheme().applyStyle(getStyleId(), true);
         switch (viewType) {
             case LogicHandler.VIEWTYPE_HEADER:
                 v = LayoutInflater.from(getActivity()).inflate(R.layout.nnf_filepicker_listitem_dir,
@@ -643,6 +602,9 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
                 return new DirViewHolder(v);
         }
     }
+
+    @StyleRes
+    protected abstract int getStyleId();
 
     /**
      * @param vh       to bind data from either a file or directory
@@ -865,6 +827,7 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
             v.setOnLongClickListener(this);
             icon = v.findViewById(R.id.item_icon);
             text = (TextView) v.findViewById(android.R.id.text1);
+            text.setTextColor(ContextCompat.getColor(getActivity(), android.R.color.white));
         }
 
         /**

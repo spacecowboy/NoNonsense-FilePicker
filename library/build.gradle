@@ -5,43 +5,19 @@ apply plugin: 'com.android.library'
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-// must be applied after your artifact generating plugin (eg. java /  com.android.library)
-apply plugin: 'bintray-release'
-
-// query git for the the SHA, Tag and commit count. Use these to automate versioning.
-def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
-def gitCommitCount =
-        Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
-
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 23
-        versionCode gitCommitCount
-        versionName gitTag
+        targetSdkVersion 25
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
-
-    testCompile 'junit:junit:4.12'
-}
-
-publish {
-    groupId = 'com.nononsenseapps'
-    artifactId = 'filepicker'
-    publishVersion = gitTag
-    description = 'An extendable Android file/directory-picker you can include in your app'
-    website = 'https://github.com/spacecowboy/NoNonsense-FilePicker'
-    licences = ['MPL-2.0']
-    uploadName = 'com.nononsenseapps:filepicker'
-    bintrayUser = project.hasProperty("BINTRAY_USER")? BINTRAY_USER: "Dummy"
-    bintrayKey = project.hasProperty("BINTRAY_KEY") ? BINTRAY_KEY: "Dummy"
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
 }
