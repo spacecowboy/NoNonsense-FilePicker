@@ -28,7 +28,7 @@
         android:src="@drawable/nnf_ic_folder_black_48dp"
         android:tint="?attr/nnf_dir_icon_color"
         android:visibility="visible"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,VectorDrawableCompat" />
 
     <TextView
         android:id="@android:id/text1"
@@ -40,7 +40,6 @@
         android:gravity="center_vertical"
         android:maxLines="1"
         android:padding="8dp"
-        android:singleLine="true"
         android:text="@string/nnf_name" />
 
     <CheckBox
