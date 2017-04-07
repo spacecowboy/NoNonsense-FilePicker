@@ -8,7 +8,6 @@ package com.nononsenseapps.filepicker.sample;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
@@ -18,7 +17,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
@@ -37,7 +35,7 @@ import com.nononsenseapps.filepicker.sample.multimedia.MultimediaPickerActivity2
 import com.nononsenseapps.filepicker.sample.root.SUPickerActivity;
 import com.nononsenseapps.filepicker.sample.root.SUPickerActivity2;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class NoNonsenseFilePicker extends Activity {
@@ -226,52 +224,20 @@ public class NoNonsenseFilePicker extends Activity {
         // Checking for the requestCodes is a bit redundant but good style
         if (resultCode == Activity.RESULT_OK &&
                 (CODE_SD == requestCode || CODE_DB == requestCode || CODE_FTP == requestCode)) {
-            // If we handled multiple files, we need to get the result differently
-            if (data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
-                // This is the typical style on Android 4.2 and above
-                if (useClipData && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    Log.i("SAMPLEAPP", "onActivityResult: Using ClipData");
-                    ClipData clip = data.getClipData();
-                    StringBuilder sb = new StringBuilder();
+            // Use the provided utility method to parse the result
+            List<Uri> files = Utils.getSelectedFilesFromResult(data);
 
-                    // clip data CAN be null in case of an empty result
-                    if (clip != null) {
-                        for (int i = 0; i < clip.getItemCount(); i++) {
-                            if (i > 0) {
-                                sb.append("\n");
-                            }
-                            Uri uri = clip.getItemAt(i).getUri();
-                            sb.append(CODE_SD == requestCode ?
-                                    Utils.getFileForUri(uri).toString() :
-                                    uri.toString());
-                        }
-                    }
-
-                    binding.text.setText(sb.toString());
-                } else /* This style is available in all SDK versions */ {
-                    Log.i("SAMPLEAPP", "onActivityResult: Using StringExtras");
-                    ArrayList<String> paths = data.getStringArrayListExtra(
-                            FilePickerActivity.EXTRA_PATHS);
-                    StringBuilder sb = new StringBuilder();
-
-                    if (paths != null) {
-                        for (String path : paths) {
-                            if (sb.length() > 0) {
-                                sb.append("\n");
-                            }
-                            sb.append(CODE_SD == requestCode ?
-                                    Utils.getFileForUri(Uri.parse(path)).toString() :
-                                    path);
-                        }
-                    }
-                    binding.text.setText(sb.toString());
+            // Do something with your list of files here
+            StringBuilder sb = new StringBuilder();
+            for (Uri uri : files) {
+                if (sb.length() > 0) {
+                    sb.append("\n");
                 }
-            } else /* Single file mode */ {
-                binding.text.setText(CODE_SD == requestCode ?
-                        Utils.getFileForUri(data.getData()).toString() :
-                        data.getDataString());
+                sb.append(CODE_SD == requestCode ?
+                        Utils.getFileForUri(uri).toString() :
+                        uri.toString());
             }
+            binding.text.setText(sb.toString());
         }
     }
-
 }

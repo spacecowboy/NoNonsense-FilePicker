@@ -169,34 +169,14 @@ you like..
 
 ### Handling the result
 
-If you have a minimum requirement of Jelly Bean (API 16) and above,
-you can skip the second method.
+You can use the included utility method to parse the activity result:
 
 ```java
 protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     if (requestCode == FILE_CODE && resultCode == Activity.RESULT_OK) {
-        if (!data.getBooleanExtra(FilePickerActivity.EXTRA_ALLOW_MULTIPLE, false)) {
-            // The URI will now be something like content://PACKAGE-NAME/root/path/to/file
-            Uri uri = intent.getData();
-            // A utility method is provided to transform the URI to a File object
-            File file = com.nononsenseapps.filepicker.Utils.getFileForUri(uri);
-            // If you want a URI which matches the old return value, you can do
-            Uri fileUri = Uri.fromFile(file);
-            // Do something with the result...
-        } else {
-            // Handling multiple results is one extra step
-            ArrayList<String> paths = data.getStringArrayListExtra(FilePickerActivity.EXTRA_PATHS);
-            if (paths != null) {
-                for (String path: paths) {
-                    Uri uri = Uri.parse(path);
-                    // Do something with the URI
-                    File file = com.nononsenseapps.filepicker.Utils.getFileForUri(uri);
-                    // If you want a URI which matches the old return value, you can do
-                    Uri fileUri = Uri.fromFile(file);
-                    // Do something with the result...
-                }
-            }
-        }
+        // Use the provided utility method to parse the result
+        List<Uri> files = Utils.getSelectedFilesFromResult(data);
+        // Do something with the result...
     }
 }
 ```
