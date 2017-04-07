@@ -9,7 +9,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'bintray-release'
 
 // query git for the the SHA, Tag and commit count. Use these to automate versioning.
-def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
+//def gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
+def gitTag = '4.0.1'
 def gitCommitCount =
         Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
 
