@@ -62,7 +62,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.nononsenseapps:filepicker:4.0.0'
+    compile 'com.nononsenseapps:filepicker:4.1.0'
 }
 ```
 
