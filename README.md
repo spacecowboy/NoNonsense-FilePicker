@@ -7,23 +7,19 @@
 </p>
 
 <p>
-<img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus6-picker-dark.png"
-width="25%"
-</img>
+<img src="https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/screenshots/Nexus6-picker-dark.png?raw=true"
+width="25%"/>
 
-<img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus10-picker-dark.png"
-width="50%"
-</img>
+<img src="https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/screenshots/Nexus10-picker-dark.png?raw=true"
+width="50%"/>
 </p>
 
 <p>
-<img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus6-picker-light.png"
-width="25%"
-</img>
+<img src="https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/screenshots/Nexus6-picker-light.png?raw=true"
+width="25%"/>
 
-<img src="https://raw.githubusercontent.com/spacecowboy/NoNonsense-FilePicker/master/screenshots/Nexus10-picker-light.png"
-width="50%"
-</img>
+<img src="https://github.com/spacecowboy/NoNonsense-FilePicker/blob/master/screenshots/Nexus10-picker-light.png?raw=true"
+width="50%"/>
 </p>
 
 -   Extendable for sources other than SD-card (Dropbox, FTP, Drive, etc)
