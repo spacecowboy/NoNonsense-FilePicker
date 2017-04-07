@@ -1,5 +1,6 @@
 package com.nononsenseapps.filepicker;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,6 +8,11 @@ import android.text.TextUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.nononsenseapps.filepicker.AbstractFilePickerActivity.EXTRA_ALLOW_MULTIPLE;
+import static com.nononsenseapps.filepicker.AbstractFilePickerActivity.EXTRA_PATHS;
 
 /**
  * Some utility methods
@@ -88,5 +94,27 @@ public class Utils {
         }
 
         return file;
+    }
+
+    /**
+     * Parses the returned files from a filepicker activity into a nice list
+     *
+     * @param data returned by the {@link AbstractFilePickerActivity}
+     * @return a {@link List<Uri>} of files (uris) which the user selected in the picker.
+     */
+    @NonNull
+    public static List<Uri> getSelectedFilesFromResult(@NonNull Intent data) {
+        List<Uri> result = new ArrayList<>();
+        if (data.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, false)) {
+            List<String> paths = data.getStringArrayListExtra(EXTRA_PATHS);
+            if (paths != null) {
+                for (String path : paths) {
+                    result.add(Uri.parse(path));
+                }
+            }
+        } else {
+            result.add(data.getData());
+        }
+        return result;
     }
 }

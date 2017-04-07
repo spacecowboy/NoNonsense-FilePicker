@@ -8,7 +8,6 @@ package com.nononsenseapps.filepicker.sample;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
@@ -18,7 +17,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.dropbox.client2.DropboxAPI;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
@@ -37,7 +35,7 @@ import com.nononsenseapps.filepicker.sample.multimedia.MultimediaPickerActivity2
 import com.nononsenseapps.filepicker.sample.root.SUPickerActivity;
 import com.nononsenseapps.filepicker.sample.root.SUPickerActivity2;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class NoNonsenseFilePicker extends Activity {
@@ -222,14 +220,24 @@ public class NoNonsenseFilePicker extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data) {
-        if ((CODE_SD == requestCode || CODE_DB == requestCode || CODE_FTP == requestCode) &&
-                resultCode == Activity.RESULT_OK) {
+        // Always check the resultCode!
+        // Checking for the requestCodes is a bit redundant but good style
+        if (resultCode == Activity.RESULT_OK &&
+                (CODE_SD == requestCode || CODE_DB == requestCode || CODE_FTP == requestCode)) {
+            // Use the provided utility method to parse the result
+            List<Uri> files = Utils.getSelectedFilesFromResult(data);
+
+            // Do something with your list of files here
             StringBuilder sb = new StringBuilder();
-            for (Uri uri : FilePickerActivity.getActivityResult(data)){
-                sb.append(uri).append('\n');
+            for (Uri uri : files) {
+                if (sb.length() > 0) {
+                    sb.append("\n");
+                }
+                sb.append(CODE_SD == requestCode ?
+                        Utils.getFileForUri(uri).toString() :
+                        uri.toString());
             }
             binding.text.setText(sb.toString());
         }
     }
-
 }
