@@ -583,6 +583,8 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
         if (mCurrentDirView != null) {
             mCurrentDirView.setText(getFullPath(mCurrentPath));
         }
+        // Stop loading now to avoid a refresh clearing the user's selections
+        getLoaderManager().destroyLoader( 0 );
     }
 
     /**
@@ -595,8 +597,6 @@ public abstract class AbstractFilePickerFragment<T> extends Fragment
     @Override
     public void onLoaderReset(final Loader<SortedList<T>> loader) {
         isLoading = false;
-        mAdapter.setList(null);
-        mFiles = null;
     }
 
     /**
