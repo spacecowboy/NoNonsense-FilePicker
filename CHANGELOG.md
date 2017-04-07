@@ -1,4 +1,14 @@
 
+## 4.1.0
+
+
+### Added
+
+- added a static helper method for parsing activity results [\#138](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/138) ([spacecowboy](https://github.com/spacecowboy))
+
+
+    Thanks to @F43nd1r for #121
+
 ## 4.0.1
 
 

@@ -23,6 +23,6 @@ allprojects {
 }
 
 ext {
-    gitTag = '4.0.1'
+    gitTag = '4.1.0'
     gitCommitCount = Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
 }
