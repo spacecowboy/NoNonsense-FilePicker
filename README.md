@@ -4,7 +4,6 @@
 <a href="https://flattr.com/submit/auto?user_id=spacecowboy&url=https%3A%2F%2Fgithub.com%2Fspacecowboy%2FNoNonsense-FilePicker" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
 <a href='https://dependencyci.com/github/spacecowboy/NoNonsense-FilePicker'><img src='https://dependencyci.com/github/spacecowboy/NoNonsense-FilePicker/badge' alt='Dependency Status'/></a>
 <a href='https://bintray.com/spacecowboy/maven/com.nononsenseapps%3Afilepicker/_latestVersion'><img src='https://api.bintray.com/packages/spacecowboy/maven/com.nononsenseapps%3Afilepicker/images/download.svg'></a>
-<a href="https://travis-ci.org/spacecowboy/NoNonsense-FilePicker"><img alt="build status" src="https://travis-ci.org/spacecowboy/NoNonsense-FilePicker.svg?branch=master" /></a>
 </p>
 
 <p>
