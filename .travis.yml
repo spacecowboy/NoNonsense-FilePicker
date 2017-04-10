@@ -1,6 +1,7 @@
 sudo: false
-
 language: android
+jdk:
+  - oraclejdk8
 env:
 android:
   components:
