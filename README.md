@@ -172,7 +172,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent intent) 
     if (requestCode == FILE_CODE && resultCode == Activity.RESULT_OK) {
         // Use the provided utility method to parse the result
         List<Uri> files = Utils.getSelectedFilesFromResult(data);
-        // Do something with the result...
+        for (Uri uri: files) {
+            File file = Utils.getFileForUri(uri);
+            // Do something with the result...
+        }
     }
 }
 ```
