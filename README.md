@@ -81,6 +81,8 @@ Due to recent changes in Android 7.0 Nougat, bare File URIs can no
 longer be returned in a safe way. This change requires you to add an
 entry to your manifest to use the included FilePickerFragment:
 
+** NOTE: the authority of this provider is hard-coded in the bundled FilePickerFragment. If you have an existing content provider in your app with the same authority you will have a conflict. You'll either have to rename your existing authority or extend FilePickerFragment and override which authority is used. **
+
 ```xml
     <provider
         android:name="android.support.v4.content.FileProvider"
