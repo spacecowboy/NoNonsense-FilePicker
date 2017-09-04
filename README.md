@@ -77,7 +77,7 @@ dependencies {
 
 ### Include a provider element
 
-Due to recent changes in Android 7.0 Nougat, bare File URIs can no
+Due to changes in Android 6.0 Marshmallow, bare File URIs can no
 longer be returned in a safe way. This change requires you to add an
 entry to your manifest to use the included FilePickerFragment:
 
@@ -173,7 +173,7 @@ You can use the included utility method to parse the activity result:
 protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     if (requestCode == FILE_CODE && resultCode == Activity.RESULT_OK) {
         // Use the provided utility method to parse the result
-        List<Uri> files = Utils.getSelectedFilesFromResult(data);
+        List<Uri> files = Utils.getSelectedFilesFromResult(intent);
         for (Uri uri: files) {
             File file = Utils.getFileForUri(uri);
             // Do something with the result...
