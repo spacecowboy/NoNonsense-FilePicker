@@ -57,6 +57,7 @@ public class DropboxFilePickerFragment
         View view = inflater.inflate(R.layout.fragment_loading_filepicker, container, false);
         // And bind the progress bar
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        recyclerView = (RecyclerView) view.findViewById(android.R.id.list);
 
         return view;
     }
