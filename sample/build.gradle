@@ -31,6 +31,7 @@ android {
         archivesBaseName = "nononsensefilepicker-sample-${gitTag}".toString()
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     productFlavors {
@@ -53,7 +54,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':library')
 
     // Image loading sample
@@ -67,6 +67,9 @@ dependencies {
 
     // Fast scroll example
     compile 'com.simplecityapps:recyclerview-fastscroll:1.0.9'
+
+    // Dropbox example
+    compile 'com.dropbox.core:dropbox-core-sdk:3.0.5'
 
     // UI Tests
     androidTestCompile 'junit:junit:4.12'

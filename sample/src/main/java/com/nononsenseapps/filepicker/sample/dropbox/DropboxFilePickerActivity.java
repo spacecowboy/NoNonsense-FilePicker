@@ -6,48 +6,40 @@
 
 package com.nononsenseapps.filepicker.sample.dropbox;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
-import com.dropbox.client2.DropboxAPI;
-import com.dropbox.client2.android.AndroidAuthSession;
+import com.dropbox.core.v2.DbxClientV2;
+import com.dropbox.core.v2.files.Metadata;
 import com.nononsenseapps.filepicker.AbstractFilePickerActivity;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 
 
-public class DropboxFilePickerActivity
-            extends AbstractFilePickerActivity<DropboxAPI.Entry> {
-
-    // In the class declaration section:
-    private DropboxAPI<AndroidAuthSession> mDBApi;
+public class DropboxFilePickerActivity extends AbstractFilePickerActivity<Metadata> {
+    private DbxClientV2 dropboxClient = null;
 
     @Override
-    public void onCreate(Bundle b) {
-        mDBApi = DropboxSyncHelper.getDBApi(this);
-        if (!mDBApi.getSession().isLinked()) {
-            // No valid authentication
-            finish();
-        }
+    protected void onResume() {
+        dropboxClient = DropboxHelper.getClient(this);
 
-        super.onCreate(b);
+        super.onResume();
     }
 
     @Override
-    protected AbstractFilePickerFragment<DropboxAPI.Entry> getFragment(
-            @Nullable final String startPath, final int mode, final boolean allowMultiple,
-            final boolean allowCreateDir, final boolean allowExistingFile,
-            final boolean singleClick) {
-        if (mDBApi == null || !mDBApi.getSession().isLinked()) {
-            // No valid authentication
-            finish();
-            return null;
+    protected AbstractFilePickerFragment<Metadata> getFragment(@Nullable final String startPath,
+                                                               final int mode, final boolean allowMultiple,
+                                                               final boolean allowCreateDir, final boolean allowExistingFile,
+                                                               final boolean singleClick) {
+        DropboxFilePickerFragment fragment = null;
+
+        if (dropboxClient != null) {
+            fragment = new DropboxFilePickerFragment(dropboxClient);
+            fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir, allowExistingFile, singleClick);
+        }
+        else {
+            Toast.makeText(this, "Not authenticated with Dropbox", Toast.LENGTH_LONG).show();
         }
 
-        DropboxFilePickerFragment fragment =
-                new DropboxFilePickerFragment(mDBApi);
-        fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir,
-                allowExistingFile, singleClick);
         return fragment;
     }
 }

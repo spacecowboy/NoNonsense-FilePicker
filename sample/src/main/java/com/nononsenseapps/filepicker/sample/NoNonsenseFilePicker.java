@@ -13,19 +13,16 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import com.dropbox.client2.DropboxAPI;
-import com.dropbox.client2.android.AndroidAuthSession;
+
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 import com.nononsenseapps.filepicker.Utils;
 import com.nononsenseapps.filepicker.sample.databinding.ActivityNoNonsenseFilePickerBinding;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity;
 import com.nononsenseapps.filepicker.sample.dropbox.DropboxFilePickerActivity2;
-import com.nononsenseapps.filepicker.sample.dropbox.DropboxSyncHelper;
 import com.nononsenseapps.filepicker.sample.fastscroller.FastScrollerFilePickerActivity;
 import com.nononsenseapps.filepicker.sample.fastscroller.FastScrollerFilePickerActivity2;
 import com.nononsenseapps.filepicker.sample.ftp.FtpPickerActivity;
@@ -46,7 +43,6 @@ public class NoNonsenseFilePicker extends Activity {
     static final int CODE_SD = 0;
     static final int CODE_DB = 1;
     static final int CODE_FTP = 2;
-    DropboxAPI<AndroidAuthSession> mDBApi = null;
     ActivityNoNonsenseFilePickerBinding binding;
 
     @Override
@@ -94,23 +90,10 @@ public class NoNonsenseFilePicker extends Activity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
-
-                        // First we must authorize the user
-                        if (mDBApi == null) {
-                            mDBApi = DropboxSyncHelper
-                                    .getDBApi(NoNonsenseFilePicker.this);
-                        }
-
-                        // If not authorized, then ask user for login/permission
-                        if (!mDBApi.getSession().isLinked()) {
-                            mDBApi.getSession().startOAuth2Authentication(
-                                    NoNonsenseFilePicker.this);
-                        } else {  // User is authorized, open file picker
-                            if (binding.checkLightTheme.isChecked()) {
-                                startActivity(CODE_DB, DropboxFilePickerActivity2.class);
-                            } else {
-                                startActivity(CODE_DB, DropboxFilePickerActivity.class);
-                            }
+                        if (binding.checkLightTheme.isChecked()) {
+                            startActivity(CODE_DB, DropboxFilePickerActivity2.class);
+                        } else {
+                            startActivity(CODE_DB, DropboxFilePickerActivity.class);
                         }
                     }
                 });
@@ -145,14 +128,10 @@ public class NoNonsenseFilePicker extends Activity {
 
         i.setAction(Intent.ACTION_GET_CONTENT);
 
-        i.putExtra(SUPickerActivity.EXTRA_ALLOW_MULTIPLE,
-                binding.checkAllowMultiple.isChecked());
-        i.putExtra(FilePickerActivity.EXTRA_SINGLE_CLICK,
-                binding.checkSingleClick.isChecked());
-        i.putExtra(SUPickerActivity.EXTRA_ALLOW_CREATE_DIR,
-                binding.checkAllowCreateDir.isChecked());
-        i.putExtra(FilePickerActivity.EXTRA_ALLOW_EXISTING_FILE,
-                binding.checkAllowExistingFile.isChecked());
+        i.putExtra(SUPickerActivity.EXTRA_ALLOW_MULTIPLE, binding.checkAllowMultiple.isChecked());
+        i.putExtra(FilePickerActivity.EXTRA_SINGLE_CLICK, binding.checkSingleClick.isChecked());
+        i.putExtra(SUPickerActivity.EXTRA_ALLOW_CREATE_DIR, binding.checkAllowCreateDir.isChecked());
+        i.putExtra(FilePickerActivity.EXTRA_ALLOW_EXISTING_FILE, binding.checkAllowExistingFile.isChecked());
 
         // What mode is selected
         final int mode;
@@ -180,25 +159,6 @@ public class NoNonsenseFilePicker extends Activity {
         startActivityForResult(i, code);
     }
 
-    /**
-     * This is entirely for Dropbox's benefit
-     */
-    protected void onResume() {
-        super.onResume();
-
-        if (mDBApi != null && mDBApi.getSession().authenticationSuccessful()) {
-            try {
-                // Required to complete auth, sets the access token on the session
-                mDBApi.getSession().finishAuthentication();
-
-                String accessToken = mDBApi.getSession().getOAuth2AccessToken();
-                DropboxSyncHelper.saveToken(this, accessToken);
-            } catch (IllegalStateException e) {
-                Log.i("DbAuthLog", "Error authenticating", e);
-            }
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -218,8 +178,7 @@ public class NoNonsenseFilePicker extends Activity {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Always check the resultCode!
         // Checking for the requestCodes is a bit redundant but good style
         if (resultCode == Activity.RESULT_OK &&

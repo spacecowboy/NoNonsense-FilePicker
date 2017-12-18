@@ -15,10 +15,6 @@ import java.io.File;
 @SuppressLint("Registered")
 public class FilePickerActivity extends AbstractFilePickerActivity<File> {
 
-    public FilePickerActivity() {
-        super();
-    }
-
     @Override
     protected AbstractFilePickerFragment<File> getFragment(
             @Nullable final String startPath, final int mode, final boolean allowMultiple,
