@@ -62,7 +62,7 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="@android:string/cancel"/>
+                android:text="@string/nnf_list_cancel"/>
 
             <Button
                 android:id="@+id/nnf_button_ok"
@@ -70,7 +70,7 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="@android:string/ok"/>
+                android:text="@string/nnf_list_ok"/>
 
         </LinearLayout>
 
@@ -95,7 +95,7 @@
                 style="?attr/borderlessButtonStyle"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:hint="@android:string/ok"
+                android:hint="@string/nnf_list_ok"
                 app:srcCompat="@drawable/nnf_ic_save_black_24dp"
                 android:tint="?attr/nnf_save_icon_color"/>
 
