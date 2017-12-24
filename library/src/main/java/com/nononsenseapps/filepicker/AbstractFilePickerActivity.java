@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -52,22 +53,16 @@ import java.util.List;
  */
 public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
         implements AbstractFilePickerFragment.OnFilePickedListener {
-    public static final String EXTRA_START_PATH =
-            "nononsense.intent" + ".START_PATH";
+    public static final String EXTRA_START_PATH = "nononsense.intent" + ".START_PATH";
     public static final String EXTRA_MODE = "nononsense.intent.MODE";
-    public static final String EXTRA_ALLOW_CREATE_DIR =
-            "nononsense.intent" + ".ALLOW_CREATE_DIR";
-    public static final String EXTRA_SINGLE_CLICK =
-            "nononsense.intent" + ".SINGLE_CLICK";
+    public static final String EXTRA_ALLOW_CREATE_DIR = "nononsense.intent" + ".ALLOW_CREATE_DIR";
+    public static final String EXTRA_SINGLE_CLICK = "nononsense.intent" + ".SINGLE_CLICK";
     // For compatibility
-    public static final String EXTRA_ALLOW_MULTIPLE =
-            "android.intent.extra" + ".ALLOW_MULTIPLE";
-    public static final String EXTRA_ALLOW_EXISTING_FILE =
-            "android.intent.extra" + ".ALLOW_EXISTING_FILE";
+    public static final String EXTRA_ALLOW_MULTIPLE = "android.intent.extra" + ".ALLOW_MULTIPLE";
+    public static final String EXTRA_ALLOW_EXISTING_FILE = "android.intent.extra" + ".ALLOW_EXISTING_FILE";
     public static final String EXTRA_PATHS = "nononsense.intent.PATHS";
     public static final int MODE_FILE = AbstractFilePickerFragment.MODE_FILE;
-    public static final int MODE_FILE_AND_DIR =
-            AbstractFilePickerFragment.MODE_FILE_AND_DIR;
+    public static final int MODE_FILE_AND_DIR = AbstractFilePickerFragment.MODE_FILE_AND_DIR;
     public static final int MODE_NEW_FILE = AbstractFilePickerFragment.MODE_NEW_FILE;
     public static final int MODE_DIR = AbstractFilePickerFragment.MODE_DIR;
     protected static final String TAG = "filepicker_fragment";
@@ -79,7 +74,6 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
     protected boolean singleClick = false;
 
     @Override
-    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -89,33 +83,30 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
         if (intent != null) {
             startPath = intent.getStringExtra(EXTRA_START_PATH);
             mode = intent.getIntExtra(EXTRA_MODE, mode);
-            allowCreateDir = intent.getBooleanExtra(EXTRA_ALLOW_CREATE_DIR,
-                    allowCreateDir);
-            allowMultiple =
-                    intent.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, allowMultiple);
-            allowExistingFile =
-                    intent.getBooleanExtra(EXTRA_ALLOW_EXISTING_FILE, allowExistingFile);
-            singleClick =
-                    intent.getBooleanExtra(EXTRA_SINGLE_CLICK, singleClick);
-        }
-
-        FragmentManager fm = getSupportFragmentManager();
-        AbstractFilePickerFragment<T> fragment =
-                (AbstractFilePickerFragment<T>) fm.findFragmentByTag(TAG);
-
-        if (fragment == null) {
-            fragment =
-                    getFragment(startPath, mode, allowMultiple, allowCreateDir, allowExistingFile,
-                            singleClick);
-        }
-
-        if (fragment != null) {
-            fm.beginTransaction().replace(R.id.fragment, fragment, TAG)
-                    .commit();
+            allowCreateDir = intent.getBooleanExtra(EXTRA_ALLOW_CREATE_DIR, allowCreateDir);
+            allowMultiple = intent.getBooleanExtra(EXTRA_ALLOW_MULTIPLE, allowMultiple);
+            allowExistingFile = intent.getBooleanExtra(EXTRA_ALLOW_EXISTING_FILE, allowExistingFile);
+            singleClick = intent.getBooleanExtra(EXTRA_SINGLE_CLICK, singleClick);
         }
 
         // Default to cancelled
         setResult(Activity.RESULT_CANCELED);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentByTag(TAG);
+
+        if (fragment == null) {
+            fragment = getFragment(startPath, mode, allowMultiple, allowCreateDir, allowExistingFile, singleClick);
+        }
+
+        if (fragment != null) {
+            fm.beginTransaction().replace(R.id.fragment, fragment, TAG).commit();
+        }
     }
 
     protected abstract AbstractFilePickerFragment<T> getFragment(

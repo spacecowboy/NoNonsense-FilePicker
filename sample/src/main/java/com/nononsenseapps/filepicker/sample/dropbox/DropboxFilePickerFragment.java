@@ -14,41 +14,40 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.util.SortedList;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.util.SortedListAdapterCallback;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.dropbox.client2.DropboxAPI;
-import com.dropbox.client2.android.AndroidAuthSession;
-import com.dropbox.client2.exception.DropboxException;
+import com.dropbox.core.DbxException;
+import com.dropbox.core.v2.DbxClientV2;
+import com.dropbox.core.v2.files.CreateFolderResult;
+import com.dropbox.core.v2.files.FolderMetadata;
+import com.dropbox.core.v2.files.ListFolderResult;
+import com.dropbox.core.v2.files.Metadata;
 import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 import com.nononsenseapps.filepicker.sample.R;
 
 import java.io.File;
+import java.util.List;
 
 @SuppressLint("ValidFragment")
-public class DropboxFilePickerFragment
-        extends AbstractFilePickerFragment<DropboxAPI.Entry> {
-
-    private final DropboxAPI<AndroidAuthSession> dbApi;
+public class DropboxFilePickerFragment extends AbstractFilePickerFragment<Metadata> {
+    private static final String TAG = "DbxFilePickerFragment";
+    private final DbxClientV2 dropboxClient;
     private ProgressBar progressBar;
-    private RecyclerView recyclerView;
 
     @SuppressLint("ValidFragment")
-    public DropboxFilePickerFragment(final DropboxAPI<AndroidAuthSession> api) {
+    public DropboxFilePickerFragment(final DbxClientV2 api) {
         super();
         if (api == null) {
-            throw new NullPointerException("FileSystem may not be null");
-        } else if (!api.getSession().isLinked()) {
-            throw new IllegalArgumentException("Must be linked with Dropbox");
+            throw new IllegalArgumentException("Must be authenticated with Dropbox");
         }
 
-        this.dbApi = api;
+        this.dropboxClient = api;
     }
 
     @Override
@@ -67,7 +66,7 @@ public class DropboxFilePickerFragment
      * @param nextPath path to list files for
      */
     @Override
-    protected void refresh(@NonNull DropboxAPI.Entry nextPath) {
+    protected void refresh(@NonNull Metadata nextPath) {
         super.refresh(nextPath);
         if (isLoading) {
             progressBar.setVisibility(View.VISIBLE);
@@ -79,8 +78,7 @@ public class DropboxFilePickerFragment
      * Once loading has finished, show the list and hide the progress bar.
      */
     @Override
-    public void onLoadFinished(Loader<SortedList<DropboxAPI.Entry>> loader, SortedList<DropboxAPI
-            .Entry> data) {
+    public void onLoadFinished(Loader<SortedList<Metadata>> loader, SortedList<Metadata> data) {
         progressBar.setVisibility(View.INVISIBLE);
         recyclerView.setVisibility(View.VISIBLE);
         super.onLoadFinished(loader, data);
@@ -90,7 +88,7 @@ public class DropboxFilePickerFragment
      * Once loading has finished, show the list and hide the progress bar.
      */
     @Override
-    public void onLoaderReset(Loader<SortedList<DropboxAPI.Entry>> loader) {
+    public void onLoaderReset(Loader<SortedList<Metadata>> loader) {
         progressBar.setVisibility(View.INVISIBLE);
         recyclerView.setVisibility(View.VISIBLE);
         super.onLoaderReset(loader);
@@ -98,83 +96,79 @@ public class DropboxFilePickerFragment
 
     @Override
     public void onNewFolder(@NonNull final String name) {
-        File folder = new File(mCurrentPath.path, name);
+        File folder = new File(mCurrentPath.getPathDisplay(), name);
         new FolderCreator().execute(folder.getPath());
     }
 
     @Override
-    public boolean isDir(@NonNull final DropboxAPI.Entry file) {
-        return file.isDir;
+    public boolean isDir(@NonNull final Metadata file) {
+        return file instanceof FolderMetadata;
     }
 
     @NonNull
     @Override
-    public DropboxAPI.Entry getParent(@NonNull final DropboxAPI.Entry from) {
-        // Take care of a slight limitation in Dropbox code:
-        if (from.path.length() > 1 && from.path.endsWith("/")) {
-            from.path = from.path.substring(0, from.path.length() - 1);
+    public Metadata getParent(@NonNull final Metadata from) {
+        String fromPath = from.getPathLower();
+        int lastSeparatorIndex = from.getPathLower().lastIndexOf('/');
+
+        String parentPath = "";
+
+        if (lastSeparatorIndex > 0) {
+            parentPath = fromPath.substring(0, lastSeparatorIndex);
         }
-        String parent = from.parentPath();
-        if (TextUtils.isEmpty(parent)) {
-            parent = "/";
-        }
 
-        return getPath(parent);
-
+        return getPath(parentPath);
     }
 
     @NonNull
     @Override
-    public DropboxAPI.Entry getPath(@NonNull final String path) {
-        final DropboxAPI.Entry entry = new DropboxAPI.Entry();
-        entry.path = path;
-        entry.isDir = true;
-        return entry;
-
+    public Metadata getPath(@NonNull String path) {
+        return FolderMetadata.newBuilder(path, "id")
+                .withPathLower(path)
+                .build();
     }
 
     @NonNull
     @Override
-    public String getFullPath(@NonNull final DropboxAPI.Entry file) {
-        return file.path;
+    public String getFullPath(@NonNull final Metadata file) {
+        return file.getPathDisplay();
     }
 
     @NonNull
     @Override
-    public String getName(@NonNull final DropboxAPI.Entry file) {
-        return file.fileName();
+    public String getName(@NonNull final Metadata file) {
+        return file.getName();
     }
 
     @NonNull
     @Override
-    public DropboxAPI.Entry getRoot() {
-        return getPath("/");
+    public Metadata getRoot() {
+        return getPath("");
     }
 
     @NonNull
     @Override
-    public Uri toUri(@NonNull final DropboxAPI.Entry file) {
-        return new Uri.Builder().scheme("dropbox").authority("").path(file.path).build();
+    public Uri toUri(@NonNull final Metadata file) {
+        return new Uri.Builder().scheme("dropbox").authority("").path(file.getPathDisplay()).build();
     }
 
     @NonNull
     @Override
-    public Loader<SortedList<DropboxAPI.Entry>> getLoader() {
-        return new AsyncTaskLoader<SortedList<DropboxAPI.Entry>>(getActivity()) {
+    public Loader<SortedList<Metadata>> getLoader() {
+        return new AsyncTaskLoader<SortedList<Metadata>>(getActivity()) {
 
             @Override
-            public SortedList<DropboxAPI.Entry> loadInBackground() {
-                SortedList<DropboxAPI.Entry> files = new SortedList<>(DropboxAPI.Entry.class,
-                        new SortedListAdapterCallback<DropboxAPI.Entry>(null) {
+            public SortedList<Metadata> loadInBackground() {
+                SortedList<Metadata> files = new SortedList<>(Metadata.class,
+                        new SortedListAdapterCallback<Metadata>(null) {
                             @Override
-                            public int compare(DropboxAPI.Entry lhs, DropboxAPI.Entry rhs) {
+                            public int compare(Metadata lhs, Metadata rhs) {
                                 if (isDir(lhs) && !isDir(rhs)) {
                                     return -1;
                                 } else if (isDir(rhs) && !isDir(lhs)) {
                                     return 1;
                                 } else {
-                                    return lhs.fileName().toLowerCase()
-                                            .compareTo(rhs.fileName().toLowerCase());
+                                    return lhs.getPathLower().compareTo(rhs.getPathLower());
                                 }
                             }
 
@@ -199,38 +193,39 @@ public class DropboxFilePickerFragment
                             }
 
                             @Override
-                            public boolean areContentsTheSame(DropboxAPI.Entry lhs, DropboxAPI.Entry rhs) {
-                                return lhs.fileName().equals(rhs.fileName()) && (lhs.isDir == rhs.isDir);
+                            public boolean areContentsTheSame(Metadata lhs, Metadata rhs) {
+                                return lhs.getName().equals(rhs.getName()) &&
+                                        (lhs.getClass().equals(rhs.getClass()));
                             }
 
                             @Override
-                            public boolean areItemsTheSame(DropboxAPI.Entry lhs, DropboxAPI.Entry rhs) {
+                            public boolean areItemsTheSame(Metadata lhs, Metadata rhs) {
                                 return areContentsTheSame(lhs, rhs);
                             }
                         }, 0);
 
                 try {
-
-                    if (!dbApi.metadata(mCurrentPath.path, 1, null, false,
-                            null).isDir) {
+                    if (!(mCurrentPath instanceof FolderMetadata)) {
                         mCurrentPath = getRoot();
                     }
 
-                    DropboxAPI.Entry dirEntry =
-                            dbApi.metadata(mCurrentPath.path, 0, null, true,
-                                    null);
-
                     files.beginBatchedUpdates();
 
-                    for (DropboxAPI.Entry entry : dirEntry.contents) {
+                    String pathToList = mCurrentPath.getPathLower();
+                    ListFolderResult listDirResult = dropboxClient.files().listFolder(pathToList);
+                    List<Metadata> dirContents = listDirResult.getEntries();
+
+                    for (Metadata entry : dirContents) {
                         if ((mode == MODE_FILE || mode == MODE_FILE_AND_DIR) ||
-                                entry.isDir) {
+                                entry instanceof FolderMetadata) {
                             files.add(entry);
                         }
                     }
 
                     files.endBatchedUpdates();
-                } catch (DropboxException ignored) {
+                } catch (DbxException ignored) {
+                    Log.d(TAG, "Failed to list Dropbox folder", ignored);
+                    ignored.getMessage();
                 }
 
                 return files;
@@ -243,7 +238,7 @@ public class DropboxFilePickerFragment
             protected void onStartLoading() {
                 super.onStartLoading();
 
-                if (mCurrentPath == null || !mCurrentPath.isDir) {
+                if (mCurrentPath == null || !(mCurrentPath instanceof FolderMetadata)) {
                     mCurrentPath = getRoot();
                 }
 
@@ -264,7 +259,7 @@ public class DropboxFilePickerFragment
      * Dropbox requires stuff to be done in a background thread. Refreshing has to be done on the
      * UI thread however (it restarts the loader so actual work is done in the background).
      */
-    private class FolderCreator extends AsyncTask<String, Void, DropboxAPI.Entry> {
+    private class FolderCreator extends AsyncTask<String, Void, Metadata> {
         @Override
         protected void onPreExecute() {
             // Switch to progress bar before starting work
@@ -273,22 +268,23 @@ public class DropboxFilePickerFragment
         }
 
         @Override
-        protected DropboxAPI.Entry doInBackground(final String... paths) {
+        protected Metadata doInBackground(final String... paths) {
             if (paths.length == 0) {
                 return null;
             }
 
             String path = paths[0];
             try {
-                dbApi.createFolder(path);
-                return dbApi.metadata(path, 1, null, false, null);
-            } catch (DropboxException e) {
+                CreateFolderResult createFolderResult =  dropboxClient.files().createFolderV2(path);
+                return createFolderResult.getMetadata();
+            } catch (DbxException e) {
+                Log.d(TAG, getString(R.string.nnf_create_folder_error), e);
                 return null;
             }
         }
 
         @Override
-        protected void onPostExecute(@Nullable DropboxAPI.Entry path) {
+        protected void onPostExecute(@Nullable Metadata path) {
             if (path != null) {
                 goToDir(path);
             } else {

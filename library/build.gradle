@@ -10,7 +10,7 @@ apply plugin: 'bintray-release'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    buildToolsVersion "26.0.2"
 
     lintOptions {
         abortOnError false
