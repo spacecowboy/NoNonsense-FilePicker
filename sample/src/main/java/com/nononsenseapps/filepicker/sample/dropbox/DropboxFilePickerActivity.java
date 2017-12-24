@@ -6,6 +6,7 @@
 
 package com.nononsenseapps.filepicker.sample.dropbox;
 
+import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
@@ -16,11 +17,15 @@ import com.nononsenseapps.filepicker.AbstractFilePickerFragment;
 
 
 public class DropboxFilePickerActivity extends AbstractFilePickerActivity<Metadata> {
-    private DbxClientV2 dropboxClient = null;
+    private DropboxHelper dropboxHelper = new DropboxHelper();
 
     @Override
     protected void onResume() {
-        dropboxClient = DropboxHelper.getClient(this);
+        if (dropboxHelper.authenticationFailed(this)) {
+            Toast.makeText(this, "Dropbox authentication failed", Toast.LENGTH_LONG).show();
+            setResult(Activity.RESULT_CANCELED);
+            finish();
+        }
 
         super.onResume();
     }
@@ -32,12 +37,13 @@ public class DropboxFilePickerActivity extends AbstractFilePickerActivity<Metada
                                                                final boolean singleClick) {
         DropboxFilePickerFragment fragment = null;
 
-        if (dropboxClient != null) {
-            fragment = new DropboxFilePickerFragment(dropboxClient);
-            fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir, allowExistingFile, singleClick);
-        }
-        else {
-            Toast.makeText(this, "Not authenticated with Dropbox", Toast.LENGTH_LONG).show();
+        if (!dropboxHelper.authenticationFailed(this)) {
+            DbxClientV2 dropboxClient = dropboxHelper.getClient(this);
+
+            if (dropboxClient != null) {
+                fragment = new DropboxFilePickerFragment(dropboxClient);
+                fragment.setArgs(startPath, mode, allowMultiple, allowCreateDir, allowExistingFile, singleClick);
+            }
         }
 
         return fragment;

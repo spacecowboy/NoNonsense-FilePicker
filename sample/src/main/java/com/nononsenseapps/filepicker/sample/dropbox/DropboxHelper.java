@@ -27,19 +27,16 @@ class DropboxHelper {
     private static final String PREF_DROPBOX_TOKEN = "dropboxtoken";
     private static final String CLIENT_IDENTIFIER = "no-nonsense-file-picker";
 
-    static DbxClientV2 getClient(final Context context) {
+    private boolean loginAlreadyAttempted = false;
+
+    DbxClientV2 getClient(final Context context) {
         DbxClientV2 client = null;
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String accessToken = prefs.getString(PREF_DROPBOX_TOKEN, null);
+        String accessToken = getSavedAccessToken(context);
+
         if (accessToken == null) {
-            accessToken = Auth.getOAuth2Token();
-            if (accessToken != null) {
-                saveToken(context, accessToken);
-            }
-            else {
-                Auth.startOAuth2Authentication(context, APP_KEY);
-            }
+            loginAlreadyAttempted = true;
+            Auth.startOAuth2Authentication(context, APP_KEY);
         }
 
         if (accessToken != null) {
@@ -50,7 +47,28 @@ class DropboxHelper {
         return client;
     }
 
-    private static void saveToken(final Context context, final String token) {
+    boolean authenticationFailed(Context context) {
+        boolean accessTokenIsMissing = getSavedAccessToken(context) == null;
+
+        return accessTokenIsMissing && loginAlreadyAttempted;
+    }
+
+    private String getSavedAccessToken(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        String accessToken = prefs.getString(PREF_DROPBOX_TOKEN, null);
+
+        if (accessToken == null) {
+            accessToken = Auth.getOAuth2Token();
+            if (accessToken != null) {
+                saveToken(context, accessToken);
+            }
+        }
+
+        return accessToken;
+    }
+
+    private void saveToken(final Context context, final String token) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor preferencesEditor = prefs.edit();
 

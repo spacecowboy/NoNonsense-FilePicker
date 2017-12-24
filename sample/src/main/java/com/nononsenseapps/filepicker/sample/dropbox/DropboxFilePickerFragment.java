@@ -14,7 +14,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.util.SortedList;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,7 +39,6 @@ public class DropboxFilePickerFragment extends AbstractFilePickerFragment<Metada
     private static final String TAG = "DbxFilePickerFragment";
     private final DbxClientV2 dropboxClient;
     private ProgressBar progressBar;
-    private RecyclerView recyclerView;
 
     @SuppressLint("ValidFragment")
     public DropboxFilePickerFragment(final DbxClientV2 api) {
@@ -58,7 +56,6 @@ public class DropboxFilePickerFragment extends AbstractFilePickerFragment<Metada
         View view = inflater.inflate(R.layout.fragment_loading_filepicker, container, false);
         // And bind the progress bar
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-        recyclerView = (RecyclerView) view.findViewById(android.R.id.list);
 
         return view;
     }
