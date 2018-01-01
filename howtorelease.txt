@@ -1,5 +1,6 @@
 # Generate changelog
-github_changelog_generator -u spacecowboy -p NoNonsense-FilePicker --no-issues-wo-labels --future-release 2.5.1
+
+    neo4j-changelog
 
 # Commit new changelog
 

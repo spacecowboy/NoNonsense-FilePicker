@@ -1,4 +1,15 @@
 
+## 4.2.0
+
+
+### Added
+
+- Made OK/Cancel strings into library strings for easy overridability [\#157](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/157) ([spacecowboy](https://github.com/spacecowboy))
+
+### Changed
+
+- Update build tools to 26.0.2 and update Dropbox sample to v2 API [\#155](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/155) ([mitchyboy9](https://github.com/mitchyboy9))
+
 ## 4.1.0
 
 
