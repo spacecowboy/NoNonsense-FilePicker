@@ -116,6 +116,7 @@ public abstract class AbstractFilePickerActivity<T> extends AppCompatActivity
 
     @Override
     public void onSaveInstanceState(Bundle b) {
+        b.putString("WORKAROUND_FOR_BUG_19917_KEY", "WORKAROUND_FOR_BUG_19917_VALUE");
         super.onSaveInstanceState(b);
     }
 
