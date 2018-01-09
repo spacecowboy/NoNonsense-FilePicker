@@ -4,6 +4,10 @@
 
 # Commit new changelog
 
+# Update tag reference in root/build.gradle
+
+    ext.gitTag = ...
+
 # Make tag
 
 # Upload to jcenter
