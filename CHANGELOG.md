@@ -1,4 +1,11 @@
 
+## 4.2.1
+
+
+### Fixed
+
+- Fixed RuntimeException with empty state in onSaveInstanceState [\#160](https://github.com/spacecowboy/NoNonsense-FilePicker/pull/160) ([jangrewe](https://github.com/jangrewe))
+
 ## 4.2.0
 
 
