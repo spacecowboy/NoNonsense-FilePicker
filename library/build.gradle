@@ -1,16 +1,16 @@
-apply plugin: 'com.android.library'
 /*
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-// must be applied after your artifact generating plugin (eg. java /  com.android.library)
-apply plugin: 'bintray-release'
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     lintOptions {
         abortOnError false
@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 24
+        targetSdkVersion 28
         versionCode gitCommitCount
         versionName gitTag
         vectorDrawables.useSupportLibrary = true
@@ -26,22 +26,78 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
-    compile 'com.android.support:recyclerview-v7:24.2.1'
+    implementation 'com.android.support:appcompat-v7:24.2.1'
+    implementation 'com.android.support:support-v4:24.2.1'
+    implementation 'com.android.support:recyclerview-v7:24.2.1'
 
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 }
 
-publish {
-    groupId = 'com.nononsenseapps'
-    artifactId = 'filepicker'
-    publishVersion = gitTag
-    description = 'An extendable Android file/directory-picker you can include in your app'
-    website = 'https://github.com/spacecowboy/NoNonsense-FilePicker'
-    licences = ['MPL-2.0']
-    uploadName = 'com.nononsenseapps:filepicker'
-    bintrayUser = project.hasProperty("BINTRAY_USER")? BINTRAY_USER: "Dummy"
-    bintrayKey = project.hasProperty("BINTRAY_KEY") ? BINTRAY_KEY: "Dummy"
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+//    from android.sourceSets.main.kotlin.srcDirs
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "localFile"
+            url = "file://${buildDir}/repo"
+        }
+        maven {
+            name = "mavenCentral"
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username findProperty("nexusUsername")
+                password findProperty("nexusPassword")
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.nononsenseapps'
+            artifactId = 'filepicker'
+            version = gitTag
+
+            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+            artifact androidSourcesJar
+
+            pom {
+                name = "NoNonsense Filepicker"
+                description = "An extendable Android file/directory-picker you can include in your app"
+                url = "https://github.com/spacecowboy/NoNonsense-FilePicker"
+                licenses {
+                    license {
+                        name = "Mozilla Public License Version 2.0"
+                        url = "https://www.mozilla.org/en-US/MPL/2.0/"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git://github.com/spacecowboy/NoNonsense-FilePicker.git"
+                    developerConnection = "scm:git:ssh://git@github.com:spacecowboy/NoNonsense-FilePicker.git"
+                    url = "https://github.com/spacecowboy/NoNonsense-FilePicker"
+                }
+//                withXml {
+//                    def dependenciesNode = asNode().appendNode('dependencies')
+//
+//                    project.configurations.implementation.allDependencies.each {
+//                        def dependencyNode = dependenciesNode.appendNode('dependency')
+//                        dependencyNode.appendNode('groupId', it.group)
+//                        dependencyNode.appendNode('artifactId', it.name)
+//                        dependencyNode.appendNode('version', it.version)
+//                    }
+//                }
+            }
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications.maven
 }
